@@ -1389,7 +1389,7 @@ function reclassifyMaterialsToUnused() {
           // Remove "New" tag if present and add visual indicator
           var titleCell = row.find('td:nth-child(2)');
           titleCell.find('.govuk-tag--blue').remove(); // Remove "New" tag
-          row.addClass('reclassified-unused');
+          // row.addClass('reclassified-unused');
           
           // Add the material_Unused class for filtering and remove other status classes
           row.removeClass('material_None material_Used').addClass('material_Unused');
@@ -1432,7 +1432,7 @@ function reclassifyCommsToUnused() {
           
           // Remove "New" tag if present and add visual indicator
           subjectCell.find('.govuk-tag--blue').remove(); // Remove "New" tag
-          row.addClass('reclassified-unused');
+          // row.addClass('reclassified-unused');
           
           // Add "Unused" indicator to the subject cell
           subjectCell.prepend('<strong class="govuk-tag govuk-tag--red">Unused</strong>');
@@ -1490,3 +1490,23 @@ function showReclassificationSuccess(type, count, items) {
           notification.fadeOut();
      }, 10000);
 }
+
+// Single-row reclassify handler
+$(document).on('click', '.reclassify-Document', function() {
+    var $row = $(this).closest('tr.govuk-table__row');
+    // If this is a hidden_row (details row), get the previous visible row
+    if ($row.hasClass('hidden_row')) {
+        $row = $row.prevAll('tr.govuk-table__row').first();
+    }
+    // Update the status cell (6th column)
+    var $statusCell = $row.find('td').eq(5);
+    $statusCell.html('<strong class="govuk-tag govuk-tag--red">Unused</strong>');
+    // Remove the 'New' tag from the title cell (2nd column)
+    var $titleCell = $row.find('td').eq(1);
+    $titleCell.find('.govuk-tag--blue').remove();
+    // Add reclassified-unused and material_Unused, remove other status classes
+    // $row.addClass('reclassified-unused material_Unused');
+    $row.removeClass('material_None material_Used');
+    // Show a notification (optional, like bulk)
+    showReclassificationSuccess('materials', 1, [$titleCell.text().trim()]);
+});
