@@ -20,10 +20,9 @@
     <div class="govuk-grid-column-one-half">
 
         <!-- AUTO RECLASSIFY -->
-        {% if data['no_materials_to_reclassify'] == 'true' %}
         <div class="govuk-notification-banner govuk-!-margin-bottom-4" role="alert"
             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-            id="auto_reclassify">
+            id="auto_reclassify" style="display:none;">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Important</h2>
             </div>
@@ -31,7 +30,6 @@
                 <h3 class="govuk-notification-banner__heading">No materials were identified for reclassification</h3>
             </div>
         </div>
-        {% endif %}
 
         <!-- DICARD -->
         {% if data['discarding_material_COMPLETED'] == 'true' %}
@@ -64,9 +62,9 @@
             <!-- <a href="">Guidance</a> -->
             <!-- <a href="">Further housekeeping</a> -->
             <button type="button"
-                class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">Auto
-                reclassify
-                UM</button>
+                class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">
+                Auto reclassify UM
+            </button>
             {% if data['tab'] != '5' %}
             <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Complete triage</button>
             {% endif %}

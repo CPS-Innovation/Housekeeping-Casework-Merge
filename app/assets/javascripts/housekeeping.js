@@ -878,7 +878,12 @@ $(document).ready(function() {
      // RECLASSIFY
      $(".auto_reclassify_Documents").click(function(){
           $('#discard_successful, #rename_COMPLETE, #mark_as').hide();
-          $('#auto_reclassify').show();
+          $('#auto_reclassify').stop(true, true).show(); // Show the banner quickly
+
+          // Hide the banner after 2 seconds
+          setTimeout(function() {
+               $('#auto_reclassify').hide(); // Fade out smoothly
+          }, 3000);
      });
 
      // MATERIALS
