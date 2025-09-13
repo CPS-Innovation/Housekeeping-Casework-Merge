@@ -32,18 +32,18 @@
                             </svg>
                         </button>
                         <div class="hidden_buttons" id="materials_Actions">
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
+                            <button type="button" id="update-and-reclassify"
+                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Mulitple_Docs"
                                     data-module="govuk-button" disabled>Update and reclassify</button>
+                            <form method="post" action="B-discard_material">
+                                <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
+                                <button class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                            </form>
+                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="button">Mark as read</button>
                             <button type="button"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Discard</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [read/unread]</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [used/unused]</button>
+                                    data-module="govuk-button" disabled>Mark as used</button>
                             <button type="button"
                                 class="govuk-button govuk-button--disabled redact_Document_Mulitple_Docs"
                                 data-module="govuk-button" disabled>Open to review and edit/redact</button>
@@ -114,26 +114,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="1">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="2"
-                                    onclick="return pageActions();" data-doc="MCLOVEMG3.pdf" data-page="6">MCLOVE
-                                    MG3</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MCLOVE MG3" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="1">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="1">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MCLOVEMG3.pdf"></div>
                     </td>
                 </tr>
@@ -176,26 +156,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="2">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="CM01.pdf" data-page="2">Case overview and
-                                    officer comments</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="Case overview and officer comments" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="2">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="2">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/CM01.pdf"></div>
                     </td>
                 </tr>
@@ -235,26 +195,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="3">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG05MCLOVE.pdf" data-page="4">MG05
-                                    MCLOVE</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG05 MCLOVE" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="3">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="3">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG05MCLOVE.pdf"></div>
                     </td>
                 </tr>
@@ -294,26 +234,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="4">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG06_3June.pdf" data-page="3">MG06 3
-                                    June</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG06 3 June" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="4">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="4">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG06_3June.pdf"></div>
                     </td>
                 </tr>
@@ -354,26 +274,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="5">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG06_10june.pdf" data-page="3">MG06 10
-                                    June</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG06 10 June" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="5">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="5">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG06_10june.pdf"></div>
                     </td>
                 </tr>
@@ -415,26 +315,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="6">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf"
-                                    data-page="2">stmt BLAYNEE 2034 1 JUNE mg11</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="stmt BLAYNEE 2034 1 JUNE mg11" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="6">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="6">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/stmt_BLAYNEE_2034_1_JUNE_mg11.pdf">
                         </div>
                     </td>
@@ -477,26 +357,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="7">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="stmt_Lucy_Doyle_MG11.pdf"
-                                    data-page="3">stmt Lucy Doyle MG11</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="stmt Lucy Doyle MG11" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="7">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="7">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/stmt_Lucy_Doyle_MG11.pdf"></div>
                     </td>
                 </tr>
@@ -538,26 +398,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="8">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="stmt_Shelagh_McLove_MG11_hand.pdf"
-                                    data-page="5">stmt Shelagh McLove MG11</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="stmt Shelagh McLove MG11" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="8">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="8">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/stmt_Shelagh_McLove_MG11.pdf">
                         </div>
                     </td>
@@ -600,26 +440,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="9">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="Shelagh_McLove_VPS_mg11.pdf"
-                                    data-page="2">Shelagh McLove VPS mg11</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="Shelagh McLove VPS mg11" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="9">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="9">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/Shelagh_McLove_VPS_mg11.pdf"></div>
                     </td>
                 </tr>
@@ -661,26 +481,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="10">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG11_Shelagh_MCLOVE_retraction.pdf"
-                                    data-page="1">MG11 Shelagh MCLOVE retraction</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG11 Shelagh MCLOVE retraction" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="10">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="10">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed
                                 src="/public/files/MG11_Shelagh_MCLOVE_retraction.pdf"></div>
                     </td>
@@ -722,25 +522,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="11">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG12.pdf" data-page="1">MCLOVE MG12</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MCLOVE MG12" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="11">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="11">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG12.pdf"></div>
                     </td>
                 </tr>
@@ -780,25 +561,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="12">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG00.pdf" data-page="1">MCLOVE MG00</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MCLOVE MG00" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="12">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="12">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG00.pdf"></div>
                     </td>
                 </tr>
@@ -844,28 +606,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="13">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();"
-                                    data-doc="UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf"
-                                    data-page="7">UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE"
-                                        style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="13">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="13">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed
                                 src="/public/files/UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf"></div>
                     </td>
@@ -909,26 +649,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="14">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="SDC_items_to_be_Disclosed_MCLOVE.pdf"
-                                    data-page="2">SDC_items to_be Disclosed MCLOVE</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="SDC_items to_be Disclosed MCLOVE" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="14">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="14">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed
                                 src="/public/files/SDC_items_to_be_Disclosed_MCLOVE.pdf"></div>
                     </td>
@@ -970,26 +690,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="15">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG20_5_JUNE.pdf"
-                                    data-page="1">MG20_5_JUNE</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG20_5_JUNE" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="15">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="15">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG20_5_JUNE.pdf"></div>
                     </td>
                 </tr>
@@ -1030,26 +730,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="16">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG20_10_JUNE.pdf"
-                                    data-page="1">MG20_10_JUNE</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="MG20_10_JUNE" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="16">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="16">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG20_10_JUNE.pdf"></div>
                     </td>
                 </tr>
@@ -1089,26 +769,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="17">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="PRE_CONS_D.pdf" data-page="9">PRE CONS
-                                    D</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="PRE CONS D" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="17">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="17">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/PRE_CONS_D.pdf"></div>
                     </td>
                 </tr>
@@ -1148,26 +808,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="18">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="defendants.pdf" data-page="1">Asset Rec
-                                    1</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="Asset Rec 1" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="18">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="18">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><img src="/public/files/Asset-Rec-1.png"></div>
                     </td>
                 </tr>
@@ -1207,25 +847,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="19">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG11_1.pdf" data-page="1">MG11 - 1</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text" value="MG11 - 1"
-                                        style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="19">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="19">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG11_1.pdf"></div>
                     </td>
                 </tr>
@@ -1265,25 +886,6 @@
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="20">
                     <td colspan="7">
-                        <div class="cta_group">
-                            <div class="openMe">
-                                <a class="govuk-button redact_Document show-case" data-document="3"
-                                    onclick="return pageActions();" data-doc="MG12.pdf" data-page="1">Exhibit - 1</a>
-                                <form method="post" action="B-discard_material">
-                                    <input id="material_selected" name="material_selected" type="text"
-                                        value="Exhibit - 1" style="display: none;">
-                                    <button class="govuk-button" data-module="govuk-button"
-                                        type="submit">Discard</button>
-                                </form>
-                                <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark
-                                    as read</button>
-                                <button class="govuk-button rename-Document" data-module="govuk-button" type="button"
-                                    onclick="return openRenameModal();" data-rename="20">Rename</button>
-                                <button class="govuk-button reclassify-Document" data-module="govuk-button"
-                                    type="button" data-reclassify="20">Reclassify
-                                </button>
-                            </div>
-                        </div>
                         <div class="document_holder" id=""><embed src="/public/files/MG11_2.pdf"></div>
                     </td>
                 </tr>

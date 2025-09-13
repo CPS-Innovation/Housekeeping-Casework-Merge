@@ -913,6 +913,15 @@ $(document).ready(function() {
 
      $('#tab-list, #auto_reclassify').hide();
 
+    // open the reclassify page on click
+    $('#update-and-reclassify').click(function(){
+        window.location.replace("C-reclassify.html");
+    });
+
+    $('#save-reclassify').click(function(){
+        window.location.replace("A-index.html");
+    });
+
      // RECLASSIFY
      $(".auto_reclassify_Documents").click(function(){
           $('#discard_successful, #rename_COMPLETE, #mark_as').hide();
