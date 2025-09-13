@@ -33,17 +33,17 @@
                         </button>
                         <div class="hidden_buttons" id="materials_Actions">
                             <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Mulitple_Docs"
                                     data-module="govuk-button" disabled>Update and reclassify</button>
+                            <form method="post" action="B-discard_material">
+                                <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
+                                <button class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                            </form>
+                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="button">Mark as read</button>
                             <button type="button"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Discard</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [read/unread]</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [used/unused]</button>
+                                    data-module="govuk-button" disabled>Mark as used</button>
                             <button type="button"
                                 class="govuk-button govuk-button--disabled redact_Document_Mulitple_Docs"
                                 data-module="govuk-button" disabled>Open to review and edit/redact</button>
