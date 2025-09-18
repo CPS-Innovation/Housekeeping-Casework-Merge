@@ -944,14 +944,14 @@ $(document).ready(function() {
 
      $('input[name=materials_document]').click(function(){
           if ($("input[name=materials_document]:checked").length >= 1) {
-               $('.reclassify_Document_Mulitple_Docs, .redact_Document_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=materials_document]:checked").length == 0) {
-               $('.reclassify_Document_Mulitple_Docs, .redact_Document_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
      // MATERIALS - Reclassify to Unused handler
-     $('.reclassify_Document_Mulitple_Docs').click(function(){
+     $('.reclassify_Document_Multiple_Docs').click(function(){
           if (!$(this).is(':disabled')) {
                reclassifyMaterialsToUnused();
           }
@@ -968,16 +968,16 @@ $(document).ready(function() {
 
      $('input[name=comms_document]').click(function(){
           if ($("input[name=comms_document]:checked").length >= 1) {
-               $('.reclassify_Comms_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-               $('.redact_Comms_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=comms_document]:checked").length == 0) { 
-               $('.reclassify_Comms_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-               $('.redact_Comms_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
      // COMMS - Reclassify to Unused handler
-     $('.reclassify_Comms_Mulitple_Docs').click(function(){
+     $('.reclassify_Comms_Multiple_Docs').click(function(){
           if (!$(this).is(':disabled')) {
                reclassifyCommsToUnused();
           }
@@ -1022,7 +1022,7 @@ $(document).ready(function() {
      //      $('table#materials_table tr.hidden_row').hide();     
      // });
 
-     $('.redact_Document_Mulitple_Docs').click(function(){
+     $('.redact_Document_Multiple_Docs').click(function(){
           $('ul#tab-list').show();
 
           $('ul#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');
@@ -1452,7 +1452,7 @@ function reclassifyMaterialsToUnused() {
      $('#materials_documents_ALL').prop('checked', false);
      
      // Disable the action buttons
-     $('.reclassify_Document_Mulitple_Docs, .redact_Document_Mulitple_Docs')
+     $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs')
           .attr('disabled','disabled')
           .addClass('govuk-button--disabled');
      
@@ -1495,7 +1495,7 @@ function reclassifyCommsToUnused() {
      $('#comms_documents_ALL').prop('checked', false);
      
      // Disable the action buttons
-     $('.reclassify_Comms_Mulitple_Docs, .redact_Comms_Mulitple_Docs')
+     $('.reclassify_Comms_Multiple_Docs, .redact_Comms_Multiple_Docs')
           .attr('disabled','disabled')
           .addClass('govuk-button--disabled');
      
