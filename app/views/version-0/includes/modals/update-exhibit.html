@@ -1,0 +1,142 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openUpdateExhibitModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// NOTES - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="updateStatement">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper rename-header">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">Update exhibit</span></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="" action="">
+
+                        <div class="loading" id="completing_rename">
+                            <div>
+                                <div class="hods-loading-spinner">
+                                    <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                                </div>
+                                <h2 class="govuk-heading-m">Updating statement...</h2>
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-row" id="rename_form">
+                            <div class="govuk-grid-column-full">
+
+                                {{ govukInput({
+                                label: {
+                                text: "Exhibit item",
+                                classes: "govuk-!-font-weight-bold"
+                                },
+                                id: "exhibit-item",
+                                name: "exhibitItem",
+                                classes: "govuk-input--width-full"
+                                }) }}
+
+                                {{ govukInput({
+                                label: {
+                                text: "Exhibit name",
+                                classes: "govuk-!-font-weight-bold"
+                                },
+                                id: "exhibit-name",
+                                name: "exhibitName",
+                                classes: "govuk-input--width-full"
+                                }) }}
+
+                                {{ govukInput({
+                                label: {
+                                text: "Exhibit reference number (Optional)",
+                                classes: "govuk-!-font-weight-bold"
+                                },
+                                id: "exhibit-reference-number",
+                                name: "exhibitReferenceNumber",
+                                classes: "govuk-input--width-full"
+                                }) }}
+
+                                {{ govukSelect({
+                                id: "exhibit-producer-witness",
+                                name: "exhibit-producer-witness",
+                                label: {
+                                text: "Exhibit producer or witness (Optional)",
+                                classes: "govuk-!-font-weight-bold"
+                                },
+                                items: [
+                                {
+                                value: "witness-1",
+                                text: "Witness 1"
+                                },
+                                {
+                                value: "witness-2",
+                                text: "Chief Wiggam",
+                                selected: true
+                                },
+                                {
+                                value: "witness-3",
+                                text: "Witness 3"
+                                }
+                                ]
+                                }) }}
+
+                                {{ govukInput({
+                                label: {
+                                text: "Produced by (Optional)",
+                                classes: "govuk-!-font-weight-bold"
+                                },
+                                id: "exhibit-produced-by",
+                                name: "exhibitProducedBy",
+                                classes: "govuk-input--width-full"
+                                }) }}
+
+                                {{ govukRadios({
+                                name: "material-status",
+                                fieldset: {
+                                legend: {
+                                text: "What is the material status?",
+                                isPageHeading: false,
+                                classes: "govuk-fieldset__legend--s"
+                                }
+                                },
+                                items: [
+                                {
+                                value: "used",
+                                text: "Used"
+                                },
+                                {
+                                value: "unused",
+                                text: "Unused"
+                                }
+                                ]
+                                }) }}
+
+
+
+
+                                <div class="initial-action">
+                                    <button id="document-renamed" class="govuk-button" data-module="govuk-button" type="button" onClick="return renameDocument()">Save and close</button>
+                                    <button class="non-button cancel-rename" data-module="govuk-button" type="button" onClick="closeUpdateExhibitModal()">Cancel</button>
+                                </div>
+
+                                <div class="secondary-action">
+                                    <button id="" class="non-button" data-module="govuk-button" type="button" onClick="return closeUpdateExhibitModal()">Close</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
