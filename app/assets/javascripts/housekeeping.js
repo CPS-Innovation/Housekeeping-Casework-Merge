@@ -257,12 +257,12 @@ $(document).ready(function() {
         $('.tab-' + tabNumber + '-content_link').addClass('govuk-tabs__list-item--selected');
         
         // Handle special cases for specific tabs
-        if (tabNumber == 3) {
+        if (tabNumber === 3) {
             $('#tab-list').show();
             $('#docCopy').hide();
         }
         
-        if (tabNumber == 4) {
+        if (tabNumber === 4) {
             // Update communications counters when the tab is shown
             if (typeof updateCommsCounters === 'function') {
                 updateCommsCounters();
@@ -1167,29 +1167,29 @@ $(document).ready(function() {
      $('#completing_rename, #rename_COMPLETE').hide();
 
      $('.rename-Document').click(function(){
-          var document_title = $(this).closest('.openMe').find('.redact_Document').text();
+          let document_title = $(this).closest('.openMe').find('.redact_Document').text();
           $('#rename-Document').val(document_title);
-          var rename_document = parseInt($(this).data('rename'));
-          if (rename_document == 1) { $('table#materials_table .document_row_1').addClass('rename_document'); }
-          if (rename_document == 2) { $('table#materials_table .document_row_2').addClass('rename_document'); }
-          if (rename_document == 3) { $('table#materials_table .document_row_3').addClass('rename_document'); }
-          if (rename_document == 4) { $('table#materials_table .document_row_4').addClass('rename_document'); }
-          if (rename_document == 5) { $('table#materials_table .document_row_5').addClass('rename_document'); }
-          if (rename_document == 6) { $('table#materials_table .document_row_6').addClass('rename_document'); }
-          if (rename_document == 7) { $('table#materials_table .document_row_7').addClass('rename_document'); }
-          if (rename_document == 8) { $('table#materials_table .document_row_8').addClass('rename_document'); }
-          if (rename_document == 9) { $('table#materials_table .document_row_9').addClass('rename_document'); }
-          if (rename_document == 10) { $('table#materials_table .document_row_10').addClass('rename_document'); }
-          if (rename_document == 11) { $('table#materials_table .document_row_11').addClass('rename_document'); }
-          if (rename_document == 12) { $('table#materials_table .document_row_12').addClass('rename_document'); }
-          if (rename_document == 13) { $('table#materials_table .document_row_13').addClass('rename_document'); }
-          if (rename_document == 14) { $('table#materials_table .document_row_14').addClass('rename_document'); }
-          if (rename_document == 15) { $('table#materials_table .document_row_15').addClass('rename_document'); }
-          if (rename_document == 16) { $('table#materials_table .document_row_16').addClass('rename_document'); }
-          if (rename_document == 17) { $('table#materials_table .document_row_17').addClass('rename_document'); }
-          if (rename_document == 18) { $('table#materials_table .document_row_18').addClass('rename_document'); }
-          if (rename_document == 19) { $('table#materials_table .document_row_19').addClass('rename_document'); }
-          if (rename_document == 20) { $('table#materials_table .document_row_20').addClass('rename_document'); }
+          const rename_document = parseInt($(this).data('rename'));
+          if (rename_document === 1) { $('table#materials_table .document_row_1').addClass('rename_document'); }
+          if (rename_document === 2) { $('table#materials_table .document_row_2').addClass('rename_document'); }
+          if (rename_document === 3) { $('table#materials_table .document_row_3').addClass('rename_document'); }
+          if (rename_document === 4) { $('table#materials_table .document_row_4').addClass('rename_document'); }
+          if (rename_document === 5) { $('table#materials_table .document_row_5').addClass('rename_document'); }
+          if (rename_document === 6) { $('table#materials_table .document_row_6').addClass('rename_document'); }
+          if (rename_document === 7) { $('table#materials_table .document_row_7').addClass('rename_document'); }
+          if (rename_document === 8) { $('table#materials_table .document_row_8').addClass('rename_document'); }
+          if (rename_document === 9) { $('table#materials_table .document_row_9').addClass('rename_document'); }
+          if (rename_document === 10) { $('table#materials_table .document_row_10').addClass('rename_document'); }
+          if (rename_document === 11) { $('table#materials_table .document_row_11').addClass('rename_document'); }
+          if (rename_document === 12) { $('table#materials_table .document_row_12').addClass('rename_document'); }
+          if (rename_document === 13) { $('table#materials_table .document_row_13').addClass('rename_document'); }
+          if (rename_document === 14) { $('table#materials_table .document_row_14').addClass('rename_document'); }
+          if (rename_document === 15) { $('table#materials_table .document_row_15').addClass('rename_document'); }
+          if (rename_document === 16) { $('table#materials_table .document_row_16').addClass('rename_document'); }
+          if (rename_document === 17) { $('table#materials_table .document_row_17').addClass('rename_document'); }
+          if (rename_document === 18) { $('table#materials_table .document_row_18').addClass('rename_document'); }
+          if (rename_document === 19) { $('table#materials_table .document_row_19').addClass('rename_document'); }
+          if (rename_document === 20) { $('table#materials_table .document_row_20').addClass('rename_document'); }
      });   
 
 });
