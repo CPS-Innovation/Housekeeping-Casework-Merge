@@ -376,7 +376,7 @@ $(document).ready(function() {
           });
      }
 
-     // Set up a MutationObserver for communications table
+     // Set up a MutationObserver for the communications table
      if (window.MutationObserver && document.querySelector('#comms_table')) {
           var commsObserver = new MutationObserver(function(mutations) {
                var shouldUpdate = false;
