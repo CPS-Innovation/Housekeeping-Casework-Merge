@@ -971,11 +971,11 @@ $(document).ready(function() {
      });
 
      // MATERIALS - Reclassify to Unused handler
-     $('.reclassify_Document_Mulitple_Docs').click(function(){
-          if (!$(this).is(':disabled')) {
-               reclassifyMaterialsToUnused();
-          }
-     });
+     // $('.reclassify_Document_Mulitple_Docs').click(function(){
+     //      if (!$(this).is(':disabled')) {
+     //           reclassifyMaterialsToUnused();
+     //      }
+     // });
 
      // COMMS
      $("#comms_documents_ALL").click(function(){
