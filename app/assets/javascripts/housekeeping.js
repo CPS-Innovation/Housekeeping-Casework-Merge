@@ -896,6 +896,26 @@ $(document).mouseup(function(e) {
 
 });
 
+
+// Hide actions depending on certain criteria
+$(document).ready(function() {
+
+    $("#show_Materials_Actions").click(function(){
+
+        // Get all checked materials
+        const checkedMaterials = $("input[name=materials_document]:checked");
+        const materialsCount = checkedMaterials.length;
+
+        if (materialsCount === 1) {
+            // Show actions that can only be performed on a single item
+            $('.rename-Document').show();
+        } else {
+            // Show actions that can be 'bulk' performed on many items
+            $('.rename-Document').hide();
+        }
+    });
+});
+
 $(window).scroll(function() { 
 
     var scroll = $(window).scrollTop();
