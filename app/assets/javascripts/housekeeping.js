@@ -900,6 +900,10 @@ $(document).mouseup(function(e) {
 // Hide actions depending on certain criteria
 $(document).ready(function() {
 
+    // Hide the update actions by default until an Exhibit or Statement material is selected
+    $('#update-exhibit').hide();
+    $('#update-statement').hide();
+
     $("#show_Materials_Actions").click(function(){
 
         // Get all checked materials
@@ -909,6 +913,31 @@ $(document).ready(function() {
         if (materialsCount === 1) {
             // Show actions that can only be performed on a single item
             $('.rename-Document').show();
+
+            // Check to see whether the material is a statement or Exhibit
+
+            // If the checked material is an Exhibit, show certain actions
+            const checkedMaterialType = $("input[name=materials_document]:checked")
+                .closest('tr')
+                .find('td')
+                .eq(3)
+                .text();
+
+                console.log(checkedMaterialType);
+
+                if (checkedMaterialType === "Exhibits") {
+                    console.log("checkedMaterialType is Exhibit");
+                    $('#update-exhibit').show();
+                    $('#update-statement').hide();
+                }
+
+                else if (checkedMaterialType === "Statements") {
+                    console.log("checkedMaterialType is Statements");
+                    $('#update-exhibit').hide();
+                    $('#update-statement').show();
+                }
+
+
         } else {
             // Show actions that can be 'bulk' performed on many items
             $('.rename-Document').hide();
