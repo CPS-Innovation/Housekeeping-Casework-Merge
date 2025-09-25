@@ -10,7 +10,7 @@
     <div class="govuk-grid-column-three-quarters" id="comms_column_2">
 
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-grid-column-one-half">
                 <div class="info_wrapper">
                     <button id="show_filter_Comms" type="button" class="govuk-button  govuk-button--secondary"
                         data-module="govuk-button">Show filter</button>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="govuk-grid-column-one-third">
+            <div class="govuk-grid-column-one-half">
                 <div class="actions_holder">
                     <div class="moj-button-menu">
                         <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button"
@@ -30,21 +30,26 @@
                             </svg>
                         </button>
                         <div class="hidden_buttons" id="comms_Actions">
-                            <button type="button"
+                            <!-- Rename should only be available for single selections, not multiple -->
+                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            <button type="button" id="update-and-reclassify"
+                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Mulitple_Docs"
+                                    data-module="govuk-button" disabled>Reclassify</button>
+                            <!-- Update should only be available for Statements or Exhibits -->
+                            <button type="button" id="update-and-reclassify"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Update and reclassify</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Discard</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [read/unread]</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Mark as [used/unused]</button>
+                                    data-module="govuk-button" disabled>Update</button>
                             <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Document_Mulitple_Docs"
-                                    data-module="govuk-button" disabled>Open to review and edit/redact</button>
+                                    data-module="govuk-button" disabled>Redact</button>
+                            <form method="post" action="B-discard_material">
+                                <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
+                                <button class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                            </form>
+                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="button">Mark as read</button>
+                            <button type="button"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
+                                    data-module="govuk-button" disabled>Mark as unused</button>
                         </div>
                     </div>
                 </div>
