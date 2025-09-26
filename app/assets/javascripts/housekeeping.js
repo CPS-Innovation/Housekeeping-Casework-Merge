@@ -1286,80 +1286,83 @@ function closeRenameModal() {
 
 
 // Update statement
-$(document).ready(function() {
-    function updateStatement() {
-        $('#update-statement_form').hide();
-        $('#updating_statement').show();
-        var newDocumentName = $('#update-statement').val();
-        setTimeout(function () {
-            $('#discard_successful, #auto_reclassify, #mark_as').hide();
-            $("#openUpdateStatementModal").addClass("rj-dont-display");
-            $("#statement_update_COMPLETE").show();
-            $('table#materials_table tr.update-statement').find('.show_material').text(newDocumentName);
-
-            $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
-            $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
-            $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
-
-            $('table#materials_table tr.update-statement td.title_column').find('strong.govuk-tag').hide();
-            $('table#materials_table tr.update-statement td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Updated</strong>`);
 
 
-        }, 1000)
-    }
+// No longer opening a modal
+// $(document).ready(function() {
+//     function updateStatement() {
+//         $('#update-statement_form').hide();
+//         $('#updating_statement').show();
+//         var newDocumentName = $('#update-statement').val();
+//         setTimeout(function () {
+//             $('#discard_successful, #auto_reclassify, #mark_as').hide();
+//             $("#openUpdateStatementModal").addClass("rj-dont-display");
+//             $("#statement_update_COMPLETE").show();
+//             $('table#materials_table tr.update-statement').find('.show_material').text(newDocumentName);
+//
+//             $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
+//             $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
+//             $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
+//
+//             $('table#materials_table tr.update-statement td.title_column').find('strong.govuk-tag').hide();
+//             $('table#materials_table tr.update-statement td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Updated</strong>`);
+//
+//
+//         }, 1000)
+//     }
 
-    function openUpdateStatementModal() {
-        $("#openUpdateStatementModal").removeClass("rj-dont-display");
-    }
-
-    function closeUpdateStatementModal() {
-        $("#openUpdateStatementModal").addClass("rj-dont-display");
-        $('#materials_table tr.govuk-table__row').removeClass('rename_document');
-    }
-
-    // Expose functions globally for inline onclick handlers
-    window.updateStatement = updateStatement;
-    window.openUpdateStatementModal = openUpdateStatementModal;
-    window.closeUpdateStatementModal = closeUpdateStatementModal;
-});
+    // function openUpdateStatementModal() {
+    //     $("#openUpdateStatementModal").removeClass("rj-dont-display");
+    // }
+    //
+    // function closeUpdateStatementModal() {
+    //     $("#openUpdateStatementModal").addClass("rj-dont-display");
+    //     $('#materials_table tr.govuk-table__row').removeClass('rename_document');
+    // }
+    //
+    // // Expose functions globally for inline onclick handlers
+    // window.updateStatement = updateStatement;
+    // window.openUpdateStatementModal = openUpdateStatementModal;
+    // window.closeUpdateStatementModal = closeUpdateStatementModal;
+// });
 
 // Update Exhibit
-$(document).ready(function() {
-
-    function updateExhibit() {
-        $('#rename_form').hide();
-        $('#completing_rename').show();
-        var newDocumentName = $('#rename-Document').val();
-        setTimeout(function () {
-            $('#discard_successful, #auto_reclassify, #mark_as').hide();
-            $("#openRenameModal").addClass("rj-dont-display");
-            $("#rename_COMPLETE").show();
-            $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
-
-            $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
-            $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
-            $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
-
-            $('table#materials_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
-            $('table#materials_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
-
-        }, 1000)
-    }
-
-    function openUpdateExhibitModal() {
-        $("#openUpdateExhibitModal").removeClass("rj-dont-display");
-    }
-
-    function closeUpdateExhibitModal() {
-        $("#openUpdateExhibitModal").addClass("rj-dont-display");
-        $('#materials_table tr.govuk-table__row').removeClass('rename_document');
-    }
-
-    // Expose functions globally for inline onclick handlers
-    window.updateExhibit = updateExhibit;
-    window.openUpdateExhibitModal = openUpdateExhibitModal;
-    window.closeUpdateExhibitModal = closeUpdateExhibitModal;
-});
+// $(document).ready(function() {
+//
+//     function updateExhibit() {
+//         $('#rename_form').hide();
+//         $('#completing_rename').show();
+//         var newDocumentName = $('#rename-Document').val();
+//         setTimeout(function () {
+//             $('#discard_successful, #auto_reclassify, #mark_as').hide();
+//             $("#openRenameModal").addClass("rj-dont-display");
+//             $("#rename_COMPLETE").show();
+//             $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
+//
+//             $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
+//             $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
+//             $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
+//
+//             $('table#materials_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
+//             $('table#materials_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
+//
+//         }, 1000)
+//     }
+//
+//     function openUpdateExhibitModal() {
+//         $("#openUpdateExhibitModal").removeClass("rj-dont-display");
+//     }
+//
+//     function closeUpdateExhibitModal() {
+//         $("#openUpdateExhibitModal").addClass("rj-dont-display");
+//         $('#materials_table tr.govuk-table__row').removeClass('rename_document');
+//     }
+//
+//     // Expose functions globally for inline onclick handlers
+//     window.updateExhibit = updateExhibit;
+//     window.openUpdateExhibitModal = openUpdateExhibitModal;
+//     window.closeUpdateExhibitModal = closeUpdateExhibitModal;
+// });
 
 
 // REDACT DOCUMENT

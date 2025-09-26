@@ -39,7 +39,7 @@
     margin-bottom: 0 !important;
 }
 
-#openNotesModal, #openNewNotesModal, #openRenameModal, #openUpdateStatementModal, #openUpdateExhibitModal, #openMoveModal, #openMoveMultipleModal, #openRemovePages, #openRotatePages, #confirmRemovePages, #confirmRotatePages {
+#openNotesModal, #openNewNotesModal, #openRenameModal, #openMoveModal, #openMoveMultipleModal, #openRemovePages, #openRotatePages, #confirmRemovePages, #confirmRotatePages {
     background: none;
     height: auto;
     #openMe {
@@ -101,7 +101,7 @@
 }
 
 
-#openRenameModal, #openUpdateStatementModal, #openUpdateExhibitModal, #openMoveModal, #openMoveMultipleModal, #openRemovePages, #openRotatePages {
+#openRenameModal, #openMoveModal, #openMoveMultipleModal, #openRemovePages, #openRotatePages {
     #openMe .govuk-grid-row .innerPanel {
         .header-wrapper, .header-wrapper-NEW {
             margin-bottom: 1em;
