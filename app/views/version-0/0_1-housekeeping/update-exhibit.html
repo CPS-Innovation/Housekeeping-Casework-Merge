@@ -1,0 +1,119 @@
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% block header %}
+{% include "../includes/banner-V7.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+        <span class="govuk-caption-l">Update</span>
+        <h1 class="govuk-heading-l">Exhibit</h1>
+
+        <form action="/update-exhibit-submit" method="post" novalidate>
+
+    {{ govukInput({
+    label: {
+    text: "Exhibit item",
+    classes: "govuk-!-font-weight-bold"
+    },
+    id: "exhibit-item",
+    name: "exhibitItem",
+    classes: "govuk-input--width-full"
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "Exhibit name",
+    classes: "govuk-!-font-weight-bold"
+    },
+    id: "exhibit-name",
+    name: "exhibitName",
+    classes: "govuk-input--width-full"
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "Exhibit reference number (Optional)",
+    classes: "govuk-!-font-weight-bold"
+    },
+    id: "exhibit-reference-number",
+    name: "exhibitReferenceNumber",
+    classes: "govuk-input--width-full"
+    }) }}
+
+    {{ govukSelect({
+    id: "exhibit-producer-witness",
+    name: "exhibit-producer-witness",
+    classes: "govuk-input--width-full",
+    label: {
+    text: "Exhibit producer or witness (Optional)",
+    classes: "govuk-!-font-weight-bold"
+    },
+    items: [
+    {
+    value: "witness-1",
+    text: "Witness 1"
+    },
+    {
+    value: "witness-2",
+    text: "Chief Wiggam",
+    selected: true
+    },
+    {
+    value: "witness-3",
+    text: "Witness 3"
+    }
+    ]
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "Produced by (Optional)",
+    classes: "govuk-!-font-weight-bold"
+    },
+    id: "exhibit-produced-by",
+    name: "exhibitProducedBy",
+    classes: "govuk-input--width-full"
+    }) }}
+
+    {{ govukRadios({
+    name: "material-status",
+    fieldset: {
+    legend: {
+    text: "What is the material status?",
+    isPageHeading: false,
+    classes: "govuk-fieldset__legend--s"
+    }
+    },
+    items: [
+    {
+    value: "used",
+    text: "Used"
+    },
+    {
+    value: "unused",
+    text: "Unused"
+    }
+    ]
+    }) }}
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Save and close"
+            }) }}
+
+            <a class="govuk-link" href="#">Cancel</a>
+        </div>
+</form>
+
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <div><embed style="width: 40vw; height:75vh;" src="/public/files/MCLOVEMG3.pdf"></div>
+    </div>
+</div>
+{% endblock %}
