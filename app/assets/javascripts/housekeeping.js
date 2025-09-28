@@ -1387,18 +1387,34 @@ function submitUpdatedExhibit(){
         // alert("Hello, link worked");
         e.preventDefault();
 
-        // Redirect back to the index page
-        window.location.href = "/version-0/0_1-housekeeping/A-index.html";
-
-        // Display success modal
-        alert("Exhibit updated successfully");
+        // Only trigger navigation; tab selection will be handled on page load using the hash
+        window.location.href = "/version-0/0_1-housekeeping/A-index.html#tab_content_3";
     });
+}
+
+// function openMaterialTab(){
+//     window.location.href = "/version-0/0_1-housekeeping/A-index.html#tab_content_3";
+//     // // Show the material tab
+//     // $('.panel').hide();
+//     // $('#tab_content_2').show();
+//
+//     // Display success modal
+//     // alert("Exhibit updated successfully");
+// }
+
+function openMaterialTab() {
+    // Only trigger navigation; tab selection will be handled on page load using the hash
+    window.location.href = "/version-0/0_1-housekeeping/A-index.html#tab_content_3";
 }
 
 $(document).ready(function() {
     updateExhibit();
     checkUpdatedExhibit();
     submitUpdatedExhibit();
+
+    if (window.location.hash === "#tab_content_3") {
+        showTabByNumber(2);
+    }
 });
 
 
