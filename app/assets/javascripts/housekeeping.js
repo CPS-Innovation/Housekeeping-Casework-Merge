@@ -331,6 +331,8 @@ $(document).ready(function() {
           showTabByNumber(5);
      });
 
+    window.showTabByNumber = showTabByNumber;
+
 });
 
 // FILTER
