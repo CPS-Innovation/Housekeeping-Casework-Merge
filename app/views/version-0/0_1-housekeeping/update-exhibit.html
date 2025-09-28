@@ -10,106 +10,206 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
 
-        <span class="govuk-caption-l">Update</span>
-        <h1 class="govuk-heading-l">Exhibit</h1>
+        <form id="update-exhibit-form" action="#" method="post" novalidate>
 
-        <form action="/update-exhibit-submit" method="post" novalidate>
+            <span class="govuk-caption-l">Update</span>
+            <h1 class="govuk-heading-l">Exhibit</h1>
 
-    {{ govukInput({
-    label: {
-    text: "Exhibit item",
-    classes: "govuk-!-font-weight-bold"
-    },
-    id: "exhibit-item",
-    name: "exhibitItem",
-    classes: "govuk-input--width-full"
-    }) }}
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-reference-number">
+                    Exhibit reference number
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-reference-number" name="exhibitReferenceNumber" type="text">
+            </div>
 
-    {{ govukInput({
-    label: {
-    text: "Exhibit name",
-    classes: "govuk-!-font-weight-bold"
-    },
-    id: "exhibit-name",
-    name: "exhibitName",
-    classes: "govuk-input--width-full"
-    }) }}
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-item">
+                    Exhibit item
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-item" name="exhibitItem" type="text">
+            </div>
 
-    {{ govukInput({
-    label: {
-    text: "Exhibit reference number (Optional)",
-    classes: "govuk-!-font-weight-bold"
-    },
-    id: "exhibit-reference-number",
-    name: "exhibitReferenceNumber",
-    classes: "govuk-input--width-full"
-    }) }}
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-name">
+                    Exhibit name
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-name" name="exhibitName" type="text">
+            </div>
 
-    {{ govukSelect({
-    id: "exhibit-producer-witness",
-    name: "exhibit-producer-witness",
-    classes: "govuk-input--width-full",
-    label: {
-    text: "Exhibit producer or witness (Optional)",
-    classes: "govuk-!-font-weight-bold"
-    },
-    items: [
-    {
-    value: "witness-1",
-    text: "Witness 1"
-    },
-    {
-    value: "witness-2",
-    text: "Chief Wiggam",
-    selected: true
-    },
-    {
-    value: "witness-3",
-    text: "Witness 3"
-    }
-    ]
-    }) }}
 
-    {{ govukInput({
-    label: {
-    text: "Produced by (Optional)",
-    classes: "govuk-!-font-weight-bold"
-    },
-    id: "exhibit-produced-by",
-    name: "exhibitProducedBy",
-    classes: "govuk-input--width-full"
-    }) }}
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="addWitnessProducer-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h1 class="govuk-fieldset__heading">
+                            Would you like to add a producer or witness?
+                        </h1>
+                    </legend>
+                    <div id="addWitnessProducer-hint" class="govuk-hint">
+                        Select one option
+                    </div>
+                    <div class="govuk-radios" data-module="govuk-radios" id="addWitnessProducer">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-1" name="addWitnessProducer" type="radio" value="new" data-aria-controls="conditional-add-witness-producer-1">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-1">
+                                New
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-add-witness-producer-1">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="new-exhibit-producer-witness">
+                                    Produced by (optional)
+                                </label>
+                                <input class="govuk-input govuk-input--width-full" id="new-exhibit-producer-witness" name="newExhibitProducerWitness" type="text">
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-2" name="addWitnessProducer" type="radio" value="existing" data-aria-controls="conditional-add-witness-producer-2">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-2">
+                                Existing
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-add-witness-producer-2">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="existing-exhibit-producer-witness-2">
+                                    Exhibit producer or witness (optional)
+                                </label>
+                                <select class="govuk-select govuk-input--width-full" id="existing-exhibit-producer-witness-2" name="existingExhibitProducerWitness">
+                                    <option value="published" selected>Please select</option>
+                                    <option value="updated">Witness 1</option>
+                                    <option value="views">Witness 2</option>
+                                    <option value="comments">Witness 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-3" name="addWitnessProducer" type="radio" value="no" data-aria-controls="conditional-add-witness-producer-3">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-3">
+                                None
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
 
-    {{ govukRadios({
-    name: "material-status",
-    fieldset: {
-    legend: {
-    text: "What is the material status?",
-    isPageHeading: false,
-    classes: "govuk-fieldset__legend--s"
-    }
-    },
-    items: [
-    {
-    value: "used",
-    text: "Used"
-    },
-    {
-    value: "unused",
-    text: "Unused"
-    }
-    ]
-    }) }}
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+                        What is the material status?
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus" name="materialStatus" type="radio" value="Used">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus">
+                                Used
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus-2" name="materialStatus" type="radio" value="Unused">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus-2">
+                                Unused
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
 
-        <div class="govuk-button-group">
-            {{ govukButton({
-            text: "Save and close"
-            }) }}
+            <div class="govuk-button-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button" id="check-updated-exhibit">
+                    Continue
+                </button>
+                <a class="govuk-link" href="./A-index.html">Cancel</a>
+            </div>
+        </form>
 
-            <a class="govuk-link" href="#">Cancel</a>
+
+        <!-- Check your answers page -->
+        <div class="govuk-width-container" id="check-exhibit-answers">
+            <a href="#" class="govuk-back-link">Back</a>
+            <main class="govuk-main-wrapper " id="main-content" role="main">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds-from-desktop">
+                        <h1 class="govuk-heading-l">Check your answers before proceeding</h1>
+                        <h2 class="govuk-heading-m">Exhibit details</h2>
+                        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit reference number
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    CVJ01
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit item
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    5 January 1978
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit name
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    Not provided
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Would you like to add a producer or witness?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    72 Guild Street<br>London<br>SE23 6FH
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit producer or witness
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    Not provided
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    What is the material status?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <p class="govuk-body">07700 900457</p>
+                                    <p class="govuk-body">sarah.phillips@example.com</p>
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+                                </dd>
+                            </div>
+                        </dl>
+                        <h2 class="govuk-heading-m">Now send your application</h2>
+                        <form action="#" method="post" novalidate>
+                            <input type="hidden" name="answers-checked" value="true">
+                            <button id="submit-updated-exhibit" type="submit" class="govuk-button" data-module="govuk-button">
+                                Accept and send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
-</form>
-
 
     </div>
     <div class="govuk-grid-column-one-half">

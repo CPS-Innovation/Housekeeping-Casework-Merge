@@ -1287,6 +1287,23 @@ function closeRenameModal() {
 
 // Update statement
 
+function openUpdateStatement() {
+    alert('Update statement');
+    // $("#openUpdateStatementModal").removeClass("rj-dont-display");
+
+    // /version-0/0_1-housekeeping/A-index
+    // /update-statement-submit
+}
+
+function submitUpdatedStatement() {
+    alert('Submit statement');
+    // $("#openUpdateStatementModal").removeClass("rj-dont-display");
+
+    // /version-0/0_1-housekeeping/A-index
+    // /update-statement-submit
+}
+
+
 
 // No longer opening a modal
 // $(document).ready(function() {
@@ -1327,8 +1344,55 @@ function closeRenameModal() {
 // });
 
 // Update Exhibit
-// $(document).ready(function() {
-//
+// When clicking the action button to update an exhibit, go to a new page
+function openUpdateExhibit(){
+    window.location.href = "/version-0/0_1-housekeeping/update-exhibit.html";
+
+
+};
+
+function checkUpdatedExhibit(){
+    window.location.href = "/version-0/0_1-housekeeping/update-exhibit.html";
+};
+
+$(document).ready(function() {
+    // Set default values for the form fields
+    $('#exhibit-reference-number').val('CVJ/01');
+    $('#exhibit-item').val('Photos of bladed article');
+    $('#exhibit-name').val('MCLOVE MG12');
+    $('[name="addWitnessProducer"]').val(['new']);
+    $('#existing-exhibit-producer-witness').val('');
+    $('#new-exhibit-producer-witness').val('Joe Bloggs');
+    $('#materialStatus').val(['Used']);
+
+    // Show the form
+    $('#update-exhibit-form').show();
+    // Hide the check your answers panel
+    $('#check-exhibit-answers').hide();
+
+
+    // Check your answers button
+    $('#check-updated-exhibit').click(function () {
+        // Hide the form
+        $('#update-exhibit-form').hide();
+        // Show the check your answers panel
+        $('#check-exhibit-answers').show();
+
+    })
+
+    // Submit the form
+    $('#update-exhibit-submit').click(function(e){
+        // alert("Hello, link worked");
+        e.preventDefault();
+
+        // Redirect back to the index page
+        window.location.href = "/version-0/0_1-housekeeping/A-index.html";
+
+        // Display success modal
+        alert("Exhibit updated successfully");
+    });
+});
+
 //     function updateExhibit() {
 //         $('#rename_form').hide();
 //         $('#completing_rename').show();
@@ -1338,7 +1402,6 @@ function closeRenameModal() {
 //             $("#openRenameModal").addClass("rj-dont-display");
 //             $("#rename_COMPLETE").show();
 //             $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
-//
 //             $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
 //             $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
 //             $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
