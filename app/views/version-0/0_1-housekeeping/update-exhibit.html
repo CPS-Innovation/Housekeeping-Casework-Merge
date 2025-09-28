@@ -73,7 +73,7 @@
                                 <label class="govuk-label govuk-!-font-weight-bold" for="existing-exhibit-producer-witness-2">
                                     Exhibit producer or witness (optional)
                                 </label>
-                                <select class="govuk-select govuk-input--width-full" id="existing-exhibit-producer-witness-2" name="existingExhibitProducerWitness">
+                                <select class="govuk-select govuk-!-width-full" id="existing-exhibit-producer-witness-2" name="existingExhibitProducerWitness">
                                     <option value="published" selected>Please select</option>
                                     <option value="updated">Witness 1</option>
                                     <option value="views">Witness 2</option>
@@ -124,10 +124,9 @@
 
         <!-- Check your answers page -->
         <div class="govuk-width-container" id="check-exhibit-answers">
-            <a href="#" class="govuk-back-link">Back</a>
             <main class="govuk-main-wrapper " id="main-content" role="main">
                 <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <div class="govuk-grid-column-full-from-desktop">
                         <h1 class="govuk-heading-l">Check your answers before proceeding</h1>
                         <h2 class="govuk-heading-m">Exhibit details</h2>
                         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -139,7 +138,7 @@
                                     CVJ01
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit reference number</span></a>
                                 </dd>
                             </div>
                             <div class="govuk-summary-list__row">
@@ -147,10 +146,10 @@
                                     Exhibit item
                                 </dt>
                                 <dd class="govuk-summary-list__value">
-                                    5 January 1978
+                                    Photos of bladed article
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit item</span></a>
                                 </dd>
                             </div>
                             <div class="govuk-summary-list__row">
@@ -158,10 +157,10 @@
                                     Exhibit name
                                 </dt>
                                 <dd class="govuk-summary-list__value">
-                                    Not provided
+                                    MCLOVE MG12
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit name</span></a>
                                 </dd>
                             </div>
                             <div class="govuk-summary-list__row">
@@ -169,10 +168,10 @@
                                     Would you like to add a producer or witness?
                                 </dt>
                                 <dd class="govuk-summary-list__value">
-                                    72 Guild Street<br>London<br>SE23 6FH
+                                    New
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> whether to add a producer or witness</span></a>
                                 </dd>
                             </div>
                             <div class="govuk-summary-list__row">
@@ -180,10 +179,10 @@
                                     Exhibit producer or witness
                                 </dt>
                                 <dd class="govuk-summary-list__value">
-                                    Not provided
+                                    Joe Bloggs
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit producer or witness</span></a>
                                 </dd>
                             </div>
                             <div class="govuk-summary-list__row">
@@ -191,19 +190,18 @@
                                     What is the material status?
                                 </dt>
                                 <dd class="govuk-summary-list__value">
-                                    <p class="govuk-body">07700 900457</p>
-                                    <p class="govuk-body">sarah.phillips@example.com</p>
+                                    <p class="govuk-body">Used</p>
                                 </dd>
                                 <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> material status</span></a>
                                 </dd>
                             </div>
                         </dl>
-                        <h2 class="govuk-heading-m">Now send your application</h2>
+<!--                        <h2 class="govuk-heading-m">Now update the exhibit</h2>-->
                         <form action="#" method="post" novalidate>
                             <input type="hidden" name="answers-checked" value="true">
                             <button id="submit-updated-exhibit" type="submit" class="govuk-button" data-module="govuk-button">
-                                Accept and send
+                                Submit and update exhibit
                             </button>
                         </form>
                     </div>
