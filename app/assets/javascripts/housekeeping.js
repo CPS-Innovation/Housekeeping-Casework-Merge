@@ -1345,17 +1345,12 @@ function submitUpdatedStatement() {
 
 // Update Exhibit
 // When clicking the action button to update an exhibit, go to a new page
-function openUpdateExhibit(){
+function openUpdateExhibit() {
     window.location.href = "/version-0/0_1-housekeeping/update-exhibit.html";
+}
 
-
-};
-
-function checkUpdatedExhibit(){
-    window.location.href = "/version-0/0_1-housekeeping/update-exhibit.html";
-};
-
-$(document).ready(function() {
+// Display the exhibit update form
+function updateExhibit(){
     // Set default values for the form fields
     $('#exhibit-reference-number').val('CVJ/01');
     $('#exhibit-item').val('Photos of bladed article');
@@ -1367,21 +1362,26 @@ $(document).ready(function() {
 
     // Show the form
     $('#update-exhibit-form').show();
+
     // Hide the check your answers panel
     $('#check-exhibit-answers').hide();
+}
 
-
+// Display the check your answers panel
+function checkUpdatedExhibit(){
     // Check your answers button
-    $('#check-updated-exhibit').click(function () {
-        // Hide the form
-        $('#update-exhibit-form').hide();
-        // Show the check your answers panel
+    $('#check-updated-exhibit').click(function (e) {
+        e.preventDefault();
+       // Hide the form
+       $('#update-exhibit-form').hide();
+       // Show the check your answers panel
         $('#check-exhibit-answers').show();
-
     })
+}
 
+function submitUpdatedExhibit(){
     // Submit the form
-    $('#update-exhibit-submit').click(function(e){
+    $('#submit-updated-exhibit').click(function(e){
         // alert("Hello, link worked");
         e.preventDefault();
 
@@ -1391,7 +1391,14 @@ $(document).ready(function() {
         // Display success modal
         alert("Exhibit updated successfully");
     });
+}
+
+$(document).ready(function() {
+    updateExhibit();
+    checkUpdatedExhibit();
+    submitUpdatedExhibit();
 });
+
 
 //     function updateExhibit() {
 //         $('#rename_form').hide();
@@ -1429,7 +1436,7 @@ $(document).ready(function() {
 
 
 // REDACT DOCUMENT
-$(document).ready(function() {
+$(document).ready(function(){
 
      $("input[name=materials_document]").click(function(){
           if ($(this).is(':checked')) {
