@@ -1,0 +1,219 @@
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% block header %}
+{% include "../includes/banner-V7.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+        <form id="update-exhibit-form" action="#" method="post" novalidate>
+
+            <span class="govuk-caption-l">Update</span>
+            <h1 class="govuk-heading-l">Exhibit</h1>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-reference-number">
+                    Exhibit reference number
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-reference-number" name="exhibitReferenceNumber" type="text">
+            </div>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-item">
+                    Exhibit item
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-item" name="exhibitItem" type="text">
+            </div>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="exhibit-name">
+                    Exhibit name
+                </label>
+                <input class="govuk-input govuk-input--width-full" id="exhibit-name" name="exhibitName" type="text">
+            </div>
+
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="addWitnessProducer-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h1 class="govuk-fieldset__heading">
+                            Would you like to add a producer or witness?
+                        </h1>
+                    </legend>
+                    <div id="addWitnessProducer-hint" class="govuk-hint">
+                        Select one option
+                    </div>
+                    <div class="govuk-radios" data-module="govuk-radios" id="addWitnessProducer">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-1" name="addWitnessProducer" type="radio" value="new" data-aria-controls="conditional-add-witness-producer-1">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-1">
+                                New
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-add-witness-producer-1">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="new-exhibit-producer-witness">
+                                    Produced by (optional)
+                                </label>
+                                <input class="govuk-input govuk-input--width-full" id="new-exhibit-producer-witness" name="newExhibitProducerWitness" type="text">
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-2" name="addWitnessProducer" type="radio" value="existing" data-aria-controls="conditional-add-witness-producer-2">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-2">
+                                Existing
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-add-witness-producer-2">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="existing-exhibit-producer-witness-2">
+                                    Exhibit producer or witness (optional)
+                                </label>
+                                <select class="govuk-select govuk-!-width-full" id="existing-exhibit-producer-witness-2" name="existingExhibitProducerWitness">
+                                    <option value="published" selected>Please select</option>
+                                    <option value="updated">Witness 1</option>
+                                    <option value="views">Witness 2</option>
+                                    <option value="comments">Witness 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-witness-producer-3" name="addWitnessProducer" type="radio" value="no" data-aria-controls="conditional-add-witness-producer-3">
+                            <label class="govuk-label govuk-radios__label" for="add-witness-producer-3">
+                                None
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+                        What is the material status?
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus" name="materialStatus" type="radio" value="Used">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus">
+                                Used
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus-2" name="materialStatus" type="radio" value="Unused">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus-2">
+                                Unused
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="govuk-button-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button" id="check-updated-exhibit">
+                    Continue
+                </button>
+                <a class="govuk-link" href="./A-index.html#tab_content_3">Cancel</a>
+            </div>
+        </form>
+
+
+        <!-- Check your answers page -->
+        <div class="govuk-width-container" id="check-exhibit-answers">
+            <main class="govuk-main-wrapper " id="main-content" role="main">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full-from-desktop">
+                        <h1 class="govuk-heading-l">Check your answers before proceeding</h1>
+                        <h2 class="govuk-heading-m">Exhibit details</h2>
+                        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit reference number
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    CVJ01
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit reference number</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit item
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    Photos of bladed article
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit item</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit name
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    MCLOVE MG12
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit name</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Would you like to add a producer or witness?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    New
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> whether to add a producer or witness</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Exhibit producer or witness
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    PC BYRNE
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit producer or witness</span></a>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    What is the material status?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <p class="govuk-body">Used</p>
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> material status</span></a>
+                                </dd>
+                            </div>
+                        </dl>
+                        <form action="A-index.html#tab_content_3" method="post" novalidate>
+                            <div class="govuk-button-group">
+                                <input type="hidden" name="update_exhibit_COMPLETED" type="text" value="true" style="display: none;">
+                                <button id="submit-updated-exhibit" type="submit" class="govuk-button" data-module="govuk-button">
+                                    Submit and update exhibit
+                                </button>
+                                <a class="govuk-link" href="A-index.html">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <div><embed style="width: 40vw; height:75vh;" src="/public/files/MCLOVEMG3.pdf"></div>
+    </div>
+</div>
+{% endblock %}

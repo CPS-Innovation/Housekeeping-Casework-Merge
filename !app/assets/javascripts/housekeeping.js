@@ -646,9 +646,9 @@ $(document).ready(function() {
 
      $('input[name=materials_document]').click(function(){
           if ($("input[name=materials_document]:checked").length >= 1) {
-               $('.reclassify_Document_Mulitple_Docs, .redact_Document_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled') .attr('onClick', 'return pageActions();');
+               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled') .attr('onClick', 'return pageActions();');
           } else if ($("input[name=materials_document]:checked").length == 0) {
-               $('.reclassify_Document_Mulitple_Docs, .redact_Document_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled').removeAttr('onClick');
+               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled').removeAttr('onClick');
           }
      });
 
@@ -663,11 +663,11 @@ $(document).ready(function() {
 
      $('input[name=comms_document]').click(function(){
           if ($("input[name=comms_document]:checked").length >= 1) {
-               $('.reclassify_Comms_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-               $('.redact_Comms_Mulitple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=comms_document]:checked").length == 0) { 
-               $('.reclassify_Comms_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-               $('.redact_Comms_Mulitple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
@@ -710,7 +710,7 @@ $(document).ready(function() {
      //      $('table#materials_table tr.hidden_row').hide();     
      // });
 
-     $('.redact_Document_Mulitple_Docs').click(function(){
+     $('.redact_Document_Multiple_Docs').click(function(){
           $('ul#tab-list').show();
 
           $('ul#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');

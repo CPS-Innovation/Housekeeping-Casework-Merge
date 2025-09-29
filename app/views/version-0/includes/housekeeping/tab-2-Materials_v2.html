@@ -33,24 +33,34 @@
                         </button>
                         <div class="hidden_buttons" id="materials_Actions">
                             <!-- Rename should only be available for single selections, not multiple -->
-                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            
                             <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Multiple_Docs"
                             data-module="govuk-button" disabled>Reclassify</button>
+
                             <!-- Update should only be available for Statements or Exhibits -->
-                            <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
-                            data-module="govuk-button" disabled>Update</button>
+                            <button type="button" id="update-statement"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update statement</button>
+
+                            <button type="button" id="update-exhibit"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update exhibit</button>
+
                             <button type="button"
-                                    class="govuk-button govuk-button--disabled redact_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
+
                             <form method="post" action="B-discard_material">
                                 <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
-                                <button class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                                <button class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
                             </form>
-                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="button">Mark as read</button>
+
+                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs" data-module="govuk-button" type="button">Mark as read</button>
+
                             <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                             data-module="govuk-button" disabled>Mark as unused</button>
                         </div>
                     </div>
@@ -511,7 +521,7 @@
                     <td class="govuk-table__cell title_column">
                         <strong class="govuk-tag govuk-tag--blue">New</strong>
                         <div class="openMe">
-                            <a class="govuk-button show_material" data-id="11" data-doc="MG12.pdf">MCLOVE MG12</button>
+                            <a class="govuk-button show_material" data-id="11" data-doc="MG12.pdf">MCLOVE MG12</a>
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG12</td>
