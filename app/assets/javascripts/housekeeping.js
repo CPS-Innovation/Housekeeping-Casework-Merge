@@ -1359,7 +1359,7 @@ function updateExhibit(){
     $('#exhibit-name').val('MCLOVE MG12');
     $('[name="addWitnessProducer"]').val(['new']);
     $('#existing-exhibit-producer-witness').val('');
-    $('#new-exhibit-producer-witness').val('Joe Bloggs');
+    $('#new-exhibit-producer-witness').val('PC BYRNE');
     $('#materialStatus').val(['Used']);
 
     // Show the form
