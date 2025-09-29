@@ -1386,7 +1386,7 @@ function submitUpdatedExhibit(){
     $('#submit-updated-exhibit').click(function(e){
         // alert("Hello, link worked");
         e.preventDefault();
-
+        let update_exhibit_COMPLETED = true;
         // Only trigger navigation; tab selection will be handled on page load using the hash
         window.location.href = "/version-0/0_1-housekeeping/A-index.html#tab_content_3";
     });
