@@ -102,7 +102,6 @@ var completeDelete = function(parent) {
         "<span class='removeRedactions looks-like-a-link-underline' onClick='return removeRedactions(this)'>Remove all redactions</span>" +
         "<span id='data-count' data-count='1'>There is 1 redaction</span>" +
         "<span class='viewRedactions looks-like-a-link-underline'> - views redactions</span>" +
-        "<button class='govuk-button saveDraftButton govuk-button--secondary'>Save draft redactions</button>" +
         "<button class='govuk-button saveAndFinishButton' onClick='return triggerRedactionActions();'>Save and submit all redactions</button>" +
     "</div>";
 

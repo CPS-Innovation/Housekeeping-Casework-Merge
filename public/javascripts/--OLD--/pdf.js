@@ -35152,13 +35152,6 @@
                                                         },
                                                     }),
                                                     (0, I.jsx)("button", {
-                                                        className: "govuk-button saveDraftButton govuk-button--secondary",
-                                                        onClick: function () {
-                                                            window.openModal2(), (window.savedHighlights = n.state.highlights), n.setRedactionComplete();
-                                                        },
-                                                        children: "Save draft redactions",
-                                                    }),
-                                                    (0, I.jsx)("button", {
                                                         className: "govuk-button saveAndFinishButton",
                                                         onClick: function () {
                                                             window.openModal2(), (window.savedHighlights = n.state.highlights), n.setRedactionComplete();
