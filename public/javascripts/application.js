@@ -1538,7 +1538,6 @@ function suggestedRedactions() {
             <span class="removeRedactions looks-like-a-link-underline">Remove all redactions</span>
             <span id="data-count-SR" data-count="30">There are 30 redactions</span>
             <span class="viewRedactions looks-like-a-link-underline"> - views redactions</span>
-            <button class="govuk-button saveDraftButton govuk-button--secondary">Save draft redactions</button>
             <button class="govuk-button saveAndFinishButton" onClick="sumbitSuggestedRedactions()">Save and submit all redactions</button>
         </div>
     `);
