@@ -127,83 +127,71 @@
             <main class="govuk-main-wrapper " id="main-content" role="main">
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full-from-desktop">
-                        <h1 class="govuk-heading-l">Check your answers before proceeding</h1>
-                        <h2 class="govuk-heading-m">Exhibit details</h2>
-                        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Exhibit reference number
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    CVJ01
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit reference number</span></a>
-                                </dd>
-                            </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Exhibit item
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    Photos of bladed article
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit item</span></a>
-                                </dd>
-                            </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Exhibit name
-                                </dt>
-                                <dd class="govuk-summary-list__value">
+                        <h1 class="govuk-heading-l">Check your answers</h1>
+
+                        <div class="govuk-summary-card">
+                            <div class="govuk-summary-card__title-wrapper">
+                                <h2 class="govuk-summary-card__title">
                                     MCLOVE MG12
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit name</span></a>
-                                </dd>
+                                </h2>
+                                <ul class="govuk-summary-card__actions">
+                                    <li class="govuk-summary-card__action">
+                                        <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit details</span></a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Would you like to add a producer or witness?
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    New
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> whether to add a producer or witness</span></a>
-                                </dd>
+                            <div class="govuk-summary-card__content">
+                                <dl class="govuk-summary-list">
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            What is the exhibit reference number?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            CVJ/01
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            What is the exhibit item?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            Photos of bladed article
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            Would you like to add a producer or witness?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            Add a new producer
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            Exhibit producer or witness
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            PC BYRNE
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            What is the material status?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            Used
+                                        </dd>
+                                    </div>
+                                </dl>
                             </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Exhibit producer or witness
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    PC BYRNE
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> exhibit producer or witness</span></a>
-                                </dd>
-                            </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    What is the material status?
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    <p class="govuk-body">Used</p>
-                                </dd>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="update-exhibit.html">Change<span class="govuk-visually-hidden"> material status</span></a>
-                                </dd>
-                            </div>
-                        </dl>
-                        <form action="A-index.html#tab_content_3" method="post" novalidate>
+                        </div>
+                        <form action="A-index" method="post" novalidate>
                             <div class="govuk-button-group">
-                                <input type="hidden" name="update_exhibit_COMPLETED" type="text" value="true" style="display: none;">
+                                <input type="hidden" name="update_exhibit_COMPLETED" value="true" style="display: none;">
                                 <button id="submit-updated-exhibit" type="submit" class="govuk-button" data-module="govuk-button">
                                     Submit and update exhibit
                                 </button>
-                                <a class="govuk-link" href="A-index.html">Cancel</a>
+                                <a class="govuk-link" href="A-index.html#tab_content_3">Cancel</a>
                             </div>
                         </form>
                     </div>
