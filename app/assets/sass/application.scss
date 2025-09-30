@@ -5166,3 +5166,8 @@ strong, span {
         background-color: #fcd6c3 !important;
     }
 }
+
+// Override as pulling #FFF from govuk-frontend
+.govuk-summary-card {
+  color: $govuk-text-colour;
+}
