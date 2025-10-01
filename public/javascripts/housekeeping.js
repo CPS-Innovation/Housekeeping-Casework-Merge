@@ -975,7 +975,7 @@ $(document).ready(function() {
 
      // RECLASSIFY
      $(".auto_reclassify_Documents").click(function(){
-          $('#discard_successful, #rename_COMPLETE, #mark_as').hide();
+          $('#discard_successful, #rename_COMPLETE, #mark_as, #update_exhibit_successful').hide();
           $('#auto_reclassify').stop(true, true).show(); // Show the banner quickly
 
           // Hide the banner after 2 seconds
@@ -1034,8 +1034,8 @@ $(document).ready(function() {
           }
      });
 
-     $('.show_material, .show_material_actions').click(function(){
-          $('#discard_successful').hide();
+     $('.show_material, .show_material_actions,#show_Materials_Actions').click(function(){
+          $('#discard_successful, #update_exhibit_successful').hide();
 
           var materialsNumber = $(this).data('id');
           if (materialsNumber === 1) { $('table#materials_table tr[data-row_id="1"]').toggle(); $('button.show_material_actions[data-id="1"]').toggleClass('hide'); }
@@ -1157,7 +1157,7 @@ $(document).ready(function() {
      $('.mark_as_Read').click(function(){
           $(this).toggleClass('read');
 
-          $('#discard_successful, #auto_reclassify').hide();
+          $('#discard_successful, #auto_reclassify, #update_exhibit_successful').hide();
 
           $('#mark_as').show().toggleClass('read');
 
@@ -1255,7 +1255,7 @@ function renameDocument() {
      $('#completing_rename').show();
      var newDocumentName = $('#rename-Document').val();
      setTimeout(function () {
-          $('#discard_successful, #auto_reclassify, #mark_as').hide();
+          $('#discard_successful, #auto_reclassify, #mark_as, #update_exhibit_successful').hide();
           $("#openRenameModal").addClass("rj-dont-display");
           $("#rename_COMPLETE").show();       
           $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
