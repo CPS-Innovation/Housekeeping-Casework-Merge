@@ -457,7 +457,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
           $('input[name=filter_materials__New]').prop('checked', false);
           $('input[name=filter_materials__Status]').prop('checked', false);
           $('input[name=filter_materials__Category]').prop('checked', false);
@@ -681,7 +681,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
           
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -700,7 +700,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -721,7 +721,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -742,7 +742,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -764,7 +764,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -785,7 +785,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -806,7 +806,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -827,7 +827,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
@@ -848,7 +848,7 @@ $(document).ready(function() {
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
           // Reset all material action buttons to unexpanded state
-          $('button.show_material_actions').removeClass('hide').html('Actions <i class="fa-solid fa-chevron-down"></i>');
+          $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
 
           if ($('input[name=filter_materials__New]:checked').length == 0 && $('input[name=filter_materials__Status]:checked').length == 0 && $('input[name=filter_materials__Category]:checked').length == 0) {
                $('#active_filter').hide();
