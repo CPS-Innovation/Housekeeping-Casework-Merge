@@ -59,6 +59,19 @@
             </div>
         </div>
 
+        <!-- Update statement -->
+        {% elif data['update_statement_COMPLETED'] == 'true' %}
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
+             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+             id="update_exhibit_successful">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">{{ data['material_selected'] }} stmt BLAYNEE 2034 1 JUNE mg11 has been updated.</h3>
+            </div>
+        </div>
+
         {% else %}
 
         {% endif %}
