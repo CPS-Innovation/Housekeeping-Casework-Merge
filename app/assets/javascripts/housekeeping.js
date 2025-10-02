@@ -1288,62 +1288,48 @@ function closeRenameModal() {
 
 
 // Update statement
-
+// When clicking the action button to update an statement, go to a new page
 function openUpdateStatement() {
-    alert('Update statement');
-    // $("#openUpdateStatementModal").removeClass("rj-dont-display");
-
-    // /version-0/0_1-housekeeping/A-index
-    // /update-statement-submit
+    window.location.href = "/version-0/0_1-housekeeping/update-statement.html";
 }
 
-function submitUpdatedStatement() {
-    alert('Submit statement');
-    // $("#openUpdateStatementModal").removeClass("rj-dont-display");
+// Display the statement update form
+function updateStatement(){
+    // Set default values for the form fields
+    // $('#statement-reference-number').val('CVJ/01');
+    // $('#statement-item').val('Photos of bladed article');
+    // $('#statement-name').val('MCLOVE MG12');
+    // $('[name="addWitnessProducer"]').val(['new']);
+    // $('#existing-statement-producer-witness').val('');
 
-    // /version-0/0_1-housekeeping/A-index
-    // /update-statement-submit
+    $('#does-statement-have-date').prop("checked", true);
+    $('#does-statement-have-date').prop("checked", true);
+    $('#conditional-does-statement-have-date').removeClass("govuk-radios__conditional--hidden");
+    $('#statement-date-day').val('10');
+    $('#statement-date-month').val('9');
+    $('#statement-date-year').val('2025');
+    $('#statement-number').val('4');
+    $('#materialStatus').prop("checked", true);
+
+    // Hide the check your answers panel
+    $('#check-statement-answers').hide();
+
+    // Show the form
+    $('#update-statement-form').show();
+
 }
 
-
-
-// No longer opening a modal
-// $(document).ready(function() {
-//     function updateStatement() {
-//         $('#update-statement_form').hide();
-//         $('#updating_statement').show();
-//         var newDocumentName = $('#update-statement').val();
-//         setTimeout(function () {
-//             $('#discard_successful, #auto_reclassify, #mark_as').hide();
-//             $("#openUpdateStatementModal").addClass("rj-dont-display");
-//             $("#statement_update_COMPLETE").show();
-//             $('table#materials_table tr.update-statement').find('.show_material').text(newDocumentName);
-//
-//             $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
-//             $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
-//             $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
-//
-//             $('table#materials_table tr.update-statement td.title_column').find('strong.govuk-tag').hide();
-//             $('table#materials_table tr.update-statement td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Updated</strong>`);
-//
-//
-//         }, 1000)
-//     }
-
-    // function openUpdateStatementModal() {
-    //     $("#openUpdateStatementModal").removeClass("rj-dont-display");
-    // }
-    //
-    // function closeUpdateStatementModal() {
-    //     $("#openUpdateStatementModal").addClass("rj-dont-display");
-    //     $('#materials_table tr.govuk-table__row').removeClass('rename_document');
-    // }
-    //
-    // // Expose functions globally for inline onclick handlers
-    // window.updateStatement = updateStatement;
-    // window.openUpdateStatementModal = openUpdateStatementModal;
-    // window.closeUpdateStatementModal = closeUpdateStatementModal;
-// });
+// Display the check your answers panel
+function checkUpdatedStatement(){
+    // Check your answers button
+    $('#check-updated-statement').click(function (e) {
+        e.preventDefault();
+        // Hide the form
+        $('#update-statement-form').hide();
+        // Show the check your answers panel
+        $('#check-statement-answers').show();
+    })
+}
 
 // Update Exhibit
 // When clicking the action button to update an exhibit, go to a new page
@@ -1358,9 +1344,10 @@ function updateExhibit(){
     $('#exhibit-item').val('Photos of bladed article');
     $('#exhibit-name').val('MCLOVE MG12');
     $('[name="addWitnessProducer"]').val(['new']);
+    $('#conditional-add-witness-producer-1').removeClass("govuk-radios__conditional--hidden");
     $('#existing-exhibit-producer-witness').val('');
     $('#new-exhibit-producer-witness').val('PC BYRNE');
-    $('#materialStatus').val(['Used']);
+    $('#materialStatus').prop("checked", true);
 
     // Show the form
     $('#update-exhibit-form').show();
@@ -1410,7 +1397,11 @@ function openMaterialTab() {
 $(document).ready(function() {
     updateExhibit();
     checkUpdatedExhibit();
-    submitUpdatedExhibit();
+//    submitUpdatedExhibit();
+
+    updateStatement();
+    checkUpdatedStatement();
+//    submitUpdatedStatement();
 
     if (window.location.hash === "#tab_content_3") {
         showTabByNumber(2);
