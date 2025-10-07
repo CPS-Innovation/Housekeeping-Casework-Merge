@@ -13,6 +13,20 @@ router.use('/', (req, res, next) => {
      next();
 });
 
+router.get('/version-0/0_1-housekeeping/A-index/find-a-case', function (req, res) {
+    res.redirect('/version-0/0_1-housekeeping/find-a-case')
+})
+
+router.get('/version-0/0_1-housekeeping/A-index/case-search', function (req, res) {
+    const data = req.session.data
+    const caseUrnSearch = data.caseUrnSearch
+
+    console.log(caseUrnSearch)
+    res.render('version-0/0_1-housekeeping/A-index', {
+        caseUrnSearch
+    })
+})
+
 ///////////////////////////////////////// New router functionality /////////////////////////////////////////
 
 // User Research and design versions
