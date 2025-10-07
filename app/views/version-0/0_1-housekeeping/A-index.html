@@ -11,6 +11,8 @@
 {% include "../includes/modals/update-exhibit.html" %}
 {% endblock %}
 
+{% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined else '16XL9132025' %}
+
 {% block beforeContent %}
 {% endblock %}
 
@@ -84,7 +86,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-third">
         <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer +1</h1>
-        <span class="govuk-caption-m govuk-!-margin-bottom-0">16XL9132025</span>
+        <span class="govuk-caption-m govuk-!-margin-bottom-0">{{caseUrnSearch}}</span>
         <p class="govuk-body-s">
 <!--        <div class="openMe">-->
 <!--            <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="18" data-doc="defendants.pdf" data-page="1">View 2 defendants and charges</a>-->
