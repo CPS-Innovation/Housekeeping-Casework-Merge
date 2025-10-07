@@ -459,7 +459,7 @@ $(document).ready(function() {
           // Reset all material action buttons to unexpanded state
           $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
           $('input[name=filter_materials__New]').prop('checked', false);
-          $('input[name=filter_materials__Status]').prop('checked', false);
+          $('input[name=filter_materials__Status]').prop('checked', true);
           $('input[name=filter_materials__Category]').prop('checked', false);
           $('.no_results').hide();
           
