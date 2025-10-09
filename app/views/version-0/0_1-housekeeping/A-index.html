@@ -11,6 +11,8 @@
 {% include "../includes/modals/update-exhibit.html" %}
 {% endblock %}
 
+{% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined else '16XL9132025' %}
+
 {% block beforeContent %}
 {% endblock %}
 
@@ -20,7 +22,7 @@
 <!-- /////////////////// SUCCESS BANNER- START /////////////////// -->
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full-from-desktop">
-
+        <a href="/version-0/0_1-housekeeping/find-a-case" class="govuk-back-link">Find a case</a>
         <!-- AUTO RECLASSIFY -->
         <div class="govuk-notification-banner govuk-!-margin-bottom-4" role="alert"
             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
@@ -84,7 +86,13 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-third">
         <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer +1</h1>
-        <span class="govuk-caption-m govuk-!-margin-bottom-2">16XL9132025</span>
+        <span class="govuk-caption-m govuk-!-margin-bottom-0">{{caseUrnSearch}}</span>
+        <p class="govuk-body-s">
+<!--        <div class="openMe">-->
+<!--            <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="18" data-doc="defendants.pdf" data-page="1">View 2 defendants and charges</a>-->
+<!--        </div>-->
+            <a href="#" class="govuk-link govuk-link--no-visited-state">View 2 defendants and charges</a>
+        </p>
     </div>
     <div class="govuk-grid-column-two-thirds">
         <div class="taskOverViewContent">
@@ -97,6 +105,7 @@
             {% if data['tab'] != '5' %}
             <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Complete triage</button>
             {% endif %}
+            <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Start review</button>
         </div>
     </div>
 </div>
@@ -118,7 +127,7 @@
                 {% endif %}
                 <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
                 <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
-                <li class="tab-5-content_link"><a class="tab-link tab-5-content">PCD review</a></li>
+                <li class="tab-5-content_link"><a class="tab-link tab-5-content">Reviews</a></li>
             </ul>
 
             <!-- TAB CONTENT - 1 - START -->

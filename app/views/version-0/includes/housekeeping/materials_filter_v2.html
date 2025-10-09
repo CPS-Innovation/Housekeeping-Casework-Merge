@@ -4,9 +4,6 @@
         <div class="moj-filter__header-title">
             <h2 class="govuk-heading-m">Filters</h2>
         </div>
-        <div class="moj-filter__heading-action">
-            <button id="close_filter_Materials" type="button" class="govuk-button" data-module="govuk-button">×</button>
-        </div>
     </div>
 
     <div class="" id="active_filter">
@@ -58,6 +55,31 @@
                 </fieldset>
             </div>
             <!-- 1 - END -->
+
+            <!-- 2 - START -->
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Status</legend>
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="filter_materials__Status_1"
+                                   name="filter_materials__Status" type="checkbox" value="filter_materials__Status_1" checked>
+                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_1">Used</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="filter_materials__Status_2"
+                                   name="filter_materials__Status" type="checkbox" value="filter_materials__Status_2" checked>
+                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_2">Unused</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="filter_materials__Status_3"
+                                   name="filter_materials__Status" type="checkbox" value="filter_materials__Status_3" checked>
+                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_3">None</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- 2 - END -->
 
             <!-- 3 - START -->
             <div class="govuk-form-group">
