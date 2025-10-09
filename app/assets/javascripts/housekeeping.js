@@ -410,6 +410,7 @@ $(document).ready(function() {
      // MATERIALS
      $("#close_filter_Materials").on("click", function (e) {
           $('#show_filter_Materials').show();
+          $('#close_filter_Materials').hide();
           $('#materials_column_1').hide();
           $('#materials_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
      });
@@ -438,6 +439,7 @@ $(document).ready(function() {
      // REDACTIONS
      $("#close_filter_Redactions").on("click", function (e) {
           $('#show_filter_Redactions').show();
+         $('#close_filter_Redactions').hide();
           $('#redact_column_1').hide();
           $('#redact_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
      });

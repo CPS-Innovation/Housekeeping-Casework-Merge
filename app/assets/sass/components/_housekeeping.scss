@@ -309,22 +309,23 @@ ul#tab-list {
                          .moj-filter__heading-action {
                               position: relative;
                               button {
-                                   position: absolute;
-                                   right: -20px;
-                                   top: -37px;
+                                   //position: relative;
+                                   //right: -100px;
+                                   //top: -37px;
                                    display: block;
                                    width: auto;
                                    min-width: 40px;
                                    margin: 0;
-                                   padding: 2px 5px;
-                                   color: #ffffff;
-                                   background-color: #0b0c0c;
+                                   //padding: 2px 5px;
+                                   //color: #ffffff;
+                                   //background-color: #1d70b8;
+                                   //border-radius: 50%;
                                    box-shadow: none !important;
-                                   font-size: 2rem;
-                                   font-weight: 700;
-                                   &:hover, &:active, &:focus {
-                                        background-color: $govuk-link-colour;
-                                   }
+                                   //font-size: 2rem;
+                                   //font-weight: 700;
+                                   //&:hover, &:active, &:focus {
+                                   //     background-color: $govuk-link-colour;
+                                   //}
                               }
                               p {
                                    margin: 0 0 0 0;
@@ -602,7 +603,7 @@ table.sortable {
      display: flex;
      align-items: center;
      margin-bottom: 2em;
-     #show_filter_Comms, #show_filter_Materials, #show_filter_Redactions {
+     #show_filter_Comms, #show_filter_Materials, #close_filter_Materials, #show_filter_Redactions, #close_filter_Redactions {
           margin: 0 1em 0 0;
           font-size: 1rem;
           float: left;
@@ -817,11 +818,14 @@ table {
           .info_wrapper {
                display: inline-block;
                width: 100%;
+            ul#tab-list {
+              width: 80%;
+            }
           }
           &.govuk-grid-column-full {
                .info_wrapper {
                     ul#tab-list {
-                         width: 90%;
+                         width: 80%;
                     }
                }
           }
