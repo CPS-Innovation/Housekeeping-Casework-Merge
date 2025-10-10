@@ -1412,6 +1412,20 @@ $(document).ready(function() {
 });
 
 
+// Open the defendants page
+function viewDefendants() {
+    console.log("viewDefendants function called");
+    // Open the Review & Redact Tab
+    showTabByNumber(3);
+    pageActions();
+
+    // Pretty cludgy way to target the item as the numbering is duplicated currently so using first() to target the first item. Will refactor
+    $('.accordion-section.section_2').first().find('h2.govuk-heading-s > a.accordion-section-header').addClass('active');
+    $('.accordion-section.section_2').first().find('.accordion-section-body').show();
+    $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5)').addClass("active_document");
+    $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5) td').prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+}
+
 //     function updateExhibit() {
 //         $('#rename_form').hide();
 //         $('#completing_rename').show();
