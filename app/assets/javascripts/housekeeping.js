@@ -425,6 +425,7 @@ $(document).ready(function() {
      // COMMS
      $("#close_filter_Comms").on("click", function (e) {
           $('#show_filter_Comms').show();
+          $('#close_filter_Comms').hide();
           $('#comms_column_1').hide();
           $('#comms_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
      });
@@ -439,7 +440,7 @@ $(document).ready(function() {
      // REDACTIONS
      $("#close_filter_Redactions").on("click", function (e) {
           $('#show_filter_Redactions').show();
-         $('#close_filter_Redactions').hide();
+          $('#close_filter_Redactions').hide();
           $('#redact_column_1').hide();
           $('#redact_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
      });
