@@ -87,12 +87,11 @@
     <div class="govuk-grid-column-one-third">
         <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer +1</h1>
         <span class="govuk-caption-m govuk-!-margin-bottom-0">{{caseUrnSearch}}</span>
+        <div class="openMe">
         <p class="govuk-body-s">
-<!--        <div class="openMe">-->
-<!--            <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="18" data-doc="defendants.pdf" data-page="1">View 2 defendants and charges</a>-->
-<!--        </div>-->
-            <a href="#" class="govuk-link govuk-link--no-visited-state">View 2 defendants and charges</a>
+            <a class="govuk-link govuk-link--no-visited-state" onclick="return viewDefendants();" data-id="18" data-doc="defendants.pdf" data-page="1" style="color: #1d70b8; cursor: pointer;">View 2 defendants and charges</a>
         </p>
+        </div>
     </div>
     <div class="govuk-grid-column-two-thirds">
         <div class="taskOverViewContent">
