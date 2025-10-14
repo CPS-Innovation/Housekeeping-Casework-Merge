@@ -462,7 +462,7 @@ $(document).ready(function() {
           // Reset all material action buttons to unexpanded state
           $('button.show_material_actions').removeClass('hide').html('Preview <i class="fa-solid fa-chevron-down"></i>');
           $('input[name=filter_materials__New]').prop('checked', false);
-          $('input[name=filter_materials__Status]').prop('checked', true);
+          $('input[name=filter_materials__Status]').prop('checked', false);
           $('input[name=filter_materials__Category]').prop('checked', false);
           $('.no_results').hide();
           
@@ -577,6 +577,7 @@ $(document).ready(function() {
                $('table#materials_table tr').hide();
                $('table#materials_table thead tr, table#materials_table tr.material_Used').show();
           }
+
           if ($('input[id=filter_materials__Status_2]').is(':checked')) { 
                $('.materials_filters_clear_Unused').show(); 
 
