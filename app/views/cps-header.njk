@@ -8,11 +8,14 @@
                         <span class="govuk-header__logotype-text">CPS</span>
                     </span>
                 </a>
+                <!-- Only show 'Dashboard' link if not on the index page -->
+                {% if not isIndex %}
                 <a href="{{ params.homepageUrl | default('/version-0/2-cps-user-journey/A-dashboard') }}"
                     class="govuk-header__link">
                     <span
                         class="govuk-header__product-name govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-left-9">Dashboard</span>
                 </a>
+                {% endif %}
             </div>
             <div class="govuk-header__logo rumpoleText">
                 <a href="{{ params.homepageUrl | default('/') }}"
