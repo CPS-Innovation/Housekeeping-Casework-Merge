@@ -2,45 +2,40 @@
 {% set isIndex = true %}
 
 {% block pageTitle %}
-    CPS - Housekeeping and Casework Prototype
+    Materials and communications prototype | CPS
 {% endblock %}
 {% block content %}
 
-<script src="/public/javascripts/accordion.js"></script>
-
 <div class="govuk-grid-row index-page">
     <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-xl">Prototype versions and links</h1>
-        <h2 class="govuk-heading-m"></h2>
+        <span class="govuk-caption-xl">Prototype versions and links</span>
+        <h1 class="govuk-heading-xl">Materials and communications</h1>
+        <h2 class="govuk-heading-m" style="margin-bottom: 0">Current version</h2>
+        <p><strong class="govuk-tag govuk-tag--purple">MVP</strong></p>
 
-        <p><strong class="govuk-tag">Current version</strong></p>
+        <div class="holdingBlock">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">Merged prototype v1.1</h2>
+            <p class="govuk-body govuk-!-margin-bottom-10">Sept 2025 to present</p>
+            <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/0_1-housekeeping/A-index" target="_blank">Merged prototype (opens in a new tab)</a></p>
+             <p class="govuk-body govuk-!-margin-bottom-10"><strong>In this version:</strong></p>
+            <ul class="govuk-body govuk-!-margin-bottom-10">
+                <li>Iterations to merged prototype for MVP release</li>
+            </ul>
+        </div>
 
-        <!-- CHRIS NEW VERSION 0 - START -->
-        {% include './version-0/_summary.html' %}
-        <!-- CHRIS NEW VERSION 0 -END -->
-
-        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-
-        <p><strong class="govuk-tag govuk-tag--green">Previous versions</strong></p>
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-3">
-            Private Beta
-            <span class="govuk-caption-m">21st May 2025 - Present</span>
-        </h2>
-
+        <h2 class="govuk-heading-m">Previous versions</h2>
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-private-beta">
-
             <div class="govuk-accordion__section">
                 <div class="govuk-accordion__section-header">
                     <h2 class="govuk-accordion__section-heading">
-                        <span class="govuk-accordion__section-button" id="accordion-private-beta-heading-1">Older design iterations</span>
+                        <span class="govuk-accordion__section-button" id="accordion-private-beta-heading-2">Merging the "Casework App" and "Housekeeping"</span>
                     </h2>
                 </div>
                 <div id="accordion-private-beta-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-private-beta-heading-1">
                     {% set version = 'version-0' %}
                     <div class="holdingBlock">
-                        <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">Casework App - Housekeeping merge v1</h2>
-                        <p class="govuk-body govuk-!-margin-bottom-10">June 2025</p>
+                        <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">Merged prototype v1.0</h2>
+                        <p class="govuk-body govuk-!-margin-bottom-10">June - Sept 2025</p>
                         <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/0-housekeeping/A-index">OD Staff</a></p>
                         <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/0-housekeeping/A-index?tab=5">Legal</a></p>
                         <p class="govuk-body govuk-!-margin-bottom-10"><strong>In this version:</strong></p>
@@ -50,9 +45,40 @@
                     </div>
                 </div>
             </div>
+            <div class="govuk-accordion__section">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                        <span class="govuk-accordion__section-button" id="accordion-private-beta-heading-1">Design history leading to Private Beta</span>
+                    </h2>
+                </div>
+                <div id="accordion-cps-task-journey-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-cps-task-journey-content-1">
 
+                    <h2 class="govuk-heading-m govuk-!-margin-top-3">
+                        Private Beta
+                        <span class="govuk-caption-m">21st May 2025 - Present</span>
+                    </h2>
+                    <p class="govuk-body govuk-!-margin-bottom-10 govuk-body-l">Here is a list of links to some of the design work and prototyping leading up to the private beta which started in May 2025.</p>
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">CPS task journey</h2>
+                    <p class="govuk-body govuk-!-margin-bottom-10">Prior to May 2025</p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/6-cps-task-journey/A-dashboard" target="_blank">Dashboard (opens in a new tab)</a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/6-cps-task-journey/B-casefile" target="_blank">Case file (opens in a new tab)</a></p>
+<!--                <p class="govuk-body govuk-!-margin-bottom-10"><strong>In this version:</strong></p>-->
+<!--                    <ul class="govuk-body govuk-!-margin-bottom-10">-->
+<!--                        <li></li>-->
+<!--                    </ul>-->
+
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">Move documents</h2>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/4-move-documents/A-category" target="_blank">What type of document is this? (opens in a new tab)</a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/4-move-documents/XXX-B-statement-details" target="_blank">Enter the statement details (opens in a new tab)</a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/4-move-documents/XXX-C-exhibit-details" target="_blank">Enter the exhibit details (opens in a new tab)</a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/4-move-documents/XXX-D-document-name" target="_blank">Select the document details (opens in a new tab)</a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/4-move-documents/XXX-F-check-answers" target="_blank">Check your answers (opens in a new tab)</a></p>
+
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="clear: both;">Other pages</h2>
+                    <p class="govuk-body govuk-!-margin-bottom-10"><a href="/version-0/5-other-pages/1-service-unavailable" target="_blank">Service is unavailable (opens in a new tab)</a></p>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
 
