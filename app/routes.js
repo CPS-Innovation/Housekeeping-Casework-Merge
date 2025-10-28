@@ -22,7 +22,7 @@ router.get('/version-0/0_1-housekeeping/A-index/case-search', function (req, res
     const caseUrnSearch = data.caseUrnSearch
 
     console.log(caseUrnSearch)
-    res.render('version-0/0_1-housekeeping/A-index', {
+    res.render('version-0/0-housekeeping_0-1/A-index', {
         caseUrnSearch
     })
 })
