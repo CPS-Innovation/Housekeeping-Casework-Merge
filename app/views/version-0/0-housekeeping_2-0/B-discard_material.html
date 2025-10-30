@@ -1,0 +1,75 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block pageTitle %}
+  Recategorise documents – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+
+     <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+               <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+          </div>
+     </div>
+
+     <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+               <form novalidate method="post" action="A-index">
+
+                    <div class="govuk-form-group">
+                         <fieldset class="govuk-fieldset" aria-describedby="changeCategory-hint">
+                              <span class="govuk-caption-l">Discard material</span>
+                              <h1 class="govuk-heading-l">Reason for discarding material</h1>
+       
+                              <p class="govuk-body"><strong>Select a reason for discarding material</strong></p>
+
+                              <div class="govuk-radios" data-module="govuk-radios">
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Error" name="discarding_material" type="radio" value="Attached in error">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Error">Attached in error</label>
+                                   </div>
+
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Dispatched" name="discarding_material" type="radio" value="Dispatched in error">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Dispatched">Dispatched in error</label>
+                                   </div>
+
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Duplicate" name="discarding_material" type="radio" value="Duplicate">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Duplicate">Duplicate</label>
+                                   </div>
+
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Illegible" name="discarding_material" type="radio" value="Illegible">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Illegible">Illegible</label>
+                                   </div>
+
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Replaced" name="discarding_material" type="radio" value="Replaced">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Replaced">Replaced</label>
+                                   </div>
+
+                                   <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="discarding_material_Superfluous" name="discarding_material" type="radio" value="Superfluous">
+                                        <label class="govuk-label govuk-radios__label" for="discarding_material_Superfluous">Superfluous</label>
+                                   </div>
+                              </div>
+
+                         </fieldset>
+                    </div>
+
+                    <div class="govuk-button-group">
+                          <input id="discarding_material_COMPLETED" name="discarding_material_COMPLETED" type="text" value="true" style="display: none;">
+                         <button class="govuk-button" data-module="govuk-button">Save and discard</button>
+                         <a class="govuk-link" href="A-index">Cancel</a>
+                    </div>
+               </form>          
+          </div>
+     </div>
+</div>
+{% endblock %}
