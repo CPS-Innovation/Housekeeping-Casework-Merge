@@ -1,0 +1,67 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openRenameModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// NOTES - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="rename">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper rename-header">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">Rename</span></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="" action="">
+
+                        <div class="loading" id="completing_rename">
+                            <div>
+                                <div class="hods-loading-spinner">
+                                    <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                                </div>
+                                <h2 class="govuk-heading-m">Renaming material...</h2>
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-row" id="rename_form">
+                            <div class="govuk-grid-column-full">
+
+                                <div class="govuk-form-group">
+                                    <h1 class="govuk-label-wrapper">
+                                        <label class="govuk-label govuk-label--s" for="rename-Document">What is the new name of the material?</label>
+                                    </h1>
+
+                                    <div id="" class="govuk-hint exhibit-hint-text">
+                                        <span class="govuk-hint">Example: Exhibit Ref Number, Description of exhibit</span>
+                                        <span class="govuk-hint">MG0 Ex DMD1 Photobook of crime scene 28/07/20 (data images captured)</span>
+                                    </div>
+
+                                    <input class="govuk-input" id="rename-Document" name="rename-Document" type="text" aria-describedby="rename-Document-hint">
+                                </div>
+
+                                <div class="initial-action">
+                                    <button id="document-renamed" class="govuk-button" data-module="govuk-button" type="button" onClick="return renameDocument()">Save and close</button>
+                                    <button class="non-button cancel-rename" data-module="govuk-button" type="button" onClick="closeRenameModal()">Cancel</button>
+                                </div>
+
+                                <div class="secondary-action">
+                                    <button id="" class="non-button" data-module="govuk-button" type="button" onClick="return closeRenameModal()">Close</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
