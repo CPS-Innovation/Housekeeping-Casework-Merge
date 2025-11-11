@@ -1292,7 +1292,7 @@ function closeRenameModal() {
 
 
 // Update statement
-// When clicking the action button to update an statement, go to a new page
+// When clicking the action button to update a statement, go to a new page
 function openUpdateStatement() {
     window.location.href = "/version-1/1-0/update-statement.html";
 }
