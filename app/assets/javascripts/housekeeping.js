@@ -1290,6 +1290,23 @@ function closeRenameModal() {
      $('#materials_table tr.govuk-table__row').removeClass('rename_document');
 }
 
+// Open selected documents in a new window
+function openDocumentInNewWindow() {
+
+    let selectedMaterial = $("input[name=materials_document]:checked");
+    let row = $(this).closest('tr');
+    let titleCell = row.find('td:nth-child(2)'); // Material title is the 2nd column
+    let documentTitle = titleCell.text();
+    // let documentURL = row.find('td:nth-child(3) a').attr('href');
+    let documentURL = row.find('td:nth-child(2) div a').attr('data-doc');
+    var docName = $(this).attr('data-doc');
+
+    console.log("The selected document URL is " + documentURL);
+    console.log("The selected document title is " + documentTitle);
+
+    window.open('', 'Document view', 'width=320, height=320');
+    return false;
+}
 
 // Update statement
 // When clicking the action button to update a statement, go to a new page
