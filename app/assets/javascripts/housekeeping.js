@@ -1292,19 +1292,28 @@ function closeRenameModal() {
 
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
+    // Get all checked materials
+    let selectedMaterials = $("input[name=materials_document]:checked");
 
-    let selectedMaterial = $("input[name=materials_document]:checked");
-    let row = $(this).closest('tr');
-    let titleCell = row.find('td:nth-child(2)'); // Material title is the 2nd column
-    let documentTitle = titleCell.text();
-    // let documentURL = row.find('td:nth-child(3) a').attr('href');
-    let documentURL = row.find('td:nth-child(2) div a').attr('data-doc');
-    var docName = $(this).attr('data-doc');
+    // For each selected material
+    selectedMaterials.each(function() {
+        let row = $(this).closest('tr');
+        let titleCell = row.find('td.title_column');
+        let documentURL = titleCell.find('.openMe a').attr('data-doc');
+        let documentTitle = titleCell.find('.openMe a').text().trim();
 
-    console.log("The selected document URL is " + documentURL);
-    console.log("The selected document title is " + documentTitle);
+        // Default width for document windows
+        let windowWidth = 800;
 
-    window.open('', 'Document view', 'width=320, height=320');
+        // Open a new window for each document
+        if (documentURL) {
+            // Create unique name for each window using timestamp to ensure uniqueness
+            let windowName = 'Document_' + Date.now();
+            window.open('/public/files/' + documentURL, windowName,
+                'width=' + windowWidth + ',height=800,scrollbars=yes');
+        }
+    });
+
     return false;
 }
 
