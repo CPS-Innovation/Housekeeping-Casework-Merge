@@ -1292,25 +1292,28 @@ function closeRenameModal() {
 
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
-    // Get all checked materials
+    // Get all selected materials
     let selectedMaterials = $("input[name=materials_document]:checked");
 
     // For each selected material
-    selectedMaterials.each(function() {
+    selectedMaterials.each(function(index) {
         let row = $(this).closest('tr');
         let titleCell = row.find('td.title_column');
         let documentURL = titleCell.find('.openMe a').attr('data-doc');
         let documentTitle = titleCell.find('.openMe a').text().trim();
 
-        // Default width for document windows
-        let windowWidth = 800;
-
-        // Open a new window for each document
+        // Open a new browser window for each document with a unique name
         if (documentURL) {
-            // Create unique name for each window using timestamp to ensure uniqueness
-            let windowName = 'Document_' + Date.now();
+            // Add a small offset to each window position for a staggered effect
+            let offsetX = 50 * index;
+            let offsetY = 50 * index;
+
+            // Create a unique name for each window
+            let windowName = 'Document_' + Date.now() + '_' + index;
+
+            // Open window with specific position and size
             window.open('/public/files/' + documentURL, windowName,
-                'width=' + windowWidth + ',height=800,scrollbars=yes');
+                `width=800,height=800,top=${offsetY},left=${offsetX},scrollbars=yes`);
         }
     });
 
