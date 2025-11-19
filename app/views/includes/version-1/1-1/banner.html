@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-<script src="/public/javascripts/mojall.js"></script>
+<script src="/javascripts/mojall.js"></script>
 <header class="govuk-header {{ params.classes if params.classes }}" role="banner" data-module="govuk-header" {%- for attribute, value in params.attributes %} {{attribute}}="{{value}}" {% endfor %} style=" border-bottom:10px solid #1d70b8; max-height:60px">
     <div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
         <div style="display:flex">
