@@ -1,14 +1,14 @@
 {% extends "layoutCPS-NEW-CASEFILE.html" %}
 {% block header %}
-{% include "../../includes/version-1/1-0/banner.html" %}
-{% include "../../includes/version-1/modals/rename.html" %}
-{% include "../../includes/version-1/modals/feedback.html" %}
-{% include "../../includes/version-1/modals/report-a-problem.html" %}
-{% include "../../includes/version-1/modals/search.html" %}
-{% include "../../includes/version-1/modals/notes-new.html" %}
-{% include "../../includes/version-1/modals/notes.html" %}
-{% include "../../includes/version-1/modals/update-statement.html" %}
-{% include "../../includes/version-1/modals/update-exhibit.html" %}
+{% include "../../includes/version-1/1-1/banner.html" %}
+{% include "../../includes/version-1/1-1/modals/rename.html" %}
+{% include "../../includes/version-1/1-1/modals/feedback.html" %}
+{% include "../../includes/version-1/1-1/modals/report-a-problem.html" %}
+{% include "../../includes/version-1/1-1/modals/search.html" %}
+{% include "../../includes/version-1/1-1/modals/notes-new.html" %}
+{% include "../../includes/version-1/1-1/modals/notes.html" %}
+{% include "../../includes/version-1/1-1/modals/update-statement.html" %}
+{% include "../../includes/version-1/1-1/modals/update-exhibit.html" %}
 {% endblock %}
 
 {% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined and caseUrnSearch else '16XL9132025' %}
@@ -101,6 +101,9 @@
                 class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">
                 Update automatically
             </button>
+            {# if data['tab'] != '5' #}
+            <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Complete triage</button>
+            {# endif #}
             <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Start review</button>
         </div>
     </div>
@@ -132,7 +135,7 @@
                 {% else %}
                 <div class="panel" id="tab_content_1">
                     {% endif %}
-                    {% include "../../includes/version-1/1-0/tab-1-PCD-request.html" %}
+                    {% include "../../includes/version-1/1-1/tab-1-PCD-request.html" %}
                 </div>
                 <!-- TAB CONTENT - 1 - END -->
 
@@ -142,25 +145,25 @@
                     {% else %}
                     <div class="panel" id="tab_content_2" style="display: none;">
                         {% endif %}
-                        {% include "../../includes/version-1/1-0/tab-2-Materials.html" %}
+                        {% include "../../includes/version-1/1-1/tab-2-Materials.html" %}
                     </div>
                     <!-- TAB CONTENT - 2 - END -->
 
                     <!-- TAB CONTENT - 3 - START -->
                     <div class="panel" id="tab_content_3" style="display: none;">
-                        {% include "../../includes/version-1/1-0/tab-3-Review-Materials.html" %}
+                        {% include "../../includes/version-1/1-1/tab-3-Review-Materials.html" %}
                     </div>
                     <!-- TAB CONTENT - 3 - END -->
 
                     <!-- TAB CONTENT - 4 - START -->
                     <div class="panel" id="tab_content_4" style="display: none;">
-                        {% include "../../includes/version-1/1-0/tab-4-Comms.html" %}
+                        {% include "../../includes/version-1/1-1/tab-4-Comms.html" %}
                     </div>
                     <!-- TAB CONTENT - 4 - END -->
 
                     <!-- TAB CONTENT - 5 - START -->
                     <div class="panel" id="tab_content_5" style="display: none;">
-                        {% include "../../includes/version-1/1-0/tab-5-PCD-review.html" %}
+                        {% include "../../includes/version-1/1-1/tab-5-PCD-review.html" %}
                     </div>
                     <!-- TAB CONTENT - 5 - END -->
 
