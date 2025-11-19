@@ -456,6 +456,8 @@ $(document).ready(function() {
      $('.materials_filters_clear_All').on("click", function (e) {
           e.preventDefault();
           $('#active_filter').hide();
+          $('#active_filter h3').hide();
+          $('.selected_filter').hide();
           // Restore to page load state - show only main material rows, hide detail rows
           $('table#materials_table tr:not(.hidden_row)').show();
           $('table#materials_table tr.hidden_row').hide();
