@@ -667,6 +667,13 @@ $(document).ready(function() {
              $('table#materials_table thead tr, table#materials_table tr.material_Uncategorised').show();
          }
 
+         if ($('input[id=filter_materials__Category_11]').is(':checked')) {
+             $('.materials_filters_clear_MG_Form').show();
+
+             $('table#materials_table tr').hide();
+             $('table#materials_table thead tr, table#materials_table tr.material_MG_Form').show();
+         }
+
           
           // Update counters after filtering
           updateMaterialsCounters();
