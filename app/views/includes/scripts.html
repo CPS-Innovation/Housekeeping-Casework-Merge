@@ -305,21 +305,25 @@
                                 <button onclick="myFunction(), toggleClass()" class="dropbtn">Document actions</button>
                                 <div id="" class="dropdown-content myDropdown2">
                                     <button onclick="openModalOver(), documentTitle()" class="">Log an Under/Over redaction</button>
-<!--                                <button onclick="window.open('https://as-web-redaction-log-dev.azurewebsites.net','_blank')" class="">View redaction log history</button>-->
-<!--                                <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
+                                    {% if version == '1.1' %}
+                                        <button onclick="window.open('https://as-web-redaction-log-dev.azurewebsites.net','_blank')" class="">View redaction log history</button>
+                                        <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>
+                                    {% endif %}
                                     <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
                                     <!-- Added to toggle on/off delete page -->
                                     <button onclick="#" class="">Hide delete page options</button>
 
-                                    <!-- Taken out for Version 1.0 -->
-<!--                                    <button onclick="location.href='B-discard_material';">Discard</button>-->
-<!--                                    <button onclick="#">Reclassify</button>-->
+                                    {% if version == '1.1' %}
+                                        <!-- Taken out for Version 1.0 -->
+                                        <button onclick="location.href='B-discard_material';">Discard</button>
+                                        <button onclick="#">Reclassify</button>
 
-                                    <!-- Hide Mark as read for the review actions as currently out of scope -->
-                                    <!-- <button onclick="return mark_as_Read();" class>Mark as read</button> -->
+                                         <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
+                                         <button onclick="return mark_as_Read();" class>Mark as read</button>
 
-                                    <!-- Taken out for Version 1.0 -->
-<!--                                <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>-->
+                                         <!-- Taken out for Version 1.0 -->
+                                        <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
+                                    {% endif %}
                                 </div>
                             </div>
 
