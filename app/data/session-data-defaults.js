@@ -19,9 +19,7 @@ Example usage:
 
 module.exports = {
 
-  // Insert values here
-
-  "employer.name": "Assurance Aerospace Engineering",
-   "employer.id": "RVRD8V",
+  // define a default version to be used in the prototype
+  'current_version': '1.0',
 
 }
