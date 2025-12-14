@@ -13,16 +13,26 @@ router.use('/', (req, res, next) => {
      next();
 });
 
-router.get('/version-1/1-0/A-index/find-a-case', function (req, res) {
-    res.redirect('/version-1/1-0/find-a-case')
+
+// Set the version number from the URL chosen from the index page
+router.get('/version-1/A-index', (req, res) => {
+    const version = req.query.version;
+    res.locals.version = version;
+    res.render('version-1/A-index', { version });
+    console.log("Selected version is " + version);
+});
+
+
+router.get('/version-1/A-index/find-a-case', function (req, res) {
+    res.redirect('/version-1/find-a-case')
 })
 
-router.get('/version-1/1-0/A-index/case-search', function (req, res) {
+router.get('/version-1/A-index/case-search', function (req, res) {
     const data = req.session.data
     const caseUrnSearch = data.caseUrnSearch
 
     console.log(caseUrnSearch)
-    res.render('version-1/1-0/A-index', {
+    res.render('version-1/A-index', {
         caseUrnSearch
     })
 })

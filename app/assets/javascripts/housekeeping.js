@@ -1332,7 +1332,7 @@ function openDocumentInNewWindow() {
 // Update statement
 // When clicking the action button to update a statement, go to a new page
 function openUpdateStatement() {
-    window.location.href = "/version-1/1-0/update-statement.html";
+    window.location.href = "/version-1/update-statement.html";
 }
 
 // Display the statement update form
@@ -1376,7 +1376,7 @@ function checkUpdatedStatement(){
 // Update Exhibit
 // When clicking the action button to update an exhibit, go to a new page
 function openUpdateExhibit() {
-    window.location.href = "/version-1/1-0/update-exhibit.html";
+    window.location.href = "/version-1/update-exhibit.html";
 }
 
 // Display the exhibit update form
@@ -1417,12 +1417,12 @@ function checkUpdatedExhibit(){
 //         e.preventDefault();
 //         let update_exhibit_COMPLETED = true;
 //         // Only trigger navigation; tab selection will be handled on page load using the hash
-//         window.location.href = "/version-1/1-0/A-index.html#tab_content_3";
+//         window.location.href = "/version-1/A-index.html#tab_content_3";
 //     });
 // }
 
 // function openMaterialTab(){
-//     window.location.href = "/version-1/1-0/A-index.html#tab_content_3";
+//     window.location.href = "/version-1/A-index.html#tab_content_3";
 //     // // Show the material tab
 //     // $('.panel').hide();
 //     // $('#tab_content_2').show();
@@ -1433,7 +1433,7 @@ function checkUpdatedExhibit(){
 
 function openMaterialTab() {
     // Only trigger navigation; tab selection will be handled on page load using the hash
-    window.location.href = "/version-1/1-0/A-index.html#tab_content_3";
+    window.location.href = "/version-1/A-index.html#tab_content_3";
 }
 
 $(document).ready(function() {
