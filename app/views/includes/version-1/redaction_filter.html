@@ -7,8 +7,6 @@
     <div class="moj-filter__content">
         <div class="moj-filter__options redaction_options">
 
-            <!-- Don't include search box for MVP -->
-            {% if version == '1.1' %}
             <div class="govuk-form-group search_container">
                 <label class="govuk-label govuk-label--s" for="filter_materials__Search">Search materials</label>
                 <div>
@@ -16,8 +14,6 @@
                     <button id="search_materials" type="button" class="govuk-button" data-module="govuk-button" onclick="openModal(); searchTerm();">Search</button>
                 </div>
             </div>
-            {% endif %}
-
 
             <!-- 1 - START -->
             <div class="accordion-section section_1">
