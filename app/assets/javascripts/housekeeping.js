@@ -1320,9 +1320,9 @@ function openDocumentInNewWindow() {
             // Create a unique name for each window
             let windowName = 'Document_' + Date.now() + '_' + index;
 
-            // Open window with specific position and size
+            // Open window with specific position and size, request no location etc although most browsers will ignore these
             window.open('/public/files/' + documentURL, windowName,
-                `width=800,height=800,top=${offsetY},left=${offsetX},scrollbars=yes`);
+                `width=800,height=800,top=${offsetY},left=${offsetX},scrollbars=yes,location=no,toolbar=no,menubar=no,status=no`);
         }
     });
 
