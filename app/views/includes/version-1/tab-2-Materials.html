@@ -41,17 +41,34 @@
                             data-module="govuk-button" disabled>Reclassify</button>
 
                             <!-- Update should only be available for Statements or Exhibits -->
+                            <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
+                            {% if version == '1.0' %}
+                            <button type="button" id="update-statement"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update</button>
+
+                            {% elif version == '1.1' %}
                             <button type="button" id="update-statement"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update statement</button>
+                            {% endif %}
 
+                            <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
+                            {% if version == '1.0' %}
+                            <button type="button" id="update-exhibit"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update</button>
+                            {% elif version == '1.1' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update exhibit</button>
+                            {% endif %}
 
-                            <button type="button"
+                            {% if version == '1.1' %}
+                                <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
+                            {% endif %}
 
                             <form method="post" action="B-discard_material">
                                 <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
@@ -63,6 +80,10 @@
                             <button type="button"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                             data-module="govuk-button" disabled>Mark as unused</button>
+
+                            {% if version == '1.1' %}
+                                <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
