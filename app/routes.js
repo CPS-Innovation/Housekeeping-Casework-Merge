@@ -16,22 +16,23 @@ router.use('/', (req, res, next) => {
 
 // Set the version number from the URL chosen from the index page
 router.get('/version-1/A-index', (req, res) => {
-    // Assign version based on link clicked from the index page
-    const version = req.query.version;
 
-    if (version) {
+    // Assign version based on the link clicked from the index page
+    const setVersion = req.query.version;
+
+    if (setVersion) {
         req.session.data = req.session.data || {}
-        req.session.data.version = version
+        req.session.data.version = setVersion
     }
     else {
         console.log("Version not set in URL");
     }
 
     // Use session as fallback so it survives redirects/new requests
-    const currentVersion = req.query.version || req.session.data.version
+    const version = req.query.version || req.session.data.version
 
-    res.render('version-1/A-index', { version: currentVersion });
-    console.log("Selected version is " + currentVersion);
+    res.render('version-1/A-index', { version: version });
+    console.log(`Selected version is ${version}`);
 });
 
 
