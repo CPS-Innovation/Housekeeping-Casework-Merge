@@ -10,6 +10,12 @@ router.use('/', (req, res, next) => {
      res.locals.currentURL = req.originalUrl; //current screen
      res.locals.prevURL = req.get('Referrer'); // previous screen
      console.log('previous page is: ' + res.locals.prevURL + " and current page is " + req.url + " " + res.locals.currentURL );
+     
+     // Redirect old plugin-assets paths to extension-assets (fix for Home Office kit fonts)
+     if (req.url.startsWith('/plugin-assets/')) {
+         return res.redirect(req.url.replace('/plugin-assets/', '/extension-assets/'));
+     }
+
      next();
 });
 
