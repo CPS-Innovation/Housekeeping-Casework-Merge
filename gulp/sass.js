@@ -16,7 +16,10 @@ const stylesheetDirectory = config.paths.public + 'stylesheets'
 
 gulp.task('sass-extensions', function (done) {
   const fileContents = '$govuk-extensions-url-context: "/extension-assets"; ' + extensions.getFileSystemPaths('sass')
-    .map(filePath => `@import "${filePath.split(path.sep).join('/')}";`)
+    .map(filePath => {
+      const relativePath = path.relative(path.join(config.paths.lib, 'extensions'), filePath)
+      return `@import "${relativePath.split(path.sep).join('/')}";`
+    })
     .join('\n')
   fs.writeFile(path.join(config.paths.lib + 'extensions', '_extensions.scss'), fileContents, done)
 })
