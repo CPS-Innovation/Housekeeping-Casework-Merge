@@ -1073,13 +1073,30 @@ $(document).ready(function() {
           if (materialsNumber === 20) { $('table#materials_table tr[data-row_id="20"]').toggle(); $('button.show_material_actions[data-id="20"]').toggleClass('hide'); }
      });
 
-     $('.show_material_actions').click(function(){
-          if ($(this).hasClass('hide')) {
-               $(this).html('Hide <i class="fa-solid fa-chevron-down"></i>');
-          } else {
-               $(this).html('Preview <i class="fa-solid fa-chevron-down"></i>');
-          }
-     });
+    // Maintain the chevrons for older version 0 and removing them for newer versions
+    $('.show_material_actions').click(function(){
+        var urlParams = new URLSearchParams(window.location.search);
+        var version = (urlParams.get('version') || '').toString();
+        var major = version ? (version.indexOf('.') > -1 ? version.split('.')[0] : version) : '';
+
+        switch (major) {
+            case '0':
+                if ($(this).hasClass('hide')) {
+                    $(this).html('Hide <i class="fa-solid fa-chevron-down"></i>');
+                } else {
+                    $(this).html('Actions <i class="fa-solid fa-chevron-down"></i>');
+                }
+                break;
+            default:
+                if ($(this).hasClass('hide')) {
+                    $(this).html('Hide');
+                } else {
+                    $(this).html('Preview');
+                }
+        }
+    });
+
+
 
      // $('.show_material_actions.hide').click(function(){
      //      $(this).html('Actions <i class="fa-solid fa-chevron-down"></i>').removeClass('hide');
