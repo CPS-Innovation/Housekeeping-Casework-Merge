@@ -7,16 +7,24 @@ const router = new express.Router()
 
 // route middleware that will happen on every request
 router.use('/', (req, res, next) => {
-     res.locals.currentURL = req.originalUrl; //current screen
-     res.locals.prevURL = req.get('Referrer'); // previous screen
-     console.log('previous page is: ' + res.locals.prevURL + " and current page is " + req.url + " " + res.locals.currentURL );
-     
-     // Redirect old plugin-assets paths to extension-assets (fix for Home Office kit fonts)
-     if (req.url.startsWith('/plugin-assets/')) {
-         return res.redirect(req.url.replace('/plugin-assets/', '/extension-assets/'));
-     }
+    // Redirect old plugin-assets paths to extension-assets (fix for Home Office kit fonts)
+    if (req.url.startsWith('/plugin-assets/')) {
+        return res.redirect(req.url.replace('/plugin-assets/', '/extension-assets/'));
+    }
 
-     next();
+    // Only log if it's not a static asset request
+    const isAsset = req.url.startsWith('/public/') || 
+                    req.url.startsWith('/node_modules/') || 
+                    req.url.startsWith('/extension-assets/') ||
+                    req.url.match(/\.(css|js|png|jpg|jpeg|gif|ico|woff|woff2|svg)$/);
+
+    if (!isAsset) {
+        res.locals.currentURL = req.originalUrl; //current screen
+        res.locals.prevURL = req.get('Referrer'); // previous screen
+        console.log('previous page is: ' + res.locals.prevURL + " and current page is " + req.url + " " + res.locals.currentURL);
+    }
+
+    next();
 });
 
 
