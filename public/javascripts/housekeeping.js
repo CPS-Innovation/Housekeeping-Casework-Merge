@@ -979,7 +979,7 @@ $(document).ready(function() {
 
     // open the reclassify page on click
     $('#update-and-reclassify').click(function(){
-        window.location.replace("C-reclassify.njk");
+        window.location.replace("C-reclassify.html");
     });
 
     $('#save-reclassify').click(function(){
@@ -1332,7 +1332,7 @@ function openDocumentInNewWindow() {
 // Update statement
 // When clicking the action button to update a statement, go to a new page
 function openUpdateStatement() {
-    window.location.href = "/version-1/update-statement.njk";
+    window.location.href = "/version-1/update-statement.html";
 }
 
 // Display the statement update form
@@ -1376,7 +1376,7 @@ function checkUpdatedStatement(){
 // Update Exhibit
 // When clicking the action button to update an exhibit, go to a new page
 function openUpdateExhibit() {
-    window.location.href = "/version-1/update-exhibit.njk";
+    window.location.href = "/version-1/update-exhibit.html";
 }
 
 // Display the exhibit update form
