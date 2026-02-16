@@ -33571,7 +33571,7 @@
                                             r.props.onConfirm({ text: "", emoji: "" }, r.state.redactionType);
                                             disableRotateRemove()
                                         },
-                                        children: "Redact",
+                                        children: "Redact this text",
                                     }),
                                     (0, I.jsx)("button", {
                                         className: "Tip__btn-redact",
@@ -33581,7 +33581,7 @@
                                             activateLink()
                                             disableRotateRemove()
                                         },
-                                        children: "Redact all (21)",
+                                        children: "Find matching text",
                                     }),
                                 ],
                             });
