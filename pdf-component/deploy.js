@@ -21,6 +21,8 @@ const replaceInFile = async (filePath, fromText, toText) => {
   await replaceInFile(cssBuildDir + cssMapFileName, cssFileName, "pdf.css");
   await fs.copyFile(cssBuildDir + cssFileName, cssDeployDir + "pdf.css");
   await fs.copyFile(cssBuildDir + cssMapFileName, cssDeployDir + "pdf.css.map");
+  await fs.copyFile(cssBuildDir + cssFileName, "../public/css/pdf.css");
+  await fs.copyFile(cssBuildDir + cssMapFileName, "../public/css/pdf.css.map");
 
   const [jsFileName, , jsFileMapName] = await getFilesSorted(jsBuildDir);
 
@@ -28,4 +30,6 @@ const replaceInFile = async (filePath, fromText, toText) => {
   await replaceInFile(jsBuildDir + jsFileMapName, jsFileName, "pdf.js");
   await fs.copyFile(jsBuildDir + jsFileName, jsDeployDir + "pdf.js");
   await fs.copyFile(jsBuildDir + jsFileMapName, jsDeployDir + "pdf.js.map");
+  await fs.copyFile(jsBuildDir + jsFileName, "../public/javascripts/pdf.js");
+  await fs.copyFile(jsBuildDir + jsFileMapName, "../public/javascripts/pdf.js.map");
 })();

@@ -91,16 +91,58 @@ export class Tip extends Component<Props, State> {
           </select>
         </div>
         <button
+          className="Tip__btn-redact govuk-button--secondary"
+          disabled={!this.state.redactionType}
+          onClick={() => {
+            this.props.onConfirm({ text: "", emoji: "" }, this.state.redactionType);
+            // @ts-ignore
+            disableRotateRemove();
+          }}
+        >
+          View previous
+        </button>
+        <button
+          className="Tip__btn-redact govuk-button--secondary"
+          disabled={!this.state.redactionType}
+          onClick={() => {
+            this.props.onConfirm({ text: "", emoji: "" }, this.state.redactionType);
+            // @ts-ignore
+            activateLink();
+            // @ts-ignore
+            disableRotateRemove();
+          }}
+        >
+          View next
+        </button>
+        <button
           className="Tip__btn-redact"
           disabled={!this.state.redactionType}
           onClick={() => {
             this.props.onConfirm(
               { text: "", emoji: "" },
               this.state.redactionType
-            )
+            );
+            // @ts-ignore
+            disableRotateRemove();
           }}
         >
-          Review and redact
+          Redact this text
+        </button>
+        <button
+          className="Tip__btn-redact"
+          disabled={!this.state.redactionType}
+          onClick={() => {
+            this.props.onConfirm(
+              { text: "", emoji: "" },
+              this.state.redactionType
+            );
+            // @ts-ignore
+            activateLink();
+            // @ts-ignore
+            disableRotateRemove();
+          }}
+        >
+          Find matching text
         </button>
       </div>
     )

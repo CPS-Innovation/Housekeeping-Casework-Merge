@@ -32,10 +32,11 @@
   background-color: #00703c;
   color: #fff;
   font-family: TransportNew,Arial,sans-serif;
-  &:disabled{
-      cursor: none;
-      opacity: 0.5;
-  }
+}
+
+.Tip__btn-redact:disabled{
+  cursor: none;
+  opacity: 0.5;
 }
 
 .Tip__card textarea {
