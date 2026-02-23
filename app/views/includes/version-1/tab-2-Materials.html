@@ -58,13 +58,13 @@
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update</button>
-                            {% elif version == '1.1' %}
+                            {% elif version >= '1.1' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update exhibit</button>
                             {% endif %}
 
-                            {% if version == '1.1' %}
+                            {% if version >= '1.1' %}
                                 <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
@@ -81,7 +81,7 @@
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                             data-module="govuk-button" disabled>Mark as unused</button>
 
-                            {% if version == '1.1' %}
+                            {% if version >= '1.1' %}
                                 <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
                             {% endif %}
                         </div>

@@ -14,7 +14,7 @@
         </h3>
         {% if version == '1.0' %}
             <a class="selected_filter materials_filters_clear_New">New material (unread)</a>
-        {% elif version == '1.1' %}
+        {% elif version >= '1.1' %}
             <a class="selected_filter materials_filters_clear_New">Show unread</a>
         {% endif %}
 
@@ -34,7 +34,7 @@
         <a class="selected_filter materials_filters_clear_MG_Form">MG Form</a>
         <a class="selected_filter materials_filters_clear_Other">Other material</a>
 
-        {% elif version == '1.1' %}
+        {% elif version >= '1.1' %}
         <a class="selected_filter materials_filters_clear_Review">Reviews</a>
         <a class="selected_filter materials_filters_clear_Case_overview">Case overview</a>
         <a class="selected_filter materials_filters_clear_Forensics">Forensics</a>
@@ -68,7 +68,7 @@
 
                             {% if version == '1.0' %}
                                 <label class="govuk-label govuk-checkboxes__label" for="filter_materials__New">Show only new material<br>(unread)</label>
-                            {% elif version == '1.1' %}
+                            {% elif version >= '1.1' %}
                                 <label class="govuk-label govuk-checkboxes__label" for="filter_materials__New">Show unread</label>
                             {% endif %}
 
@@ -109,7 +109,7 @@
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Category</legend>
                     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
 
-                        {% if version == '1.1' %}
+                        {% if version >= '1.1' %}
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="filter_materials__Category_1"
                                        name="filter_materials__Category" type="checkbox" value="Reviews">
@@ -151,7 +151,7 @@
                                 <label class="govuk-label govuk-checkboxes__label"
                                        for="filter_materials__Category_5">Other materials</label>
                             </div>
-                        {% elif version == '1.1' %}
+                        {% elif version >= '1.1' %}
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="filter_materials__Category_5"
                                        name="filter_materials__Category" type="checkbox" value="Forensics">
@@ -166,7 +166,7 @@
                             <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_6">Always unused</label>
                         </div>
                         {% endif %}
-                        {% if version == '1.1' %}
+                        {% if version >= '1.1' %}
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="filter_materials__Category_7"
                                    name="filter_materials__Category" type="checkbox" value="Defendant">
