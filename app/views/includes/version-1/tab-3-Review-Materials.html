@@ -23,7 +23,12 @@
 
     <div class="govuk-grid-column-one-quarter" id="redact_column_1">
         <div class="moj-filter-layout__filter">
-            {% include "./redaction_filter.html" %}
+            {% if version == '1.0' or version == '1.1' %}
+                {% include "./redaction_filter.html" %}
+            {% else %}
+                {% include "./redaction_filter-from-v1.2.html" %}
+            {% endif %}
+
         </div>
     </div>
 
