@@ -24,6 +24,8 @@ interface State {
     url: string;
     highlights: Array<RedactionHighLight>;
     isRedactionComplete: boolean;
+    matches: Array<RedactionHighLight>;
+    currentMatchIndex: number;
 }
 
 const testHighlights: Record<string, Array<RedactionHighLight>> = {}
@@ -73,12 +75,14 @@ class App extends Component<{}, State> {
         this.containerRef = React.createRef();
     }
 
-    state = {
+    state: State = {
         url: initialUrl,
         highlights: testHighlights[initialUrl]
             ? [...testHighlights[initialUrl]]
             : [],
         isRedactionComplete: false,
+        matches: [],
+        currentMatchIndex: 0,
     };
 
     resetHighlights = () => {
@@ -102,6 +106,70 @@ class App extends Component<{}, State> {
     // };
 
     scrollViewerTo = (highlight: any) => {};
+
+    handleFindMatching = async (text: string, pdfDocument: any) => {
+        const matches: Array<RedactionHighLight> = [];
+        const searchText = text.trim();
+        if (!searchText) return;
+
+        for (let i = 1; i <= pdfDocument.numPages; i++) {
+            const page = await pdfDocument.getPage(i);
+            const textContent = await page.getTextContent();
+            const viewport = page.getViewport({ scale: 1 });
+
+            textContent.items.forEach((item: any) => {
+                if (item.str.toLowerCase().includes(searchText.toLowerCase())) {
+                    const [scaleX, skewX, skewY, scaleY, x, y] = item.transform;
+                    
+                    const width = item.width;
+                    const height = item.height;
+
+                    const scaledItem = {
+                        x1: x,
+                        y1: y,
+                        x2: x + width,
+                        y2: y + height,
+                        width: viewport.width,
+                        height: viewport.height,
+                        pageNumber: i
+                    };
+
+                    matches.push({
+                        id: getNextId(),
+                        content: { text: item.str },
+                        position: {
+                            boundingRect: scaledItem,
+                            rects: [scaledItem],
+                            pageNumber: i,
+                            usePdfCoordinates: true
+                        },
+                        comment: { text: "", emoji: "" },
+                        redactionType: ""
+                    });
+                }
+            });
+        }
+        this.setState({ matches, currentMatchIndex: 0 });
+        if (matches.length > 0) {
+            this.scrollViewerTo(matches[0]);
+        }
+    };
+
+    handleNextMatch = () => {
+        const { matches, currentMatchIndex } = this.state;
+        if (matches.length === 0) return;
+        const nextIndex = (currentMatchIndex + 1) % matches.length;
+        this.setState({ currentMatchIndex: nextIndex });
+        this.scrollViewerTo(matches[nextIndex]);
+    };
+
+    handlePreviousMatch = () => {
+        const { matches, currentMatchIndex } = this.state;
+        if (matches.length === 0) return;
+        const prevIndex = (currentMatchIndex - 1 + matches.length) % matches.length;
+        this.setState({ currentMatchIndex: prevIndex });
+        this.scrollViewerTo(matches[prevIndex]);
+    };
 
     scrollToHighlightFromHash = () => {
         const highlight = this.getHighlightById(parseIdFromHash());
@@ -165,7 +233,9 @@ class App extends Component<{}, State> {
     };
 
     render() {
-        const { url, highlights, isRedactionComplete } = this.state;
+        const { url, highlights, isRedactionComplete, matches, currentMatchIndex } = this.state;
+        const currentMatch = matches[currentMatchIndex];
+        const displayHighlights = currentMatch ? [...highlights, currentMatch] : highlights;
 
         return (
             <>
@@ -232,15 +302,35 @@ class App extends Component<{}, State> {
                                 ) => (
                                     <Tip
                                         onOpen={transformSelection}
+                                        content={content}
+                                        matchCount={this.state.matches.length}
+                                        currentMatchIndex={this.state.currentMatchIndex}
+                                        onFindMatching={(text) => this.handleFindMatching(text, pdfDocument)}
+                                        onNextMatch={this.handleNextMatch}
+                                        onPreviousMatch={this.handlePreviousMatch}
+                                        onRedactAll={(redactionType) => {
+                                            this.state.matches.forEach(m => this.addHighlight({
+                                                content: m.content,
+                                                position: m.position,
+                                                comment: m.comment,
+                                                redactionType
+                                            }));
+                                            hideTipAndSelection();
+                                            this.setState({ matches: [], currentMatchIndex: 0 });
+                                        }}
                                         onConfirm={(comment,redactionType) => {
+                                            const { matches, currentMatchIndex } = this.state;
+                                            const isSearchMode = matches.length > 0;
+                                            
                                             this.addHighlight({
-                                                content,
-                                                position,
+                                                content: isSearchMode ? matches[currentMatchIndex].content : content,
+                                                position: isSearchMode ? matches[currentMatchIndex].position : position,
                                                 comment,
                                                 redactionType,
                                             });
 
                                             hideTipAndSelection();
+                                            this.setState({ matches: [], currentMatchIndex: 0 });
                                         }}
                                     />
                                 )}
@@ -312,7 +402,7 @@ class App extends Component<{}, State> {
                                         />
                                     );
                                 }}
-                                highlights={highlights}
+                                highlights={displayHighlights}
                             />
                         )}
                     </PdfLoader>
