@@ -72,24 +72,20 @@ export class Tip extends Component<Props, State> {
             <option value="Named individual">Named individual</option>      
             <option value="Occupation">Occupation</option>
             <option value="Phone number">Phone number</option>
-            <option value="Vehicle registration">
-              Vehicle registration
-            </option>
+            <option value="Vehicle registration">Vehicle registration</option>
             <option value="Email address">Email address</option>
             <option value="Location">Location</option>
             <option value="Bank details">Bank details</option>
-            <option value="Previous convictions">
-              Previous convictions
-            </option>
-            <option value="Relationship to others">
-              Relationship to others
-            </option>
+            <option value="Previous convictions">Previous convictions</option>
+            <option value="Relationship to others">Relationship to others</option>
             <option value="NHS number">NHS number</option>
             <option value="NI number">NI number</option>
             <option value="Title">Title</option>
             <option value="Other">Other</option>
           </select>
         </div>
+        <p className="govuk-body-s">This phrase appears <strong>21</strong> times in the document</p>
+        <div className="govuk-grid-row" style={{display:"block", justifyContent:"space-between"}}>
         <button
           className="Tip__btn-redact govuk-button--secondary"
           disabled={!this.state.redactionType}
@@ -114,6 +110,8 @@ export class Tip extends Component<Props, State> {
         >
           View next
         </button>
+        </div>
+        <div className="govuk-grid-row" style={{display:"block", justifyContent:"space-between"}}>
         <button
           className="Tip__btn-redact"
           disabled={!this.state.redactionType}
@@ -144,6 +142,8 @@ export class Tip extends Component<Props, State> {
         >
           Find matching text
         </button>
+
+        </div>
       </div>
     )
   }

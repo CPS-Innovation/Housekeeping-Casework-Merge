@@ -25,13 +25,18 @@
 }
 
 .Tip__btn-redact{
-  border-radius: 5px;
+  border-radius: 0;
   margin-top: -5px;
   padding: 5px 10px;
   font-size: 19px;
   background-color: #00703c;
   color: #fff;
   font-family: TransportNew,Arial,sans-serif;
+}
+
+.Tip__btn-redact.govuk-button--secondary{
+  background-color: #f3f3f3;
+  color: #0b0c0c;
 }
 
 .Tip__btn-redact:disabled{
