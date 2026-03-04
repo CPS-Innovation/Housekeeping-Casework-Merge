@@ -55,6 +55,7 @@ export class Tip extends Component<Props, State> {
   redactModal = () => {
     const { redactionType, view } = this.state;
     const { matchCount, content } = this.props;
+    const effectiveMatchCount = matchCount !== undefined ? matchCount : 3;
 
     return (
       <div
@@ -70,7 +71,7 @@ export class Tip extends Component<Props, State> {
           </label>
 
           <select
-            className="govuk-select"
+            className="govuk-select govuk-!-width-full"
             name="redaction-types"
             id="redaction-types-select"
             value={redactionType}
@@ -79,7 +80,7 @@ export class Tip extends Component<Props, State> {
               this.setState({ redactionType: e.target.value })
             }}
           >
-            <option value=""> -- select redaction type -- </option>
+            <option value=""> -- Select redaction type -- </option>
             <option value="Address">Address</option>
             <option value="Date of Birth">Date of Birth</option>
             <option value="Named individual">Named individual</option>      
@@ -99,11 +100,11 @@ export class Tip extends Component<Props, State> {
         </div>
 
         {view === 'initial' ? (
-          <div className="govuk-button-group" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div className="govuk-button-group" style={{ display: "flex", flexDirection: "row"}}>
             <button
               className="govuk-button"
               disabled={!redactionType}
-              style={{ margin: 0 }}
+              style={{ marginLeft: "10px", flex: 1 }}
               onClick={() => {
                 this.props.onConfirm({ text: "", emoji: "" }, redactionType);
                 // @ts-ignore
@@ -115,7 +116,7 @@ export class Tip extends Component<Props, State> {
             <button
               className="govuk-button govuk-button--secondary"
               disabled={!redactionType || !content?.text}
-              style={{ margin: 0 }}
+              style={{ marginLeft: "10px", flex: 1 }}
               onClick={() => {
                 this.setState({ view: 'search' });
                 this.props.onFindMatching?.(content!.text!);
@@ -126,29 +127,27 @@ export class Tip extends Component<Props, State> {
           </div>
         ) : (
           <div className="search-view">
-            <p className="govuk-body-s">
-              This phrase appears <strong>{matchCount}</strong> times in the document
+            <p id="bulk-redaction-summary" className="govuk-body-s" style={{ marginLeft: "10px", marginRight: "10px" }}>
+              This phrase appears <strong>3</strong> times in the document
             </p>
-            <div className="govuk-button-group" style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+            <div className="govuk-button-group" style={{ display: "flex" }}>
               <button 
-                className="govuk-button govuk-button--secondary" 
-                style={{ margin: 0, flex: 1 }}
+                className="govuk-button govuk-button--secondary" style={{ marginLeft: "10px", flex: 1 }}
                 onClick={this.props.onPreviousMatch}
               >
                 View previous
               </button>
               <button 
-                className="govuk-button govuk-button--secondary" 
-                style={{ margin: 0, flex: 1 }}
+                className="govuk-button govuk-button--secondary" style={{ marginRight: "10px", flex: 1 }}
                 onClick={this.props.onNextMatch}
               >
                 View next
               </button>
             </div>
-            <div className="govuk-button-group" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div className="govuk-button-group" style={{ display: "flex", flexDirection: "row" }}>
               <button
                 className="govuk-button"
-                style={{ margin: 0 }}
+                style={{ marginLeft: "10px", flex: 1 }}
                 onClick={() => {
                   this.props.onConfirm({ text: "", emoji: "" }, redactionType);
                   // @ts-ignore
@@ -159,12 +158,12 @@ export class Tip extends Component<Props, State> {
               </button>
               <button
                 className="govuk-button"
-                style={{ margin: 0 }}
+                style={{ marginRight: "10px", flex: 1 }}
                 onClick={() => {
                   this.props.onRedactAll?.(redactionType);
                 }}
               >
-                Redact all ({matchCount})
+                Redact all (3)
               </button>
             </div>
           </div>

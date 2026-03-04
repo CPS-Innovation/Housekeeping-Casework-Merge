@@ -135,7 +135,7 @@ main.case-files {
                     float: right;
                     margin: 10px 0 10px 10px;
                     border: none;
-                    border-radius: 5px;
+                    border-radius: 0;
                     position: relative;
                     // text-indent: -1000em;
                     width: 2.9em;
@@ -865,11 +865,15 @@ main.case-files {
 .PdfHighlighter__tip-container {
     .Tip {
         #redact-modal {
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            row-gap: 10px;
             background: white;
             border: none;
+            border-radius: 0;
             box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.2);
-            padding: 10px;
+            padding: 10px 20px 10px 10px;
             &:after {
                 width: 0; 
                 height: 0; 
@@ -890,7 +894,7 @@ main.case-files {
                 padding: 7px 0 7px 0;
                 background: $govuk-link-colour;
                 // background: govuk-colour("light-grey");
-                border-radius: 6px 6px 0 0;
+                border-radius: 0;
                 p.intro {
                     font-size: 0.875rem;
                     color: white;
@@ -899,6 +903,21 @@ main.case-files {
                     margin-bottom: 0;
                     text-align: center;
                 }
+            }
+            .search-view {
+              display: flex;
+              flex-direction: column;
+              flex-wrap: nowrap;
+              //padding: 0.5em;
+
+              //#redaction-types-select {
+              //  display: block;
+              //}
+
+              #bulk-redaction-summary {
+                float: none !important;
+                margin-bottom: 10pt;
+              }
             }
             .govuk-form-group {
                 margin: 0;
@@ -954,7 +973,7 @@ main.case-files {
                 font-weight: normal;
                 min-height: 2em;
                 font-size: 1rem;
-                border-radius: 6px;
+                border-radius: 0;
                 box-shadow: 0 2px 0 rgba(black,0.7);
                 &.Tip__btn-ignore, &.Tip__btn-redact {
                     padding: 0.7em 1em;
@@ -1007,12 +1026,12 @@ main.case-files {
 .Highlight, .AreaHighlight {
     .Highlight__parts {
         .Highlight__part {
-            background: rgba(black, 0.2);
+            background: rgba(black, 1.0);
             border: 2px solid black;
         }
     }
     .AreaHighlight__part {
-        background: rgba(black, 0.2);
+        background: rgba(black, 1.0);
         border: 2px solid black;
     }
 }
