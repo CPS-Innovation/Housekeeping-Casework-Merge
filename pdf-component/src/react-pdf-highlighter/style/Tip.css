@@ -8,34 +8,45 @@
   /*border: 1px solid rgba(255, 255, 255, 0.25);*/
   color: white;
   padding: 15px 20px;
-  /*  border-radius: 10px;*/
+  border-radius: 0;
   margin-bottom: -2px;
   margin-top: -10px;
 }
 
 .Tip__card {
   padding: 10px;
-  z-index:7;
+  z-index: 7;
   background: #fff;
   background-clip: padding-box;
   border: 1px solid #e8e8e8;
   /* box-shadow: 0 2px 4px #fff; */
-  border-radius: 5px;
+  border-radius: 0;
   filter: drop-shadow(0 1px 0.15rem #000);
+  min-width: 350px;
+}
+
+.Tip .govuk-button-group {
+  white-space: nowrap;
 }
 
 .Tip__btn-redact{
-  border-radius: 5px;
+  border-radius: 0;
   margin-top: -5px;
   padding: 5px 10px;
   font-size: 19px;
   background-color: #00703c;
   color: #fff;
   font-family: TransportNew,Arial,sans-serif;
-  &:disabled{
-      cursor: none;
-      opacity: 0.5;
-  }
+}
+
+.Tip__btn-redact.govuk-button--secondary{
+  background-color: #f3f3f3;
+  color: #0b0c0c;
+}
+
+.Tip__btn-redact:disabled{
+  cursor: none;
+  opacity: 0.5;
 }
 
 .Tip__card textarea {
@@ -67,4 +78,12 @@
 }
 .Tip__compact-unredact:after {
   background-color: #00703c;
+}
+
+.Tip .Tip__compact {
+  border-radius: 0 !important;
+}
+
+.Tip__compact-unredact {
+  border-radius: 0 !important;
 }

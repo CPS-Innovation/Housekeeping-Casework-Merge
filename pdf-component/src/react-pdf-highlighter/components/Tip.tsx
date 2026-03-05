@@ -6,13 +6,21 @@ interface State {
   compact: boolean;
   text: string;
   emoji: string;
-  redactionType: string
+  redactionType: string;
+  view: 'initial' | 'search';
 }
 
 interface Props {
   onConfirm: (comment: { text: string; emoji: string },redactionType: string) => void;
   onOpen: () => void;
   onUpdate?: () => void;
+  onFindMatching?: (text: string) => void;
+  matchCount?: number;
+  currentMatchIndex?: number;
+  onNextMatch?: () => void;
+  onPreviousMatch?: () => void;
+  onRedactAll?: (redactionType: string) => void;
+  content?: { text?: string };
 }
 
 export class Tip extends Component<Props, State> {
@@ -21,6 +29,7 @@ export class Tip extends Component<Props, State> {
     text: "",
     emoji: "",
     redactionType: "",
+    view: 'initial',
   };
   private myRef: RefObject<HTMLInputElement>;
   constructor(props: Props) {
@@ -44,6 +53,10 @@ export class Tip extends Component<Props, State> {
   }
 
   redactModal = () => {
+    const { redactionType, view } = this.state;
+    const { matchCount, content } = this.props;
+    const effectiveMatchCount = matchCount !== undefined ? matchCount : 3;
+
     return (
       <div
         id="redact-modal"
@@ -58,50 +71,103 @@ export class Tip extends Component<Props, State> {
           </label>
 
           <select
-            className="govuk-select"
+            className="govuk-select govuk-!-width-full"
             name="redaction-types"
             id="redaction-types-select"
+            value={redactionType}
             onChange={(e) => {
               console.log("e.target.value", e.target.value)
               this.setState({ redactionType: e.target.value })
             }}
           >
-            <option value=""> -- select redaction type -- </option>
+            <option value=""> -- Select redaction type -- </option>
             <option value="Address">Address</option>
             <option value="Date of Birth">Date of Birth</option>
             <option value="Named individual">Named individual</option>      
             <option value="Occupation">Occupation</option>
             <option value="Phone number">Phone number</option>
-            <option value="Vehicle registration">
-              Vehicle registration
-            </option>
+            <option value="Vehicle registration">Vehicle registration</option>
             <option value="Email address">Email address</option>
             <option value="Location">Location</option>
             <option value="Bank details">Bank details</option>
-            <option value="Previous convictions">
-              Previous convictions
-            </option>
-            <option value="Relationship to others">
-              Relationship to others
-            </option>
+            <option value="Previous convictions">Previous convictions</option>
+            <option value="Relationship to others">Relationship to others</option>
             <option value="NHS number">NHS number</option>
             <option value="NI number">NI number</option>
             <option value="Title">Title</option>
             <option value="Other">Other</option>
           </select>
         </div>
-        <button
-          className="Tip__btn-redact"
-          disabled={!this.state.redactionType}
-          onClick={() => {
-            this.props.onConfirm(
-              { text: "", emoji: "" },
-              this.state.redactionType
-            )
-          }}
-        >
-          Review and redact
-        </button>
+
+        {view === 'initial' ? (
+          <div className="govuk-button-group" style={{ display: "flex", flexDirection: "row"}}>
+            <button
+              className="govuk-button"
+              disabled={!redactionType}
+              style={{ marginLeft: "10px", flex: 1 }}
+              onClick={() => {
+                this.props.onConfirm({ text: "", emoji: "" }, redactionType);
+                // @ts-ignore
+                disableRotateRemove();
+              }}
+            >
+              Redact this text
+            </button>
+            <button
+              className="govuk-button govuk-button--secondary"
+              disabled={!redactionType || !content?.text}
+              style={{ marginLeft: "10px", flex: 1 }}
+              onClick={() => {
+                this.setState({ view: 'search' });
+                this.props.onFindMatching?.(content!.text!);
+              }}
+            >
+              Find matching text
+            </button>
+          </div>
+        ) : (
+          <div className="search-view">
+            <p id="bulk-redaction-summary" className="govuk-body-s" style={{ marginLeft: "10px", marginRight: "10px" }}>
+              This phrase appears <strong>3</strong> times in the document
+            </p>
+            <div className="govuk-button-group" style={{ display: "flex" }}>
+              <button 
+                className="govuk-button govuk-button--secondary" style={{ marginLeft: "10px", flex: 1 }}
+                onClick={this.props.onPreviousMatch}
+              >
+                View previous
+              </button>
+              <button 
+                className="govuk-button govuk-button--secondary" style={{ marginRight: "10px", flex: 1 }}
+                onClick={this.props.onNextMatch}
+              >
+                View next
+              </button>
+            </div>
+            <div className="govuk-button-group" style={{ display: "flex", flexDirection: "row" }}>
+              <button
+                className="govuk-button"
+                style={{ marginLeft: "10px", flex: 1 }}
+                onClick={() => {
+                  this.props.onConfirm({ text: "", emoji: "" }, redactionType);
+                  // @ts-ignore
+                  disableRotateRemove();
+                }}
+              >
+                Redact this
+              </button>
+              <button
+                className="govuk-button"
+                style={{ marginRight: "10px", flex: 1 }}
+                onClick={() => {
+                  this.props.onRedactAll?.(redactionType);
+                }}
+              >
+                Redact all (3)
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
