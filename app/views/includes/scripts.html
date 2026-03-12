@@ -320,8 +320,10 @@
 
                                          <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
                                          <button onclick="return mark_as_Read();" class>Mark as read</button>
+                                    {% endif %}
 
-                                         <!-- Taken out for Version 1.0 -->
+                                    {% if version >= '2.0' %}
+                                         <!-- Requested to be taken out for version 1.x -->
                                         <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
                                     {% endif %}
                                 </div>
