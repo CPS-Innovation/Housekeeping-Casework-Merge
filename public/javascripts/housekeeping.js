@@ -927,7 +927,9 @@ $(document).ready(function() {
 
         if (materialsCount === 1) {
             // Show actions that can only be performed on a single item
-            $('.rename-Document').show();
+            $('#materials_Actions .rename-Document').attr('active','active').removeClass('govuk-button--disabled');
+            $('#materials_Actions .rename-Document').show();
+
 
             // Check to see whether the material is a statement or Exhibit
 
@@ -955,7 +957,26 @@ $(document).ready(function() {
 
         } else {
             // Show actions that can be 'bulk' performed on many items
-            $('.rename-Document').hide();
+            $('#materials_Actions .rename-Document').hide();
+
+            // Optionally show the item as disabled
+            // $('#materials_Actions .rename-Document').attr('disabled','disabled').addClass('govuk-button--disabled');
+        }
+    });
+
+    $("#show_Comms_Actions").click(function(){
+
+        // Get all checked comms
+        const checkedComms = $("input[name=comms_document]:checked");
+        const commsCount = checkedComms.length;
+
+        if (commsCount === 1) {
+            // Show Comms actions that can only be performed on a single item
+            $('#comms_Actions .rename-Document').show();
+
+        } else {
+            // Show Comms actions that can be 'bulk' performed on many items
+            $('#comms_Actions .rename-Document').hide();
         }
     });
 });
@@ -1032,11 +1053,21 @@ $(document).ready(function() {
 
      $('input[name=comms_document]').click(function(){
           if ($("input[name=comms_document]:checked").length >= 1) {
-               $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-               $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-          } else if ($("input[name=comms_document]:checked").length == 0) { 
-               $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-               $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.rename_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.read_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.unused_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.viewInNewWindow_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+
+
+          } else if ($("input[name=comms_document]:checked").length == 0) {
+              $('.rename_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.read_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.unused_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.viewInNewWindow_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
@@ -1251,6 +1282,7 @@ $(document).ready(function() {
           let document_title = $(this).closest('.openMe').find('.redact_Document').text();
           $('#rename-Document').val(document_title);
           const rename_document = parseInt($(this).data('rename'));
+
           if (rename_document === 1) { $('table#materials_table .document_row_1').addClass('rename_document'); }
           if (rename_document === 2) { $('table#materials_table .document_row_2').addClass('rename_document'); }
           if (rename_document === 3) { $('table#materials_table .document_row_3').addClass('rename_document'); }
@@ -1271,6 +1303,13 @@ $(document).ready(function() {
           if (rename_document === 18) { $('table#materials_table .document_row_18').addClass('rename_document'); }
           if (rename_document === 19) { $('table#materials_table .document_row_19').addClass('rename_document'); }
           if (rename_document === 20) { $('table#materials_table .document_row_20').addClass('rename_document'); }
+
+          // Check Comms too
+         if (rename_document === 1) { $('table#comms_table .document_row_1').addClass('rename_document'); }
+         if (rename_document === 2) { $('table#comms_table .document_row_2').addClass('rename_document'); }
+         if (rename_document === 3) { $('table#comms_table .document_row_3').addClass('rename_document'); }
+         if (rename_document === 4) { $('table#comms_table .document_row_4').addClass('rename_document'); }
+         if (rename_document === 5) { $('table#comms_table .document_row_5').addClass('rename_document'); }
      });   
 
 });
@@ -1287,8 +1326,19 @@ function renameDocument() {
      setTimeout(function () {
           $('#discard_successful, #auto_reclassify, #mark_as, #update_exhibit_successful').hide();
           $("#openRenameModal").addClass("rj-dont-display");
-          $("#rename_COMPLETE").show();       
+
+          // Show the success banner
+          $("#rename_COMPLETE").show();
+
+          // Hide the banner after a set period
+          setTimeout(function() {
+            $('#rename_COMPLETE').fadeOut();
+          }, 3000);
+
           $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
+
+          // Comms variant
+          $('table#comms_table tr.rename_document').find('.show_comms').text(newDocumentName);
 
           $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
           $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
@@ -1297,23 +1347,32 @@ function renameDocument() {
           $('table#materials_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
           $('table#materials_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
 
+          $('table#comms_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
+          $('table#comms_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
 
      }, 1000)
-    // var newDocumentName = $('#rename-Document').val();
-    // $('.updated-message p strong').text(newDocumentName);
-    // // $('.updated-message .info-text').text('Document has been renamed ' + newDocumentName);
+    $('.updated-message p strong').text(newDocumentName);
+    $('.updated-message .info-text').text('Document has been renamed ' + newDocumentName);
     // $('ul.sticky-tabs li.govuk-tabs__list-item--selected a').text(newDocumentName);
     // $('table tbody tr td.change-DocumentName a.show-case').text(newDocumentName);
-    // $('#documentNameHeader .inPageSearchMargins2').text(newDocumentName);   
+    $('#documentNameHeader .inPageSearchMargins2').text(newDocumentName);
+
+
 }
 
 function openRenameModal() {
-     $("#openRenameModal").removeClass("rj-dont-display");
+    $("#openRenameModal").removeClass("rj-dont-display");
+    // Ensure the default state is set
+    $('#rename_form').show();
+    $('#completing_rename').hide();
 }
 
 function closeRenameModal() {
-     $("#openRenameModal").addClass("rj-dont-display");
-     $('#materials_table tr.govuk-table__row').removeClass('rename_document');
+    $("#openRenameModal").addClass("rj-dont-display");
+    $('#materials_table tr.govuk-table__row').removeClass('rename_document');
+    // Reset state for next time
+    $('#rename_form').show();
+    $('#completing_rename').hide();
 }
 
 // Open selected documents in a new window
