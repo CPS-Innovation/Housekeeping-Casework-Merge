@@ -1276,41 +1276,25 @@ function mark_as_Read() {
 // RENAME
 $(document).ready(function() {
 
-     $('#completing_rename, #rename_COMPLETE').hide();
+    $('#completing_rename, #rename_COMPLETE').hide();
 
-     $('.rename-Document').click(function(){
-          let document_title = $(this).closest('.openMe').find('.redact_Document').text();
-          $('#rename-Document').val(document_title);
-          const rename_document = parseInt($(this).data('rename'));
+    $('.rename-Document').click(function(){
+        // Find the checked checkbox in the current panel
+        const $checkedBox = $(this).closest('.panel').find('input[name$="_document"]:checked').first();
+        const $targetRow = $checkedBox.closest('tr');
 
-          if (rename_document === 1) { $('table#materials_table .document_row_1').addClass('rename_document'); }
-          if (rename_document === 2) { $('table#materials_table .document_row_2').addClass('rename_document'); }
-          if (rename_document === 3) { $('table#materials_table .document_row_3').addClass('rename_document'); }
-          if (rename_document === 4) { $('table#materials_table .document_row_4').addClass('rename_document'); }
-          if (rename_document === 5) { $('table#materials_table .document_row_5').addClass('rename_document'); }
-          if (rename_document === 6) { $('table#materials_table .document_row_6').addClass('rename_document'); }
-          if (rename_document === 7) { $('table#materials_table .document_row_7').addClass('rename_document'); }
-          if (rename_document === 8) { $('table#materials_table .document_row_8').addClass('rename_document'); }
-          if (rename_document === 9) { $('table#materials_table .document_row_9').addClass('rename_document'); }
-          if (rename_document === 10) { $('table#materials_table .document_row_10').addClass('rename_document'); }
-          if (rename_document === 11) { $('table#materials_table .document_row_11').addClass('rename_document'); }
-          if (rename_document === 12) { $('table#materials_table .document_row_12').addClass('rename_document'); }
-          if (rename_document === 13) { $('table#materials_table .document_row_13').addClass('rename_document'); }
-          if (rename_document === 14) { $('table#materials_table .document_row_14').addClass('rename_document'); }
-          if (rename_document === 15) { $('table#materials_table .document_row_15').addClass('rename_document'); }
-          if (rename_document === 16) { $('table#materials_table .document_row_16').addClass('rename_document'); }
-          if (rename_document === 17) { $('table#materials_table .document_row_17').addClass('rename_document'); }
-          if (rename_document === 18) { $('table#materials_table .document_row_18').addClass('rename_document'); }
-          if (rename_document === 19) { $('table#materials_table .document_row_19').addClass('rename_document'); }
-          if (rename_document === 20) { $('table#materials_table .document_row_20').addClass('rename_document'); }
+        // Get the current title from the identified row
+        let document_title = $targetRow.find('.show_material, .show_comms').text().trim();
 
-          // Check Comms too
-         if (rename_document === 1) { $('table#comms_table .document_row_1').addClass('rename_document'); }
-         if (rename_document === 2) { $('table#comms_table .document_row_2').addClass('rename_document'); }
-         if (rename_document === 3) { $('table#comms_table .document_row_3').addClass('rename_document'); }
-         if (rename_document === 4) { $('table#comms_table .document_row_4').addClass('rename_document'); }
-         if (rename_document === 5) { $('table#comms_table .document_row_5').addClass('rename_document'); }
-     });   
+        // Update the modal input field
+        $('#rename-Document').val(document_title);
+
+        // FIRST: Remove the class from EVERYWHERE to prevent cross-table updates
+        $('tr.rename_document').removeClass('rename_document');
+
+        // SECOND: Apply the class to the specific row we identified
+        $targetRow.addClass('rename_document');
+    });
 
 });
 
@@ -1320,44 +1304,50 @@ function documentRename() {
 }
 
 function renameDocument() {
-     $('#rename_form').hide();
-     $('#completing_rename').show();
-     var newDocumentName = $('#rename-Document').val();
-     setTimeout(function () {
-          $('#discard_successful, #auto_reclassify, #mark_as, #update_exhibit_successful').hide();
-          $("#openRenameModal").addClass("rj-dont-display");
+    // 1. UI Feedback: Hide form and show loading spinner
+    $('#rename_form').hide();
+    $('#completing_rename').show();
 
-          // Show the success banner
-          $("#rename_COMPLETE").show();
+    // 2. Get the new name from the input field
+    var newDocumentName = $('#rename-Document').val();
 
-          // Hide the banner after a set period
-          setTimeout(function() {
+    // 3. Simulate processing delay (1 second)
+    setTimeout(function () {
+        // Clear other active notification banners
+        $('#discard_successful, #auto_reclassify, #mark_as, #update_exhibit_successful').hide();
+
+        // Close the modal
+        $("#openRenameModal").addClass("rj-dont-display");
+
+        // 4. Show Success Banner with Auto-hide (3 seconds)
+        $("#rename_COMPLETE").show();
+        setTimeout(function() {
             $('#rename_COMPLETE').fadeOut();
-          }, 3000);
+        }, 3000);
 
-          $('table#materials_table tr.rename_document').find('.show_material').text(newDocumentName);
+        // 5. Target the specific row being renamed
+        // Note: The click handler for '.rename-Document' adds this class to the correct row
+        var $targetRow = $('tr.rename_document');
 
-          // Comms variant
-          $('table#comms_table tr.rename_document').find('.show_comms').text(newDocumentName);
+        // Update name in Materials or Comms table based on which row has the class
+        $targetRow.find('.show_material, .show_comms').text(newDocumentName);
 
-          $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
-          $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
-          $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
+        // Update status tags (Hide existing tags and prepend "Renamed" tag)
+        var $statusCell = $targetRow.find('td.title_column, td.subject-cell');
+        $statusCell.find('strong.govuk-tag').hide();
+        $statusCell.prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
 
-          $('table#materials_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
-          $('table#materials_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
+        // 6. Global UI Updates (Updates occurrences of the name in other UI components)
+        $('#filter_Redactions table tr.active_document').find('.show-case').text(newDocumentName);
+        $('.document-panel .docSummaryTopPage p.inPageSearchMargins2').text(newDocumentName);
+        $('ul#tab-list li.govuk-tabs__list-item--selected a').text(newDocumentName);
+        $('#documentNameHeader .inPageSearchMargins2').text(newDocumentName);
 
-          $('table#comms_table tr.rename_document td.title_column').find('strong.govuk-tag').hide();
-          $('table#comms_table tr.rename_document td.title_column').prepend(`<strong class="govuk-tag govuk-tag--green">Renamed</strong>`);
+        // Update notification message text
+        $('.updated-message p strong').text(newDocumentName);
+        $('.updated-message .info-text').text('Document has been renamed ' + newDocumentName);
 
-     }, 1000)
-    $('.updated-message p strong').text(newDocumentName);
-    $('.updated-message .info-text').text('Document has been renamed ' + newDocumentName);
-    // $('ul.sticky-tabs li.govuk-tabs__list-item--selected a').text(newDocumentName);
-    // $('table tbody tr td.change-DocumentName a.show-case').text(newDocumentName);
-    $('#documentNameHeader .inPageSearchMargins2').text(newDocumentName);
-
-
+    }, 1000);
 }
 
 function openRenameModal() {
