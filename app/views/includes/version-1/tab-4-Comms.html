@@ -32,25 +32,24 @@
                         </button>
                         <div class="hidden_buttons" id="comms_Actions">
                             <!-- Rename should only be available for single selections, not multiple -->
-                            <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();" data-rename="1">Rename</button>
+                            <button type="button" class="govuk-button govuk-button--disabled rename_Comms_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();">Rename</button>
                             <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Comms_Multiple_Docs"
                                     data-module="govuk-button" disabled>Reclassify</button>
                             {% if data['version'] == '1.1' %}
                             <button type="button"
-                                    class="govuk-button govuk-button--disabled redact_Document_Mulitple_Docs"
+                                    class="govuk-button govuk-button--disabled redact_Comms_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
                             {% endif %}
                             <form method="post" action="B-discard_material">
                                 <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
-                                <button class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                                <button class="govuk-button govuk-button--disabled reclassify_Comms_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
                             </form>
-                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Mulitple_Docs" data-module="govuk-button" type="button">Mark as read</button>
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Mulitple_Docs"
+                            <button class="govuk-button mark_as_Read read_Comms_Multiple_Docs govuk-button--disabled" data-module="govuk-button" type="button">Mark as read</button>
+                            <button type="button" class="govuk-button govuk-button--disabled unused-Document unused_Comms_Multiple_Docs"
                                     data-module="govuk-button" disabled>Mark as unused</button>
                             {% if version >= '1.1' %}
-                                <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
+                                <button type="button" class="govuk-button govuk-button--disabled viewInNewWindow_Comms_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
                             {% endif %}
                         </div>
                     </div>
@@ -93,7 +92,7 @@
             <tbody class="govuk-table__body">
 
                 <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
-                <tr class="govuk-table__row">
+                <tr class="govuk-table__row document_row_1">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -121,7 +120,7 @@
                 <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
-                <tr class="govuk-table__row">
+                <tr class="govuk-table__row document_row_2">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -149,7 +148,7 @@
                 <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
-                <tr class="govuk-table__row">
+                <tr class="govuk-table__row document_row_3">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -177,7 +176,7 @@
                 <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
-                <tr class="govuk-table__row">
+                <tr class="govuk-table__row document_row_4">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -204,13 +203,13 @@
                 <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
-                <tr class="govuk-table__row document_row_1 material_MG_Form material_None material_New material_All">
+                <tr class="govuk-table__row document_row_5">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_1"
-                                    name="materials_document" type="checkbox" value="MCLOVE MG3">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_1"><span
+                                <input class="govuk-checkboxes__input" id="comms_document_5"
+                                    name="comms_document" type="checkbox" value="MCLOVE MG3">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_5"><span
                                         class="visuallyhidden">MCLOVE MG3</span></label>
                             </div>
                         </div>
