@@ -33,9 +33,7 @@
                         <div class="hidden_buttons" id="comms_Actions">
                             <!-- Rename should only be available for single selections, not multiple -->
                             <button type="button" class="govuk-button govuk-button--disabled rename_Comms_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();">Rename</button>
-                            <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Comms_Multiple_Docs"
-                                    data-module="govuk-button" disabled>Reclassify</button>
+                            <button type="button" id="update-and-reclassify" class="govuk-button govuk-button--disabled" data-module="govuk-button" disabled>Reclassify</button>
                             {% if data['version'] == '1.1' %}
                             <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Comms_Multiple_Docs"
