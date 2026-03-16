@@ -1746,7 +1746,7 @@ function closeNotesModal() {
  * Reclassifies selected materials to "Unused" status
  * This function handles the bulk reclassification of checked materials
  */
-function reclassifyMaterialsToUnused() {
+function markMaterialsAsUnused() {
      // Get all checked materials
      var checkedMaterials = $("input[name=materials_document]:checked");
      var materialCount = checkedMaterials.length;
