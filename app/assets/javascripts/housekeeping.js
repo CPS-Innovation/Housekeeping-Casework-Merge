@@ -999,13 +999,13 @@ $(document).ready(function() {
      $('#tab-list, #auto_reclassify').hide();
 
     // open the reclassify page on click
-    $('#update-and-reclassify').click(function(){
-        window.location.replace("C-reclassify.html");
-    });
-
-    $('#save-reclassify').click(function(){
-        window.location.replace("A-index.html");
-    });
+    // $('#update-and-reclassify').click(function(){
+    //     window.location.replace("../../version-1/C-reclassify.html");
+    // });
+    //
+    // $('#save-reclassify').click(function(){
+    //     window.location.replace("A-index.html");
+    // });
 
      // RECLASSIFY
      $(".auto_reclassify_Documents").click(function(){
