@@ -1074,7 +1074,7 @@ $(document).ready(function() {
      // COMMS - Reclassify to Unused handler
      $('.reclassify_Comms_Multiple_Docs').click(function(){
           if (!$(this).is(':disabled')) {
-               reclassifyCommsToUnused();
+               markCommsAsUnused();
           }
      });
 
@@ -1795,7 +1795,7 @@ function markMaterialsAsUnused() {
  * Reclassifies selected communications to "Unused" status
  * This function handles the bulk reclassification of checked communications
  */
-function reclassifyCommsToUnused() {
+function markCommsAsUnused() {
      // Get all checked communications
      var checkedComms = $("input[name=comms_document]:checked");
      var commsCount = checkedComms.length;
