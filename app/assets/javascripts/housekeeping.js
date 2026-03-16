@@ -1788,7 +1788,7 @@ function markMaterialsAsUnused() {
           .addClass('govuk-button--disabled');
      
      // Show success notification
-     showReclassificationSuccess('materials', materialCount, materialNames);
+     showStatusUpdateSuccess('materials', materialCount, materialNames);
 }
 
 /**
@@ -1831,13 +1831,13 @@ function markCommsAsUnused() {
           .addClass('govuk-button--disabled');
      
      // Show success notification
-     showReclassificationSuccess('communications', commsCount, commsSubjects);
+     showStatusUpdateSuccess('communications', commsCount, commsSubjects);
 }
 
 /**
  * Shows a success notification when reclassification is complete
  */
-function showReclassificationSuccess(type, count, items) {
+function showStatusUpdateSuccess(type, count, items) {
      // Remove any existing notification banners
      $('.govuk-notification-banner').remove();
      
@@ -1891,5 +1891,5 @@ $(document).on('click', '.reclassify-Document', function() {
     // $row.addClass('reclassified-unused material_Unused');
     $row.removeClass('material_None material_Used');
     // Show a notification (optional, like bulk)
-    showReclassificationSuccess('materials', 1, [$titleCell.text().trim()]);
+    showStatusUpdateSuccess('materials', 1, [$titleCell.text().trim()]);
 });
