@@ -1029,9 +1029,9 @@ $(document).ready(function() {
 
      $('input[name=materials_document]').click(function(){
           if ($("input[name=materials_document]:checked").length >= 1) {
-               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused-Document,.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=materials_document]:checked").length == 0) {
-               $('.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused-Document, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
@@ -1053,6 +1053,8 @@ $(document).ready(function() {
 
      $('input[name=comms_document]').click(function(){
           if ($("input[name=comms_document]:checked").length >= 1) {
+              $('#update-and-reclassify').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.unused-Document').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.rename_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
@@ -1062,6 +1064,8 @@ $(document).ready(function() {
 
 
           } else if ($("input[name=comms_document]:checked").length == 0) {
+              $('#update-and-reclassify').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('..unused-Document').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.rename_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
