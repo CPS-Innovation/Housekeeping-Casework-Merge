@@ -77,9 +77,7 @@
 
                             <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs" data-module="govuk-button" type="button">Mark as read</button>
 
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                            data-module="govuk-button" disabled>Mark as unused</button>
+                            <button type="button" class="govuk-button govuk-button--disabled unused-Document" data-module="govuk-button" disabled>Mark as unused</button>
 
                             {% if version >= '1.1' %}
                                 <button type="button" class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>

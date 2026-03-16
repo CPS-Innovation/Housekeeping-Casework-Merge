@@ -1036,10 +1036,10 @@ $(document).ready(function() {
      });
 
      // MATERIALS - Reclassify to Unused handler
-     $('.reclassify_Document_Multiple_Docs').click(function(){
-          if (!$(this).is(':disabled')) {
-               markMaterialsAsUnused();
-          }
+     $('.unused-Document').click(function(){
+        if (!$(this).is(':disabled')) {
+            markMaterialsAsUnused();
+        }
      });
 
      // COMMS
