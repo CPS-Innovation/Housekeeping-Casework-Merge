@@ -362,9 +362,16 @@ $(document).ready(function() {
                         $('#comms_table tbody tr').each(function() {
                             var row = $(this);
                             var subjectBtn = row.find('.show_comms');
-                            if (subjectBtn.text().trim() === itemName) {
-                                // In comms table: 6th column is Type
-                                row.find('td:nth-child(6)').text(newType);
+                            var itemNameInRow = subjectBtn.text().trim();
+                            
+                            // Also check a[data-id] for newer rows if they exist
+                            if (!itemNameInRow) {
+                                itemNameInRow = row.find('.title_column a').text().trim();
+                            }
+
+                            if (itemNameInRow === itemName) {
+                                // In comms table: 5th column is Comms type
+                                row.find('td:nth-child(5)').text(newType);
                                 
                                 // Highlight the change
                                 row.css('background-color', '#f3f2f1');
@@ -380,7 +387,18 @@ $(document).ready(function() {
                     '<div class="govuk-notification-banner__header"><h2 class="govuk-notification-banner__title">Success</h2></div>' +
                     '<div class="govuk-notification-banner__content"><h3 class="govuk-notification-banner__heading">' + message + '</h3></div></div>');
                 
-                $('#notification-area').prepend(banner);
+                if (sourceTab === "4") {
+                    $('#tab_content_4 #notification-area').prepend(banner);
+                } else {
+                    $('#tab_content_2 #notification-area').prepend(banner);
+                }
+
+                // Auto-remove banner after 10 seconds
+                setTimeout(function() {
+                    banner.fadeOut(500, function() {
+                        $(this).remove();
+                    });
+                }, 10000);
             }
 
             // Clean up
@@ -1055,7 +1073,7 @@ $(document).ready(function() {
      $('#tab-list, #auto_reclassify').hide();
 
     // open the reclassify page on click
-    $('#update-and-reclassify').click(function(e){
+    $(document).on('click', '#update-and-reclassify', function(e){
         e.preventDefault();
         if ($(this).hasClass('govuk-button--disabled')) return;
 
@@ -1142,6 +1160,7 @@ $(document).ready(function() {
               $('.unused-Document').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.rename_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.discard_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.read_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
               $('.unused_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
@@ -1153,6 +1172,7 @@ $(document).ready(function() {
               $('.unused-Document').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.rename_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.discard_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.read_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.unused_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
