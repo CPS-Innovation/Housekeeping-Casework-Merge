@@ -333,6 +333,62 @@ $(document).ready(function() {
 
     window.showTabByNumber = showTabByNumber;
 
+        if (sessionStorage.getItem('reclassify_success') === 'true') {
+            var reclassifiedItems = JSON.parse(sessionStorage.getItem('reclassify_items') || '[]');
+            var newType = sessionStorage.getItem('reclassify_type');
+            var sourceTab = sessionStorage.getItem('reclassify_source_tab');
+
+            if (reclassifiedItems.length > 0 && newType) {
+                reclassifiedItems.forEach(function(itemName) {
+                    if (sourceTab === "2") {
+                        // Update Materials table
+                        $('#materials_table tbody tr').each(function() {
+                            var row = $(this);
+                            var checkbox = row.find('input[name=materials_document]');
+                            if (checkbox.val() === itemName) {
+                                // Update Type (3rd column) or Category (4th column)
+                                // Based on description: "their Category or Type value changed to the selected option"
+                                // In materials table: 3rd is Type, 4th is Category. Let's update both or one?
+                                // Usually 'document type' matches 'Type' column in materials.
+                                row.find('td:nth-child(3)').text(newType);
+                                
+                                // Highlight the change
+                                row.css('background-color', '#f3f2f1');
+                                setTimeout(function() { row.css('background-color', ''); }, 5000);
+                            }
+                        });
+                    } else if (sourceTab === "4") {
+                        // Update Comms table
+                        $('#comms_table tbody tr').each(function() {
+                            var row = $(this);
+                            var subjectBtn = row.find('.show_comms');
+                            if (subjectBtn.text().trim() === itemName) {
+                                // In comms table: 6th column is Type
+                                row.find('td:nth-child(6)').text(newType);
+                                
+                                // Highlight the change
+                                row.css('background-color', '#f3f2f1');
+                                setTimeout(function() { row.css('background-color', ''); }, 5000);
+                            }
+                        });
+                    }
+                });
+
+                // Show a success banner
+                var message = reclassifiedItems.length + (reclassifiedItems.length === 1 ? ' item' : ' items') + ' reclassified to ' + newType;
+                var banner = $('<div class="govuk-notification-banner govuk-notification-banner--success" role="alert" data-module="govuk-notification-banner">' +
+                    '<div class="govuk-notification-banner__header"><h2 class="govuk-notification-banner__title">Success</h2></div>' +
+                    '<div class="govuk-notification-banner__content"><h3 class="govuk-notification-banner__heading">' + message + '</h3></div></div>');
+                
+                $('#notification-area').prepend(banner);
+            }
+
+            // Clean up
+            sessionStorage.removeItem('reclassify_success');
+            sessionStorage.removeItem('reclassify_items');
+            sessionStorage.removeItem('reclassify_type');
+            sessionStorage.removeItem('reclassify_source_tab');
+        }
 });
 
 // FILTER
@@ -999,13 +1055,41 @@ $(document).ready(function() {
      $('#tab-list, #auto_reclassify').hide();
 
     // open the reclassify page on click
-    // $('#update-and-reclassify').click(function(){
-    //     window.location.replace("../../version-1/C-reclassify.html");
-    // });
-    //
-    // $('#save-reclassify').click(function(){
-    //     window.location.replace("A-index.html");
-    // });
+    $('#update-and-reclassify').click(function(e){
+        e.preventDefault();
+        if ($(this).hasClass('govuk-button--disabled')) return;
+
+        var selectedItems = [];
+        var sourceTab = "";
+
+        // Check which tab we are on and get selected items
+        if ($('#tab_content_2').is(':visible')) {
+            sourceTab = "2";
+            $('input[name=materials_document]:checked').each(function() {
+                selectedItems.push($(this).val());
+            });
+        } else if ($('#tab_content_4').is(':visible')) {
+            sourceTab = "4";
+            $('input[name=comms_document]:checked').each(function() {
+                // For comms, the value might be different, let's try to get the subject text
+                var row = $(this).closest('tr');
+                var subjectText = row.find('.show_comms').text().trim();
+                selectedItems.push(subjectText || $(this).val());
+            });
+        }
+
+        if (selectedItems.length > 0) {
+            sessionStorage.setItem('reclassify_items', JSON.stringify(selectedItems));
+            sessionStorage.setItem('reclassify_source_tab', sourceTab);
+            
+            // Get version from URL
+            var path = window.location.pathname;
+            var versionMatch = path.match(/\/version-\d+\//);
+            var versionPrefix = versionMatch ? versionMatch[0] : "";
+            
+            window.location.href = versionPrefix + "C-reclassify";
+        }
+    });
 
      // RECLASSIFY
      $(".auto_reclassify_Documents").click(function(){
@@ -1029,9 +1113,9 @@ $(document).ready(function() {
 
      $('input[name=materials_document]').click(function(){
           if ($("input[name=materials_document]:checked").length >= 1) {
-               $('.unused_Materials_Multiple_Docs,.reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=materials_document]:checked").length == 0) {
-               $('.unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
      });
 
