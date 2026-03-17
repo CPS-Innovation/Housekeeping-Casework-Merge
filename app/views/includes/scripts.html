@@ -313,11 +313,13 @@
                                     <!-- Added to toggle on/off delete page -->
                                     <button onclick="#" class="">Hide delete page options</button>
 
-                                    {% if version >= '1.1' %}
-                                        <!-- Taken out for Version 1.0 -->
+                                    {% if version >= '2.0' %}
+                                        <!-- Taken out for Version 1.x -->
                                         <button onclick="location.href='/version-1/B-discard_material';">Discard</button>
                                         <button onclick="#">Reclassify</button>
+                                    {% endif %}
 
+                                    {% if version >= '1.1' %}
                                          <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
                                          <button onclick="return mark_as_Read();" class>Mark as read</button>
                                     {% endif %}

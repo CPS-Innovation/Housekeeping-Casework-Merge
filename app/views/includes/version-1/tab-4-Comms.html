@@ -8,7 +8,7 @@
     </div>
 
     <div class="govuk-grid-column-three-quarters" id="comms_column_2">
-
+        <div id="notification-area" class="govuk-grid-row"></div>
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-half">
                 <div class="info_wrapper">
@@ -33,9 +33,7 @@
                         <div class="hidden_buttons" id="comms_Actions">
                             <!-- Rename should only be available for single selections, not multiple -->
                             <button type="button" class="govuk-button govuk-button--disabled rename_Comms_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();">Rename</button>
-                            <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify-Document reclassify_Comms_Multiple_Docs"
-                                    data-module="govuk-button" disabled>Reclassify</button>
+                            <button type="button" id="update-and-reclassify" class="govuk-button govuk-button--disabled reclassify_Comms_Multiple_Docs" data-module="govuk-button" disabled>Reclassify</button>
                             {% if data['version'] == '1.1' %}
                             <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Comms_Multiple_Docs"
@@ -43,11 +41,10 @@
                             {% endif %}
                             <form method="post" action="B-discard_material">
                                 <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
-                                <button class="govuk-button govuk-button--disabled reclassify_Comms_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
                             </form>
                             <button class="govuk-button mark_as_Read read_Comms_Multiple_Docs govuk-button--disabled" data-module="govuk-button" type="button">Mark as read</button>
-                            <button type="button" class="govuk-button govuk-button--disabled unused-Document unused_Comms_Multiple_Docs"
-                                    data-module="govuk-button" disabled>Mark as unused</button>
+                            <button type="button" class="govuk-button govuk-button--disabled unused_Comms_Multiple_Docs" data-module="govuk-button" disabled>Mark as unused</button>
                             {% if version >= '1.1' %}
                                 <button type="button" class="govuk-button govuk-button--disabled viewInNewWindow_Comms_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
                             {% endif %}

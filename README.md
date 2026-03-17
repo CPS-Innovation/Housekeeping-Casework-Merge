@@ -26,7 +26,7 @@ The "Reclassify to Unused" action allows users to bulk reclassify materials and 
 
 #### Technical Implementation:
 
-- **JavaScript Functions**: `reclassifyMaterialsToUnused()` and `reclassifyCommsToUnused()`
+- **JavaScript Functions**: `markMaterialsAsUnused()` and `markCommsAsUnused()`
 - **CSS Classes**: Items get the `reclassified-unused` class for visual feedback and `material_Unused` class for filtering
 - **Status Updates**: Status tags are updated to show "Unused" with red styling
 - **Filtering**: Reclassified items work with the existing filter system
