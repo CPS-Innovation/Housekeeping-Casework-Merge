@@ -234,6 +234,52 @@
 // TABS
 $(document).ready(function() {
 
+    // --- NOTIFICATION BANNER AUTO-FADEOUT (10 seconds) ---
+    // This function applies a 10s fadeout to any visible notification banner
+    function applyBannerFadeOut(banner) {
+        var $banner = $(banner);
+        // Only apply if it's currently visible and hasn't had the timeout applied yet
+        if ($banner.is(':visible') && !$banner.data('timeout-applied')) {
+            $banner.data('timeout-applied', true);
+            setTimeout(function() {
+                $banner.fadeOut(1000);
+            }, 10000);
+        }
+    }
+
+    // 1. Apply to any banners visible on page load
+    $('.govuk-notification-banner').each(function() {
+        applyBannerFadeOut(this);
+    });
+
+    // 2. Use MutationObserver to catch banners that are shown dynamically
+    // (e.g., via .show(), .removeClass('rj-dont-display'), or added to DOM)
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            // Check for new elements added to the DOM
+            if (mutation.type === 'childList') {
+                $(mutation.addedNodes).find('.govuk-notification-banner').addBack('.govuk-notification-banner').each(function() {
+                    applyBannerFadeOut(this);
+                });
+            }
+            // Check for style/class changes (like .show() or removing hidden classes)
+            else if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+                if ($(mutation.target).hasClass('govuk-notification-banner')) {
+                    applyBannerFadeOut(mutation.target);
+                }
+            }
+        });
+    });
+
+    // Start observing the entire document body for changes
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+    });
+    // --- END NOTIFICATION BANNER AUTO-FADEOUT ---
+
     // Function to get URL parameter by name
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -1429,11 +1475,11 @@ function renameDocument() {
         // Close the modal
         $("#openRenameModal").addClass("rj-dont-display");
 
-        // 4. Show Success Banner with Auto-hide (3 seconds)
+        // 4. Show Success Banner with Auto-hide (10 seconds)
         $("#rename_COMPLETE").show();
         setTimeout(function() {
             $('#rename_COMPLETE').fadeOut();
-        }, 3000);
+        }, 10000);
 
         // 5. Target the specific row being renamed
         // Note: The click handler for '.rename-Document' adds this class to the correct row
