@@ -1521,6 +1521,10 @@ function newDocument() {
 // =================================== SUGGESTED REDACTIONS =================================== //
 $(document).ready(function () {
     $('.suggested-redactions').hide();
+
+    $(document).on('click', '.removeRedactions', function() {
+        $('div.Highlight, #marqueeTool, .AreaHighlight, .AreaHighlight__part').remove();
+    });
 })
 
 
