@@ -148,6 +148,8 @@ var removeRedactions = function(parent) {
     $('.redaction-footer.delete-page-footer').hide();
     $('.page').removeClass('delete-this-page');
 
+    $('div.Highlight, #marqueeTool, .AreaHighlight, .AreaHighlight__part').remove();
+
     $('#changeDocument .page .page-counter.new button').attr('onclick', 'return deleteThisPage(this), closeDiv(this), noRotate(this)').html('<span class="icon delete"></span>Delete</button>');
 }
 
