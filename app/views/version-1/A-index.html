@@ -125,59 +125,72 @@
             <h2 class="govuk-tabs__title">Contents</h2>
 
             <ul class="" id="new-tabs">
-                {% if data['discarding_material_COMPLETED'] == 'true' %}
+                {% if data['activeTab'] == 'materials' %}
                 <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
                 <li class="tab-2-content_link govuk-tabs__list-item--selected"><a
                         class="tab-link tab-2-content">Materials (20)</a></li>
-                {% else %}
-                <li class="tab-1-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-1-content">PCD
-                        request</a></li>
-                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials</a></li>
-                {% endif %}
                 <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
                 <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
+                {% elif data['activeTab'] == 'comms' %}
+                <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
+                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials (20)</a></li>
+                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
+                <li class="tab-4-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-4-content">Communications</a></li>
+                {% else %}
+                <li class="tab-1-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-1-content">PCD request</a></li>
+                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials</a></li>
+                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
+                <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
+                {% endif %}
                 <li class="tab-5-content_link"><a class="tab-link tab-5-content">Reviews</a></li>
             </ul>
 
             <!-- TAB CONTENT - 1 - START -->
-            {% if data['discarding_material_COMPLETED'] == 'true' %}
+            {% if data['activeTab'] == 'materials' or data['activeTab'] == 'comms' %}
             <div class="panel" id="tab_content_1" style="display: none;">
-                {% else %}
-                <div class="panel" id="tab_content_1">
-                    {% endif %}
-                    {% include "../includes/version-1/tab-1-PCD-request.html" %}
-                </div>
-                <!-- TAB CONTENT - 1 - END -->
-
-                <!-- TAB CONTENT - 2 - START -->
-                {% if data['discarding_material_COMPLETED'] == 'true' %}
-                <div class="panel" id="tab_content_2">
-                    {% else %}
-                    <div class="panel" id="tab_content_2" style="display: none;">
-                        {% endif %}
-                        {% include "../includes/version-1/tab-2-Materials.html" %}
-                    </div>
-                    <!-- TAB CONTENT - 2 - END -->
-
-                    <!-- TAB CONTENT - 3 - START -->
-                    <div class="panel" id="tab_content_3" style="display: none;">
-                        {% include "../includes/version-1/tab-3-Review-Materials.html" %}
-                    </div>
-                    <!-- TAB CONTENT - 3 - END -->
-
-                    <!-- TAB CONTENT - 4 - START -->
-                    <div class="panel" id="tab_content_4" style="display: none;">
-                        {% include "../includes/version-1/tab-4-Comms.html" %}
-                    </div>
-                    <!-- TAB CONTENT - 4 - END -->
-
-                    <!-- TAB CONTENT - 5 - START -->
-                    <div class="panel" id="tab_content_5" style="display: none;">
-                        {% include "../includes/version-1/tab-5-PCD-review.html" %}
-                    </div>
-                    <!-- TAB CONTENT - 5 - END -->
-
-                </div>
+            {% else %}
+            <div class="panel" id="tab_content_1">
+            {% endif %}
+                {% include "../includes/version-1/tab-1-PCD-request.html" %}
             </div>
+            <!-- TAB CONTENT - 1 - END -->
+
+            <!-- TAB CONTENT - 2 - START -->
+            {% if data['activeTab'] == 'materials' %}
+            <div class="panel" id="tab_content_2">
+            {% else %}
+            <div class="panel" id="tab_content_2" style="display: none;">
+            {% endif %}
+                {% include "../includes/version-1/tab-2-Materials.html" %}
+            </div>
+            <!-- TAB CONTENT - 2 - END -->
+
+            <!-- TAB CONTENT - 3 - START -->
+            <div class="panel" id="tab_content_3" style="display: none;">
+                {% include "../includes/version-1/tab-3-Review-Materials.html" %}
+            </div>
+            <!-- TAB CONTENT - 3 - END -->
+
+            <!-- TAB CONTENT - 4 - START -->
+            {% if data['activeTab'] == 'comms' %}
+            <div class="panel" id="tab_content_4">
+            {% else %}
+            <div class="panel" id="tab_content_4" style="display: none;">
+            {% endif %}
+                {% include "../includes/version-1/tab-4-Comms.html" %}
+            </div>
+            <!-- TAB CONTENT - 4 - END -->
+
+            <!-- TAB CONTENT - 5 - START -->
+            <div class="panel" id="tab_content_5" style="display: none;">
+                {% include "../includes/version-1/tab-5-PCD-review.html" %}
+            </div>
+            <!-- TAB CONTENT - 5 - END -->
+
         </div>
-        {% endblock %}
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

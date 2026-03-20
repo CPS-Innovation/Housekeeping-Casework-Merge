@@ -68,6 +68,29 @@ router.get('/version-1/A-index/case-search', function (req, res) {
 
 ///////////////////////////////////////// New router functionality /////////////////////////////////////////
 
+router.post('/version-1/B-discard_material', function (req, res) {
+    // The data is already in req.session.data due to Prototype Kit auto-storage
+    // but we can explicitly ensure it if needed. 
+    // Here we just want to RENDER the discard reason page, not redirect to index yet.
+    res.render('version-1/B-discard_material');
+});
+
+router.post('/version-1/A-index', function (req, res) {
+    const data = req.session.data;
+    
+    // Set completion flag
+    data['discarding_material_COMPLETED'] = 'true';
+    
+    // Set a variable to indicate which tab to show on A-index
+    if (data['discard_origin'] === 'communications') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+    
+    res.redirect('/version-1/A-index');
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 

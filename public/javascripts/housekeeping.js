@@ -1173,6 +1173,7 @@ $(document).ready(function() {
           } else {
                $('input[name=materials_document]').prop('checked', false);
           }
+          updateSelectedMaterials();
      });
 
      $('input[name=materials_document]').click(function(){
@@ -1181,15 +1182,8 @@ $(document).ready(function() {
           } else if ($("input[name=materials_document]:checked").length == 0) {
                $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
+          updateSelectedMaterials();
      });
-
-    // MATERIALS - Reclassify to Unused handler
-    $('.unused_Materials_Multiple_Docs').click(function(e) { // Add 'e' parameter
-        e.stopPropagation(); // Prevent the menu from closing
-        if (!$(this).is(':disabled')) {
-            markMaterialsAsUnused();
-        }
-    });
 
      // COMMS
      $("#comms_documents_ALL").click(function(){
@@ -1198,6 +1192,7 @@ $(document).ready(function() {
           } else {
                $('input[name=comms_document]').prop('checked', false);
           }
+          updateSelectedComms();
      });
 
      $('input[name=comms_document]').click(function(){
@@ -1224,7 +1219,36 @@ $(document).ready(function() {
               $('.unused_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
               $('.viewInNewWindow_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
+          updateSelectedComms();
      });
+
+     function updateSelectedComms() {
+          var selected = [];
+          $('input[name=comms_document]:checked').each(function() {
+               if ($(this).val() !== 'Select all' && $(this).val() !== 'hmrc') {
+                    selected.push($(this).val());
+               }
+          });
+          $('#comms_material_selected').val(selected.join(', '));
+     }
+
+     function updateSelectedMaterials() {
+          var selected = [];
+          $('input[name=materials_document]:checked').each(function() {
+               if ($(this).val() !== 'Select all') {
+                    selected.push($(this).val());
+               }
+          });
+          $('#material_selected').val(selected.join(', '));
+     }
+
+    // MATERIALS - Reclassify to Unused handler
+    $('.unused_Materials_Multiple_Docs').click(function(e) { // Add 'e' parameter
+        e.stopPropagation(); // Prevent the menu from closing
+        if (!$(this).is(':disabled')) {
+            markMaterialsAsUnused();
+        }
+    });
 
     // COMMS - Reclassify to Unused handler
     $('.unused_Comms_Multiple_Docs').click(function(e) { // Add 'e' parameter

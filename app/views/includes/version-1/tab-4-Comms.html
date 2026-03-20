@@ -39,9 +39,10 @@
                                     class="govuk-button govuk-button--disabled redact_Comms_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
                             {% endif %}
-                            <form method="post" action="B-discard_material">
-                                <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
-                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                            <form method="post" action="/version-1/B-discard_material">
+                                <input id="comms_material_selected" name="material_selected" type="hidden" value="">
+                                <input name="discard_origin" type="hidden" value="communications">
+                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit" disabled>Discard</button>
                             </form>
                             <button class="govuk-button mark_as_Read read_Comms_Multiple_Docs govuk-button--disabled" data-module="govuk-button" type="button">Mark as read</button>
                             <button type="button" class="govuk-button govuk-button--disabled unused_Comms_Multiple_Docs" data-module="govuk-button" disabled>Mark as unused</button>
@@ -89,6 +90,8 @@
             <tbody class="govuk-table__body">
 
                 <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police update' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_1">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -111,12 +114,15 @@
                     <td class="govuk-table__cell">01/02/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Asset recovery' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_2">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
@@ -139,12 +145,15 @@
                     <td class="govuk-table__cell">21/03/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Counsel case acknowedgement' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_3">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
@@ -167,12 +176,15 @@
                     <td class="govuk-table__cell">13/01/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Other communication' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_4">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
@@ -194,12 +206,15 @@
                     <td class="govuk-table__cell">13/01/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police follow up' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_5">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -228,6 +243,7 @@
                             data-doc="MCLOVEMG3.pdf">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 6 - START ||||||||||||||| -->
