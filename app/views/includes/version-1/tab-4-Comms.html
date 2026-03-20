@@ -34,14 +34,15 @@
                             <!-- Rename should only be available for single selections, not multiple -->
                             <button type="button" class="govuk-button govuk-button--disabled rename_Comms_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();">Rename</button>
                             <button type="button" id="update-and-reclassify" class="govuk-button govuk-button--disabled reclassify_Comms_Multiple_Docs" data-module="govuk-button" disabled>Reclassify</button>
-                            {% if data['version'] == '1.1' %}
+                            {% if version >= '1.1' %}
                             <button type="button"
                                     class="govuk-button govuk-button--disabled redact_Comms_Multiple_Docs"
                                     data-module="govuk-button" disabled>Redact</button>
                             {% endif %}
-                            <form method="post" action="B-discard_material">
-                                <input id="material_selected" name="material_selected" type="text" value="MCLOVE MG3" style="display: none;">
-                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit">Discard</button>
+                            <form method="post" action="/version-1/B-discard_material?version={{ version }}">
+                                <input id="comms_material_selected" name="material_selected" type="hidden" value="">
+                                <input name="discard_origin" type="hidden" value="communications">
+                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit" disabled>Discard</button>
                             </form>
                             <button class="govuk-button mark_as_Read read_Comms_Multiple_Docs govuk-button--disabled" data-module="govuk-button" type="button">Mark as read</button>
                             <button type="button" class="govuk-button govuk-button--disabled unused_Comms_Multiple_Docs" data-module="govuk-button" disabled>Mark as unused</button>
@@ -63,7 +64,7 @@
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_documents_ALL" name="comms_document"
-                                    type="checkbox" value="hmrc">
+                                    type="checkbox" value="Select all">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_documents_ALL"></label>
                             </div>
                         </div>
@@ -89,12 +90,14 @@
             <tbody class="govuk-table__body">
 
                 <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police update' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_1">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_document_1" name="comms_document"
-                                    type="checkbox" value="Select all">
+                                    type="checkbox" value="Police update">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_document_1"></label>
                             </div>
                         </div>
@@ -111,18 +114,21 @@
                     <td class="govuk-table__cell">01/02/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official statement on trial' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_2">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_document_2" name="comms_document"
-                                    type="checkbox" value="hmrc">
+                                    type="checkbox" value="Official statement on trial">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_document_2"></label>
                             </div>
                         </div>
@@ -139,18 +145,21 @@
                     <td class="govuk-table__cell">21/03/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Legal matter' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_3">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_document_3" name="comms_document"
-                                    type="checkbox" value="hmrc">
+                                    type="checkbox" value="Legal matter">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_document_3"></label>
                             </div>
                         </div>
@@ -167,18 +176,21 @@
                     <td class="govuk-table__cell">13/01/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official court notice' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_4">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_document_4" name="comms_document"
-                                    type="checkbox" value="hmrc">
+                                    type="checkbox" value="Official court notice">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_document_4"></label>
                             </div>
                         </div>
@@ -194,27 +206,30 @@
                     <td class="govuk-table__cell">13/01/2025</td>
                     <td class="govuk-table__cell toggle-panel">
                         <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
-                            onclick="return openComms();">Preview</span>
+                            onclick="return openComms();">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police follow up' in data['material_selected'] %}
+                {% else %}
                 <tr class="govuk-table__row document_row_5">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input" id="comms_document_5"
-                                    name="comms_document" type="checkbox" value="MCLOVE MG3">
+                                    name="comms_document" type="checkbox" value="Police follow up">
                                 <label class="govuk-label govuk-checkboxes__label" for="comms_document_5"><span
-                                        class="visuallyhidden">MCLOVE MG3</span></label>
+                                        class="visuallyhidden">Police follow up</span></label>
                             </div>
                         </div>
                     </td>
                     <td class="govuk-table__cell title_column">
                         <strong class="govuk-tag govuk-tag--blue">New</strong>
                         <div class="openMe">
-                            <a class="govuk-button show_material" data-id="1" data-doc="MCLOVEMG3.pdf">MCLOVE MG3</a>
+                            <a class="govuk-button show_comms" data-id="5" data-doc="PoliceFollowUp.pdf">Police follow up</a>
                         </div>
                     </td>
                     <td class="govuk-table__cell">Incoming</td>
@@ -228,6 +243,7 @@
                             data-doc="MCLOVEMG3.pdf">Preview</button>
                     </td>
                 </tr>
+                {% endif %}
                 <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 6 - START ||||||||||||||| -->

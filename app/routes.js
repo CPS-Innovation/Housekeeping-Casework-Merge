@@ -36,6 +36,15 @@ router.get('/version-1/A-index', (req, res) => {
 
     if (setVersion) {
         req.session.data = req.session.data || {}
+        
+        // If version is changing, reset discard banners and flags
+        if (req.session.data.version && req.session.data.version !== setVersion) {
+            req.session.data['discarding_material_COMPLETED'] = 'false'
+            req.session.data['material_selected'] = []
+            req.session.data['activeTab'] = 'materials'
+            req.session.data['discard_origin'] = ''
+        }
+        
         req.session.data.version = setVersion
     }
     else {
@@ -43,7 +52,7 @@ router.get('/version-1/A-index', (req, res) => {
     }
 
     // Use session as fallback so it survives redirects/new requests
-    const version = req.query.version || req.session.data.version
+    const version = req.query.version || (req.session.data && req.session.data.version) || '1.2';
 
     res.render('version-1/A-index', { version: version });
     console.log(`Selected version is ${version}`);
@@ -55,9 +64,9 @@ router.get('/version-1/A-index/find-a-case', function (req, res) {
 })
 
 router.get('/version-1/A-index/case-search', function (req, res) {
-    const data = req.session.data
+    const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
-    const version = data.version || '1.0'
+    const version = data.version || '1.2'
 
     console.log(caseUrnSearch)
     res.render('version-1/A-index', {
@@ -67,6 +76,46 @@ router.get('/version-1/A-index/case-search', function (req, res) {
 })
 
 ///////////////////////////////////////// New router functionality /////////////////////////////////////////
+
+router.post('/version-1/B-discard_material', function (req, res) {
+    const data = req.session.data;
+    const version = req.query.version || data.version || '1.2'; 
+    // The data is already in req.session.data due to Prototype Kit auto-storage
+    // but we can explicitly ensure it if needed. 
+    // Here we just want to RENDER the discard reason page, not redirect to index yet.
+    res.render('version-1/B-discard_material', { version: version });
+});
+
+router.post('/version-1/A-index', function (req, res) {
+    const data = req.session.data;
+    const version = req.query.version || data.version || '1.2'; // Use query version as priority
+    
+    // Set completion flag
+    data['discarding_material_COMPLETED'] = 'true';
+    
+    // Set a variable to indicate which tab to show on A-index
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+    
+    // Redirect back to A-index with the version in the URL to ensure it's maintained
+    res.redirect(`/version-1/A-index?version=${version}`);
+});
+
+router.get('/version-1/cancel-discard', function (req, res) {
+    const data = req.session.data;
+    const version = req.query.version || (data && data.version) || '1.2';
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect(`/version-1/A-index?version=${version}`);
+});
 
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
