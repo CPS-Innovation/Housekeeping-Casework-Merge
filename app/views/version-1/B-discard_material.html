@@ -19,7 +19,9 @@
 
      <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-               <form novalidate method="post" action="/version-1/A-index">
+               <form novalidate method="post" action="/version-1/A-index?version={{ version }}">
+                    <input name="material_selected" type="hidden" value="{{ data['material_selected'] }}">
+                    <input name="discard_origin" type="hidden" value="{{ data['discard_origin'] }}">
 
                     <div class="govuk-form-group">
                          <fieldset class="govuk-fieldset" aria-describedby="changeCategory-hint">

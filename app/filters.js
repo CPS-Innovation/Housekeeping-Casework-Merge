@@ -38,6 +38,10 @@ module.exports = function (env) {
 
   ------------------------------------------------------------------ */
 
+  filters.is_array = function(obj) {
+    return Array.isArray(obj)
+  }
+
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */

@@ -57,7 +57,16 @@
                 <h2 class="govuk-notification-banner__title">Success</h2>
             </div>
             <div class="govuk-notification-banner__content">
-                <h3 class="govuk-notification-banner__heading">{{ data['material_selected'] }} has been discarded.</h3>
+                <h3 class="govuk-notification-banner__heading">
+                    {% if data['material_selected'] and data['material_selected'] | is_array %}
+                        {% for item in data['material_selected'] %}
+                            {{ item }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {{ data['material_selected'] }}
+                    {% endif %}
+                    has been discarded.
+                </h3>
             </div>
         </div>
 
