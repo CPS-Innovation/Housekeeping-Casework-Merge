@@ -42,14 +42,45 @@
 
 
 
-{% if useAutoStoreData %}
-  
+{% block footer %}
+  {% if useAutoStoreData %}
+    {{ govukFooter({
+      meta: {
+        html: '<!-- <h2 class="govuk-heading-m">Support and guidance</h2> --><!-- <p class="govuk-body-s">If you have a question, or you&apos;ve had a problem using this service, please contact us at <a class="govuk-footer__link" href="mailto:support@cps.gov.uk">support@cps.gov.uk</a></p> --><ul class="govuk-footer__inline-list">
 
- {% block footer %}
- 
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="#">
+                    Privacy
+                  </a>
+                </li>
+
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="#">
+                    Cookies
+                  </a>
+                </li>
+
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="#">
+                    Accessibility
+                  </a>
+                </li>
+
+
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="/prototype-admin/clear-data">
+                    Clear data
+                  </a>
+                </li>
+
+            </ul>',
+        items: [
+
+        ]
+      }
+    }) }}
+  {% endif %}
 {% endblock %}
-  
-{% endif %}
 
 {% block bodyEnd %}
   {% block scripts %}
