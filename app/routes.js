@@ -104,6 +104,19 @@ router.post('/version-1/A-index', function (req, res) {
     res.redirect(`/version-1/A-index?version=${version}`);
 });
 
+router.get('/version-1/cancel-discard', function (req, res) {
+    const data = req.session.data;
+    const version = req.query.version || (data && data.version) || '1.2';
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect(`/version-1/A-index?version=${version}`);
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 
