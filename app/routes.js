@@ -36,6 +36,15 @@ router.get('/version-1/A-index', (req, res) => {
 
     if (setVersion) {
         req.session.data = req.session.data || {}
+        
+        // If version is changing, reset discard banners and flags
+        if (req.session.data.version && req.session.data.version !== setVersion) {
+            req.session.data['discarding_material_COMPLETED'] = 'false'
+            req.session.data['material_selected'] = []
+            req.session.data['activeTab'] = 'materials'
+            req.session.data['discard_origin'] = ''
+        }
+        
         req.session.data.version = setVersion
     }
     else {
