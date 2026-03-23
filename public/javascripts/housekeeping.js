@@ -1170,67 +1170,22 @@ $(document).ready(function() {
      $("#materials_documents_ALL").click(function(){
           if ($(this).is(':checked')) {
                $('input[name=materials_document]').prop('checked', true);
+               $('.mark_as_Read').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else {
                $('input[name=materials_document]').prop('checked', false);
+               $('.mark_as_Read').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
           updateSelectedMaterials();
      });
 
      $('input[name=materials_document]').click(function(){
           if ($("input[name=materials_document]:checked").length >= 1) {
-               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs, .mark_as_Read').removeAttr('disabled').removeClass('govuk-button--disabled');
           } else if ($("input[name=materials_document]:checked").length == 0) {
-               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+               $('#update-and-reclassify, .unused_Materials_Multiple_Docs, .reclassify_Document_Multiple_Docs, .redact_Document_Multiple_Docs, .mark_as_Read').attr('disabled','disabled').addClass('govuk-button--disabled');
           }
           updateSelectedMaterials();
      });
-
-     // COMMS
-     $("#comms_documents_ALL").click(function(){
-          if ($(this).is(':checked')) {
-               $('input[name=comms_document]').prop('checked', true);
-          } else {
-               $('input[name=comms_document]').prop('checked', false);
-          }
-          updateSelectedComms();
-     });
-
-     $('input[name=comms_document]').click(function(){
-          if ($("input[name=comms_document]:checked").length >= 1) {
-              $('#update-and-reclassify').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.unused-Document').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.rename_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.discard_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.read_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.unused_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-              $('.viewInNewWindow_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
-
-
-          } else if ($("input[name=comms_document]:checked").length == 0) {
-              $('#update-and-reclassify').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.unused-Document').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.rename_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.discard_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.read_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.unused_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-              $('.viewInNewWindow_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
-          }
-          updateSelectedComms();
-     });
-
-     function updateSelectedComms() {
-          var selected = [];
-          $('input[name=comms_document]:checked').each(function() {
-               if ($(this).val() !== 'Select all' && $(this).val() !== 'hmrc') {
-                    selected.push($(this).val());
-               }
-          });
-          $('#comms_material_selected').val(selected.join(', '));
-     }
 
      function updateSelectedMaterials() {
           var selected = [];
@@ -1249,6 +1204,57 @@ $(document).ready(function() {
             markMaterialsAsUnused();
         }
     });
+
+     // COMMS
+     $("#comms_documents_ALL").click(function(){
+          if ($(this).is(':checked')) {
+               $('input[name=comms_document]').prop('checked', true);
+               $('.mark_as_Read').removeAttr('disabled').removeClass('govuk-button--disabled');
+          } else {
+               $('input[name=comms_document]').prop('checked', false);
+               $('.mark_as_Read').attr('disabled','disabled').addClass('govuk-button--disabled');
+          }
+          updateSelectedComms();
+     });
+
+     $('input[name=comms_document]').click(function(){
+          if ($("input[name=comms_document]:checked").length >= 1) {
+              $('#update-and-reclassify').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.unused-Document').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.rename_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.reclassify_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.discard_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.redact_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.read_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.mark_as_Read').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.unused_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+              $('.viewInNewWindow_Comms_Multiple_Docs').removeAttr('disabled').removeClass('govuk-button--disabled');
+
+
+          } else if ($("input[name=comms_document]:checked").length == 0) {
+              $('#update-and-reclassify').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.unused-Document').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.rename_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.reclassify_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.discard_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.redact_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.read_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.mark_as_Read').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.unused_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+              $('.viewInNewWindow_Comms_Multiple_Docs').attr('disabled','disabled').addClass('govuk-button--disabled');
+          }
+          updateSelectedComms();
+     });
+
+     function updateSelectedComms() {
+          var selected = [];
+          $('input[name=comms_document]:checked').each(function() {
+               if ($(this).val() !== 'Select all' && $(this).val() !== 'hmrc') {
+                    selected.push($(this).val());
+               }
+          });
+          $('#comms_material_selected').val(selected.join(', '));
+     }
 
     // COMMS - Reclassify to Unused handler
     $('.unused_Comms_Multiple_Docs').click(function(e) { // Add 'e' parameter
@@ -1400,43 +1406,100 @@ $(document).ready(function() {
 
           $('#discard_successful, #auto_reclassify, #update_exhibit_successful').hide();
 
-          $('#mark_as').show().toggleClass('read');
+          var isRead = $(this).hasClass('read');
+          $('#mark_as').show();
 
-          var document_title = $(this).closest('.openMe').find('.redact_Document').text();
-          $('.document_title').text(document_title);
-
-          var row_ID = parseInt($(this).closest('tr').data('row_id'));
-          if (row_ID == 1) { $('table#materials_table .document_row_1').toggleClass('read'); }
-          if (row_ID == 2) { $('table#materials_table .document_row_2').toggleClass('read'); }
-          if (row_ID == 3) { $('table#materials_table .document_row_3').toggleClass('read'); }
-          if (row_ID == 4) { $('table#materials_table .document_row_4').toggleClass('read'); }
-          if (row_ID == 5) { $('table#materials_table .document_row_5').toggleClass('read'); }
-          if (row_ID == 6) { $('table#materials_table .document_row_6').toggleClass('read'); }
-          if (row_ID == 7) { $('table#materials_table .document_row_7').toggleClass('read'); }
-          if (row_ID == 8) { $('table#materials_table .document_row_8').toggleClass('read'); }
-          if (row_ID == 9) { $('table#materials_table .document_row_9').toggleClass('read'); }
-          if (row_ID == 10) { $('table#materials_table .document_row_10').toggleClass('read'); }
-          if (row_ID == 11) { $('table#materials_table .document_row_11').toggleClass('read'); }
-          if (row_ID == 12) { $('table#materials_table .document_row_12').toggleClass('read'); }
-          if (row_ID == 13) { $('table#materials_table .document_row_13').toggleClass('read'); }
-          if (row_ID == 14) { $('table#materials_table .document_row_14').toggleClass('read'); }
-          if (row_ID == 15) { $('table#materials_table .document_row_15').toggleClass('read'); }
-          if (row_ID == 16) { $('table#materials_table .document_row_16').toggleClass('read'); }
-          if (row_ID == 17) { $('table#materials_table .document_row_17').toggleClass('read'); }
-          if (row_ID == 18) { $('table#materials_table .document_row_18').toggleClass('read'); }
-          if (row_ID == 19) { $('table#materials_table .document_row_19').toggleClass('read'); }
-          if (row_ID == 20) { $('table#materials_table .document_row_20').toggleClass('read'); }
-
-          if ($(this).hasClass('read')) {
-               $(this).html('Mark as unread');
-          } else {
-               $(this).html('Mark as read');
+          // Handle multiple selections for Materials
+          if ($("input[name=materials_document]:checked").length > 0) {
+              $("input[name=materials_document]:checked").each(function() {
+                  if ($(this).val() !== 'Select all') {
+                      var $row = $(this).closest('tr');
+                      if (isRead) {
+                          $row.find('.govuk-tag--blue').remove();
+                      } else {
+                          if ($row.find('.govuk-tag--blue').length === 0) {
+                              $row.find('.title_column').prepend('<strong class="govuk-tag govuk-tag--blue">New</strong>');
+                          }
+                      }
+                  }
+              });
           }
 
-          if ($('#mark_as').hasClass('read')) {
+          // Handle multiple selections for Comms
+          if ($("input[name=comms_document]:checked").length > 0) {
+              $("input[name=comms_document]:checked").each(function() {
+                  if ($(this).val() !== 'Select all') {
+                      var $row = $(this).closest('tr');
+                      if (isRead) {
+                          $row.find('.govuk-tag--blue').remove();
+                      } else {
+                          if ($row.find('.govuk-tag--blue').length === 0) {
+                              // Comms uses title_column or subject-cell
+                              var $target = $row.find('.title_column');
+                              if ($target.length === 0) $target = $row.find('.subject-cell');
+                              $target.prepend('<strong class="govuk-tag govuk-tag--blue">New</strong>');
+                          }
+                      }
+                  }
+              });
+          }
+
+          // Update selected documents count in notification banner
+          var selectedCount = 0;
+          if ($("input[name=materials_document]:checked").length > 0) {
+              selectedCount = $("input[name=materials_document]:checked").filter(function() { return $(this).val() !== 'Select all'; }).length;
+          } else if ($("input[name=comms_document]:checked").length > 0) {
+              selectedCount = $("input[name=comms_document]:checked").filter(function() { return $(this).val() !== 'Select all' && $(this).val() !== 'hmrc'; }).length;
+          }
+
+          if (selectedCount > 1) {
+              $('.document_title').text(selectedCount + ' documents');
+          } else {
+              var document_title = $(this).closest('.openMe').find('.redact_Document').text();
+              // If clicked from main button, find the first selected row's title
+              if (!document_title) {
+                  var $firstChecked = $("input[name=materials_document]:checked, input[name=comms_document]:checked").first();
+                  document_title = $firstChecked.closest('tr').find('.show_material, .show_comms').text().trim();
+              }
+              $('.document_title').text(document_title);
+          }
+
+          var row_ID = parseInt($(this).closest('tr').data('row_id'));
+          if (!isNaN(row_ID)) {
+              if (row_ID == 1) { $('table#materials_table .document_row_1').toggleClass('read'); }
+              if (row_ID == 2) { $('table#materials_table .document_row_2').toggleClass('read'); }
+              if (row_ID == 3) { $('table#materials_table .document_row_3').toggleClass('read'); }
+              if (row_ID == 4) { $('table#materials_table .document_row_4').toggleClass('read'); }
+              if (row_ID == 5) { $('table#materials_table .document_row_5').toggleClass('read'); }
+              if (row_ID == 6) { $('table#materials_table .document_row_6').toggleClass('read'); }
+              if (row_ID == 7) { $('table#materials_table .document_row_7').toggleClass('read'); }
+              if (row_ID == 8) { $('table#materials_table .document_row_8').toggleClass('read'); }
+              if (row_ID == 9) { $('table#materials_table .document_row_9').toggleClass('read'); }
+              if (row_ID == 10) { $('table#materials_table .document_row_10').toggleClass('read'); }
+              if (row_ID == 11) { $('table#materials_table .document_row_11').toggleClass('read'); }
+              if (row_ID == 12) { $('table#materials_table .document_row_12').toggleClass('read'); }
+              if (row_ID == 13) { $('table#materials_table .document_row_13').toggleClass('read'); }
+              if (row_ID == 14) { $('table#materials_table .document_row_14').toggleClass('read'); }
+              if (row_ID == 15) { $('table#materials_table .document_row_15').toggleClass('read'); }
+              if (row_ID == 16) { $('table#materials_table .document_row_16').toggleClass('read'); }
+              if (row_ID == 17) { $('table#materials_table .document_row_17').toggleClass('read'); }
+              if (row_ID == 18) { $('table#materials_table .document_row_18').toggleClass('read'); }
+              if (row_ID == 19) { $('table#materials_table .document_row_19').toggleClass('read'); }
+              if (row_ID == 20) { $('table#materials_table .document_row_20').toggleClass('read'); }
+          }
+
+          if (isRead) {
+               $('.mark_as_Read').addClass('read').html('Mark as unread');
+          } else {
+               $('.mark_as_Read').removeClass('read').html('Mark as read');
+          }
+
+          if (isRead) {
+               $('#mark_as').addClass('read');
                $('#mark_as .govuk-notification-banner__title').text('Mark as read successful');
                $('#mark_as .govuk-notification-banner__heading .status').text('read');
           } else {
+               $('#mark_as').removeClass('read');
                $('#mark_as .govuk-notification-banner__title').text('Mark as unread successful');
                $('#mark_as .govuk-notification-banner__heading .status').text('unread');
           }
