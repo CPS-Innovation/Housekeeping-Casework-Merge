@@ -308,8 +308,8 @@
                                     {% if version >= '2.0' %}
                                         <!-- Taken out for Version 1.x -->
                                         <button onclick="window.open(#)" class="">View redaction log history</button>
+                                        <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>
                                     {% endif %}
-                                    <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>
                                     <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
                                     <!-- Added to toggle on/off delete page -->
                                     <button onclick="#" class="">Hide delete page options</button>
@@ -320,13 +320,11 @@
                                         <button onclick="#">Reclassify</button>
                                     {% endif %}
 
-                                    {% if version >= '1.1' %}
-                                         <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
-                                         <button onclick="return mark_as_Read();" class>Mark as read</button>
-                                    {% endif %}
-
                                     {% if version >= '2.0' %}
-                                         <!-- Requested to be taken out for version 1.x -->
+                                        <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
+                                        <button onclick="return mark_as_Read();" class>Mark as read</button>
+
+                                        <!-- Requested to be taken out for version 1.x -->
                                         <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
                                     {% endif %}
                                 </div>
