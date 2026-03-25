@@ -41,23 +41,23 @@
 
                             <!-- Update should only be available for Statements or Exhibits -->
                             <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
-                            {% if version == '1.0' %}
+                            {% if version < '2.0' %}
                             <button type="button" id="update-statement"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update</button>
 
-                            {% elif version >= '1.1' %}
+                            {% elif version >= '2.0' %}
                             <button type="button" id="update-statement"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update statement</button>
                             {% endif %}
 
                             <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
-                            {% if version == '1.0' %}
+                            {% if version < '2.0' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update</button>
-                            {% elif version >= '1.1' %}
+                            {% elif version >= '2.0' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update exhibit</button>
