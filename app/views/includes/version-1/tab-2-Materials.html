@@ -1,4 +1,9 @@
 <!-- ///////////////////////////////// TAB 2 - CONTENT - START ///////////////////////////////// -->
+{% if data['material_selected'] and not (data['material_selected'] | is_array) %}
+    {% set material_selected_array = [data['material_selected']] %}
+{% else %}
+    {% set material_selected_array = data['material_selected'] or [] %}
+{% endif %}
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-one-quarter" id="materials_column_1">
@@ -41,23 +46,23 @@
 
                             <!-- Update should only be available for Statements or Exhibits -->
                             <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
-                            {% if version == '1.0' %}
+                            {% if version < '2.0' %}
                             <button type="button" id="update-statement"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update</button>
 
-                            {% elif version >= '1.1' %}
+                            {% elif version >= '2.0' %}
                             <button type="button" id="update-statement"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateStatement();" disabled>Update statement</button>
                             {% endif %}
 
                             <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
-                            {% if version == '1.0' %}
+                            {% if version < '2.0' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update</button>
-                            {% elif version >= '1.1' %}
+                            {% elif version >= '2.0' %}
                             <button type="button" id="update-exhibit"
                                     class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                     data-module="govuk-button" onclick="return openUpdateExhibit();" disabled>Update exhibit</button>
@@ -117,7 +122,7 @@
             <tbody class="govuk-table__body">
 
                 <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG3' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG3' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All">
@@ -156,7 +161,7 @@
                 <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Case overview and officer comments' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Case overview and officer comments' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_2 material_Case_overview material_None material_New material_All">
@@ -195,7 +200,7 @@
                 <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG05 MCLOVE' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG05 MCLOVE' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_3 material_Case_overview material_New material_All">
@@ -233,7 +238,7 @@
                 <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 3 June' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 3 June' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_4 material_MG_Form material_Always_Unused material_New material_All">
@@ -271,7 +276,7 @@
                 <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 10 June' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 10 June' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_5 material_MG_Form material_Always_Unused material_New material_All">
@@ -310,7 +315,7 @@
                 <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 6 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt BLAYNEE 2034 1 JUNE mg11' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt BLAYNEE 2034 1 JUNE mg11' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_6 material_Statement material_Used material_New material_All">
@@ -350,7 +355,7 @@
                 <!-- ||||||||||||||| ROW 6 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 7 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt Lucy Doyle MG11' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt Lucy Doyle MG11' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_7 material_Statement material_Used material_New material_All">
@@ -389,7 +394,7 @@
                 <!-- ||||||||||||||| ROW 7 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 8 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt Shelagh McLove MG11' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'stmt Shelagh McLove MG11' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_8 material_Statement material_Used material_New material_All">
@@ -429,7 +434,7 @@
                 <!-- ||||||||||||||| ROW 8 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 9 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Shelagh McLove VPS mg11' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Shelagh McLove VPS mg11' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_9 material_Statement material_Used material_New material_All">
@@ -468,7 +473,7 @@
                 <!-- ||||||||||||||| ROW 9 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 10 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG11 Shelagh MCLOVE retraction' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG11 Shelagh MCLOVE retraction' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_10 material_Statement material_Used material_New material_All">
@@ -508,7 +513,7 @@
                 <!-- ||||||||||||||| ROW 10 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 11 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG12' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG12' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_11 material_MG_Form material_Exhibit material_New material_All">
@@ -547,7 +552,7 @@
                 <!-- ||||||||||||||| ROW 11 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 12 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG00' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG00' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_12 material_MG_Form material_Exhibit material_New material_All">
@@ -585,7 +590,7 @@
                 <!-- ||||||||||||||| ROW 12 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 13 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE' in material_selected_array %}
 
                 {% else %}
                 <tr
@@ -629,7 +634,7 @@
                 <!-- ||||||||||||||| ROW 13 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 14 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'SDC_items to_be Disclosed MCLOVE' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'SDC_items to_be Disclosed MCLOVE' in material_selected_array %}
 
                 {% else %}
                 <tr
@@ -670,7 +675,7 @@
                 <!-- ||||||||||||||| ROW 14 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 15 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_5_JUNE' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_5_JUNE' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_15 material_MG_Form material_Exhibit material_New material_All">
@@ -709,7 +714,7 @@
                 <!-- ||||||||||||||| ROW 15 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 16 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_10_JUNE' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_10_JUNE' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_16 material_MG_Form material_Unused material_New material_All">
@@ -748,7 +753,7 @@
                 <!-- ||||||||||||||| ROW 16 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 17 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'PRE CONS D' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'PRE CONS D' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_17 material_MG_Form material_Defendant material_New material_All">
@@ -786,7 +791,7 @@
                 <!-- ||||||||||||||| ROW 17 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 18 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Asset Rec 1' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Asset Rec 1' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_18 material_MG_Form material_Exhibit material_New material_All">
@@ -824,7 +829,7 @@
                 <!-- ||||||||||||||| ROW 18 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 19 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG11 - 1' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'MG11 - 1' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_19 material_Statement material_None material_New material_All">
@@ -862,7 +867,7 @@
                 <!-- ||||||||||||||| ROW 19 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 20 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Exhibit - 1' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Exhibit - 1' in material_selected_array %}
 
                 {% else %}
                 <tr class="govuk-table__row document_row_20 material_Exhibit material_None material_New material_All">
