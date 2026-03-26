@@ -453,6 +453,24 @@ $(document).ready(function() {
             sessionStorage.removeItem('reclassify_type');
             sessionStorage.removeItem('reclassify_source_tab');
         }
+
+        // --- RESTORE ACTIVE DOCUMENT IN TAB 3 ---
+        var lastActiveDoc = sessionStorage.getItem('last_active_doc');
+        if (lastActiveDoc) {
+            // Find the link in Tab 3 filter table with the matching text
+            var $docLink = $('#filter_Redactions table .openMe a').filter(function() {
+                return $(this).text().trim() === lastActiveDoc.trim();
+            });
+
+            if ($docLink.length > 0) {
+                // Ensure we are on Tab 3
+                showTabByNumber(3);
+                // Trigger click to select document
+                $docLink.click();
+                // Clean up
+                sessionStorage.removeItem('last_active_doc');
+            }
+        }
 });
 
 // FILTER
@@ -2138,3 +2156,57 @@ $(document).on('click', '.reclassify-Document', function() {
     // Show a notification (optional, like bulk)
     showStatusUpdateSuccess('materials', 1, [$titleCell.text().trim()]);
 });
+
+// Modal functions
+function openModalOver() {
+    $(redactionModalOver).removeClass("rj-dont-display");
+    $('.tab-3-content').click();
+    
+    // Save current active document if there is one
+    var activeDoc = $('#filter_Redactions table tr.active_document a.show-case').text();
+    if (activeDoc) {
+        sessionStorage.setItem('last_active_doc', activeDoc);
+    }
+}
+function closeModalOver() {
+    $(redactionModalOver).addClass("rj-dont-display");
+}
+
+function openModalProblem() {
+    $(problemModal).removeClass("rj-dont-display");
+}
+function closeModalProblem() {
+    $(problemModal).addClass("rj-dont-display");
+}
+
+function openCaseActionModal() {
+    $("#caseActionModal").removeClass("rj-dont-display");
+}
+function closeCaseActionModal() {
+    $("#caseActionModal").addClass("rj-dont-display");
+}
+
+function openCaseActionModal2() {
+    $("#caseActionModal2").removeClass("rj-dont-display");
+}
+function closeCaseActionModal2() {
+    $("#caseActionModal2").addClass("rj-dont-display");
+}
+
+function openCaseActionBuilderModal() {
+    $("#caseActionBuilderModal").removeClass("rj-dont-display");
+    $("#draft-plan").show();
+    $("#sent-plan").hide();
+    $('#new-tabs .list-item').removeClass('list-item--selected');
+    $('#new-tabs .list-item:first').addClass('list-item--selected');
+}
+function closeCaseActionBuilderModal() {
+    $("#caseActionBuilderModal").addClass("rj-dont-display");
+}
+
+function openConfirmationModal() {
+    $("#confirmationModal").removeClass("rj-dont-display");
+}
+function closeConfirmationModal() {
+    $("#confirmationModal").addClass("rj-dont-display");
+}
