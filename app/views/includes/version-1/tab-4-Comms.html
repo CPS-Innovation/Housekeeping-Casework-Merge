@@ -1,4 +1,9 @@
 <!-- ///////////////////////////////// TAB 4 - CONTENT - START ///////////////////////////////// -->
+{% if data['material_selected'] and not (data['material_selected'] | is_array) %}
+    {% set material_selected_array = [data['material_selected']] %}
+{% else %}
+    {% set material_selected_array = data['material_selected'] or [] %}
+{% endif %}
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-one-quarter" id="comms_column_1">
@@ -90,7 +95,7 @@
             <tbody class="govuk-table__body">
 
                 <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police update' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police update' in material_selected_array %}
                 {% else %}
                 <tr class="govuk-table__row document_row_1">
                     <td class="govuk-table__cell">
@@ -121,7 +126,7 @@
                 <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official statement on trial' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official statement on trial' in material_selected_array %}
                 {% else %}
                 <tr class="govuk-table__row document_row_2">
                     <td class="govuk-table__cell">
@@ -152,7 +157,7 @@
                 <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Legal matter' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Legal matter' in material_selected_array %}
                 {% else %}
                 <tr class="govuk-table__row document_row_3">
                     <td class="govuk-table__cell">
@@ -183,7 +188,7 @@
                 <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official court notice' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official court notice' in material_selected_array %}
                 {% else %}
                 <tr class="govuk-table__row document_row_4">
                     <td class="govuk-table__cell">
@@ -213,7 +218,7 @@
                 <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
 
                 <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
-                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police follow up' in data['material_selected'] %}
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police follow up' in material_selected_array %}
                 {% else %}
                 <tr class="govuk-table__row document_row_5">
                     <td class="govuk-table__cell">

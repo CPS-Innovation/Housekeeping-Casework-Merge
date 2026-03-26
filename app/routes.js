@@ -55,6 +55,14 @@ router.get('/version-1/A-index', (req, res) => {
     const version = req.query.version || (req.session.data && req.session.data.version) || '1.2';
 
     res.render('version-1/A-index', { version: version });
+
+    // Clear flags after rendering so they don't persist on page reload
+    if (req.session.data) {
+        req.session.data['discarding_material_COMPLETED'] = 'false';
+        req.session.data['update_exhibit_COMPLETED'] = 'false';
+        req.session.data['update_statement_COMPLETED'] = 'false';
+    }
+
     console.log(`Selected version is ${version}`);
 });
 
@@ -73,6 +81,13 @@ router.get('/version-1/A-index/case-search', function (req, res) {
         caseUrnSearch,
         version
     })
+
+    // Clear flags after rendering so they don't persist on page reload
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['update_exhibit_COMPLETED'] = 'false';
+        data['update_statement_COMPLETED'] = 'false';
+    }
 })
 
 ///////////////////////////////////////// New router functionality /////////////////////////////////////////
@@ -91,7 +106,13 @@ router.post('/version-1/A-index', function (req, res) {
     const version = req.query.version || data.version || '1.2'; // Use query version as priority
     
     // Set completion flag
-    data['discarding_material_COMPLETED'] = 'true';
+    if (data['update_exhibit_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else if (data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
     
     // Set a variable to indicate which tab to show on A-index
     if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {

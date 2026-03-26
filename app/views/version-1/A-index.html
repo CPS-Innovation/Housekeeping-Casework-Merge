@@ -70,34 +70,26 @@
             </div>
         </div>
 
-        <!-- Update exhibit -->
-        {% elif data['update_exhibit_COMPLETED'] == 'true' %}
+        <!-- Update exhibit / statement -->
+        {% elif data['update_exhibit_COMPLETED'] == 'true' or data['update_statement_COMPLETED'] == 'true' %}
         <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
              aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-             id="update_exhibit_successful">
+             id="update_successful">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Success</h2>
             </div>
             <div class="govuk-notification-banner__content">
-                <h3 class="govuk-notification-banner__heading">{{ data['material_selected'] }} MCLOVE MG12 has been updated.</h3>
-            </div>
-        </div>
-
-        <!-- Update statement -->
-        {% elif data['update_statement_COMPLETED'] == 'true' %}
-        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
-             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-             id="update_exhibit_successful">
-            <div class="govuk-notification-banner__header">
-                <h2 class="govuk-notification-banner__title">Success</h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-                <h3 class="govuk-notification-banner__heading">{{ data['material_selected'] }} stmt BLAYNEE 2034 1 JUNE mg11 has been updated.</h3>
+                <h3 class="govuk-notification-banner__heading">
+                    {% if data['update_exhibit_COMPLETED'] == 'true' %}
+                        Exhibit successfully updated.
+                    {% else %}
+                        Statement successfully updated.
+                    {% endif %}
+                </h3>
             </div>
         </div>
 
         {% else %}
-
         {% endif %}
 
     </div>
@@ -195,7 +187,10 @@
                 {% include "../includes/version-1/tab-5-PCD-review.html" %}
             </div>
             <!-- TAB CONTENT - 5 - END -->
-
         </div>
     </div>
-    {% endblock %}
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
