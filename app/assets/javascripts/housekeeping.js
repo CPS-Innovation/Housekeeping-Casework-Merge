@@ -1632,15 +1632,33 @@ function closeRenameModal() {
 
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
-    // Get all selected materials
-    let selectedMaterials = $("input[name=materials_document]:checked");
+    // Get all selected materials and comms
+    let selectedDocs = $("input[name=materials_document]:checked, input[name=comms_document]:checked");
 
-    // For each selected material
-    selectedMaterials.each(function(index) {
+    // For each selected document
+    selectedDocs.each(function(index) {
         let row = $(this).closest('tr');
-        let titleCell = row.find('td.title_column');
-        let documentURL = titleCell.find('.openMe a').attr('data-doc');
-        let documentTitle = titleCell.find('.openMe a').text().trim();
+        let titleCell = row.find('td.title_column, td.subject-cell');
+        let documentURL = titleCell.find('.openMe a, .openMe button').attr('data-doc');
+        let documentTitle = titleCell.find('.openMe a, .openMe button').text().trim();
+
+        // Fallback for documentURL if not in data-doc
+        if (!documentURL) {
+            let nextRow = row.next('tr.hidden_row');
+            let embedSrc = nextRow.find('embed').attr('src');
+            if (embedSrc) {
+                documentURL = embedSrc.replace('/public/files/', '').replace('/files/', '');
+            }
+        }
+
+        // Second fallback: check if it's a button directly in the cell (no .openMe)
+        if (!documentURL) {
+            let button = titleCell.find('button.show_comms, button.show_material');
+            documentURL = button.attr('data-doc');
+            if (!documentTitle) {
+                documentTitle = button.text().trim();
+            }
+        }
 
         // Open a new browser window for each document with a unique name
         if (documentURL) {
