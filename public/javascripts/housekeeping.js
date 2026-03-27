@@ -1286,50 +1286,54 @@ $(document).ready(function() {
           $('#discard_successful, #update_exhibit_successful').hide();
 
           var materialsNumber = $(this).data('id');
-          if (materialsNumber === 1) { $('table#materials_table tr[data-row_id="1"]').toggle(); $('button.show_material_actions[data-id="1"]').toggleClass('hide'); }
-          if (materialsNumber === 2) { $('table#materials_table tr[data-row_id="2"]').toggle(); $('button.show_material_actions[data-id="2"]').toggleClass('hide'); }
-          if (materialsNumber === 3) { $('table#materials_table tr[data-row_id="3"]').toggle(); $('button.show_material_actions[data-id="3"]').toggleClass('hide'); }
-          if (materialsNumber === 4) { $('table#materials_table tr[data-row_id="4"]').toggle(); $('button.show_material_actions[data-id="4"]').toggleClass('hide'); }
-          if (materialsNumber === 5) { $('table#materials_table tr[data-row_id="5"]').toggle(); $('button.show_material_actions[data-id="5"]').toggleClass('hide'); }
-          if (materialsNumber === 6) { $('table#materials_table tr[data-row_id="6"]').toggle(); $('button.show_material_actions[data-id="6"]').toggleClass('hide'); }
-          if (materialsNumber === 7) { $('table#materials_table tr[data-row_id="7"]').toggle(); $('button.show_material_actions[data-id="7"]').toggleClass('hide'); }
-          if (materialsNumber === 8) { $('table#materials_table tr[data-row_id="8"]').toggle(); $('button.show_material_actions[data-id="8"]').toggleClass('hide'); }
-          if (materialsNumber === 9) { $('table#materials_table tr[data-row_id="9"]').toggle(); $('button.show_material_actions[data-id="9"]').toggleClass('hide'); }
-          if (materialsNumber === 10) { $('table#materials_table tr[data-row_id="10"]').toggle(); $('button.show_material_actions[data-id="10"]').toggleClass('hide'); }
-          if (materialsNumber === 11) { $('table#materials_table tr[data-row_id="11"]').toggle(); $('button.show_material_actions[data-id="11"]').toggleClass('hide'); }
-          if (materialsNumber === 12) { $('table#materials_table tr[data-row_id="12"]').toggle(); $('button.show_material_actions[data-id="12"]').toggleClass('hide'); }
-          if (materialsNumber === 13) { $('table#materials_table tr[data-row_id="13"]').toggle(); $('button.show_material_actions[data-id="13"]').toggleClass('hide'); }
-          if (materialsNumber === 14) { $('table#materials_table tr[data-row_id="14"]').toggle(); $('button.show_material_actions[data-id="14"]').toggleClass('hide'); }
-          if (materialsNumber === 15) { $('table#materials_table tr[data-row_id="15"]').toggle(); $('button.show_material_actions[data-id="15"]').toggleClass('hide'); }
-          if (materialsNumber === 16) { $('table#materials_table tr[data-row_id="16"]').toggle(); $('button.show_material_actions[data-id="16"]').toggleClass('hide'); }
-          if (materialsNumber === 17) { $('table#materials_table tr[data-row_id="17"]').toggle(); $('button.show_material_actions[data-id="17"]').toggleClass('hide'); }
-          if (materialsNumber === 18) { $('table#materials_table tr[data-row_id="18"]').toggle(); $('button.show_material_actions[data-id="18"]').toggleClass('hide'); }
-          if (materialsNumber === 19) { $('table#materials_table tr[data-row_id="19"]').toggle(); $('button.show_material_actions[data-id="19"]').toggleClass('hide'); }
-          if (materialsNumber === 20) { $('table#materials_table tr[data-row_id="20"]').toggle(); $('button.show_material_actions[data-id="20"]').toggleClass('hide'); }
+          if (materialsNumber) {
+               var $row = $('table#materials_table tr[data-row_id="' + materialsNumber + '"]');
+               var $actionButton = $('button.show_material_actions[data-id="' + materialsNumber + '"]');
+               
+               $row.toggle();
+               $actionButton.toggleClass('hide');
+               
+               var urlParams = new URLSearchParams(window.location.search);
+               var version = (urlParams.get('version') || '').toString();
+               var major = version ? (version.indexOf('.') > -1 ? version.split('.') [0] : version) : '';
+
+               if (major === '0') {
+                    if ($actionButton.hasClass('hide')) {
+                         $actionButton.html('Hide <i class="fa-solid fa-chevron-down"></i>');
+                    } else {
+                         $actionButton.html('Actions <i class="fa-solid fa-chevron-down"></i>');
+                    }
+               } else {
+                    if ($actionButton.hasClass('hide')) {
+                         $actionButton.html('Hide');
+                    } else {
+                         $actionButton.html('Preview');
+                    }
+               }
+          }
+     });
+
+     $('.show_comms, .show_comms_actions,#show_Comms_Actions').click(function(){
+          $('#discard_successful, #update_exhibit_successful').hide();
+
+          var commsNumber = $(this).data('id');
+          if (commsNumber) {
+               var $row = $('table#comms_table tr[data-row_id="' + commsNumber + '"]');
+               var $actionButton = $('button.show_comms_actions[data-id="' + commsNumber + '"]');
+               
+               $row.toggle();
+               $actionButton.toggleClass('hide');
+               
+               if ($actionButton.hasClass('hide')) {
+                    $actionButton.html('Hide');
+               } else {
+                    $actionButton.html('Preview');
+               }
+          }
      });
 
     // Maintain the chevrons for older version 0 and removing them for newer versions
-    $('.show_material_actions').click(function(){
-        var urlParams = new URLSearchParams(window.location.search);
-        var version = (urlParams.get('version') || '').toString();
-        var major = version ? (version.indexOf('.') > -1 ? version.split('.')[0] : version) : '';
-
-        switch (major) {
-            case '0':
-                if ($(this).hasClass('hide')) {
-                    $(this).html('Hide <i class="fa-solid fa-chevron-down"></i>');
-                } else {
-                    $(this).html('Actions <i class="fa-solid fa-chevron-down"></i>');
-                }
-                break;
-            default:
-                if ($(this).hasClass('hide')) {
-                    $(this).html('Hide');
-                } else {
-                    $(this).html('Preview');
-                }
-        }
-    });
+     // Replaced by refactored logic above
 
 
 
