@@ -2050,8 +2050,8 @@ function markMaterialsAsUnused() {
           var statusCell = row.find('td:nth-child(6)'); // Status is the 6th column
           
           // Update the status tag to "Unused"
-          statusCell.html('<strong class="govuk-tag govuk-tag--red">Unused</strong>');
-          
+          statusCell.html('<strong class="govuk-tag govuk-tag--yellow">Unused</strong>');
+
           // Remove "New" tag if present and add visual indicator
           var titleCell = row.find('td:nth-child(2)');
           titleCell.find('.govuk-tag--blue').remove(); // Remove "New" tag
@@ -2101,7 +2101,7 @@ function markCommsAsUnused() {
           // row.addClass('reclassified-unused');
           
           // Add "Unused" indicator to the subject cell
-          subjectCell.prepend('<strong class="govuk-tag govuk-tag--red">Unused</strong>');
+          subjectCell.prepend('<strong class="govuk-tag govuk-tag--yellow">Unused</strong>');
      });
      
      // Uncheck all communications
@@ -2168,7 +2168,7 @@ $(document).on('click', '.reclassify-Document', function() {
     }
     // Update the status cell (6th column)
     var $statusCell = $row.find('td').eq(5);
-    $statusCell.html('<strong class="govuk-tag govuk-tag--red">Unused</strong>');
+    $statusCell.html('<strong class="govuk-tag govuk-tag--yellow">Unused</strong>');
     // Remove the 'New' tag from the title cell (2nd column)
     var $titleCell = $row.find('td').eq(1);
     $titleCell.find('.govuk-tag--blue').remove();
