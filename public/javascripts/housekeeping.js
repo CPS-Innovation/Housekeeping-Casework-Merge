@@ -433,11 +433,7 @@ $(document).ready(function() {
                     '<div class="govuk-notification-banner__header"><h2 class="govuk-notification-banner__title">Success</h2></div>' +
                     '<div class="govuk-notification-banner__content"><h3 class="govuk-notification-banner__heading">' + message + '</h3></div></div>');
 
-                if (sourceTab === "4") {
-                    $('#tab_content_4 #notification-area').prepend(banner);
-                } else {
-                    $('#tab_content_2 #notification-area').prepend(banner);
-                }
+                $('#notification-area').prepend(banner);
 
                 // Auto-remove banner after 10 seconds
                 setTimeout(function() {
@@ -2145,11 +2141,7 @@ function showStatusUpdateSuccess(type, count, items) {
      '</div>');
 
     // Insert notifications at the top of the content area
-    if (type === 'materials') {
-        $('#materials_column_2 #notification-area').html(notification.show());
-    } else if (type === 'communications') {
-        $('#comms_column_2 #notification-area').html(notification.show());
-    }
+    $('#notification-area').html(notification.show());
 
     // Auto-hide and then REMOVE from DOM
     setTimeout(function() {
