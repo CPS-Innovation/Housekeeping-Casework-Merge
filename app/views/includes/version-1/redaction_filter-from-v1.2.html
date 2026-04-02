@@ -16,7 +16,7 @@
 
             <!-- 1 - START Case overview (2) -->
             <div class="accordion-section section_1">
-                <h2 class="govuk-heading-s"><a class="accordion-section-header">Case overview (2)</a></h2>
+                <h2 class="govuk-heading-s"><a class="accordion-section-header">Case overview (3)</a></h2>
                 <div class="accordion-section-body">
                     <table class="govuk-table" id="other_material_table_V2">
                         <tbody class="govuk-table__body">
@@ -24,6 +24,31 @@
                         <tr class="table_header">
                             <th>Case overview</th>
                         </tr>
+
+                        <!-- ||||||||||||||| ROW 20 - START ||||||||||||||| -->
+                        {% if data['discarding_material_COMPLETED'] == 'true' and data['material_selected'] == 'Exhibit - 1' %}
+
+                        {% else %}
+                        <tr class="govuk-table__row document_row_1 material_None material_New material_All unread_document">
+                            <td class="govuk-table__cell title_column">
+                                <strong class="govuk-tag govuk-tag--blue">New</strong>
+                                <div class="openMe">
+                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="18" data-doc="defendants.pdf" data-page="1">Asset Rec 1</a>
+                                </div>
+                                <p class="date-added">
+                                    Date: 03/06/2020
+                                    <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                        <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                    </button>
+                                </p>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        <!-- ||||||||||||||| ROW 20 - END ||||||||||||||| -->
 
                         <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
                         {% if data['discarding_material_COMPLETED'] == 'true' and data['material_selected'] == 'Case overview and officer comments' %}
