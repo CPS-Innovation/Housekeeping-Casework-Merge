@@ -255,10 +255,10 @@
                 const document = $(`.openMe a:contains("${label}")`).attr("data-doc");
                 const count = $(`.openMe a:contains("${label}")`).attr("data-count") || 3;
                 const content = `
-                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden document-panel" data-tab-id="${tabId}-content" data-is-searched="${isSearched}">  
+                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden document-panel" data-tab-id="${tabId}-content" data-is-searched="${isSearched}">
 
                         <button onclick="windowSizeChange(), windowSizeChangeText()" class="window-size" id="window-size"><span>View full screen</span></button>
-                         
+
                         <!-- start of search results -->
                         <div  class="searchedDocumentSummary rj-dont-display" id="searchHeaderDisplay">
                             <div class="title">
@@ -272,25 +272,25 @@
 <!--                                    <button onclick="window.open(#)" class="">View redaction log history</button>-->
 <!--                                    <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
                                     <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
-                                    
+
                                     <button onclick="location.href='B-discard_material';">Discard</button>
                                     <button onclick="#">Reclassify</button>
-                                    
+
                                     <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark as read</button>
                                     <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
                                 </div>
                             </div>
 
-                            <!-- start Select Tool --> 
+                            <!-- start Select Tool -->
                             <button onclick="marqueeOn()" class="marquee" id="marquee"><span>Redact area tool</span></button>
-                            <!-- end Select Tool --> 
+                            <!-- end Select Tool -->
 
                             <div class="buttons">
                                 <p class="govuk-body-s inPageSearchMargins deactivatedPrevious">Previous</p>
                                 <p class="govuk-body-s inPageSearchMargins">1/${count}</p>
                                 <p class="govuk-body-s inPageSearchMargins looks-like-a-link-underline">Next</p>
-                            </div>  
-                        </div> 
+                            </div>
+                        </div>
                         <!-- end of search results -->
 
                         <!-- Non search heading -->
@@ -314,6 +314,11 @@
                                     <!-- Added to toggle on/off delete page -->
                                     <button onclick="#" class="">Hide delete page options</button>
 
+                                    <button type="button" class="open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
+
+<!--                                    <button type="button" class="govuk-button govuk-button&#45;&#45;disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>-->
+
+
                                     {% if version >= '2.0' %}
                                         <!-- Taken out for Version 1.x -->
                                         <button onclick="location.href='/version-1/B-discard_material';">Discard</button>
@@ -330,9 +335,9 @@
                                 </div>
                             </div>
 
-                            <!-- start Select Tool --> 
+                            <!-- start Select Tool -->
                             <button onclick="marqueeOn()" class="marquee" id="marquee"><span>Redact area tool</span></button>
-                            <!-- end Select Tool --> 
+                            <!-- end Select Tool -->
 
                         </div>
                         <!-- End of non search heading -->
@@ -342,12 +347,12 @@
                             <h3 class="govuk-heading-s">Potential redactions</h3>
                             <p>The following terms are items that could potentially be redacted in this document:</p>
                             <p><span id="SRNumber">(25)</span> Named individuals, <span>(2)</span> Email addresses, <span>(2)</span> Previous convictions, <span>(1)</span> Date of birth</p>
-                        </div> 
+                        </div>
 
                         <!-- <embed class="embedSize" src="/public/files/${document}#toolbar=0&view=FitH" /> -->
-                            
+
                         ${getTabHtml(`/public/files/${document}`)}
-                            
+
                     </div>`;
 
                 var $content = $(content);
