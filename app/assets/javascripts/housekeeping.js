@@ -1388,6 +1388,9 @@ $(document).ready(function() {
           $(this).closest('tr').addClass('active_document').removeClass('unread_document');
           $(this).closest('td').prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
 
+          // Enable "View in new window" button when a document becomes active
+          $('.open-Document').removeClass('govuk-button--disabled');
+
           // Scroll to a position above the tabs
           scrollToTab3Position();
      });
@@ -1628,10 +1631,46 @@ function closeRenameModal() {
 
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
+    // Check if we are in the "Review and Redact" tab AND a specific document tab is visible
+    let isReviewTabVisible = $('#tab_content_3').is(':visible');
+    let activeTabPanel = $('.govuk-tabs__panel:not(.govuk-tabs__panel--hidden)');
+
+    if (isReviewTabVisible && activeTabPanel.length > 0) {
+        let pdfViewer = activeTabPanel.find('#pdf-root');
+        let documentURL = pdfViewer.attr('data-pdf-url');
+        
+        if (documentURL) {
+            // Normalize URL
+            documentURL = documentURL.replace('/public/files/', '').replace('/files/', '');
+            let windowName = 'Document_' + Date.now();
+            window.open('/public/files/' + documentURL, windowName,
+                `width=800,height=800,top=0,left=0,scrollbars=yes,location=no,toolbar=no,menubar=no,status=no`);
+            return false;
+        }
+    }
+
     // Get all selected materials and comms
     let selectedDocs = $("input[name=materials_document]:checked, input[name=comms_document]:checked");
 
-    // For each selected document
+    // If no documents are selected via checkboxes, check for the active document in the Review and Redact tab
+    if (selectedDocs.length === 0) {
+        let activeRow = $('.active_document').closest('tr');
+        if (activeRow.length > 0) {
+            let titleCell = activeRow.find('.openMe');
+            let documentURL = titleCell.find('a, button').attr('data-doc');
+            let documentTitle = titleCell.find('a, button').text().trim();
+
+            if (documentURL) {
+                // Open a new browser window for the active document
+                let windowName = 'Document_' + Date.now();
+                window.open('/public/files/' + documentURL, windowName,
+                    `width=800,height=800,top=0,left=0,scrollbars=yes,location=no,toolbar=no,menubar=no,status=no`);
+                return false;
+            }
+        }
+    }
+
+    // For each selected document (existing logic for Materials and Comms tabs)
     selectedDocs.each(function(index) {
         let row = $(this).closest('tr');
         let titleCell = row.find('td.title_column, td.subject-cell');
