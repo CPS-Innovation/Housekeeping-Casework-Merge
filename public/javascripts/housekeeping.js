@@ -1383,10 +1383,17 @@ $(document).ready(function() {
           $('.panel').hide();
           $('#tab_content_3').show();
 
-          $('#filter_Redactions table tbody tr').removeClass('active_document');
-          // $('#filter_Redactions table tbody tr td strong.govuk-tag').remove();
-          $(this).closest('tr').addClass('active_document').removeClass('unread_document');
-          $(this).closest('td').prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+          $('.active_document').removeClass('active_document');
+          $('.govuk-tag').filter(function() {
+              return $(this).text().trim() === 'Active document';
+          }).remove();
+          var $row = $(this).closest('tr');
+          var $td = $(this).closest('td');
+          
+          $row.addClass('active_document').removeClass('unread_document');
+          if ($td.find('.govuk-tag').filter(function() { return $(this).text().trim() === 'Active document'; }).length === 0) {
+              $td.prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+          }
 
           // Enable "View in new window" button when a document becomes active
           $('.open-Document').removeClass('govuk-button--disabled');
@@ -1638,7 +1645,7 @@ function openDocumentInNewWindow() {
     if (isReviewTabVisible && activeTabPanel.length > 0) {
         let pdfViewer = activeTabPanel.find('#pdf-root');
         let documentURL = pdfViewer.attr('data-pdf-url');
-        
+
         if (documentURL) {
             // Normalize URL
             documentURL = documentURL.replace('/public/files/', '').replace('/files/', '');
@@ -1840,13 +1847,52 @@ function viewDefendants() {
     console.log("viewDefendants function called");
     // Open the Review & Redact Tab
     showTabByNumber(3);
-    pageActions();
 
-    // Pretty cludgy way to target the item as the numbering is duplicated currently so using first() to target the first item. Will refactor
-    $('.accordion-section.section_2').first().find('h2.govuk-heading-s > a.accordion-section-header').addClass('active');
-    $('.accordion-section.section_2').first().find('.accordion-section-body').show();
-    $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5)').addClass("active_document");
-    $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5) td').prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+    // Target the specific link for Asset Rec 1 (defendants.pdf)
+    var $targetLink = $('.show-case[data-id="18"][data-doc="defendants.pdf"]').first();
+
+    if ($targetLink.length > 0) {
+        // Find the parent row and section
+        var $row = $targetLink.closest('tr');
+        var $section = $targetLink.closest('.accordion-section');
+
+        // Open the accordion section if it's not already open
+        $section.find('.accordion-section-header').addClass('active');
+        $section.addClass('active');
+        $section.find('.accordion-section-body').show();
+
+        // Clear existing active documents
+        $('.active_document').removeClass("active_document");
+        $('.govuk-tag').filter(function() {
+            return $(this).text().trim() === 'Active document';
+        }).remove();
+
+        // Mark this document as active
+        $row.addClass("active_document");
+        if ($row.find('td.title_column .govuk-tag').filter(function() { return $(this).text().trim() === 'Active document'; }).length === 0) {
+            $row.find('td.title_column').prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+        }
+
+        // Trigger pageActions for the specific document
+        $targetLink.trigger('click');
+    } else {
+        // Fallback for original cludgy way if the specific document is not found
+        $('.accordion-section.section_2').first().find('h2.govuk-heading-s > a.accordion-section-header').addClass('active');
+        $('.accordion-section.section_2').first().find('.accordion-section-body').show();
+
+        // Clear existing active documents
+        $('.active_document').removeClass("active_document");
+        $('.govuk-tag').filter(function() {
+            return $(this).text().trim() === 'Active document';
+        }).remove();
+
+        var $targetTd = $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5) td');
+        $('.accordion-section.section_2').first().find('#exhibits_table tbody tr:nth-child(5)').addClass("active_document");
+        if ($targetTd.find('.govuk-tag').filter(function() { return $(this).text().trim() === 'Active document'; }).length === 0) {
+            $targetTd.prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
+        }
+        pageActions();
+    }
 }
 
 //     function updateExhibit() {
