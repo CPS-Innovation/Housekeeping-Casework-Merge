@@ -4,10 +4,13 @@ function pageActions() {
     // var pageCount = $(this).attr("data-page");
     // $('.page-counter strong').text(pageCount);
 
-
+    var $container = $('#changeDocument');
+    if ($container.length === 0) {
+        $container = $('#pdf-root');
+    }
 
     setTimeout(function(parent) {
-        $('#changeDocument .page').append(`
+        $container.find('.page').append(`
             <div class="page-counter new">
                 <p>Page: <span><span class="number">1</span>/<strong>2</strong></span></p>
                 <button onclick="return deleteThisPage(this), closeDiv(this), noRotate(this);" class="delete-page"><span class="icon delete"></span>Delete</button>
@@ -16,19 +19,19 @@ function pageActions() {
 
         const elements = document.querySelectorAll('.page-counter');
         const count = elements.length;
-        $('#changeDocument .page strong').html(count);
+        $container.find('.page strong').html(count);
 
-        $('.page[data-page-number="1"] .page-counter.new .number').html('1');
-        $('.page[data-page-number="2"] .page-counter.new .number').html('2');
-        $('.page[data-page-number="3"] .page-counter.new .number').html('3');
-        $('.page[data-page-number="4"] .page-counter.new .number').html('4');
-        $('.page[data-page-number="5"] .page-counter.new .number').html('5');
-        $('.page[data-page-number="6"] .page-counter.new .number').html('6');
+        $container.find('.page[data-page-number="1"] .page-counter.new .number').html('1');
+        $container.find('.page[data-page-number="2"] .page-counter.new .number').html('2');
+        $container.find('.page[data-page-number="3"] .page-counter.new .number').html('3');
+        $container.find('.page[data-page-number="4"] .page-counter.new .number').html('4');
+        $container.find('.page[data-page-number="5"] .page-counter.new .number').html('5');
+        $container.find('.page[data-page-number="6"] .page-counter.new .number').html('6');
 
         // var pageNumber = $(parent).closest('.page').attr('data-page-number');
         // alert(pageNumber);
 
-    }, 2000);
+    }, 250);
 }
 
 function closeDiv(spn) {
@@ -44,9 +47,10 @@ function closeDiv(spn) {
 
 var deleteThisPage = function(parent) {
     // parent.parentNode.
-    var pageNumber = $(parent).closest('.page').attr('data-page-number');
-    var pageAction = "<div class='delete-page-action'>" + 
-        "<div class='govuk-form-group'>" + 
+    var $page = $(parent).closest('.page');
+    var pageNumber = $page.attr('data-page-number');
+    var pageAction = "<div class='delete-page-action'>" +
+        "<div class='govuk-form-group'>" +
             "<label class='govuk-label' for='delete-page-reason'>Sort by</label>" +
             "<select class='govuk-select' id='delete-page-reason' name='delete-page-reason' onClick='return activateButton()'>" +
                 "<option disabled selected>-- Select reason --</option>" +
@@ -59,26 +63,8 @@ var deleteThisPage = function(parent) {
         "<button id='' class='cancel-delete-page non-button' data-module='govuk-button' type='button' onclick='closeDeleteAction(this)'>Cancel</button>" +
     "</div>";
 
-    if (pageNumber == 1) { 
-        $('.page[data-page-number="1"]').addClass('delete-this-page');
-        $('.page[data-page-number="1"]').append(pageAction);
-    } else if (pageNumber == 2) { 
-        $('.page[data-page-number="2"]').addClass('delete-this-page');
-        $('.page[data-page-number="2"]').append(pageAction);
-    } else if (pageNumber == 3) { 
-        $('.page[data-page-number="3"]').addClass('delete-this-page');
-        $('.page[data-page-number="3"]').append(pageAction);
-    } else if (pageNumber == 4) { 
-        $('.page[data-page-number="4"]').addClass('delete-this-page');
-        $('.page[data-page-number="4"]').append(pageAction);
-    } else if (pageNumber == 5) { 
-        $('.page[data-page-number="5"]').addClass('delete-this-page');
-        $('.page[data-page-number="5"]').append(pageAction);
-    } else if (pageNumber == 6) { 
-        $('.page[data-page-number="6"]').addClass('delete-this-page');
-        $('.page[data-page-number="6"]').append(pageAction);
-    }
-
+    $page.addClass('delete-this-page');
+    $page.append(pageAction);
 }
 
 function activateButton() {
@@ -89,9 +75,9 @@ function activateButton() {
 
 var completeDelete = function(parent) {
     $('.page-counter.new').show();
-    var pageNumberToRemove = $(parent).closest('.page').attr('data-page-number');
-    var pageContent = "<div class='delete-page-content'>" + 
-        "<div class='content'>" + 
+    var $page = $(parent).closest('.page');
+    var pageContent = "<div class='delete-page-content'>" +
+        "<div class='content'>" +
             "<span class='page-deleted'></span>" +
             "<h2 class='govuk-heading-xl'>Page selected for deletion</h2>" +
             "<p class=''>Click <strong>“save and submit”</strong> to remove the page from the document</p>" +
@@ -105,39 +91,15 @@ var completeDelete = function(parent) {
         "<button class='govuk-button saveAndFinishButton' onClick='return triggerRedactionActions();'>Save and submit all redactions</button>" +
     "</div>";
 
-    if (pageNumberToRemove == 1) { 
-        // $('.page[data-page-number="1"]').removeClass('delete-this-page');
-        $('.page[data-page-number="1"] .delete-page-action').hide();
-        $('.page[data-page-number="1"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="1"]').append(pageContent);
-    } else if (pageNumberToRemove == 2) { 
-        // $('.page[data-page-number="2"]').removeClass('delete-this-page');
-        $('.page[data-page-number="2"] .delete-page-action').hide();
-        $('.page[data-page-number="2"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="2"]').append(pageContent);
-    } else if (pageNumberToRemove == 3) { 
-        // $('.page[data-page-number="3"]').removeClass('delete-this-page');
-        $('.page[data-page-number="3"] .delete-page-action').hide();
-        $('.page[data-page-number="3"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="3"]').append(pageContent);
-    } else if (pageNumberToRemove == 4) { 
-        // $('.page[data-page-number="4"]').removeClass('delete-this-page');
-        $('.page[data-page-number="4"] .delete-page-action').hide();
-        $('.page[data-page-number="4"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="4"]').append(pageContent);
-    } else if (pageNumberToRemove == 5) { 
-        // $('.page[data-page-number="5"]').removeClass('delete-this-page');
-        $('.page[data-page-number="5"] .delete-page-action').hide();
-        $('.page[data-page-number="5"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="5"]').append(pageContent);
-    } else if (pageNumberToRemove == 6) { 
-        // $('.page[data-page-number="6"]').removeClass('delete-this-page');
-        $('.page[data-page-number="6"] .delete-page-action').hide();
-        $('.page[data-page-number="6"] .page-counter.new .delete-page').html('Cancel');
-        $('.page[data-page-number="6"]').append(pageContent);
-    }
+    $page.find('.delete-page-action').hide();
+    $page.find('.page-counter.new .delete-page').html('Cancel');
+    $page.append(pageContent);
 
-    $('#pdf-root').prepend(redactionFooter);
+    if ($('.redaction-footer.delete-page-footer').length === 0) {
+        $('#pdf-root').prepend(redactionFooter);
+    } else {
+        $('.redaction-footer.delete-page-footer').show();
+    }
 
     var deletionReason = $('#delete-page-reason').val();
     var deletionReasonAnswer = "<li><b>1</b> - " + deletionReason +"</li>";
@@ -150,32 +112,18 @@ var removeRedactions = function(parent) {
 
     $('div.Highlight, #marqueeTool, .AreaHighlight, .AreaHighlight__part').remove();
 
-    $('#changeDocument .page .page-counter.new button').attr('onclick', 'return deleteThisPage(this), closeDiv(this), noRotate(this)').html('<span class="icon delete"></span>Delete</button>');
+    var $btn = $('#changeDocument .page .page-counter.new button');
+    if ($btn.length === 0) {
+        $btn = $('#pdf-root .page .page-counter.new button');
+    }
+    $btn.attr('onclick', 'return deleteThisPage(this), closeDiv(this), noRotate(this)').html('<span class="icon delete"></span>Delete</button>');
 }
 
 var closeDeleteAction = function(parent) {
     $('.page-counter.new').show();
-
-    var pageNumber = $(parent).closest('.page').attr('data-page-number');
-    if (pageNumber == 1) { 
-        $('.page[data-page-number="1"]').removeClass('delete-this-page');
-        $('.page[data-page-number="1"] .delete-page-action').hide();
-    } else if (pageNumber == 2) { 
-        $('.page[data-page-number="2"]').removeClass('delete-this-page');
-        $('.page[data-page-number="2"] .delete-page-action').hide();
-    } else if (pageNumber == 3) { 
-        $('.page[data-page-number="3"]').removeClass('delete-this-page');
-        $('.page[data-page-number="3"] .delete-page-action').hide();
-    } else if (pageNumber == 4) { 
-        $('.page[data-page-number="4"]').removeClass('delete-this-page');
-        $('.page[data-page-number="4"] .delete-page-action').hide();
-    } else if (pageNumber == 5) { 
-        $('.page[data-page-number="5"]').removeClass('delete-this-page');
-        $('.page[data-page-number="5"] .delete-page-action').hide();
-    } else if (pageNumber == 6) { 
-        $('.page[data-page-number="6"]').removeClass('delete-this-page');
-        $('.page[data-page-number="6"] .delete-page-action').hide();
-    }
+    var $page = $(parent).closest('.page');
+    $page.removeClass('delete-this-page');
+    $page.find('.delete-page-action').hide();
 }
 
 function triggerRedactionActions() {
@@ -200,15 +148,18 @@ function deletePageDocument() {
 
     const elements = document.querySelectorAll('.page-counter');
     const count = elements.length-1;
-    $('#changeDocument .page strong').html(count);
+    var $container = $('#changeDocument');
+    if ($container.length === 0) {
+        $container = $('#pdf-root');
+    }
+    $container.find('.page strong').html(count);
 
-    $('.page[data-page-number="1"] .page-counter.new .number').html('1');
-    $('.page[data-page-number="2"] .page-counter.new .number').html('1');
-    $('.page[data-page-number="3"] .page-counter.new .number').html('2');
-    $('.page[data-page-number="4"] .page-counter.new .number').html('3');
-    $('.page[data-page-number="5"] .page-counter.new .number').html('4');
-    $('.page[data-page-number="6"] .page-counter.new .number').html('5');
-
+    $container.find('.page[data-page-number="1"] .page-counter.new .number').html('1');
+    $container.find('.page[data-page-number="2"] .page-counter.new .number').html('1');
+    $container.find('.page[data-page-number="3"] .page-counter.new .number').html('2');
+    $container.find('.page[data-page-number="4"] .page-counter.new .number').html('3');
+    $container.find('.page[data-page-number="5"] .page-counter.new .number').html('4');
+    $container.find('.page[data-page-number="6"] .page-counter.new .number').html('5');
 }
 
 function noRotate() {
@@ -226,9 +177,32 @@ function closeDisabledRotate() {
 
 function openRotatePagesModal() {
     var rotateButton = "<button onclick='return rotateThisPage(this);' class='rotate-page'><span class='icon rotate'></span>Rotate page</button>";
-    $('.page-counter.new button.delete-page').hide();
-    $('.page-counter.new').append(rotateButton);
+    var $pages = $('.page-counter.new');
+    if ($pages.length === 0) {
+        $pages = $('#pdf-root .page-counter.new');
+    }
 
+    if ($pages.length === 0) {
+        // alert("Please open a document before trying to rotate pages.");
+        // Try to initialize page actions if they haven't been already
+        pageActions();
+        setTimeout(function() {
+            var $pagesRetry = $('.page-counter.new');
+            if ($pagesRetry.length === 0) {
+                $pagesRetry = $('#pdf-root .page-counter.new');
+            }
+
+            if ($pagesRetry.length === 0) {
+                alert("Please open a document before trying to rotate pages.");
+            } else {
+                $pagesRetry.find('button.delete-page').hide();
+                $pagesRetry.append(rotateButton);
+            }
+        }, 300);
+        return;
+    }
+    $pages.find('button.delete-page').hide();
+    $pages.append(rotateButton);
 }
 
 // function closeDiv2(spn) {
@@ -236,9 +210,9 @@ function openRotatePagesModal() {
 // }
 
 var rotateThisPage = function(parent) {
-    var rotatePageNumber = $(parent).closest('.page').attr('data-page-number');
-    var pageRotateAction = "<div class='rotate-page-content'>" + 
-        "<div class='content'>" + 
+    var $page = $(parent).closest('.page');
+    var pageRotateAction = "<div class='rotate-page-content'>" +
+        "<div class='content'>" +
             "<div class='wrapper'>" +
                 "<div class='rotate-controls'>" +
                     "<button id='' class='rotate-button rotate-left' data-module='govuk-button' type='button' onClick='return rotateLeft(this), onClick();'><span></span>Rotate page left</button>" +
@@ -247,79 +221,23 @@ var rotateThisPage = function(parent) {
                 "</div>" +
             "</div>" +
             "<h2 class='govuk-heading-xl'>Rotate page <span></span></h2>" +
-            "<p class=''>Click <strong>“save and submit”</strong> to submit changes to CMS</p>" +
+            "<p style='margin-bottom: 10px;'>Click <strong>“save and submit”</strong> to submit changes to CMS</p>" +
             "<button id='' class='cancel-rotate-page non-button' data-module='govuk-button' type='button' onClick='return cancelRotate(this);'>Cancel</button>" +
         "</div>" +
     "</div>";
 
-    if (rotatePageNumber == 1) { 
-        $('.page[data-page-number="1"]').addClass('rotate-this-page');
-        $('.page[data-page-number="1"]').append(pageRotateAction);
-        $('.page[data-page-number="1"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="1"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    } else if (rotatePageNumber == 2) { 
-        $('.page[data-page-number="2"]').addClass('rotate-this-page');
-        $('.page[data-page-number="2"]').append(pageRotateAction);
-        $('.page[data-page-number="2"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="2"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    } else if (rotatePageNumber == 3) { 
-        $('.page[data-page-number="3"]').addClass('rotate-this-page');
-        $('.page[data-page-number="3"]').append(pageRotateAction);
-        $('.page[data-page-number="3"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="3"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    } else if (rotatePageNumber == 4) { 
-        $('.page[data-page-number="4"]').addClass('rotate-this-page');
-        $('.page[data-page-number="4"]').append(pageRotateAction);
-        $('.page[data-page-number="4"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="4"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    } else if (rotatePageNumber == 5) { 
-        $('.page[data-page-number="5"]').addClass('rotate-this-page');
-        $('.page[data-page-number="5"]').append(pageRotateAction);
-        $('.page[data-page-number="5"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="5"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    } else if (rotatePageNumber == 6) { 
-        $('.page[data-page-number="6"]').addClass('rotate-this-page');
-        $('.page[data-page-number="6"]').append(pageRotateAction);
-        $('.page[data-page-number="6"] .page-counter.new .rotate-page').html('Cancel');
-        $('.page[data-page-number="6"] .page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
-    }
-
+    $page.addClass('rotate-this-page');
+    $page.append(pageRotateAction);
+    $page.find('.page-counter.new .rotate-page').html('Cancel');
+    $page.find('.page-counter.new .rotate-page').attr('onclick', 'return cancelRotate(this)');
 }
 
 var cancelRotate = function(parent) {
-    var rotatePageNumberCancel = $(parent).closest('.page').attr('data-page-number');
-
-    if (rotatePageNumberCancel == 1) { 
-        $('.page[data-page-number="1"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="1"] .rotate-page-content').hide();
-        $('.page[data-page-number="1"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="1"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    } else if (rotatePageNumberCancel == 2) { 
-        $('.page[data-page-number="2"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="2"] .rotate-page-content').hide();
-        $('.page[data-page-number="2"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="2"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    } else if (rotatePageNumberCancel == 3) { 
-        $('.page[data-page-number="3"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="3"] .rotate-page-content').hide();
-        $('.page[data-page-number="3"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="3"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    } else if (rotatePageNumberCancel == 4) { 
-        $('.page[data-page-number="4"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="4"] .rotate-page-content').hide();
-        $('.page[data-page-number="4"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="4"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    } else if (rotatePageNumberCancel == 5) { 
-        $('.page[data-page-number="5"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="5"] .rotate-page-content').hide();
-        $('.page[data-page-number="5"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="5"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    } else if (rotatePageNumberCancel == 6) { 
-        $('.page[data-page-number="6"]').removeClass('rotate-this-page');
-        $('.page[data-page-number="6"] .rotate-page-content').hide();
-        $('.page[data-page-number="5"] .page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
-        $('.page[data-page-number="6"] .page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
-    }
+    var $page = $(parent).closest('.page');
+    $page.removeClass('rotate-this-page');
+    $page.find('.rotate-page-content').hide();
+    $page.find('.page-counter.new .rotate-page').html('<span class="icon rotate"></span> Rotate page');
+    $page.find('.page-counter.new .rotate-page').attr('onclick', 'return rotateThisPage(this)');
 }
 
 var rotateLeft = function(parent) {
@@ -363,12 +281,10 @@ var rotationFooter = "<div class='redaction-footer rotate-page-footer'>" +
 
 function onClick() {
     clicks += 1;
-    if (clicks == 1) {
+    if ($('.redaction-footer.rotate-page-footer').length === 0) {
         $('#pdf-root').prepend(rotationFooter);
-    } else if (clicks > 1) {
-
-    } else { 
-        $('#pdf-root').hide('.redaction-footer.rotate-page-footer');
+    } else {
+        $('.redaction-footer.rotate-page-footer').show();
     }
 };
 
@@ -377,7 +293,11 @@ var removeRotations = function(parent) {
     $('.page').removeClass('rotate-this-page');
     $('.rotate-page-content').hide();
 
-    $('#changeDocument .page .page-counter.new button').attr('onclick', 'return rotateThisPage(this);').html('<span class="icon rotate"></span>Rotate page');
+    var $btn = $('#changeDocument .page .page-counter.new button');
+    if ($btn.length === 0) {
+        $btn = $('#pdf-root .page .page-counter.new button');
+    }
+    $btn.attr('onclick', 'return rotateThisPage(this);').html('<span class="icon rotate"></span>Rotate page');
 }
 
 var triggerRotationActions = function(parent) {
@@ -396,8 +316,12 @@ function closetriggerRotationActions() {
     $('.page').removeClass('rotate-this-page');
     $('.rotate-page-content').hide();
     $('#pdf-root .redaction-footer.rotate-page-footer').hide();
-    $('#changeDocument .page .page-counter.new button').attr('onclick', 'return deleteThisPage(this), closeDiv(this), noRotate(this);').html('<span class="icon delete"></span>Delete');
 
+    var $btn = $('#changeDocument .page .page-counter.new button');
+    if ($btn.length === 0) {
+        $btn = $('#pdf-root .page .page-counter.new button');
+    }
+    $btn.attr('onclick', 'return deleteThisPage(this), closeDiv(this), noRotate(this);').html('<span class="icon delete"></span>Delete');
 }
 
 

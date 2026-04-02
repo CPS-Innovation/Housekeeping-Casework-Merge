@@ -148,7 +148,7 @@ main.case-files {
                         border-radius: 5px 5px 0 0;
                         &:hover, &:active, &:focus {
                             span {
-                                display: none; 
+                                display: none;
                             }
                         }
                         span {
@@ -296,7 +296,7 @@ main.case-files {
                     }
                 }
             }
-            .searchedDocumentSummary {  
+            .searchedDocumentSummary {
                 margin-bottom: -5px;
                 .title {
                     display: inline-block;
@@ -307,7 +307,7 @@ main.case-files {
                 p, a {
                     float: left;
                     // clear: both;
-                } 
+                }
                 a {
                     font-weight: normal;
                     margin-top: 0.65em;
@@ -325,7 +325,7 @@ main.case-files {
                         }
                     }
                 }
-            }         
+            }
             .error-message, .updated-message, .discarded-message, .redaction-message, .suggested-redactions-panel, .email-message {
                 display: none;
                 background: govuk-colour("light-grey");
@@ -431,7 +431,7 @@ main.case-files {
 
                 }
             }
-            .email-message { 
+            .email-message {
                 // display: block !important;
                 p {
                     span {
@@ -563,17 +563,21 @@ main.case-files {
                     .delete-page-content, .rotate-page-content {
                         position: absolute;
                         display: flex;
+                        flex-direction: column;
                         vertical-align: middle;
                         align-items: center;
+                        justify-content: center;
                         left: 0;
                         top: 0;
-                        bottom: 0;
+                        bottom: 4.2rem;
                         right: 0;
                         background: rgba(0,0,0,0.7);
                         z-index: 999;
                         .content {
                             width: 100%;
-                            display: inline-block;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
                             color: white;
                             text-align: center;
                             .wrapper {
@@ -635,6 +639,7 @@ main.case-files {
                             }
                             h2, p {
                                 text-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+                                width: 100%;
                             }
                             h2 {
                                 color: white;
@@ -650,6 +655,7 @@ main.case-files {
                             }
                             button {
                                 color: white;
+                                width: auto;
                             }
                         }
                     }
@@ -696,7 +702,7 @@ main.case-files {
             }
         }
     }
-} 
+}
 
 .document-holder {
     position: relative;
@@ -778,7 +784,7 @@ main.case-files {
     justify-content: center;
     vertical-align: middle;
     z-index: 14;
-    background: $govuk-link-colour; 
+    background: $govuk-link-colour;
     font-weight: normal;
     p {
         margin: 0;
@@ -829,7 +835,7 @@ main.case-files {
     width: 75%;
     &.show-menu {
         // transition: all 0.3s linear;
-        // transform: translate3d(-25px,0,0);      
+        // transform: translate3d(-25px,0,0);
         width: 100%;
         .govuk-width-container {
             margin: 0;
@@ -839,7 +845,9 @@ main.case-files {
 
 #pdf-root {
     position: relative;
+    z-index: 1;
     .redaction-footer {
+        z-index: 1001;
         // padding-left: 5px;
         // width: 100% !important;
         left: 28.25%;
@@ -875,8 +883,8 @@ main.case-files {
             box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.2);
             padding: 10px 20px 10px 10px;
             &:after {
-                width: 0; 
-                height: 0; 
+                width: 0;
+                height: 0;
                 border-left: 15px solid transparent;
                 border-right: 15px solid transparent;
                 border-top: 15px solid white;
@@ -995,7 +1003,7 @@ main.case-files {
     position: fixed;
     bottom: 0;
     background: white;
-    border-top: 5px solid #b1b4b6; 
+    border-top: 5px solid #b1b4b6;
     height: 4rem;
     color: black;
     display: flex;
@@ -1045,7 +1053,7 @@ main.case-files {
                 }
             }
         }
-        .caretAnnotation { 
+        .caretAnnotation {
             svg ellipse {
 
             }
@@ -1080,7 +1088,7 @@ main.case-files {
 
         }
         .stampAnnotation {
-            
+
         }
         .strikeoutAnnotation {
 
