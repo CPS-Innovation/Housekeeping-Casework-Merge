@@ -29,24 +29,46 @@
     </div>
 
     <div class="govuk-grid-column-three-quarters" id="redact_column_2">
-        <div class="info_wrapper">
-            <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
-                data-module="govuk-button" style="">Show categories</button>
-            <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
+        <div id="right-column">
+            <div class="info_wrapper">
+                <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
+                    data-module="govuk-button" style="">Show categories</button>
+                <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
 
-            <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
-                <li class="arrow left"><a href="#">tab left</a></li>
-                <li class="arrow right"><a href="#">tab right</a></li>
-                <li class="arrow down"><a href="#">tab down</a></li>
-            </ul>
-        </div>
+                <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
+                    <li class="arrow left"><a href="#">tab left</a></li>
+                    <li class="arrow right"><a href="#">tab right</a></li>
+                    <li class="arrow down"><a href="#">tab down</a></li>
+                </ul>
+            </div>
 
-        <div id="docCopy" class="docCopy">
-            <h2 class="govuk-heading-m">Select your materials to review</h2>
-            <p>Search or choose a file to start reviewing materials</p>
+            <div id="docCopy" class="docCopy">
+                <h2 class="govuk-heading-m">Select your materials to review</h2>
+                <p>Search or choose a file to start reviewing materials</p>
+            </div>
         </div>
     </div>
 
 </div>
 
 <!-- ///////////////////////////////// TAB 3 - CONTENT - END ///////////////////////////////// -->
+
+<script>
+    $(document).ready(function() {
+        // Ensure that document links in the sidebar are properly handled
+        $('.show_material').off('click').on('click', function(e) {
+            e.preventDefault();
+            var label = $(this).text();
+            // Call the global handleMenuLinkClick if it exists
+            if (typeof handleMenuLinkClick === 'function') {
+                handleMenuLinkClick(label);
+            } else {
+                // Fallback to manually finding the link in .openMe if global not available
+                console.log("Global handleMenuLinkClick not found, searching for link in .openMe");
+                $(".openMe a").filter(function() {
+                    return $(this).text() === label;
+                }).first().click();
+            }
+        });
+    });
+</script>

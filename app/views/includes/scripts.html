@@ -203,6 +203,7 @@
             showTab(tabId, showSearchSummary);
             $("#searchModal").addClass("rj-dont-display");
         }
+        window.handleMenuLinkClick = handleMenuLinkClick;
 
         function highlightMenuLink(label, isHighlighted) {
             const $link = $(`.openMe a:contains('${label}')`);

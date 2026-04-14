@@ -164,31 +164,37 @@
 
             <!-- TAB CONTENT - 1 - PCD request -->
             <div class="panel" id="tab_content_1" {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
+                {% set tab_id = '1' %}
                 {% include "../includes/version-2/tab-1-PCD-request.html" %}
             </div>
 
-            <!-- TAB CONTENT - 2 - Manage materials (v1.2 Review and redact functionality) -->
+            <!-- TAB CONTENT - 2 - Manage materials (v1.2 tab 3: Review and redact) -->
             <div class="panel" id="tab_content_2" {% if data['activeTab'] != 'manage' %}style="display: none;"{% endif %}>
-                {% include "../includes/version-2/tab-2-Manage-Materials.html" %}
+                {% set tab_id = '2' %}
+                {% include "../includes/version-2/tab-6-Review-Materials.html" %}
             </div>
 
-            <!-- TAB CONTENT - 3 - Communications -->
+            <!-- TAB CONTENT - 3 - Communications (v1.2 tab 4) -->
             <div class="panel" id="tab_content_3" {% if data['activeTab'] != 'comms' %}style="display: none;"{% endif %}>
+                {% set tab_id = '3' %}
                 {% include "../includes/version-2/tab-3-Comms.html" %}
             </div>
 
-            <!-- TAB CONTENT - 4 - Reviews -->
+            <!-- TAB CONTENT - 4 - Reviews (v1.2 tab 5) -->
             <div class="panel" id="tab_content_4" style="display: none;">
+                {% set tab_id = '4' %}
                 {% include "../includes/version-2/tab-4-PCD-review.html" %}
             </div>
 
-            <!-- TAB CONTENT - 5 - Materials -->
+            <!-- TAB CONTENT - 5 - Materials (v1.2 tab 2) -->
             <div class="panel" id="tab_content_5" {% if data['activeTab'] != 'materials' %}style="display: none;"{% endif %}>
+                {% set tab_id = '5' %}
                 {% include "../includes/version-2/tab-5-Materials.html" %}
             </div>
 
-            <!-- TAB CONTENT - 6 - Review and redact -->
+            <!-- TAB CONTENT - 6 - Review and redact (v1.2 tab 3) -->
             <div class="panel" id="tab_content_6" style="display: none;">
+                {% set tab_id = '6' %}
                 {% include "../includes/version-2/tab-6-Review-Materials.html" %}
             </div>
         </div>
