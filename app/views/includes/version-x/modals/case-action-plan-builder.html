@@ -1,0 +1,413 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="caseActionBuilderModal">
+
+    <div class="das-cookie-banner caseActionBuilderModal-wrapper" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// CASE ACTION PLAN BUILDER - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="case-action-plan-builder-modal">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    {% if data['searchURN'] %}
+                                        {{ data['searchURN'] }}/1 <span>- Case Action Plans</span>
+                                    {% else %}
+                                        45AA209820/1 <span>- Case Action Plans</span>
+                                    {% endif %}                        
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+
+                                    <div class="tabs" id="new-tabs">
+                                        <h2 class="title">Contents</h2>
+                                        <ul class="list">
+                                            <li class="list-item list-item--selected">
+                                                <a class="tab-link draft-plan-link">Draft Action Plan</a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a class="tab-link sent-plan-link">Sent Action Plans</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="panel" id="draft-plan">
+                                            <h2 class="govuk-heading-m">Draft Action Plan</h2>
+
+                                            <!-- /////////////////////// NO PLAN - START /////////////////////// -->
+                                            <div id="no-plan">
+                                                <p>You have no draft action plans</p>
+                                                <button id="" class="govuk-button add-button" data-module="govuk-button" type="button" onClick="openCaseActionModal(), closeCaseActionBuilderModal()">Add a new action</button>
+                                                <div class="govuk-grid-row">
+                                                    <div class="govuk-grid-column-full cta-group">
+                                                        <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal()">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /////////////////////// NO PLAN - END /////////////////////// -->
+
+                                            <!-- /////////////////////// CASE ACTION PLAN - START /////////////////////// -->
+                                            <div id="case-action-plan-active">
+
+                                                <table class="govuk-table">
+                                                    <thead class="govuk-table__head">
+                                                        <tr class="govuk-table__row">
+                                                            <th scope="col" class="govuk-table__header" width="10%">Action type</th>
+                                                            <th scope="col" class="govuk-table__header" width="15%">Required by Date</th>
+                                                            <th scope="col" class="govuk-table__header" width="45%">Description to Invesgitative Agency</th>
+                                                            <th scope="col" class="govuk-table__header" width="10%">Follow up task?</th>
+                                                            <th scope="col" class="govuk-table__header" width="10%">Created by</th>
+                                                            <th scope="col" class="govuk-table__header" width="10%"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="govuk-table__body">
+                                                        <tr class="govuk-table__row">
+                                                            <th scope="row" class="govuk-table__header"><span class="govuk-tag CAPanswer-type"></span></th>
+                                                            <td class="govuk-table__cell">
+                                                                <span class="CAPanswer-date-Day"></span>
+                                                                <span class="CAPanswer-date-Month"></span>
+                                                                <span class="CAPanswer-date-Year"></span>
+                                                            </td>
+                                                            <td class="govuk-table__cell">
+                                                                <span class="CAPanswer-info">
+                                                                    <ul class="govuk-list">
+                                                                        <li class="Details-Key">
+                                                                            <strong>Key Witness Details</strong>
+                                                                            <br>
+                                                                            <span class="Details-Key-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-AllKey">
+                                                                            <strong>All Key Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-AllKey-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-NonKey">
+                                                                            <strong>Non-key Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-NonKey-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Additional">
+                                                                            <strong>Additional (Non-Key) Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-Additional-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Witness">
+                                                                            <strong>Witness Availability</strong>
+                                                                            <br>
+                                                                            <span class="Details-Witness-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Victim">
+                                                                            <strong>Victim Personal Statement</strong>
+                                                                            <br>
+                                                                            <span class="Details-Victim-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Special">
+                                                                            <strong>Special Measures Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-Special-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Convictions">
+                                                                            <strong>Previous Convictions for all Prosecution Witnesses</strong>
+                                                                            <br>
+                                                                            <span class="Details-Convictions-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-ROTI">
+                                                                            <strong>ROTI</strong>
+                                                                            <br>
+                                                                            <span class="Details-ROTI-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-KeyExibits">
+                                                                            <strong>Key Exhibits</strong>
+                                                                            <br>
+                                                                            <span class="Details-KeyExibits-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Evidence">
+                                                                            <strong>Identification Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Evidence-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-CCTV">
+                                                                            <strong>CCTV Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-CCTV-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Visually">
+                                                                            <strong>Visually Recorded Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Visually-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Drugs">
+                                                                            <strong>Initial Drugs Assessment</strong>
+                                                                            <br>
+                                                                            <span class="Details-Drugs-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Forensic">
+                                                                            <strong>Forensic Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Forensic-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Medical">
+                                                                            <strong>Medical Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Medical-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Unused">
+                                                                            <strong>Unused/Sensitive Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-Unused-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Bad">
+                                                                            <strong>Bad Character/Dangerous Offender info</strong>
+                                                                            <br>
+                                                                            <span class="Details-Bad-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Orders">
+                                                                            <strong>Orders on Conviction</strong>
+                                                                            <br>
+                                                                            <span class="Details-Orders-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-POCA">
+                                                                            <strong>POCA Review</strong>
+                                                                            <br>
+                                                                            <span class="Details-POCA-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Compensation">
+                                                                            <strong>Compensation Details</strong>
+                                                                            <br>
+                                                                            <span class="Details-Compensation-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Other">
+                                                                            <strong>Other (specify)</strong>
+                                                                            <br>
+                                                                            <span class="Details-Other-Content"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </span>
+                                                            </td>
+                                                            <td class="govuk-table__cell"><span class="CAPanswer-task"></span></td>
+                                                            <td class="govuk-table__cell">
+                                                                <strong class="">user_name_1983</strong>
+                                                                <br>
+                                                                <span id="CAP-date-stamp"></span>
+                                                            </td>
+                                                            <td class="govuk-table__cell"><a href="#">Edit</a> | <a href="#">Remove</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <button id="" class="govuk-button add-button" data-module="govuk-button" type="button" onClick="openCaseActionModal(), closeCaseActionBuilderModal()">Add a new action</button>
+
+                                                <hr class="dotted">
+
+
+                                                <div class="govuk-grid-row">
+                                                    <div class="govuk-grid-column-full cta-group">
+                                                        <button id="case-action-plan-submitted" class="govuk-button" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal(), openConfirmationModal()">Submit Case Action Plan</button>
+                                                        <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal()">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /////////////////////// CASE ACTION PLAN - END /////////////////////// -->
+
+                                        </div>
+
+                                        <div class="panel" id="sent-plan" style="display: none;">
+                                            <h2 class="govuk-heading-m">Sent Action Plans</h2>
+
+                                            <!-- /////////////////////// NO SENT PLAN - START /////////////////////// -->
+                                            <div id="no-sent-plan">
+                                                <p>You have no sent action plans</p>
+                                                <div class="govuk-grid-row">
+                                                    <div class="govuk-grid-column-full cta-group">
+                                                        <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal()">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /////////////////////// NO SENT PLAN - END /////////////////////// -->
+
+                                            <!-- /////////////////////// CASE ACTION PLAN - START /////////////////////// -->
+                                            <div id="sent-case-action-plan-active">
+
+                                                <table class="govuk-table">
+                                                    <thead class="govuk-table__head">
+                                                        <tr class="govuk-table__row">
+                                                            <th scope="col" class="govuk-table__header" width="10%">Action type</th>
+                                                            <th scope="col" class="govuk-table__header" width="15%">Required by Date</th>
+                                                            <th scope="col" class="govuk-table__header" width="55%">Description to Invesgitative Agency</th>
+                                                            <th scope="col" class="govuk-table__header" width="10%">Follow up task?</th>
+                                                            <th scope="col" class="govuk-table__header" width="10%">Sent by</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="govuk-table__body">
+                                                        <tr class="govuk-table__row">
+                                                            <th scope="row" class="govuk-table__header"><span class="govuk-tag CAPanswer-type"></span></th>
+                                                            <td class="govuk-table__cell">
+                                                                <span class="CAPanswer-date-Day"></span>
+                                                                <span class="CAPanswer-date-Month"></span>
+                                                                <span class="CAPanswer-date-Year"></span>
+                                                            </td>
+                                                            <td class="govuk-table__cell">
+                                                                <span class="CAPanswer-info">
+                                                                    <ul class="govuk-list">
+                                                                        <li class="Details-Key">
+                                                                            <strong>Key Witness Details</strong>
+                                                                            <br>
+                                                                            <span class="Details-Key-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-AllKey">
+                                                                            <strong>All Key Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-AllKey-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-NonKey">
+                                                                            <strong>Non-key Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-NonKey-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Additional">
+                                                                            <strong>Additional (Non-Key) Witness Statements</strong>
+                                                                            <br>
+                                                                            <span class="Details-Additional-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Witness">
+                                                                            <strong>Witness Availability</strong>
+                                                                            <br>
+                                                                            <span class="Details-Witness-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Victim">
+                                                                            <strong>Victim Personal Statement</strong>
+                                                                            <br>
+                                                                            <span class="Details-Victim-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Special">
+                                                                            <strong>Special Measures Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-Special-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Convictions">
+                                                                            <strong>Previous Convictions for all Prosecution Witnesses</strong>
+                                                                            <br>
+                                                                            <span class="Details-Convictions-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-ROTI">
+                                                                            <strong>ROTI</strong>
+                                                                            <br>
+                                                                            <span class="Details-ROTI-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-KeyExibits">
+                                                                            <strong>Key Exhibits</strong>
+                                                                            <br>
+                                                                            <span class="Details-KeyExibits-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Evidence">
+                                                                            <strong>Identification Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Evidence-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-CCTV">
+                                                                            <strong>CCTV Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-CCTV-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Visually">
+                                                                            <strong>Visually Recorded Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Visually-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Drugs">
+                                                                            <strong>Initial Drugs Assessment</strong>
+                                                                            <br>
+                                                                            <span class="Details-Drugs-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Forensic">
+                                                                            <strong>Forensic Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Forensic-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Medical">
+                                                                            <strong>Medical Evidence</strong>
+                                                                            <br>
+                                                                            <span class="Details-Medical-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Unused">
+                                                                            <strong>Unused/Sensitive Material</strong>
+                                                                            <br>
+                                                                            <span class="Details-Unused-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Bad">
+                                                                            <strong>Bad Character/Dangerous Offender info</strong>
+                                                                            <br>
+                                                                            <span class="Details-Bad-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Orders">
+                                                                            <strong>Orders on Conviction</strong>
+                                                                            <br>
+                                                                            <span class="Details-Orders-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-POCA">
+                                                                            <strong>POCA Review</strong>
+                                                                            <br>
+                                                                            <span class="Details-POCA-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Compensation">
+                                                                            <strong>Compensation Details</strong>
+                                                                            <br>
+                                                                            <span class="Details-Compensation-Content"></span>
+                                                                        </li>
+                                                                        <li class="Details-Other">
+                                                                            <strong>Other (specify)</strong>
+                                                                            <br>
+                                                                            <span class="Details-Other-Content"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </span>
+                                                            </td>
+                                                            <td class="govuk-table__cell"><span class="CAPanswer-task"></span></td>
+                                                            <td class="govuk-table__cell">
+                                                                <strong class="">user_name_1983</strong>
+                                                                <br>
+                                                                <span id="CAP-date-stamp2"></span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="govuk-grid-row">
+                                                    <div class="govuk-grid-column-full cta-group">
+                                                        <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionBuilderModal()">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /////////////////////// CASE ACTION PLAN - END /////////////////////// -->
+
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// CASE ACTION PLAN BUILDER - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
