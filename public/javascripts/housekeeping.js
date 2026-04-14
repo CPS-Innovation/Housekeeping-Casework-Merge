@@ -289,7 +289,23 @@ $(document).ready(function() {
     }
 
     // Function to show a specific tab
-    function showTabByNumber(tabNumber) {
+    function showTabByNumber(tabNumber, isLogicalV1) {
+        // Detect version from URL
+        var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+
+        // Map tab numbers for Version 2 if using v1 logical numbers
+        // v1 Order: 1:PCD, 2:Materials, 3:Review & Redact, 4:Comms, 5:Reviews
+        // v2 Order: 1:PCD, 2:Manage materials (v1:3), 3:Comms (v1:4), 4:Reviews (v1:5), 5:Materials (v1:2), 6:Review and redact (v1:3)
+        var targetTabNumber = tabNumber;
+        if (isVersion2 && isLogicalV1) {
+            // Mapping v1 logical tab numbers to v2 physical tab indices
+            if (tabNumber == 1) targetTabNumber = 1; // PCD
+            else if (tabNumber == 2) targetTabNumber = 5; // Materials
+            else if (tabNumber == 3) targetTabNumber = 2; // Manage materials (v1:3) - primary mapping
+            else if (tabNumber == 4) targetTabNumber = 3; // Comms
+            else if (tabNumber == 5) targetTabNumber = 4; // Reviews
+        }
+
         // Hide all panels
         $('.panel').hide();
 
@@ -297,18 +313,20 @@ $(document).ready(function() {
         $('#new-tabs li').removeClass('govuk-tabs__list-item--selected');
 
         // Show the specific tab panel
-        $('#tab_content_' + tabNumber).show();
+        $('#tab_content_' + targetTabNumber).show();
 
         // Add selected class to the specific tab link
-        $('.tab-' + tabNumber + '-content_link').addClass('govuk-tabs__list-item--selected');
+        $('.tab-' + targetTabNumber + '-content_link').addClass('govuk-tabs__list-item--selected');
 
-        // Handle special cases for specific tabs
-        if (tabNumber === 3) {
+        // Handle special cases for specific tabs (using logical purpose)
+        // If it's the "Review & Redact" style tab (v1:3, v2:2, v2:6)
+        if ((!isVersion2 && tabNumber == 3) || (isVersion2 && (targetTabNumber == 2 || targetTabNumber == 6))) {
             $('#tab-list').show();
             $('#docCopy').hide();
         }
 
-        if (tabNumber === 4) {
+        // If it's the "Communications" tab (v1:4, v2:3)
+        if ((!isVersion2 && tabNumber == 4) || (isVersion2 && targetTabNumber == 3)) {
             // Update communications counters when the tab is shown
             if (typeof updateCommsCounters === 'function') {
                 updateCommsCounters();
@@ -324,7 +342,7 @@ $(document).ready(function() {
     // Check for tab parameter in URL and show appropriate tab
     var tabParam = getUrlParameter('tab');
     if (tabParam) {
-        showTabByNumber(tabParam);
+        showTabByNumber(tabParam, true);
     }
 
     // Updated tab click handler that works with URL parameters
@@ -336,7 +354,7 @@ $(document).ready(function() {
         var tabMatch = classes.match(/tab-(\d+)-content/);
         if (tabMatch) {
             var tabNumber = tabMatch[1];
-            showTabByNumber(tabNumber);
+            showTabByNumber(tabNumber, false);
         } else {
             // Fallback to original behavior for non-numbered tabs
             $('ul#new-tabs li').removeClass('govuk-tabs__list-item--selected');
@@ -1341,13 +1359,16 @@ $(document).ready(function() {
      $('.redact_Document_Multiple_Docs').click(function(){
           $('ul#tab-list').show();
 
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var targetTabNumber = isVersion2 ? 2 : 3;
           $('ul#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');
-          $('ul#new-tabs li.tab-3-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
+          $('ul#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
 
           $('.panel').hide();
-          $('#tab_content_2').hide();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
           $('#docCopy').hide();
-          $('#tab_content_3').show();
 
           var redactedDocuments = parseInt($("input[name=materials_document]:checked").length);
           var existingNUmber = parseInt($('.redacted_documents').text());
@@ -1360,11 +1381,15 @@ $(document).ready(function() {
      $('.redact_Document').click(function(){
           $('.panel').hide();
           $('#tab_content_2').hide();
-          $('#tab_content_3').show();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
           $('#tab-list').show();
 
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var targetTabNumber = isVersion2 ? 2 : 3;
           $('#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');
-          $('#new-tabs li.tab-3-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
+          $('#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
 
           $('#docCopy').hide();
 
@@ -1381,7 +1406,9 @@ $(document).ready(function() {
           $('.redacted_documents').text(redactedDocuments + 1);
 
           $('.panel').hide();
-          $('#tab_content_3').show();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
 
           $('.active_document').removeClass('active_document');
           $('.govuk-tag').filter(function() {
@@ -1639,7 +1666,9 @@ function closeRenameModal() {
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
     // Check if we are in the "Review and Redact" tab AND a specific document tab is visible
-    let isReviewTabVisible = $('#tab_content_3').is(':visible');
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+    let isReviewTabVisible = $(activeReviewTab).is(':visible');
     let activeTabPanel = $('.govuk-tabs__panel:not(.govuk-tabs__panel--hidden)');
 
     if (isReviewTabVisible && activeTabPanel.length > 0) {
@@ -1824,7 +1853,8 @@ function checkUpdatedExhibit(){
 
 function openMaterialTab() {
     // Only trigger navigation; tab selection will be handled on page load using the hash
-    window.location.href = "/version-1/A-index.html#tab_content_3";
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    window.location.href = isVersion2 ? "/version-2/A-index.html#tab_content_2" : "/version-1/A-index.html#tab_content_3";
 }
 
 $(document).ready(function() {
@@ -1836,7 +1866,9 @@ $(document).ready(function() {
     checkUpdatedStatement();
 //    submitUpdatedStatement();
 
-    if (window.location.hash === "#tab_content_3") {
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    var activeReviewTab = isVersion2 ? "#tab_content_2" : "#tab_content_3";
+    if (window.location.hash === activeReviewTab) {
         showTabByNumber(2);
     }
 });
@@ -2011,12 +2043,15 @@ $(document).ready(function () {
     $(".search-item a").on("click", function (e) {
         $('.panel').hide();
         $('#tab_content_2').hide();
-        $('#tab_content_3').show();
+        var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+        var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+        $(activeReviewTab).show();
         $('#docCopy').hide();
         $('ul#tab-list').show();
 
         $('ul#new-tabs li').removeClass('govuk-tabs__list-item--selected');
-        $('ul#new-tabs li.tab-3-content_link').addClass('govuk-tabs__list-item--selected');
+        var targetTabNumber = isVersion2 ? 2 : 3;
+        $('ul#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('govuk-tabs__list-item--selected');
 
         var redactedDocuments = parseInt($('.redacted_documents').text());
         $('.redacted_documents').text(redactedDocuments + 1);
@@ -2259,7 +2294,14 @@ $(document).on('click', '.reclassify-Document', function() {
 // Modal functions
 function openModalOver() {
     $(redactionModalOver).removeClass("rj-dont-display");
-    $('.tab-3-content').click();
+
+    // Detect version
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    if (isVersion2) {
+        showTabByNumber(2, false);
+    } else {
+        showTabByNumber(3, false);
+    }
 
     // Save current active document if there is one
     var activeDoc = $('#filter_Redactions table tr.active_document a.show-case').text();

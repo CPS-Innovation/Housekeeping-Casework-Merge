@@ -1359,13 +1359,16 @@ $(document).ready(function() {
      $('.redact_Document_Multiple_Docs').click(function(){
           $('ul#tab-list').show();
 
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var targetTabNumber = isVersion2 ? 2 : 3;
           $('ul#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');
-          $('ul#new-tabs li.tab-3-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
+          $('ul#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
 
           $('.panel').hide();
-          $('#tab_content_2').hide();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
           $('#docCopy').hide();
-          $('#tab_content_3').show();
 
           var redactedDocuments = parseInt($("input[name=materials_document]:checked").length);
           var existingNUmber = parseInt($('.redacted_documents').text());
@@ -1378,11 +1381,15 @@ $(document).ready(function() {
      $('.redact_Document').click(function(){
           $('.panel').hide();
           $('#tab_content_2').hide();
-          $('#tab_content_3').show();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
           $('#tab-list').show();
 
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var targetTabNumber = isVersion2 ? 2 : 3;
           $('#new-tabs li').removeClass('list-item--selected govuk-tabs__list-item--selected');
-          $('#new-tabs li.tab-3-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
+          $('#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('list-item--selected govuk-tabs__list-item--selected');
 
           $('#docCopy').hide();
 
@@ -1399,7 +1406,9 @@ $(document).ready(function() {
           $('.redacted_documents').text(redactedDocuments + 1);
 
           $('.panel').hide();
-          $('#tab_content_3').show();
+          var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+          var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+          $(activeReviewTab).show();
 
           $('.active_document').removeClass('active_document');
           $('.govuk-tag').filter(function() {
@@ -1657,7 +1666,9 @@ function closeRenameModal() {
 // Open selected documents in a new window
 function openDocumentInNewWindow() {
     // Check if we are in the "Review and Redact" tab AND a specific document tab is visible
-    let isReviewTabVisible = $('#tab_content_3').is(':visible');
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+    let isReviewTabVisible = $(activeReviewTab).is(':visible');
     let activeTabPanel = $('.govuk-tabs__panel:not(.govuk-tabs__panel--hidden)');
 
     if (isReviewTabVisible && activeTabPanel.length > 0) {
@@ -1842,7 +1853,8 @@ function checkUpdatedExhibit(){
 
 function openMaterialTab() {
     // Only trigger navigation; tab selection will be handled on page load using the hash
-    window.location.href = "/version-1/A-index.html#tab_content_3";
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    window.location.href = isVersion2 ? "/version-2/A-index.html#tab_content_2" : "/version-1/A-index.html#tab_content_3";
 }
 
 $(document).ready(function() {
@@ -1854,7 +1866,9 @@ $(document).ready(function() {
     checkUpdatedStatement();
 //    submitUpdatedStatement();
 
-    if (window.location.hash === "#tab_content_3") {
+    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+    var activeReviewTab = isVersion2 ? "#tab_content_2" : "#tab_content_3";
+    if (window.location.hash === activeReviewTab) {
         showTabByNumber(2);
     }
 });
@@ -2029,12 +2043,15 @@ $(document).ready(function () {
     $(".search-item a").on("click", function (e) {
         $('.panel').hide();
         $('#tab_content_2').hide();
-        $('#tab_content_3').show();
+        var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
+        var activeReviewTab = isVersion2 ? '#tab_content_2' : '#tab_content_3';
+        $(activeReviewTab).show();
         $('#docCopy').hide();
         $('ul#tab-list').show();
 
         $('ul#new-tabs li').removeClass('govuk-tabs__list-item--selected');
-        $('ul#new-tabs li.tab-3-content_link').addClass('govuk-tabs__list-item--selected');
+        var targetTabNumber = isVersion2 ? 2 : 3;
+        $('ul#new-tabs li.tab-' + targetTabNumber + '-content_link').addClass('govuk-tabs__list-item--selected');
 
         var redactedDocuments = parseInt($('.redacted_documents').text());
         $('.redacted_documents').text(redactedDocuments + 1);

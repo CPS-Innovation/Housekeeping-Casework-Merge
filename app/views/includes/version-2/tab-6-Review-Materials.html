@@ -21,28 +21,28 @@
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-one-quarter" id="redact_column_1_{{ tab_id }}">
+    <div class="govuk-grid-column-one-quarter" id="redact_column_1">
         <div class="moj-filter-layout__filter">
             <!-- Force v1.2 look for version 2 -->
             {% include "./redaction_filter-from-v1.2.html" %}
         </div>
     </div>
 
-    <div class="govuk-grid-column-three-quarters" id="redact_column_2_{{ tab_id }}">
-        <div id="right-column_{{ tab_id }}">
+    <div class="govuk-grid-column-three-quarters" id="redact_column_2">
+        <div id="right-column">
             <div class="info_wrapper">
-                <button id="show_filter_Redactions_{{ tab_id }}" type="button" class="govuk-button govuk-button--secondary"
+                <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
                     data-module="govuk-button" style="">Show categories</button>
-                <button id="close_filter_Redactions_{{ tab_id }}" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
+                <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
 
-                <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list_{{ tab_id }}">
+                <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
                     <li class="arrow left"><a href="#">tab left</a></li>
                     <li class="arrow right"><a href="#">tab right</a></li>
                     <li class="arrow down"><a href="#">tab down</a></li>
                 </ul>
             </div>
 
-            <div id="docCopy_{{ tab_id }}" class="docCopy">
+            <div id="docCopy" class="docCopy">
                 <h2 class="govuk-heading-m">Select your materials to review</h2>
                 <p>Search or choose a file to start reviewing materials</p>
             </div>
