@@ -1,12 +1,12 @@
 {% extends "layoutCPS-NEW-CASEFILE.html" %}
 {% block header %}
-{% include "../includes/version-1/banner.html" %}
-{% include "../includes/version-1/modals/rename.html" %}
-{% include "../includes/version-1/modals/feedback.html" %}
-{% include "../includes/version-1/modals/report-a-problem.html" %}
-{% include "../includes/version-1/modals/search.html" %}
-{% include "../includes/version-1/modals/notes-new.html" %}
-{% include "../includes/version-1/modals/notes.html" %}
+{% include "../includes/version-2/banner.html" %}
+{% include "../includes/version-2/modals/rename.html" %}
+{% include "../includes/version-2/modals/feedback.html" %}
+{% include "../includes/version-2/modals/report-a-problem.html" %}
+{% include "../includes/version-2/modals/search.html" %}
+{% include "../includes/version-2/modals/notes-new.html" %}
+{% include "../includes/version-2/modals/notes.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -199,9 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedTypeText = selectedOption.text;
         sessionStorage.setItem('reclassify_success', 'true');
         sessionStorage.setItem('reclassify_type', selectedTypeText);
-        
+
         const sourceTab = sessionStorage.getItem('reclassify_source_tab') || '2';
-        
+
         // Use already determined versionPrefix
         window.location.href = versionPrefix + 'A-index?tab=' + sourceTab;
     });
