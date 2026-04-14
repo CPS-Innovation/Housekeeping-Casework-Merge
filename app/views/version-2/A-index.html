@@ -136,67 +136,61 @@
             <h2 class="govuk-tabs__title">Contents</h2>
 
             <ul class="" id="new-tabs">
-                {% if data['activeTab'] == 'materials' %}
-                <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link govuk-tabs__list-item--selected"><a
-                        class="tab-link tab-2-content">Materials (20)</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
-                {% elif data['activeTab'] == 'comms' %}
-                <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials (20)</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-4-content">Communications</a></li>
-                {% else %}
-                <li class="tab-1-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
-                {% endif %}
-                <li class="tab-5-content_link"><a class="tab-link tab-5-content">Reviews</a></li>
+                <!-- Tab 1: PCD request -->
+                <li class="tab-1-content_link {% if not data['activeTab'] or data['activeTab'] == 'pcd' %}govuk-tabs__list-item--selected{% endif %}">
+                    <a class="tab-link tab-1-content">PCD request</a>
+                </li>
+                <!-- Tab 2: Manage materials (Identical to v1.2 Review and redact) -->
+                <li class="tab-2-content_link {% if data['activeTab'] == 'manage' %}govuk-tabs__list-item--selected{% endif %}">
+                    <a class="tab-link tab-2-content">Manage materials</a>
+                </li>
+                <!-- Tab 3: Communications -->
+                <li class="tab-3-content_link {% if data['activeTab'] == 'comms' %}govuk-tabs__list-item--selected{% endif %}">
+                    <a class="tab-link tab-3-content">Communications</a>
+                </li>
+                <!-- Tab 4: Reviews -->
+                <li class="tab-4-content_link">
+                    <a class="tab-link tab-4-content">Reviews</a>
+                </li>
+                <!-- Tab 5: Materials -->
+                <li class="tab-5-content_link {% if data['activeTab'] == 'materials' %}govuk-tabs__list-item--selected{% endif %}">
+                    <a class="tab-link tab-5-content">Materials</a>
+                </li>
+                <!-- Tab 6: Review and redact -->
+                <li class="tab-6-content_link">
+                    <a class="tab-link tab-6-content">Review and redact</a>
+                </li>
             </ul>
 
-            <!-- TAB CONTENT - 1 - START -->
-            {% if data['activeTab'] == 'materials' or data['activeTab'] == 'comms' %}
-            <div class="panel" id="tab_content_1" style="display: none;">
-            {% else %}
-            <div class="panel" id="tab_content_1">
-            {% endif %}
+            <!-- TAB CONTENT - 1 - PCD request -->
+            <div class="panel" id="tab_content_1" {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
                 {% include "../includes/version-2/tab-1-PCD-request.html" %}
             </div>
-            <!-- TAB CONTENT - 1 - END -->
 
-            <!-- TAB CONTENT - 2 - START -->
-            {% if data['activeTab'] == 'materials' %}
-            <div class="panel" id="tab_content_2">
-            {% else %}
-            <div class="panel" id="tab_content_2" style="display: none;">
-            {% endif %}
-                {% include "../includes/version-2/tab-2-Materials.html" %}
+            <!-- TAB CONTENT - 2 - Manage materials (v1.2 Review and redact functionality) -->
+            <div class="panel" id="tab_content_2" {% if data['activeTab'] != 'manage' %}style="display: none;"{% endif %}>
+                {% include "../includes/version-2/tab-2-Manage-Materials.html" %}
             </div>
-            <!-- TAB CONTENT - 2 - END -->
 
-            <!-- TAB CONTENT - 3 - START -->
-            <div class="panel" id="tab_content_3" style="display: none;">
-                {% include "../includes/version-2/tab-3-Review-Materials.html" %}
+            <!-- TAB CONTENT - 3 - Communications -->
+            <div class="panel" id="tab_content_3" {% if data['activeTab'] != 'comms' %}style="display: none;"{% endif %}>
+                {% include "../includes/version-2/tab-3-Comms.html" %}
             </div>
-            <!-- TAB CONTENT - 3 - END -->
 
-            <!-- TAB CONTENT - 4 - START -->
-            {% if data['activeTab'] == 'comms' %}
-            <div class="panel" id="tab_content_4">
-            {% else %}
+            <!-- TAB CONTENT - 4 - Reviews -->
             <div class="panel" id="tab_content_4" style="display: none;">
-            {% endif %}
-                {% include "../includes/version-2/tab-4-Comms.html" %}
+                {% include "../includes/version-2/tab-4-PCD-review.html" %}
             </div>
-            <!-- TAB CONTENT - 4 - END -->
 
-            <!-- TAB CONTENT - 5 - START -->
-            <div class="panel" id="tab_content_5" style="display: none;">
-                {% include "../includes/version-2/tab-5-PCD-review.html" %}
+            <!-- TAB CONTENT - 5 - Materials -->
+            <div class="panel" id="tab_content_5" {% if data['activeTab'] != 'materials' %}style="display: none;"{% endif %}>
+                {% include "../includes/version-2/tab-5-Materials.html" %}
             </div>
-            <!-- TAB CONTENT - 5 - END -->
+
+            <!-- TAB CONTENT - 6 - Review and redact -->
+            <div class="panel" id="tab_content_6" style="display: none;">
+                {% include "../includes/version-2/tab-6-Review-Materials.html" %}
+            </div>
         </div>
     </div>
 </div>

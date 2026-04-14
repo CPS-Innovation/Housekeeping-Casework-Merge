@@ -138,6 +138,12 @@ router.get('/version-1/cancel-discard', function (req, res) {
     res.redirect(`/version-1/A-index?version=${version}`);
 });
 
+router.get('/version-2/A-index', (req, res) => {
+    // We pass version: '1.2' to version-2 templates so they 
+    // inherit the v1.2 look for redaction/materials filters.
+    res.render('version-2/A-index', { version: '1.2' });
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 
