@@ -260,6 +260,13 @@ ul#tab-list {
           .moj-filter-layout__filter {
                box-shadow: none;
                border: 1px solid $govuk-border-colour;
+
+               @include govuk-media-query(desktop) {
+                    .govuk-grid-column-full & {
+                         max-width: none;
+                    }
+               }
+
                #active_filter {
                     display: none;
                     border-top: 1px solid $govuk-border-colour;
