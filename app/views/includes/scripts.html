@@ -400,6 +400,23 @@
 
             tabCount -= 1;
             showHideStaticText();
+
+            // v2.0 - Reset layout when all document tabs are closed
+            if (tabCount === 0) {
+                $('tr.active_document').removeClass('active_document');
+                if (typeof updateRedactLayout === 'function') {
+                    updateRedactLayout();
+                } else {
+                    // Fallback if updateRedactLayout is not globally available
+                    var $panel = $('#tab_content_2');
+                    if ($panel.is(':visible')) {
+                        var $redactColumn1 = $panel.find('#redact_column_1');
+                        var $redactColumn2 = $panel.find('#redact_column_2');
+                        $redactColumn1.removeClass('govuk-grid-column-one-quarter').addClass('govuk-grid-column-full');
+                        $redactColumn2.hide();
+                    }
+                }
+            }
         }
 
         function showTab(tabId, showSummary) {
