@@ -32,7 +32,7 @@
 }
 
 .fa-triangle-exclamation {
-     color:#d4351c; 
+     color:#d4351c;
 }
 
 // Removed as 'Find a case link' added
@@ -61,7 +61,7 @@
 }
 
 .bottom-border {
-     border-bottom: 1px solid #b1b4b6; 
+     border-bottom: 1px solid #b1b4b6;
      margin-bottom:40px;
      nav {
           &.moj-sub-navigation {
@@ -98,15 +98,16 @@ nav.side_nav {
                     width: 94%;
                     padding: 0.75em 3%;
                     border-left: 5px solid govuk-colour("white");
-                    &:hover, &:active, &:focus {
+                    &:hover, &.active, &.focus {
                          color: govuk-colour("dark-blue");
                          border-left: 5px solid govuk-colour("dark-blue");
                          background-color: govuk-colour("light-grey");
                     }
-                    &.active {
-                         color: govuk-colour("dark-blue");
-                         border-left: 5px solid govuk-colour("dark-blue");
-                         background-color: govuk-colour("light-grey");
+                    &:focus {
+                       color: #0b0c0c;
+                       background-color: #ffdd00;
+                       border-left: 5px solid #ffdd00;
+                       box-shadow: 0 -2px var(--govuk-focus-colour, #ffdd00),0 4px var(--govuk-focus-text-colour, #0b0c0c);
                     }
                }
           }
@@ -133,7 +134,7 @@ nav.side_nav {
           &:first-of-type {
                padding-left: 1.75em;
                background: url("../images/help-blue.svg") no-repeat 0% 50%;
-               background-size: 1.25em;   
+               background-size: 1.25em;
           }
      }
 }
@@ -147,7 +148,7 @@ ul#new-tabs {
      li {
           display: inline-block;
           margin-bottom: 0;
-          padding: 10px 20px;  
+          padding: 10px 20px;
           background: govuk-colour("light-grey");
           position: relative;
           &:after {
@@ -440,7 +441,7 @@ ul#tab-list {
                                    width: 100%;
                                    margin: 0 0 0.5em 0;
                                    button {
-                                        margin: 0; 
+                                        margin: 0;
                                    }
                               }
                          }
@@ -516,7 +517,7 @@ table.sortable {
                     position: absolute;
                     right: 0px;
                     top: 2px;
-               }          
+               }
           }
           button {
                margin: 0;
@@ -528,11 +529,11 @@ table.sortable {
                text-align: left;
                padding: 0 1em 0 0;
                background: url("../images/table-sort.svg") no-repeat 100% 50% white;
-               background-size: 0.75em;   
+               background-size: 0.75em;
                &:hover, &:active, &:focus {
                     background: url("../images/table-sort.svg") no-repeat 100% 50% white;
                     color: $govuk-link-colour;
-                    background-size: 0.75em;   
+                    background-size: 0.75em;
                }
           }
           .title {
@@ -552,7 +553,7 @@ table.sortable {
                          }
                          &:after {
                               top: 4px;
-                         }    
+                         }
                     }
                     strong.govuk-tag {
                          font-size: 1rem;
@@ -1019,7 +1020,7 @@ table {
                         border-radius: 5px 5px 0 0;
                         &:hover, &:active, &:focus {
                             span {
-                                display: none; 
+                                display: none;
                             }
                         }
                         span {
@@ -1073,7 +1074,7 @@ table {
                     margin-right: 1.5em;
                     margin-top: 0.5em;
                     p {
-                         margin: 0 0 0 0.5em; 
+                         margin: 0 0 0 0.5em;
                          color: rgba(255,255,255, 0.6);
                          font-weight: normal;
                          &.looks-like-a-link-underline {
@@ -1209,8 +1210,8 @@ table {
                                                    display: none;
                                                }
                                                &:before {
-                                                   width: 0; 
-                                                   height: 0; 
+                                                   width: 0;
+                                                   height: 0;
                                                    border-left: 8px solid transparent;
                                                    border-right: 8px solid transparent;
                                                    border-bottom: 8px solid rgba(0,0,0,0.7);
@@ -1230,7 +1231,7 @@ table {
                                    .notes-number, .new-notes-number {
                                        align-content: center;
                                        justify-content: center;
-                                       flex-wrap: wrap;                                                
+                                       flex-wrap: wrap;
                                        display: none;
                                        text-indent: 0;
                                        position: absolute;
@@ -1261,7 +1262,7 @@ table {
                     border-bottom: 1px solid $govuk-border-colour !important;
                     padding-left: 1.35em !important;
                }
-          } 
+          }
      }
 }
 
@@ -1292,7 +1293,7 @@ table {
      font-size:19px
 }
 
-             
+
 .govuk-tag--red {
     background: #f4cdc6;
 }
@@ -1410,7 +1411,7 @@ main.case-files {
      li.current {
           a {
                color:#000 !important;
-          }         
+          }
           /*    position: absolute;
           bottom: -5px;
           display: inline-block;
@@ -1479,7 +1480,7 @@ main.case-files {
                &:hover {
                     color: #5694ca;
                }
-          }     
+          }
      }
 }
 
@@ -1545,11 +1546,11 @@ main.case-files {
 .reclassified-unused {
      background-color: #f8f8f8;
      opacity: 0.7;
-     
+
      .govuk-table__cell {
           color: #6f777b;
      }
-     
+
      .govuk-button {
           opacity: 0.8;
      }
@@ -1564,18 +1565,18 @@ main.case-files {
 /* Success notification banner styling */
 .govuk-notification-banner--success {
      border: 5px solid #00703c;
-     
+
      .govuk-notification-banner__header {
           background-color: #00703c;
-          
+
           .govuk-notification-banner__title {
                color: white;
           }
      }
-     
+
      .govuk-notification-banner__content {
           background-color: #f3f9f1;
-          
+
           .govuk-notification-banner__heading {
                color: #00703c;
           }
