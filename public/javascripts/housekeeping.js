@@ -1389,7 +1389,7 @@ $(document).ready(function() {
           }).remove();
           var $row = $(this).closest('tr');
           var $td = $(this).closest('td');
-          
+
           $row.addClass('active_document').removeClass('unread_document');
           if ($td.find('.govuk-tag').filter(function() { return $(this).text().trim() === 'Active document'; }).length === 0) {
               $td.prepend(`<strong class="govuk-tag active_document">Active document</strong>`);
