@@ -143,6 +143,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
 app.set('view engine', 'html')
+app.engine('njk', nunjucksAppEnv.render.bind(nunjucksAppEnv))
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
