@@ -1287,7 +1287,7 @@ table {
     }
   }
 
-  table#statements_table, table#statements_table_V2, table#statements_table_V3, table#statements_table_V4, table#exhibits_table, table#mg_forms_table, table#other_material_table, table#other_material_table_V2, table#always_unused_table, table#always_unused_table_V2, table#forensics_table {
+  table#statements_table, table#statements_table_V2, table#statements_table_V3, table#statements_table_V4, table#exhibits_table, table#mg_forms_table, table#materials_table, table#other_material_table, table#other_material_table_V2, table#always_unused_table, table#always_unused_table_V2, table#forensics_table {
     margin: 0;
 
     thead {
@@ -1303,19 +1303,44 @@ table {
         }
 
         &.unread_document {
+          background: rgba(29, 112, 184, 0.075);
+
+          .govuk-grid-column-one-quarter & {
+            display: block;
+            border-left: 5px solid #1d70b8;
+
+            td {
+              border-left: none !important;
+            }
+          }
+
           td {
-            padding: 0.75em 1.35em 0.75em 1em;
-            background: rgba(29, 112, 184, 0.075);
-            border-left: 5px solid $govuk-link-colour;
+            &:first-child {
+              padding: 0.75em 1.35em 0.75em 1em;
+              border-left: 5px solid $govuk-link-colour;
+            }
           }
         }
 
         &.active_document {
+          background: white;
+
+          .govuk-grid-column-one-quarter & {
+            display: block;
+            border-left: 5px solid #1d70b8;
+
+            td {
+              border-right: none !important;
+            }
+          }
+
           td {
             // padding-right: 10px;
             // padding-left: 0;
-            background: white;
-            border-right: 5px solid $govuk-link-colour;
+
+            &:last-child {
+              border-right: 5px solid $govuk-link-colour;
+            }
 
             strong.govuk-tag {
               &.active_document {
@@ -1811,6 +1836,15 @@ main.case-files {
     display: none;
   }
 
-  border: 1px solid red;
+  tr {
+    display: block;
+    border-left: 5px solid #1d70b8;
+  }
+
+  td {
+    display: block;
+    border: none !important;
+    padding: 0;
+  }
 
 }
