@@ -1,0 +1,1071 @@
+<!-- Existing table -->
+<table class="govuk-table sortable from-v2"
+       id="materials_table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">
+            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                 data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input"
+                           id="materials_documents_ALL"
+                           name="materials_document" type="checkbox"
+                           value="Select all">
+                    <label class="govuk-label govuk-checkboxes__label"
+                           for="materials_documents_ALL"></label>
+                </div>
+            </div>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Material
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Type
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Category
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Status
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Reference
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Date
+            </button>
+        </th>
+        <th scope="col" class="govuk-table__header">
+            <button class="govuk-button"
+                    data-module="govuk-button">Notes
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+
+    {% for item in data['cases'][0]['material'] %}
+    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <div class="govuk-checkboxes govuk-checkboxes--small"
+                 data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input"
+                           id="materials_document_1"
+                           name="materials_document" type="checkbox"
+                           value="{{ item.dataDoc }}">
+                    <label class="govuk-label govuk-checkboxes__label"
+                           for="materials_document_1"><span
+                            class="visuallyhidden">{{ item.title }}</span></label>
+                </div>
+            </div>
+        </td>
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material" data-id="1"
+                   data-doc="{{ item.dataDoc }}">{{ item.title }}</a>
+            </div>
+        </td>
+        <td class="govuk-table__cell">{{ item.type }}</td>
+        <td class="govuk-table__cell">Review</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{
+            item.status }}</strong>
+        </td>
+        <td class="govuk-table__cell">{{ item.reference }}</td>
+        <td class="govuk-table__cell">{{ item.date }}</td>
+        <td class="govuk-table__cell toggle-panel">
+            <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes"
+               onClick="openNewNotesModal(); return false;">
+                <span class="notes-text">Show notes:</span>
+                <span class="new-notes-number">(3)</span>
+                <span class="visuallyhidden notes-new-text-content"></span>
+            </a>
+        </td>
+    </tr>
+    {% else %}
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell" colspan="8">No materials found in session
+            data.
+        </td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+<h2 class="govuk-heading-s">Case overview (3)</h2>
+<table class="govuk-table" id="other_material_table_V2">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>Case overview</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 20 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'Exhibit - 1' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_1 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="18" data-doc="defendants.pdf"
+                   data-page="1">Asset Rec 1</a>
+            </div>
+            <p class="date-added">
+                Date: 03/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 20 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'Case overview and
+    officer comments' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_2 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="2" data-doc="CM01.pdf"
+                   data-page="2">Case overview and officer
+                    comments</a>
+            </div>
+            <p class="date-added">
+                Date: 02/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG05 MCLOVE' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_3 material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="3" data-doc="MG05MCLOVE.pdf"
+                   data-page="4">MG05 MCLOVE</a>
+            </div>
+            <p class="date-added">
+                Date: 02/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 3 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG06 3 June' %}
+
+    {% else %}
+    <!--                                                    <tr class="govuk-table__row document_row_4 material_Other material_Used material_New material_All unread_document">-->
+    <!--                                                        <td class="govuk-table__cell title_column">-->
+    <!--                                                            <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                                            <div class="openMe">-->
+    <!--                                                                <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="4" data-doc="MG06_3June.pdf" data-page="3">MG06 3 June</a>-->
+    <!--                                                            </div>-->
+    <!--                                                            <p class="date-added">-->
+    <!--                                                                Date: 03/06/2020-->
+    <!--                                                                <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                                                    <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                                                </button>-->
+    <!--                                                            </p>-->
+    <!--                                                        </td>-->
+    <!--                                                    </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG06 10 June' %}
+
+    {% else %}
+    <!--                                                    <tr class="govuk-table__row document_row_5 material_Other material_Used material_New material_All unread_document">-->
+    <!--                                                        <td class="govuk-table__cell title_column">-->
+    <!--                                                            <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                                            <div class="openMe">-->
+    <!--                                                                <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="5" data-doc="MG06_10june.pdf" data-page="3">MG06 10 June</a>-->
+    <!--                                                            </div>-->
+    <!--                                                            <p class="date-added">-->
+    <!--                                                                Date: 10/06/2020-->
+    <!--                                                                <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                                                    <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                                                </button>-->
+    <!--                                                            </p>-->
+    <!--                                                        </td>-->
+    <!--                                                    </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">Statements (3)</h2>
+<table class="govuk-table" id="statements_table_V2">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>PC BLAYNEE</th>
+    </tr>
+    <!-- ||||||||||||||| ROW 6 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'stmt BLAYNEE 2034 1
+    JUNE mg11' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_6 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="6"
+                   data-doc="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf"
+                   data-page="2">stmt BLAYNEE 2034 1 JUNE
+                    mg11</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 01/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link statement-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 6 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+<table class="govuk-table" id="statements_table_V3">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>LUCY DOYLE</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 7 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'stmt Lucy Doyle MG11'
+    %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_7 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="7"
+                   data-doc="stmt_Lucy_Doyle_MG11.pdf"
+                   data-page="3">stmt Lucy Doyle MG11</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 01/06/2020
+                <a href="#" class="govuk-link notes-link has-notes statement-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 7 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+<table class="govuk-table" id="statements_table_V4">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>SHELAGH MCLOVE</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 8 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'stmt Shelagh McLove
+    MG11' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_8 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="8"
+                   data-doc="stmt_Shelagh_McLove_MG11_hand.pdf"
+                   data-page="5">stmt Shelagh McLove
+                    MG11</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 01/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link statement-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 8 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 9 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'Shelagh McLove VPS
+    mg11' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_9 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="9"
+                   data-doc="Shelagh_McLove_VPS_mg11.pdf"
+                   data-page="2">Shelagh McLove VPS mg11</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 06/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link statement-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 9 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 10 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG11 Shelagh MCLOVE
+    retraction' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_10 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="10"
+                   data-doc="MG11_Shelagh_MCLOVE_retraction.pdf"
+                   data-page="1">MG11 Shelagh MCLOVE
+                    retraction</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 06/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link statement-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 10 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">Exhibits (2)</h2>
+<table class="govuk-table" id="exhibits_table">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>Items</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 11 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MCLOVE MG12' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_11 material_Exhibit material_Used material_New material_All unread_document">-->
+    <!--                            <td class="govuk-table__cell title_column">-->
+    <!--                                <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                <div class="openMe">-->
+    <!--                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="11" data-doc="MG12.pdf" data-page="1">MCLOVE MG12</a>-->
+    <!--                                </div>-->
+    <!--                                <p class="date-added">-->
+    <!--                                    Statement Date: 12/06/2020-->
+    <!--                                    <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                        <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                    </button>-->
+    <!--                                </p>-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 11 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 12 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MCLOVE MG00' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_12 material_Exhibit material_Used material_New material_All unread_document">-->
+    <!--                            <td class="govuk-table__cell title_column">-->
+    <!--                                <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                <div class="openMe">-->
+    <!--                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="12" data-doc="MG00.pdf" data-page="1">MCLOVE MG00</a>-->
+    <!--                                </div>-->
+    <!--                                <p class="date-added">-->
+    <!--                                    Date: 12/06/2020-->
+    <!--                                    <button class="notes-link new-notes-link govuk-button exhibit-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                        <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                    </button>-->
+    <!--                                </p>-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 12 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 15 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG20_5_JUNE' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_15 material_Exhibit material_New material_All unread_document">-->
+    <!--                            <td class="govuk-table__cell title_column">-->
+    <!--                                <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                <div class="openMe">-->
+    <!--                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="15" data-doc="MG20_5_JUNE.pdf" data-page="1">MG20_5_JUNE</a>-->
+    <!--                                </div>-->
+    <!--                                <p class="date-added">-->
+    <!--                                    Date: 06/06/2020-->
+    <!--                                    <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                        <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                    </button>-->
+    <!--                                </p>-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 15 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 16 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG20_10_JUNE' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_16 material_Exhibit material_New material_All unread_document">-->
+    <!--                                <td class="govuk-table__cell title_column">-->
+    <!--                                    <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                    <div class="openMe">-->
+    <!--                                        <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="16" data-doc="MG20_10_JUNE.pdf" data-page="1">MG20_10_JUNE</a>-->
+    <!--                                    </div>-->
+    <!--                                    <p class="date-added">-->
+    <!--                                        Date: 11/06/2020-->
+    <!--                                        <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                            <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                            <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                        </button>-->
+    <!--                                    </p>-->
+    <!--                                </td>-->
+    <!--                            </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 16 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 20 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'Exhibit - 1' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_18 material_Exhibit material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="18" data-doc="defendants.pdf"
+                   data-page="1">Asset Rec 1</a>
+            </div>
+            <p class="date-added">
+                Date: 03/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 20 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 18 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'Asset Rec 1' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_20 material_Exhibit material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="20" data-doc="MG12.pdf"
+                   data-page="1">Exhibit - 1</a>
+            </div>
+            <p class="date-added">
+                Date: 03/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 18 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">MG forms (7)</h2>
+<table class="govuk-table" id="mg_forms_table">
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row document_row_1 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="1" data-doc="MCLOVEMG3.pdf"
+                   data-page="6">MCLOVE MG3</a>
+            </div>
+            <p class="date-added">
+                Date: 02/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_4 material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="4" data-doc="MG06_3June.pdf"
+                   data-page="3">MG06 3 June</a>
+            </div>
+            <p class="date-added">
+                Date: 03/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_15 material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="15" data-doc="MG20_5_JUNE.pdf"
+                   data-page="1">MG20_5_JUNE</a>
+            </div>
+            <p class="date-added">
+                Date: 06/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_5 material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="5" data-doc="MG06_10june.pdf"
+                   data-page="3">MG06 10 June</a>
+            </div>
+            <p class="date-added">
+                Date: 10/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_12 material_Used material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="12" data-doc="MG00.pdf"
+                   data-page="1">MCLOVE MG00</a>
+            </div>
+            <p class="date-added">
+                Date: 12/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_11 material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="11" data-doc="MG12.pdf"
+                   data-page="1">MCLOVE MG12</a>
+            </div>
+            <p class="date-added">
+                Statement Date: 12/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link statement-notes"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_19 material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="19" data-doc="MG11_1.pdf"
+                   data-page="1">MCLOVE MG3</a>
+            </div>
+            <p class="date-added">
+                Date: 13/01/2025
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">Defendant Pre Cons (1)</h2>
+<table class="govuk-table" id="statements_table">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>Defendant</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 17 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'PRE CONS D' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_17 material_Statement material_Used material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="17" data-doc="PRE_CONS_D.pdf"
+                   data-page="9">PRE CONS D</a>
+            </div>
+            <p class="date-added">
+                Date: 02/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 17 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">Unused material (2)</h2>
+<table class="govuk-table" id="always_unused_table">
+    <tbody class="govuk-table__body">
+
+    <tr class="table_header">
+        <th>Items</th>
+    </tr>
+
+    <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG06 3 June' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_4 material_Used material_New material_All unread_document">-->
+    <!--                            <td class="govuk-table__cell title_column">-->
+    <!--                                <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                <div class="openMe">-->
+    <!--                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="4" data-doc="MG06_3June.pdf" data-page="3">MG06 3 June</a>-->
+    <!--                                </div>-->
+    <!--                                <p class="date-added">-->
+    <!--                                    Date: 03/06/2020-->
+    <!--                                    <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                        <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                    </button>-->
+    <!--                                </p>-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 4 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'MG06 10 June' %}
+
+    {% else %}
+    <!--                        <tr class="govuk-table__row document_row_5 material_Used material_New material_All unread_document">-->
+    <!--                            <td class="govuk-table__cell title_column">-->
+    <!--                                <strong class="govuk-tag govuk-tag&#45;&#45;blue">New</strong>-->
+    <!--                                <div class="openMe">-->
+    <!--                                    <a class="govuk-button show_material show-case" onclick="return pageActions();" data-id="5" data-doc="MG06_10june.pdf" data-page="3">MG06 10 June</a>-->
+    <!--                                </div>-->
+    <!--                                <p class="date-added">-->
+    <!--                                    Date: 10/06/2020-->
+    <!--                                    <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">-->
+    <!--                                        <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>-->
+    <!--                                        <span class="visuallyhidden notes-new-text-content"></span>-->
+    <!--                                    </button>-->
+    <!--                                </p>-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    {% endif %}
+    <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
+
+
+    <!-- ||||||||||||||| ROW 13 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'UNUSED 1 - STORM LOG
+    1881 01.6.20 - EDITED 2020-11-23 MCLOVE' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_13 material_Always_Unused material_Unused material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="13"
+                   data-doc="UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf"
+                   data-page="7">UNUSED 1 - STORM LOG 1881
+                    01.6.20 - EDITED 2020-11-23 MCLOVE</a>
+            </div>
+            <p class="date-added">
+                Date: 01/06/2020
+                <a href="#" class="govuk-link notes-link new-notes-link"
+                   onClick="openNewNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-new-text-content"></span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 13 - END ||||||||||||||| -->
+
+    <!-- ||||||||||||||| ROW 14 - START ||||||||||||||| -->
+    {% if data['discarding_material_COMPLETED'] == 'true'
+    and data['material_selected'] == 'SDC_items to_be
+    Disclosed MCLOVE' %}
+
+    {% else %}
+    <tr class="govuk-table__row document_row_14 material_Always_Unused material_Unused material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="14"
+                   data-doc="SDC_items_to_be_Disclosed_MCLOVE.pdf"
+                   data-page="2">SDC_items to_be Disclosed
+                    MCLOVE</a>
+            </div>
+            <p class="date-added">
+                Date: 05/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- ||||||||||||||| ROW 14 - END ||||||||||||||| -->
+
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-s">Other material (5)</h2>
+<table class="govuk-table" id="other_material_table_V2">
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row document_row_18 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="18" data-doc="defendants.pdf"
+                   data-page="1">Asset Rec 1</a>
+            </div>
+            <p class="date-added">
+                Date: 03/06/2020
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_19 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="19" data-doc="MG11_1.pdf"
+                   data-page="1">Legal matter</a>
+            </div>
+            <p class="date-added">
+                Date: 13/01/2025
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_19 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="19" data-doc="MG11_1.pdf"
+                   data-page="1">Official court notice</a>
+            </div>
+            <p class="date-added">
+                Date: 13/01/2025
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_19 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="19" data-doc="MG11_1.pdf"
+                   data-page="1">Police update</a>
+            </div>
+            <p class="date-added">
+                Date: 01/02/2025
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    <tr class="govuk-table__row document_row_19 material_None material_New material_All unread_document">
+        <td class="govuk-table__cell title_column">
+            <strong class="govuk-tag govuk-tag--blue">New</strong>
+            <div class="openMe">
+                <a class="govuk-button show_material show-case"
+                   onclick="return pageActions();"
+                   data-id="19" data-doc="MG11_1.pdf"
+                   data-page="1">Official statement on
+                    trial</a>
+            </div>
+            <p class="date-added">
+                Date: 21/03/2025
+                <a href="#" class="govuk-link notes-link has-notes"
+                   onClick="openNotesModal(); return false;">
+                    <span class="notes-text">Notes:</span>
+                    <span class="new-notes-number"></span>
+                    <span class="visuallyhidden notes-text-content">
+                        <strong>Notes:</strong>
+                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                    </span>
+                </a>
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- OLD -->
+<!-- ///////////////////////////////// REDACTON FILTER - CONTENT - START ///////////////////////////////// -->
+<!--<div class="moj-filter" id="filter_Redactions">-->
+<!--    <div class="moj-filter__header">-->
+<!--        <div class="moj-filter__header-title"><h2 class="govuk-heading-m">-->
+<!--            Categories</h2></div>-->
+<!--    </div>-->
+
+<!--    <div class="moj-filter__content">-->
+<!--        <div class="moj-filter__options redaction_options">-->
+<!--            <div class="govuk-form-group search_container">-->
+<!--                <label class="govuk-label govuk-label&#45;&#45;s" for="searchURNModal">Search-->
+<!--                    materials</label>-->
+<!--                <div>-->
+<!--                    <input class="govuk-input" id="searchURNModal"-->
+<!--                           name="searchURNModal" type="text">-->
+<!--                    <button id="search_materials" type="button"-->
+<!--                            class="govuk-button" data-module="govuk-button"-->
+<!--                            onclick="openModal(); searchTerm();">Search-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!-- ///////////////////////////////// REDACTON FILTER - CONTENT - END ///////////////////////////////// -->
