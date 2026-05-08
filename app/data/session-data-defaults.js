@@ -11,8 +11,9 @@ const cases = [
                 dataDoc: "MCLOVEMG3.pdf",
                 type: "MG3",
                 category: "Exhibits",
-                date: "2022-06-02",
-                status: "None"
+                date: "2 Jun 2022",
+                status: "None",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -21,10 +22,11 @@ const cases = [
                 dataDoc: "MCLOVEMG3.pdf",
                 type: "MG3",
                 category: "Exhibits",
-                date: "02/06/2020",
+                date: "2 Jun 2020",
                 status: "None",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -33,10 +35,11 @@ const cases = [
                 dataDoc: "CM01.pdf",
                 type: "PDF",
                 category: "Unused material",
-                date: "02/06/2020",
+                date: "2 Jun 2020",
                 status: "None",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -45,10 +48,11 @@ const cases = [
                 dataDoc: "MG05MCLOVE.pdf",
                 type: "MG05",
                 category: "Unused material",
-                date: "02/06/2020",
+                date: "2 Jun 2020",
                 status: "Used",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -57,10 +61,11 @@ const cases = [
                 dataDoc: "MG06_3June.pdf",
                 type: "MG05",
                 category: "Unused material",
-                date: "03/06/2020",
+                date: "3 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -69,10 +74,11 @@ const cases = [
                 dataDoc: "MG06_10june.pdf",
                 type: "MG05",
                 category: "Unused material",
-                date: "10/06/2020",
+                date: "10 Jun 2020",
                 status: "Used",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -81,10 +87,11 @@ const cases = [
                 dataDoc: "stmt_BLAYNEE_2034_1_JUNE_mg11.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "01/06/2020",
+                date: "1 Jun 2020",
                 status: "Used",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -93,10 +100,11 @@ const cases = [
                 dataDoc: "stmt_Lucy_Doyle_MG11.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "01/06/2020",
+                date: "1 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -105,10 +113,11 @@ const cases = [
                 dataDoc: "stmt_Shelagh_McLove_MG11_hand.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "01/06/2020",
+                date: "1 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -117,10 +126,11 @@ const cases = [
                 dataDoc: "Shelagh_McLove_VPS_mg11.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "06/06/2020",
+                date: "6 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -129,10 +139,11 @@ const cases = [
                 dataDoc: "MG11_Shelagh_MCLOVE_retraction.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "06/06/2020",
+                date: "6 Jun 2020",
                 status: "Used",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -141,10 +152,11 @@ const cases = [
                 dataDoc: "MG12.pdf",
                 type: "MG12",
                 category: "Exhibits",
-                date: "12/06/2020",
+                date: "12 Jun 2020",
                 status: "Used",
                 unread: true,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -153,10 +165,11 @@ const cases = [
                 dataDoc: "MG00.pdf",
                 type: "MG00",
                 category: "Exhibits",
-                date: "12/06/2020",
+                date: "12 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -165,10 +178,11 @@ const cases = [
                 dataDoc: "UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf",
                 type: "MG11",
                 category: "Unused material",
-                date: "01/06/2020",
+                date: "1 Jun 2020",
                 status: "Unused",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -177,10 +191,11 @@ const cases = [
                 dataDoc: "SDC_items_to_be_Disclosed_MCLOVE.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "05/06/2020",
+                date: "5 Jun 2020",
                 status: "Unused",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -189,10 +204,11 @@ const cases = [
                 dataDoc: "MG20_5_JUNE.pdf",
                 type: "MG20",
                 category: "Exhibits",
-                date: "06/06/2020",
+                date: "6 Jun 2020",
                 status: "Unused",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -201,10 +217,11 @@ const cases = [
                 dataDoc: "MG20_10_JUNE.pdf",
                 type: "MG20",
                 category: "Exhibits",
-                date: "11/06/2020",
+                date: "11 Jun 2020",
                 status: "Unused",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -213,10 +230,11 @@ const cases = [
                 dataDoc: "PRE_CONS_D.pdf",
                 type: "MG20",
                 category: "Exhibits",
-                date: "02/06/2020",
+                date: "2 Jun 2020",
                 status: "Used",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -225,10 +243,11 @@ const cases = [
                 dataDoc: "defendants.pdf",
                 type: "MG20",
                 category: "Exhibits",
-                date: "03/06/2020",
+                date: "3 Jun 2020",
                 status: "None",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -237,10 +256,11 @@ const cases = [
                 dataDoc: "MG11_1.pdf",
                 type: "MG11",
                 category: "Statements",
-                date: "03/06/2020",
+                date: "3 Jun 2020",
                 status: "None",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             },
             {
                 tag: "New",
@@ -249,10 +269,11 @@ const cases = [
                 dataDoc: "MG12.pdf",
                 type: "MG12",
                 category: "Exhibits",
-                date: "03/06/2020",
+                date: "3 Jun 2020",
                 status: "None",
                 unread: false,
-                action: "Preview"
+                action: "Preview",
+                reference: "16XL9132025"
             }],
 
         communications: [{
@@ -264,7 +285,7 @@ const cases = [
             commsWith: "Police",
             commsType: "Bundle",
             type: "Other communication",
-            date: "01/02/2025",
+            date: "1 Feb 2025",
             action: "Preview"
         },
             {
@@ -276,7 +297,7 @@ const cases = [
                 commsWith: "Counsel",
                 commsType: "Document",
                 type: "Asset recovery",
-                date: "21/03/2025",
+                date: "21 Mar 2025",
                 action: "Preview"
             },
             {
@@ -288,7 +309,7 @@ const cases = [
                 commsWith: "Counsel",
                 commsType: "Comms Type",
                 type: "Counsel case acknowledgement",
-                date: "13/01/2025",
+                date: "13 Jan 2025",
                 action: "Preview"
             },
             {
@@ -300,7 +321,7 @@ const cases = [
                 commsWith: "Police",
                 commsType: "Bundle",
                 type: "Other communication",
-                date: "13/01/2025",
+                date: "13 Jan 2025",
                 action: "Preview"
             },
             {
@@ -312,7 +333,7 @@ const cases = [
                 commsWith: "Police",
                 commsType: "Bundle",
                 type: "Correspondence",
-                date: "13/01/2025",
+                date: "13 Jan 2025",
                 action: "Preview"
             }
         ]
