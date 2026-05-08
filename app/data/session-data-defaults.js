@@ -1,11 +1,11 @@
 const cases = [
     {
-        firstName: 'Homer',
-        lastName: 'Simpson',
-        caseReference: '16XL9132025',
-
+        firstName: "Homer",
+        lastName: "Simpson",
+        caseReference: "16XL9132025",
         material: [
             {
+                tag: "",
                 title: "MCLOVE MG3",
                 dataId: "1",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -13,7 +13,9 @@ const cases = [
                 category: "Exhibits",
                 date: "2 Jun 2022",
                 status: "None",
-                reference: "16XL9132025"
+                unread: false,
+                action: "Preview",
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -26,7 +28,7 @@ const cases = [
                 status: "None",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -39,7 +41,7 @@ const cases = [
                 status: "None",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -52,7 +54,7 @@ const cases = [
                 status: "Used",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -65,7 +67,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -78,7 +80,7 @@ const cases = [
                 status: "Used",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -91,7 +93,7 @@ const cases = [
                 status: "Used",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -104,7 +106,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -117,7 +119,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -130,7 +132,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -143,7 +145,7 @@ const cases = [
                 status: "Used",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -156,7 +158,7 @@ const cases = [
                 status: "Used",
                 unread: true,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -169,7 +171,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -182,7 +184,7 @@ const cases = [
                 status: "Unused",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -195,7 +197,7 @@ const cases = [
                 status: "Unused",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -208,7 +210,7 @@ const cases = [
                 status: "Unused",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -221,7 +223,7 @@ const cases = [
                 status: "Unused",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -234,7 +236,7 @@ const cases = [
                 status: "Used",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -247,7 +249,7 @@ const cases = [
                 status: "None",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -260,7 +262,7 @@ const cases = [
                 status: "None",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
+                reference: "16XL9132025",
             },
             {
                 tag: "New",
@@ -273,21 +275,22 @@ const cases = [
                 status: "None",
                 unread: false,
                 action: "Preview",
-                reference: "16XL9132025"
-            }],
-
-        communications: [{
-            tag: "New",
-            title: "Police update",
-            dataId: "21",
-            dataDoc: "MCLOVEMG3.pdf",
-            direction: "Incoming",
-            commsWith: "Police",
-            commsType: "Bundle",
-            type: "Other communication",
-            date: "1 Feb 2025",
-            action: "Preview"
-        },
+                reference: "16XL9132025",
+            },
+        ],
+        communications: [
+            {
+                tag: "New",
+                title: "Police update",
+                dataId: "21",
+                dataDoc: "MCLOVEMG3.pdf",
+                direction: "Incoming",
+                commsWith: "Police",
+                commsType: "Bundle",
+                type: "Other communication",
+                date: "1 Feb 2025",
+                action: "Preview",
+            },
             {
                 tag: "New",
                 title: "Official statement on trial",
@@ -298,7 +301,7 @@ const cases = [
                 commsType: "Document",
                 type: "Asset recovery",
                 date: "21 Mar 2025",
-                action: "Preview"
+                action: "Preview",
             },
             {
                 tag: "New",
@@ -310,7 +313,7 @@ const cases = [
                 commsType: "Comms Type",
                 type: "Counsel case acknowledgement",
                 date: "13 Jan 2025",
-                action: "Preview"
+                action: "Preview",
             },
             {
                 tag: "New",
@@ -322,7 +325,7 @@ const cases = [
                 commsType: "Bundle",
                 type: "Other communication",
                 date: "13 Jan 2025",
-                action: "Preview"
+                action: "Preview",
             },
             {
                 tag: "New",
@@ -334,13 +337,13 @@ const cases = [
                 commsType: "Bundle",
                 type: "Correspondence",
                 date: "13 Jan 2025",
-                action: "Preview"
-            }
-        ]
-    }
-]
+                action: "Preview",
+            },
+        ],
+    },
+];
 
 module.exports = {
     cases,
-    current_version: '1.0'
+    current_version: "1.0",
 };
