@@ -1831,20 +1831,96 @@ main.case-files {
 //  }
 //}
 
-.govuk-grid-column-one-quarter table.from-v2 {
-  th {
-    display: none;
-  }
+// For responsive materials table in merged tab view
+// app- prefix is used to denote it's specific to this project and not GDS standard
+//@media (max-width: 40.0525em) {
+.govuk-grid-column-one-quarter {
 
-  tr {
+  .app-responsive-table {
+
     display: block;
-    border-left: 5px solid #1d70b8;
-  }
+    border: none;
+    //border-left: 5px solid #1d70b8;
 
-  td {
-    display: block;
-    border: none !important;
-    padding: 0;
-  }
+    thead {
+      display: none;
+    }
 
+    tbody,
+    tr,
+    td {
+      display: block;
+      //border-left: 5px solid #1d70b8;
+    }
+
+    tr {
+      // margin-bottom: 20px;
+      border-bottom: 1px solid #b1b4b6;
+    }
+
+    td {
+      border-bottom: 0;
+      //padding: 0;
+      //padding-bottom: 10px;
+      padding: 0.5em 1.35em 0.5em 1em !important;
+      border-left: 5px solid #1d70b8;
+      text-align: left !important;
+
+      &[data-label="checkbox"] {
+        //display: inline-block;
+        //border: 1px solid red;
+        padding-top: 1em !important;
+      }
+
+      //
+      //&[data-label="title"] {
+      //  padding-left: 0 !important;
+      //  display: inline-block;
+      //  border: 1px solid green;
+      //}
+
+    }
+
+    // Display label before item
+    //td::before {
+    //  content: attr(data-label);
+    //  display: block;
+    //  font-weight: 700;
+    //  margin-bottom: 2px;
+    //}
+  }
 }
+
+// app- prefix is used to denote it's specific to this project and not GDS standard
+//@media (max-width: 40.0525em) {
+//
+//  .app-responsive-table thead {
+//    display: none;
+//  }
+//
+//  .app-responsive-table,
+//  .app-responsive-table tbody,
+//  .app-responsive-table tr,
+//  .app-responsive-table td {
+//    display: block;
+//    border-left: 5px solid #1d70b8;
+//  }
+//
+//  .app-responsive-table tr {
+//    margin-bottom: 20px;
+//    border-bottom: 1px solid #b1b4b6;
+//  }
+//
+//  .app-responsive-table td {
+//    border-bottom: 0;
+//    //padding: 0;
+//    padding-bottom: 10px;
+//  }
+//
+//  .app-responsive-table td::before {
+//    content: attr(data-label);
+//    display: block;
+//    font-weight: 700;
+//    margin-bottom: 2px;
+//  }
+//}
