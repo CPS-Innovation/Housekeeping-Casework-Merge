@@ -5,7 +5,7 @@ const cases = [
         caseReference: "16XL9132025",
         material: [
             {
-                tag: "",
+                new: false,
                 title: "MCLOVE MG3",
                 dataId: "1",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -18,7 +18,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MCLOVE MG3",
                 dataId: "1",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -31,7 +31,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Case overview and officer comments",
                 dataId: "2",
                 dataDoc: "CM01.pdf",
@@ -44,7 +44,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG05 MCLOVE",
                 dataId: "3",
                 dataDoc: "MG05MCLOVE.pdf",
@@ -57,7 +57,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: true,
                 title: "MG06 3 June",
                 dataId: "4",
                 dataDoc: "MG06_3June.pdf",
@@ -70,7 +70,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG06 10 June",
                 dataId: "5",
                 dataDoc: "MG06_10june.pdf",
@@ -83,7 +83,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: true,
                 title: "stmt BLAYNEE 2034 1 JUNE mg11",
                 dataId: "6",
                 dataDoc: "stmt_BLAYNEE_2034_1_JUNE_mg11.pdf",
@@ -96,7 +96,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "stmt Lucy Doyle MG11",
                 dataId: "7",
                 dataDoc: "stmt_Lucy_Doyle_MG11.pdf",
@@ -109,7 +109,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: true,
                 title: "stmt Shelagh McLove MG11",
                 dataId: "8",
                 dataDoc: "stmt_Shelagh_McLove_MG11_hand.pdf",
@@ -122,7 +122,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Shelagh McLove VPS mg11",
                 dataId: "9",
                 dataDoc: "Shelagh_McLove_VPS_mg11.pdf",
@@ -135,7 +135,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG11 Shelagh MCLOVE retraction",
                 dataId: "10",
                 dataDoc: "MG11_Shelagh_MCLOVE_retraction.pdf",
@@ -148,7 +148,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MCLOVE MG12",
                 dataId: "11",
                 dataDoc: "MG12.pdf",
@@ -161,7 +161,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: true,
                 title: "MCLOVE MG00",
                 dataId: "12",
                 dataDoc: "MG00.pdf",
@@ -174,7 +174,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE",
                 dataId: "13",
                 dataDoc: "UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf",
@@ -187,7 +187,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: true,
                 title: "SDC_items to_be Disclosed MCLOVE",
                 dataId: "14",
                 dataDoc: "SDC_items_to_be_Disclosed_MCLOVE.pdf",
@@ -200,7 +200,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG20_5_JUNE",
                 dataId: "15",
                 dataDoc: "MG20_5_JUNE.pdf",
@@ -213,7 +213,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG20_10_JUNE",
                 dataId: "16",
                 dataDoc: "MG20_10_JUNE.pdf",
@@ -226,7 +226,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "PRE CONS D",
                 dataId: "17",
                 dataDoc: "PRE_CONS_D.pdf",
@@ -239,7 +239,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Asset Rec 1",
                 dataId: "18",
                 dataDoc: "defendants.pdf",
@@ -252,7 +252,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MG11 - 1",
                 dataId: "19",
                 dataDoc: "MG11_1.pdf",
@@ -265,7 +265,7 @@ const cases = [
                 reference: "16XL9132025",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Exhibit - 1",
                 dataId: "20",
                 dataDoc: "MG12.pdf",
@@ -280,7 +280,7 @@ const cases = [
         ],
         communications: [
             {
-                tag: "New",
+                new: false,
                 title: "Police update",
                 dataId: "21",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -292,7 +292,7 @@ const cases = [
                 action: "Preview",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Official statement on trial",
                 dataId: "22",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -304,7 +304,7 @@ const cases = [
                 action: "Preview",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Legal matter",
                 dataId: "23",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -316,7 +316,7 @@ const cases = [
                 action: "Preview",
             },
             {
-                tag: "New",
+                new: false,
                 title: "Official court notice",
                 dataId: "24",
                 dataDoc: "MCLOVEMG3.pdf",
@@ -328,7 +328,7 @@ const cases = [
                 action: "Preview",
             },
             {
-                tag: "New",
+                new: false,
                 title: "MCLOVE MG3",
                 dataId: "25",
                 dataDoc: "MCLOVEMG3.pdf",
