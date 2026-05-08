@@ -76,8 +76,10 @@
             <strong class="govuk-tag govuk-tag--blue">New</strong>
             {% endif %}
             <div class="openMe">
-                <a class="govuk-button show_material" data-id="1"
-                   data-doc="{{ item.dataDoc }}">{{ item.title }}</a>
+                <a class="govuk-button show_material show-case"
+                   data-id="{{ item.dataId }}"
+                   data-doc="{{ item.dataDoc }}"
+                   onclick="return pageActions();">{{ item.title }}</a>
             </div>
         </td>
         <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
