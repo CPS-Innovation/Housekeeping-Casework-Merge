@@ -19,61 +19,18 @@
 </div>
  -->
 
-<!--<div class="govuk-grid-row">-->
-<!--    <h1 class="govuk-heading-m">Full width materials table</h1>-->
-<!--    <div class="govuk-grid-column-full-from-desktop" id="redact_column_1">-->
-<!--        &lt;!&ndash; Force v1.2 look for version 2 &ndash;&gt;-->
-<!--        {# include "./redaction_filter-from-v2.0.html" #}-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="govuk-grid-row">-->
-<!--    <h1 class="govuk-heading-m">One quarter materials table</h1>-->
-<!--    <div class="govuk-grid-column-one-quarter" id="redact_column_1">-->
-<!--        <div class="moj-filter-layout__filter">-->
-<!--            &lt;!&ndash; Force v1.2 look for version 2 &ndash;&gt;-->
-<!--            {# include "./redaction_filter-from-v2.0.html" #}-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="govuk-grid-column-three-quarters" id="redact_column_2">-->
-<!--    </div>-->
-<!--</div>-->
-
-
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-one-quarter" id="redact_column_1">
-        <div class="moj-filter-layout__filter">
+    <div class="govuk-grid-column-full" id="redact_column_1">
+        <div class="moj-filter-layout__filter" id="filter_Redactions">
             <!-- Force v1.2 look for version 2 -->
             {% include "./redaction_filter-from-v2.0.html" %}
         </div>
     </div>
 
-    <div class="govuk-grid-column-three-quarters" id="redact_column_2">
-        <div id="right-column">
-            <div class="info_wrapper">
-                <button id="show_filter_Redactions" type="button"
-                        class="govuk-button govuk-button--secondary"
-                        data-module="govuk-button" style="">Show categories
-                </button>
-                <button id="close_filter_Redactions" type="button"
-                        class="govuk-button govuk-button--secondary"
-                        data-module="govuk-button">Hide categories
-                </button>
-
-                <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
-                    <li class="arrow left"><a href="#">tab left</a></li>
-                    <li class="arrow right"><a href="#">tab right</a></li>
-                    <li class="arrow down"><a href="#">tab down</a></li>
-                </ul>
-            </div>
-
-            <div id="docCopy" class="docCopy">
-                <h2 class="govuk-heading-m">Select your materials to review</h2>
-                <p>Search or choose a file to start reviewing materials</p>
-            </div>
-        </div>
+    <div id="redact_column_2" class="govuk-grid-column-three-quarters"
+         style="display: none;">
+        {% include "../../version-2/partials/_redact-panel.njk" %}
     </div>
 
 </div>
@@ -102,6 +59,24 @@
 
         window.updateRedactLayout = updateRedactLayout;
 
+        // Override pageActions for version 2
+        var originalPageActions = window.pageActions;
+        window.pageActions = function () {
+            var $panel = $('#tab_content_2');
+            if ($panel.is(':visible')) {
+                // Requirements 1-4
+                updateRedactLayout();
+
+                // Requirement 5 is handled by global handleMenuLinkClick
+            }
+
+            // Call original if it exists
+            if (typeof originalPageActions === 'function') {
+                return originalPageActions();
+            }
+            return true;
+        };
+
         // Run on load
         updateRedactLayout();
 
@@ -112,7 +87,18 @@
 
         // Run when a document is selected (which adds .active_document)
         $(document).on('click', '#filter_Redactions table .openMe a, .show-case', function () {
+            var $link = $(this);
+            var dataId = $link.attr('data-id');
+            var dataDoc = $link.attr('data-doc');
+            var label = $link.text().trim();
+
+            console.log("Document clicked in version 2:", label, dataId, dataDoc);
+
+            // Ensure layout updates
             setTimeout(updateRedactLayout, 100);
+
+            // The global handler in scripts.html already handles handleMenuLinkClick(label)
+            // But we can be explicit if needed.
         });
 
         // Ensure that document links in the sidebar are properly handled
