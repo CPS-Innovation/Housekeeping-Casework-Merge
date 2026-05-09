@@ -86,9 +86,15 @@
         <td data-label="category" class="govuk-table__cell">{{ item.category
             }}
         </td>
-        <td data-label="status" class="govuk-table__cell"><strong
-                class="govuk-tag govuk-tag--grey">{{
-            item.status }}</strong>
+
+        <td data-label="status" class="govuk-table__cell">
+            <strong class="govuk-tag
+                {% if item.status == 'None' %} govuk-tag--grey
+                {% elif item.status == 'Used' %} govuk-tag--blue
+                {% elif item.status == 'Unused' %} govuk-tag--yellow
+                {% else %} govuk-tag--grey {% endif %}">
+                {{ item.status }}
+            </strong>
         </td>
         <td data-label="reference" class="govuk-table__cell">{{ item.reference
             }}
