@@ -3,7 +3,7 @@
 <script src="/public/javascripts/cookie.js"></script>
 <script src="/public/javascripts/draggable-tabs.js"></script>
 <script src="/public/javascripts/jquery.autocomplete.min.js"></script>
-<link href="/public/css/pdf.css" rel="stylesheet" />
+<link href="/public/css/pdf.css" rel="stylesheet"/>
 
 <!-- Auto complete - START -->
 <script src="/public/javascripts/autocomplete/docType-Reviews.js"></script>
@@ -38,7 +38,7 @@
     yourHeader = $('.header-wrapper-height').height();
     sideBar = $('#left-column');
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > yourHeader) {
             yourNavigation.addClass(stickyDiv);
             sideBar.addClass(stickyDiv);
@@ -68,109 +68,109 @@
             $btnSearchUrn = $("#btnSearchURN");
 
 
-            // =================================== OPEN ALL DOCUMENTS =================================== //
-            const $openAllLinks = $(".open-all");
-            $openAllLinks.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks = $(link)
-                        .closest(".accordion-section-body")
-                        .find(".openMe a")
+        // =================================== OPEN ALL DOCUMENTS =================================== //
+        const $openAllLinks = $(".open-all");
+        $openAllLinks.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks = $(link)
+                    .closest(".accordion-section-body")
+                    .find(".openMe a")
 
-                        $anchorLinks.parent().parent().removeClass('unreadDocument')
+                $anchorLinks.parent().parent().removeClass('unreadDocument')
 
-                        $anchorLinks.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },750 * index);
-                    })
+                $anchorLinks.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 750 * index);
                 })
             })
+        })
 
-            // =================================== OPEN ALL SECLECTED DOCUMENTS =================================== //
-            const $openAllSelectedLinks = $(".redact_Document_Multiple_Docs");
-            $openAllSelectedLinks.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks_V2 = $(link)
-                        .closest("#materials_column_2")
-                        .find("table#materials_table tr.selected_for_readcation .openMe a")
+        // =================================== OPEN ALL SECLECTED DOCUMENTS =================================== //
+        const $openAllSelectedLinks = $(".redact_Document_Multiple_Docs");
+        $openAllSelectedLinks.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks_V2 = $(link)
+                    .closest("#materials_column_2, #materials_content")
+                    .find("table#materials_table tr.selected_for_readcation .openMe a")
 
-                        $anchorLinks_V2.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },1000 * index);
-                    })
+                $anchorLinks_V2.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 1000 * index);
                 })
             })
+        })
 
-            // =================================== OPEN ALL DROPDOWNS DOCUMENTS =================================== //
-            const $openAllDocs = $(".activate_All_Documents");
-            $openAllDocs.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks_V3 = $(link)
-                        .closest(".govuk-tabs")
-                        .find("#tab_content_2 table#materials_table tr.material_All .openMe a")
+        // =================================== OPEN ALL DROPDOWNS DOCUMENTS =================================== //
+        const $openAllDocs = $(".activate_All_Documents");
+        $openAllDocs.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks_V3 = $(link)
+                    .closest(".govuk-tabs")
+                    .find("#tab_content_2 table#materials_table tr.material_All .openMe a")
 
-                        $anchorLinks_V3.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },1000 * index);
-                    })
+                $anchorLinks_V3.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 1000 * index);
                 })
             })
+        })
 
-            // =================================== OPEN ALL STATEMENTS DROPDOWNS DOCUMENTS =================================== //
-            const $openAllStatementDocs = $(".activate_Statements");
-            $openAllStatementDocs.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks_V4 = $(link)
-                        .closest(".govuk-tabs")
-                        .find("#tab_content_2 table#materials_table tr.material_Statement .openMe a")
+        // =================================== OPEN ALL STATEMENTS DROPDOWNS DOCUMENTS =================================== //
+        const $openAllStatementDocs = $(".activate_Statements");
+        $openAllStatementDocs.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks_V4 = $(link)
+                    .closest(".govuk-tabs")
+                    .find("#tab_content_2 table#materials_table tr.material_Statement .openMe a")
 
-                        $anchorLinks_V4.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },1000 * index);
-                    })
+                $anchorLinks_V4.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 1000 * index);
                 })
             })
+        })
 
-            // =================================== OPEN ALL MG FORMS DROPDOWNS DOCUMENTS =================================== //
-            const $openAllMGFormDocs = $(".activate_MG_Forms");
-            $openAllMGFormDocs.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks_V5 = $(link)
-                        .closest(".govuk-tabs")
-                        .find("#tab_content_2 table#materials_table tr.material_MG_Form .openMe a")
+        // =================================== OPEN ALL MG FORMS DROPDOWNS DOCUMENTS =================================== //
+        const $openAllMGFormDocs = $(".activate_MG_Forms");
+        $openAllMGFormDocs.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks_V5 = $(link)
+                    .closest(".govuk-tabs")
+                    .find("#tab_content_2 table#materials_table tr.material_MG_Form .openMe a")
 
-                        $anchorLinks_V5.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },1000 * index);
-                    })
+                $anchorLinks_V5.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 1000 * index);
                 })
             })
+        })
 
-            // =================================== OPEN ALL OTHER DROPDOWNS DOCUMENTS =================================== //
-            const $openAllOtherDocs = $(".activate_Other");
-            $openAllOtherDocs.each(function (_,link) {
-                $(link).click(function (event) {
-                    event.preventDefault()
-                    const $anchorLinks_V6 = $(link)
-                        .closest(".govuk-tabs")
-                        .find("#tab_content_2 table#materials_table tr.material_Other .openMe a")
+        // =================================== OPEN ALL OTHER DROPDOWNS DOCUMENTS =================================== //
+        const $openAllOtherDocs = $(".activate_Other");
+        $openAllOtherDocs.each(function (_, link) {
+            $(link).click(function (event) {
+                event.preventDefault()
+                const $anchorLinks_V6 = $(link)
+                    .closest(".govuk-tabs")
+                    .find("#tab_content_2 table#materials_table tr.material_Other .openMe a")
 
-                        $anchorLinks_V6.each(function (index,link ) {
-                        setTimeout(()=>{
-                            handleMenuLinkClick($(this).text())
-                        },1000 * index);
-                    })
+                $anchorLinks_V6.each(function (index, link) {
+                    setTimeout(() => {
+                        handleMenuLinkClick($(this).text())
+                    }, 1000 * index);
                 })
             })
+        })
 
         $menuLinks.each(function (_, link) {
             $(link).click(function (event) {
@@ -203,6 +203,7 @@
             showTab(tabId, showSearchSummary);
             $("#searchModal").addClass("rj-dont-display");
         }
+
         window.handleMenuLinkClick = handleMenuLinkClick;
 
         function highlightMenuLink(label, isHighlighted) {
@@ -455,7 +456,7 @@
                 // $("#searchHeaderDisplay").css("display", "flex");
 
                 const pdfViewer = $(
-                    `div[data-tab-id='${tabId}-content'] > #pdf-root`
+                        `div[data-tab-id='${tabId}-content'] > #pdf-root`
                 );
                 const src = pdfViewer.attr("data-pdf-url");
                 if (!src.includes("/searchResults/")) {
@@ -487,7 +488,6 @@
             }
         }
     });
-
 
 
     function openMaterial() {

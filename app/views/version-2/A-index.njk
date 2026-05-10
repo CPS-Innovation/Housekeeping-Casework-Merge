@@ -158,14 +158,6 @@
                     <li class="tab-4-content_link">
                         <a class="tab-link tab-4-content">Reviews</a>
                     </li>
-                    <!-- Tab 5: Materials -->
-                    <li class="tab-5-content_link {% if data['activeTab'] == 'materials' %}govuk-tabs__list-item--selected{% endif %}">
-                        <a class="tab-link tab-5-content">Materials</a>
-                    </li>
-                    <!-- Tab 6: Review and redact -->
-                    <li class="tab-6-content_link">
-                        <a class="tab-link tab-6-content">Review and redact</a>
-                    </li>
                 </ul>
 
                 <!-- TAB CONTENT - 1 - PCD request -->
@@ -195,18 +187,6 @@
                     {% include "../includes/version-2/tab-4-PCD-review.html" %}
                 </div>
 
-                <!-- TAB CONTENT - 5 - Materials (v1.2 tab 2) -->
-                <div class="panel" id="tab_content_5"
-                     {% if data['activeTab'] != 'materials' %}style="display: none;"{% endif %}>
-                    {% set tab_id = '5' %}
-                    {% include "../includes/version-2/tab-5-Materials.html" %}
-                </div>
-
-                <!-- TAB CONTENT - 6 - Review and redact (v1.2 tab 3) -->
-                <div class="panel" id="tab_content_6" style="display: none;">
-                    {% set tab_id = '6' %}
-                    {% include "../includes/version-2/tab-6-Review-Materials.html" %}
-                </div>
             </div>
         </div>
     </div>
