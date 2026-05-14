@@ -21,7 +21,7 @@
 
 <div class="govuk-grid-row" id="materials_filter">
     <div class="govuk-grid-column-full-from-desktop">
-        <div class="moj-filter-layout__filter">
+        <div class="moj-filter-layout__filter govuk-!-static-margin-bottom-5">
             {% include "./materials_filter-horizontal.html" %}
         </div>
     </div>
@@ -166,9 +166,14 @@
 
                 {# ---- v2.1: Materials grouped by category using GOV.UK Accordion ---- #}
 
-                {# Shared table header fragment #}
-                {% set _th %}
-                <table class="govuk-table sortable app-responsive-table">
+                {% set _caseOverviewContent %}
+                {% set hasCaseOverview = false %}
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'case overview' %}
+                {% set hasCaseOverview = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasCaseOverview %}govuk-!-display-none{% endif %}">
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
@@ -188,14 +193,8 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% endset %}
-
-                {% set _caseOverviewContent %}
-                {{ _th | safe }}
-                {% set hasCaseOverview = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'case overview' %}
-                {% set hasCaseOverview = true %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -223,21 +222,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasCaseOverview %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no case overview materials available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasCaseOverview %}
+                <p class="govuk-body">There are no case overview materials available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _statementsContent %}
-                {{ _th | safe }}
                 {% set hasStatements = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'statements' %}
                 {% set hasStatements = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasStatements %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'statements' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -265,21 +285,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasStatements %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no statements available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasStatements %}
+                <p class="govuk-body">There are no statements available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _exhibitsContent %}
-                {{ _th | safe }}
                 {% set hasExhibits = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'exhibits' %}
                 {% set hasExhibits = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasExhibits %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'exhibits' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -307,21 +348,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasExhibits %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no exhibits available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasExhibits %}
+                <p class="govuk-body">There are no exhibits available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _mgFormsContent %}
-                {{ _th | safe }}
                 {% set hasMgForms = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'mg forms' %}
                 {% set hasMgForms = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasMgForms %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'mg forms' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -349,21 +411,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasMgForms %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no MG forms available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasMgForms %}
+                <p class="govuk-body">There are no MG forms available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _defendantPreConsContent %}
-                {{ _th | safe }}
                 {% set hasDefendantPreCons = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'defendant pre cons' %}
                 {% set hasDefendantPreCons = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasDefendantPreCons %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'defendant pre cons' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -391,21 +474,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasDefendantPreCons %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no defendant pre cons available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasDefendantPreCons %}
+                <p class="govuk-body">There are no defendant pre cons available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _unusedContent %}
-                {{ _th | safe }}
                 {% set hasUnusedMaterial = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'unused material' %}
                 {% set hasUnusedMaterial = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasUnusedMaterial %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'unused material' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -433,21 +537,42 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasUnusedMaterial %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no unused material available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasUnusedMaterial %}
+                <p class="govuk-body">There are no unused material available.</p>
+                {% endif %}
                 {% endset %}
 
                 {% set _otherMaterialsContent %}
-                {{ _th | safe }}
                 {% set hasOtherMaterials = false %}
                 {% for item in data['cases'][0]['material'] %}
                 {% if item.category | lower == 'other materials' %}
                 {% set hasOtherMaterials = true %}
+                {% endif %}
+                {% endfor %}
+                <table class="govuk-table sortable app-responsive-table {% if not hasOtherMaterials %}govuk-!-display-none{% endif %}">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <label class="govuk-label govuk-checkboxes__label"></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Type</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Date</th>
+                        <th scope="col" class="govuk-table__header">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                {% for item in data['cases'][0]['material'] %}
+                {% if item.category | lower == 'other materials' %}
                 <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                     <td data-label="checkbox" class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
@@ -475,13 +600,11 @@
                 </tr>
                 {% endif %}
                 {% endfor %}
-                {% if not hasOtherMaterials %}
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" colspan="7">There are no other materials available.</td>
-                </tr>
-                {% endif %}
                 </tbody>
                 </table>
+                {% if not hasOtherMaterials %}
+                <p class="govuk-body">There are no other materials available.</p>
+                {% endif %}
                 {% endset %}
 
                 {{ govukAccordion({
