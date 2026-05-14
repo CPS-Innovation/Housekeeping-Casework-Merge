@@ -145,9 +145,10 @@ router.get('/version-2/A-index/case-search', function (req, res) {
 })
 
 router.get('/version-2/A-index', (req, res) => {
-    // We pass version: '1.2' to version-2 templates so they
-    // inherit the v1.2 look for redaction/materials filters.
-    res.render('version-2/A-index.njk', { version: '1.2' });
+    // Default to '1.2' to preserve existing v2 behaviour.
+    // Pass ?version=2.1 to enable the accordion variant on the Manage Materials tab.
+    const version = req.query.version || '1.2';
+    res.render('version-2/A-index.njk', { version });
 });
 
 // User Research and design versions

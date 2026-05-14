@@ -15,7 +15,13 @@ const config = require('./config.json')
 const stylesheetDirectory = config.paths.public + 'stylesheets'
 
 gulp.task('sass-extensions', function (done) {
+  // Packages installed as npm aliases for use in specific layouts (e.g. govuk-frontend v5
+  // for version-2+ pages) should not be included in the shared _extensions.scss, as doing
+  // so would inject their styles into application.css and break version-1 pages.
+  const excludeFromSharedSass = ['govuk-frontend-v5']
+
   const fileContents = '$govuk-extensions-url-context: "/extension-assets"; ' + extensions.getFileSystemPaths('sass')
+    .filter(filePath => !excludeFromSharedSass.some(pkg => filePath.includes(`node_modules${path.sep}${pkg}${path.sep}`)))
     .map(filePath => {
       const relativePath = path.relative(path.join(config.paths.lib, 'extensions'), filePath)
       return `@import "${relativePath.split(path.sep).join('/')}";`

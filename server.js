@@ -152,6 +152,10 @@ app.use('/static', express.static(path.join(__dirname, 'pdf-component', 'build',
 // Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
+// Serve govuk-frontend v5 assets (fonts, images) at /govuk-v5/assets/ for version-2+ pages.
+// application-v2.css uses $govuk-assets-path: '/govuk-v5/assets/' so these are found correctly.
+app.use('/govuk-v5/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend-v5/dist/govuk/assets')))
+
 // Set up documentation app
 if (useDocumentation) {
   var documentationViews = [

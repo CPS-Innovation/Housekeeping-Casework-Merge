@@ -1,0 +1,24 @@
+// ============================================================
+// application-v2.scss  —  GOV.UK Frontend v5 override layer
+//
+// Strategy: loaded AFTER application.css on version-2+ pages.
+//   - application.css provides govuk-frontend v4 + MoJ v1.4.2
+//   - This file re-imports govuk-frontend v5, so v5 component
+//     rules cascade over v4 rules.
+//   - MoJ component styles (from application.css) are preserved
+//     because they use MoJ-specific class names (moj-*).
+//
+// Compiled to: public/stylesheets/application-v2.css
+// ============================================================
+
+// ── govuk-frontend v5 settings ───────────────────────────────
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+// govuk-frontend v5 has different image assets (favicon.svg, govuk-icon-180.png etc.)
+// that don't exist in the v4 /govuk/assets/ directory. Serve them from a separate
+// path so v4 and v5 assets don't conflict.
+$govuk-assets-path: '/govuk-v5/assets/';
+
+// ── govuk-frontend v5 ────────────────────────────────────────
+@import "node_modules/govuk-frontend-v5/dist/govuk/index";

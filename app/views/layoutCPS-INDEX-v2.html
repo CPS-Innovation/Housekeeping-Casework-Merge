@@ -1,0 +1,14 @@
+{#- layoutCPS-INDEX-v2.html — Version 2+ index/confirmation-page layout
+    Mirrors layoutCPS-v2.html but inherits from layoutCPS-NEW-INDEX.html
+    (simpler main-class, no tab chrome) rather than layoutCPS-NEW-CASEFILE.html.
+-#}
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block head %}
+  {% include "includes/head-v2.html" %}
+  {% include "includes/wide.html" %}
+{% endblock %}
+
+{% block bodyStart %}
+<script>document.body.className += ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '')</script>
+{% endblock %}

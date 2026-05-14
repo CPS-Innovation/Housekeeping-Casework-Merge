@@ -1,0 +1,32 @@
+<!--
+  head-v2.html — used by layoutCPS-v2.html (version 2+ pages only)
+
+  Load order:
+    1. application.css    → govuk-frontend v4 + MoJ styles (preserves MoJ component styling)
+    2. application-v2.css → govuk-frontend v5 override (cascades over v4 govuk rules)
+    3. all-v2.js          → govuk-frontend v5 UMD bundle (replaces all.js for this layout)
+
+  Version 1 pages remain on application.css + all.js and are completely untouched.
+-->
+<!--[if lte IE 8]><link href="/public/stylesheets/application-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!-->
+<link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/application-v2.css" media="screen" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!-- Javascript -->
+<script src="/public/javascripts/jquery-3.3.1.min.js"></script>
+<script src="/public/javascripts/jquery-migrate-1.4.1.min.js"></script>
+<script src="/public/javascripts/application.js"></script>
+<script src="/public/javascripts/jquery.tabs.js"></script>
+
+<!-- govuk-frontend v5 UMD bundle (replaces all.js) -->
+<script src="/public/javascripts/all-v2.js"></script>
+
+{% if useAutoStoreData %}
+  <script src="/public/javascripts/auto-store-data.js"></script>
+{% endif %}
+
+<script src="https://kit.fontawesome.com/77eaa1d1d0.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
