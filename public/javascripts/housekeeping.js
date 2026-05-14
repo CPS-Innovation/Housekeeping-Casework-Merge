@@ -494,7 +494,18 @@ $(document).ready(function () {
 // FILTER
 $(document).ready(function () {
 
-    $('#show_filter_Comms, #show_filter_Materials, .no_results, #show_filter_Redactions').hide();
+    var isVersion2Page = window.location.pathname.indexOf('/version-2/') !== -1;
+
+    $('#show_filter_Comms, .no_results, #show_filter_Redactions').hide();
+
+    if (isVersion2Page) {
+        $('#show_filter_Materials').show();
+        $('#close_filter_Materials').hide();
+        $('#materials_column_1, #materials_filter').hide();
+        $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+    } else {
+        $('#show_filter_Materials').hide();
+    }
 
     // Initialize counters on page load
     if (typeof updateMaterialsCounters === 'function') {
