@@ -479,6 +479,10 @@
         }
 
         function showHideStaticText() {
+            if (typeof window.showHideStaticText === 'function') {
+                window.showHideStaticText();
+                return;
+            }
             if (tabCount) {
                 console.log($("#docCopy").length, "hiding");
                 $("#docCopy").hide();

@@ -21,14 +21,14 @@
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-one-quarter" id="redact_column_1">
+    <div class="govuk-grid-column-full-width" id="redact_column_1">
         <div class="moj-filter-layout__filter">
             <!-- Force v1.2 look for version 2 -->
             {% include "./redaction_filter-from-v1.2.html" %}
         </div>
     </div>
 
-    <div class="govuk-grid-column-three-quarters" id="redact_column_2">
+    <div class="govuk-grid-column-three-quarters" id="redact_column_2" style="display: none;">
         <div id="right-column">
             <div class="info_wrapper">
                 <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
