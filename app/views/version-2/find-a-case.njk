@@ -1,6 +1,6 @@
-{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% extends "layoutCPS-v2.html" %}
 {% block header %}
-{% include "../../includes/version-x/x-0/banner.html" %}
+{% include "../includes/version-2/banner.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -9,7 +9,7 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
-        <form id="find-a-case-form" action="/version-1/A-index/case-search" method="post" novalidate>
+        <form id="find-a-case-form" action="/version-2/A-index/case-search" method="post" novalidate>
 
             <h1 class="govuk-heading-l govuk-!-margin-bottom-0">Find a case</h1>
             <p class="govuk-body govuk-hint govuk-!-margin-bottom-9">Search and review a CPS case in England and Wales</p>
@@ -20,16 +20,15 @@
                         Search for a case URN
                     </label>
                 </h1>
-                <input class="govuk-input govuk-input--width-full" id="case-urn-search" name="caseUrnSearch" type="text" spellcheck="false" aria-describedby="case-urn-search-hint" inputmode="numeric">
+                <input class="govuk-input govuk-input--width-10" id="case-urn-search" name="caseUrnSearch" type="text" spellcheck="false" aria-describedby="case-urn-search-hint" inputmode="numeric">
             </div>
 
             <div class="govuk-button-group">
                 <button type="submit" class="govuk-button" data-module="govuk-button" id="submit-search">
                     Search
                 </button>
-                <a class="govuk-link" href="A-index.html#tab_content_3">Cancel</a>
             </div>
         </form>
+    </div>
 </div>
 {% endblock %}
-</div>

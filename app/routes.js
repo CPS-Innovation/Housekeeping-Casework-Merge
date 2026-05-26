@@ -138,6 +138,19 @@ router.get('/version-1/cancel-discard', function (req, res) {
     res.redirect(`/version-1/A-index?version=${version}`);
 });
 
+router.get('/version-2/A-index/case-search', function (req, res) {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('version-2/A-index.njk', { caseUrnSearch })
+})
+
+router.get('/version-2/A-index', (req, res) => {
+    // Default to '1.2' to preserve existing v2 behaviour.
+    // Pass ?version=2.1 to enable the accordion variant on the Manage Materials tab.
+    const version = req.query.version || '1.2';
+    res.render('version-2/A-index.njk', { version });
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 

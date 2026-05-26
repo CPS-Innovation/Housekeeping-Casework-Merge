@@ -1,0 +1,24 @@
+{#-
+  layoutCPS-v2.html — Version 2+ layout
+
+  Inherits all blocks from layoutCPS-NEW-CASEFILE.html.
+  Differs only in:
+    - {% block head %}   loads application-v2.css on top of application.css
+    - {% block bodyStart %} adds govuk-frontend-supported body class (required by govuk-frontend v5)
+
+  Version 1 pages extend layoutCPS-NEW-CASEFILE.html and are completely untouched.
+-#}
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+
+{# ── v5 CSS + JS ─────────────────────────────────────────────────────────────── #}
+{% block head %}
+  {% include "includes/head-v2.html" %}
+  {% include "includes/wide.html" %}
+{% endblock %}
+
+{# ── govuk-frontend v5 body class ────────────────────────────────────────────── #}
+{# govuk-frontend v5's initAll() requires <body class="govuk-frontend-supported"> #}
+{# The govuk/template.njk already adds js-enabled inline; we add the v5 flag here #}
+{% block bodyStart %}
+<script>document.body.className += ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '')</script>
+{% endblock %}

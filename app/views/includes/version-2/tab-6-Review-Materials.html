@@ -1,0 +1,106 @@
+<!-- ///////////////////////////////// TAB 3 - CONTENT - START ///////////////////////////////// -->
+<!-- <div class="review_materials_actions">
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="review_materials">View materials</label>
+        <select class="govuk-select" id="review_materials" name="review_materials">
+            <option value="Show all documents" selected>Show all materials</option>
+            <option value="" disabled>----------------------------------------</option>
+            <option value="Statements">Statements</option>
+            <option value="Exhibits" disabled>Exhibits</option>
+            <option value="MG Forms">MG Forms</option>
+            <option value="Other materials">Other materials</option>
+            <option value="Always Unused" disabled>Always Unused</option>
+        </select>
+        <button type="button" class="govuk-button activate_All_Documents" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_Statements" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_MG_Forms" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_Other" data-module="govuk-button" id="">Go</button>
+    </div>
+</div>
+ -->
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full-width" id="redact_column_1">
+        <div class="moj-filter-layout__filter">
+            <!-- Force v1.2 look for version 2 -->
+            {% include "./redaction_filter-from-v1.2.html" %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-three-quarters" id="redact_column_2" style="display: none;">
+        <div id="right-column">
+            <div class="info_wrapper">
+                <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
+                    data-module="govuk-button" style="">Show categories</button>
+                <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
+
+                <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
+                    <li class="arrow left"><a href="#">tab left</a></li>
+                    <li class="arrow right"><a href="#">tab right</a></li>
+                    <li class="arrow down"><a href="#">tab down</a></li>
+                </ul>
+            </div>
+
+            <div id="docCopy" class="docCopy">
+                <h2 class="govuk-heading-m">Select your materials to review</h2>
+                <p>Search or choose a file to start reviewing materials</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ///////////////////////////////// TAB 3 - CONTENT - END ///////////////////////////////// -->
+
+<script>
+    $(document).ready(function() {
+        // Function to check for active documents and update layout
+        function updateRedactLayout() {
+            var $panel = $('#tab_content_2');
+            if (!$panel.is(':visible')) return;
+
+            var $redactColumn1 = $panel.find('#redact_column_1');
+            var $redactColumn2 = $panel.find('#redact_column_2');
+            var hasActiveDoc = $redactColumn1.find('tr.active_document').length > 0;
+
+            if (!hasActiveDoc) {
+                $redactColumn1.removeClass('govuk-grid-column-one-quarter').addClass('govuk-grid-column-full');
+                $redactColumn2.hide();
+            } else {
+                $redactColumn1.removeClass('govuk-grid-column-full').addClass('govuk-grid-column-one-quarter');
+                $redactColumn2.show();
+            }
+        }
+        window.updateRedactLayout = updateRedactLayout;
+
+        // Run on load
+        updateRedactLayout();
+
+        // Run when a tab is clicked
+        $('.tab-link').on('click', function() {
+            setTimeout(updateRedactLayout, 100);
+        });
+
+        // Run when a document is selected (which adds .active_document)
+        $(document).on('click', '#filter_Redactions table .openMe a, .show-case', function() {
+            setTimeout(updateRedactLayout, 100);
+        });
+
+        // Ensure that document links in the sidebar are properly handled
+        $('.show_material').off('click').on('click', function(e) {
+            e.preventDefault();
+            var label = $(this).text();
+            // Call the global handleMenuLinkClick if it exists
+            if (typeof handleMenuLinkClick === 'function') {
+                handleMenuLinkClick(label);
+            } else {
+                // Fallback to manually finding the link in .openMe if global not available
+                console.log("Global handleMenuLinkClick not found, searching for link in .openMe");
+                $(".openMe a").filter(function() {
+                    return $(this).text() === label;
+                }).first().click();
+            }
+        });
+    });
+</script>

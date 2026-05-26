@@ -1,12 +1,12 @@
-{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% extends "layoutCPS-v2.html" %}
 {% block header %}
-{% include "../../includes/version-x/x-0/banner.html" %}
-{% include "../../includes/version-x/modals/rename.html" %}
-{% include "../../includes/version-x/modals/feedback.html" %}
-{% include "../../includes/version-x/modals/report-a-problem.html" %}
-{% include "../../includes/version-x/modals/search.html" %}
-{% include "../../includes/version-x/modals/notes-new.html" %}
-{% include "../../includes/version-x/modals/notes.html" %}
+{% include "../includes/version-2/banner.html" %}
+{% include "../includes/version-2/modals/rename.html" %}
+{% include "../includes/version-2/modals/feedback.html" %}
+{% include "../includes/version-2/modals/report-a-problem.html" %}
+{% include "../includes/version-2/modals/search.html" %}
+{% include "../includes/version-2/modals/notes-new.html" %}
+{% include "../includes/version-2/modals/notes.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +16,7 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
-        <form action="A-index.html" method="get" novalidate>
+        <form action="A-index" method="get" novalidate>
         <h1 id="main-description"
             class="govuk-heading-l">What type of
             document is this?</h1>
@@ -25,8 +25,11 @@
                     class="govuk-label"
                     for="reclassify-document-type"><span
                     class="Reclassify_labelMargin__U6+Mg">Select the document type for <strong
-                    class="Reclassify_highlight__ln8Zk">MG11 JOHN Doe, 11/08/2025 #1</strong></span>
+                    class="Reclassify_highlight__ln8Zk" id="reclassify-item-name">MG11 JOHN Doe, 11/08/2025 #1</strong></span>
                 </label>
+                <div id="reclassify-multiple-items" style="display:none; margin-bottom: 15px;">
+                    <ul class="govuk-list govuk-list--bullet" id="reclassify-items-list"></ul>
+                </div>
                 <select
                     class="govuk-select "
                     id="reclassify-document-type"
@@ -144,4 +147,64 @@
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const items = JSON.parse(sessionStorage.getItem('reclassify_items') || '[]');
+    const itemNameElem = document.getElementById('reclassify-item-name');
+    const multipleItemsDiv = document.getElementById('reclassify-multiple-items');
+    const itemsList = document.getElementById('reclassify-items-list');
+    const labelSpan = document.querySelector('.Reclassify_labelMargin__U6+Mg');
+
+    if (items.length > 1) {
+        itemNameElem.style.display = 'none';
+        if (labelSpan) {
+            labelSpan.innerHTML = 'Select the document type for:';
+        }
+        multipleItemsDiv.style.display = 'block';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'govuk-body-s govuk-!-margin-bottom-1';
+            li.style.fontWeight = 'bold';
+            li.textContent = item;
+            itemsList.appendChild(li);
+        });
+    } else if (items.length === 1) {
+        itemNameElem.textContent = items[0];
+    }
+
+    // Get version from URL
+    const path = window.location.pathname;
+    const versionMatch = path.match(/\/version-\d+\//);
+    const versionPrefix = versionMatch ? versionMatch[0] : "";
+
+    // Update Cancel link
+    const cancelLink = document.querySelector('a[href="A-index.html"]');
+    if (cancelLink) {
+        const sourceTab = sessionStorage.getItem('reclassify_source_tab') || '2';
+        cancelLink.href = versionPrefix + 'A-index?tab=' + sourceTab;
+    }
+
+    const saveBtn = document.getElementById('save-reclassify');
+    const select = document.getElementById('reclassify-document-type');
+
+    saveBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const selectedOption = select.options[select.selectedIndex];
+        if (!selectedOption || selectedOption.disabled || !selectedOption.value) {
+            alert('Please select a document type');
+            return;
+        }
+
+        const selectedTypeText = selectedOption.text;
+        sessionStorage.setItem('reclassify_success', 'true');
+        sessionStorage.setItem('reclassify_type', selectedTypeText);
+
+        const sourceTab = sessionStorage.getItem('reclassify_source_tab') || '2';
+
+        // Use already determined versionPrefix
+        window.location.href = versionPrefix + 'A-index?tab=' + sourceTab;
+    });
+});
+</script>
 {% endblock %}
