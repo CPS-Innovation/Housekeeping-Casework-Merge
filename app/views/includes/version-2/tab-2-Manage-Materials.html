@@ -210,6 +210,10 @@
                 </div>
             </div>
             <div class="govuk-grid-column-one-quarter" id="redact_column_1">
+                {% set params = {
+                caseMaterials: data.caseMaterials,
+                generateDocuments: data.caseMaterialsGenerateDocuments
+                } %}
                 {% include "./dcf-materials-panel.njk" %}
 
                 <div id="filter_Redactions">
