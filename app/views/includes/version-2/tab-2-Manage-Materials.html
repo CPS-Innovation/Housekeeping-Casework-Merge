@@ -219,7 +219,7 @@
 
                 {% set _caseOverviewContent %}
                 {% set hasCaseOverview = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'case overview' %}
                 {% set hasCaseOverview = true %}
                 {% endif %}
@@ -249,7 +249,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'case overview' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -313,7 +313,7 @@
 
                 {% set _statementsContent %}
                 {% set hasStatements = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'statements' %}
                 {% set hasStatements = true %}
                 {% endif %}
@@ -343,7 +343,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'statements' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -406,7 +406,7 @@
 
                 {% set _exhibitsContent %}
                 {% set hasExhibits = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'exhibits' %}
                 {% set hasExhibits = true %}
                 {% endif %}
@@ -436,7 +436,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'exhibits' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -499,7 +499,7 @@
 
                 {% set _mgFormsContent %}
                 {% set hasMgForms = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'mg forms' %}
                 {% set hasMgForms = true %}
                 {% endif %}
@@ -529,7 +529,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'mg forms' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -592,7 +592,7 @@
 
                 {% set _defendantPreConsContent %}
                 {% set hasDefendantPreCons = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'defendant pre cons' %}
                 {% set hasDefendantPreCons = true %}
                 {% endif %}
@@ -622,7 +622,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'defendant pre cons' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -686,7 +686,7 @@
 
                 {% set _unusedContent %}
                 {% set hasUnusedMaterial = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'unused material' %}
                 {% set hasUnusedMaterial = true %}
                 {% endif %}
@@ -716,7 +716,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'unused material' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
@@ -780,7 +780,7 @@
 
                 {% set _otherMaterialsContent %}
                 {% set hasOtherMaterials = false %}
-                {% for item in data['cases'][0]['material'] %}
+                {% for item in data.cases.material %}
                 {% if item.category | lower == 'other materials' %}
                 {% set hasOtherMaterials = true %}
                 {% endif %}
@@ -810,7 +810,7 @@
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                    {% for item in data['cases'][0]['material'] %}
+                    {% for item in data.cases.material %}
                     {% if item.category | lower == 'other materials' %}
                     <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
                         <td data-label="checkbox" class="govuk-table__cell">
