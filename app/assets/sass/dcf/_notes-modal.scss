@@ -1,0 +1,109 @@
+/* ======================================================================
+   Notes side-tray modal
+   ====================================================================== */
+
+.dcf-notes-modal {
+  position: fixed;
+  inset: 0; // top/right/bottom/left: 0
+  z-index: 2000; // above viewer, below any global nav if you have one
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+}
+
+/* Dimmed background overlay */
+.dcf-notes-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* left-hand tray panel */
+.dcf-notes-modal__panel {
+  position: absolute;
+  top: 0;
+  left: 0;   // ⬅️ was right: 0
+
+  /* Full browser height */
+  height: 100vh;
+
+  /* Take up to 25% of the viewport width, but allow it to shrink on smaller screens */
+  width: 100%;
+  max-width: 25%;
+
+  background: #ffffff;
+  border-right: 1px solid #b1b4b6;          // ⬅️ was border-left
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); // ⬅️ flip shadow direction
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+
+/* Header with title + close button */
+.dcf-notes-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+
+  padding: 16px 16px 8px 16px;
+  border-bottom: 1px solid #b1b4b6;
+
+  .govuk-heading-m {
+    margin: 0;
+  }
+}
+
+/* Close "X" button – keep it visually simple but obviously clickable */
+.dcf-notes-modal__close {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Main scrollable body */
+.dcf-notes-modal__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Form block spacing */
+.dcf-notes-modal__form {
+  margin-bottom: 8px;
+}
+
+/* Char counter under textarea */
+.dcf-notes-modal__char-count {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+/* Primary/secondary actions row */
+.dcf-notes-modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Timeline section – just give it a bit of separation from the form */
+.dcf-notes-modal__timeline {
+  border-top: 1px solid #b1b4b6;
+  padding-top: 16px;
+}
+
+/* (Optional) Small-screen tweak: let the tray take full width if space is tight */
+@media (max-width: 768px) {
+  .dcf-notes-modal__panel {
+    max-width: 100%;
+  }
+}

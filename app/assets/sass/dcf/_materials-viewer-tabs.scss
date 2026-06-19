@@ -1,0 +1,270 @@
+/* materials-viewer-tabs.scss
+   Single-row tab bar with dynamic overflow dropdown.
+   Visible tabs are calculated by material-viewer.js (renderTabBar).
+*/
+
+/* Container: single row, no wrapping, clips overflow tabs */
+#dcf-viewer-tabs.dcf-viewer__tabs,
+.dcf-viewer__tabs.dcf-viewer__tabs--flush {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  overflow: visible;
+  margin: 0 !important;
+  padding: 0;
+  gap: 3px;
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  position: relative;
+}
+
+/* Ensure the meta block sits tight under the tabs */
+#dcf-viewer-tabs + .dcf-viewer__meta {
+  margin-top: 0 !important;
+}
+
+/* Individual tab */
+.dcf-doc-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  height: 42px;
+  background: #ffffff;
+  border: 1px solid #1d70b8;
+  border-bottom: 0;
+  border-radius: 0 !important;
+  font-weight: 500;
+  font-size: 14px;
+  color: #0b0c0c;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.dcf-doc-tab:hover { background: #ebf2fd; }
+
+.dcf-doc-tab:focus {
+  outline: 3px solid #fd0;
+  outline-offset: 1px;
+}
+
+.dcf-doc-tab.is-active {
+  background: #ebf2fd;
+  color: #0b0c0c;
+  border-color: #1d70b8;
+}
+
+.dcf-doc-tab.is-active:hover { background: #ebf2fd; }
+
+.dcf-doc-tab__label {
+  white-space: nowrap;
+  max-width: 24ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.dcf-doc-tab__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #1d70b8;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
+  user-select: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Active indicator bar at top of tab */
+.dcf-doc-tab__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: none;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+.dcf-doc-tab.is-active .dcf-doc-tab__bar {
+  background: #1d70b8;
+}
+
+.dcf-doc-tab:not(.is-active) .dcf-doc-tab__bar {
+  display: none;
+}
+
+.dcf-viewer__tabs--hidden { display: none; }
+
+
+/* ------------------------------------------------------------------
+   Overflow widget — <details>/<summary> replaces the button entirely.
+   Browser handles open/close natively.
+   IMPORTANT: do NOT set display:flex on <details> — it breaks the
+   browser's built-in show/hide of non-summary content.
+   ------------------------------------------------------------------ */
+
+.dcf-tab-overflow {
+  display: inline-block;    /* must stay block-level, not flex */
+  position: relative;
+  flex: 0 0 auto;           /* participates correctly in parent flex row */
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: top;
+}
+
+/* Reset <summary> browser defaults — styled to match .dcf-doc-tab */
+.dcf-tab-overflow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+  height: 42px;
+  background: #ffffff;
+  border: 1px solid #1d70b8;
+  border-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b0c0c;
+  cursor: pointer;
+  white-space: nowrap;
+  list-style: none;       /* Firefox */
+  user-select: none;
+}
+
+/* Remove the default triangle marker on <summary> in all browsers */
+.dcf-tab-overflow-btn::-webkit-details-marker { display: none; }
+.dcf-tab-overflow-btn::marker { display: none; }
+
+.dcf-tab-overflow-btn:hover { background: #ebf2fd; }
+
+.dcf-tab-overflow-btn:focus {
+  outline: 3px solid #fd0;
+  outline-offset: 1px;
+}
+
+.dcf-tab-overflow-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1d70b8;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 22px;
+}
+
+.dcf-tab-overflow-label {
+  font-size: 13px;
+}
+
+.dcf-tab-overflow-arrow {
+  font-size: 10px;
+  color: #1d70b8;
+}
+
+
+/* ------------------------------------------------------------------
+   Overflow dropdown
+   ------------------------------------------------------------------ */
+
+.dcf-tab-overflow-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 400;
+  background: #ffffff;
+  border: 1px solid #b1b4b6;
+  border-radius: 0 0 4px 4px;
+  min-width: 260px;
+  max-width: 360px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dcf-tab-overflow-dropdown__header {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #505a5f;
+  border-bottom: 1px solid #f3f2f1;
+}
+
+.dcf-tab-overflow-dropdown__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f3f2f1;
+  font-size: 14px;
+  color: #0b0c0c;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dcf-tab-overflow-dropdown__item:last-child { border-bottom: none; }
+
+.dcf-tab-overflow-dropdown__item:hover { background: #f3f2f1; }
+
+.dcf-tab-overflow-dropdown__item.is-active { background: #ebf2fd; }
+
+.dcf-tab-overflow-dropdown__item.is-active .dcf-tab-overflow-dropdown__item-name {
+  font-weight: 700;
+  color: #1d70b8;
+}
+
+.dcf-tab-overflow-dropdown__item-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.dcf-tab-overflow-dropdown__item-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #b1b4b6;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+}
+
+.dcf-tab-overflow-dropdown__item-close:hover { background: #0b0c0c; }
+
+
+@media (max-width: 640px) {
+  .dcf-tab-overflow-dropdown {
+    min-width: 200px;
+  }
+}

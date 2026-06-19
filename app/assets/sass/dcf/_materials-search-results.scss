@@ -1,0 +1,139 @@
+/* materials-search-results.scss */
+
+/* Results area only */
+.dcf-search-results {
+  /* Give each hit a top rule (your “border above each h3”) */
+  .dcf-search-hit {
+    background: transparent;
+    padding-top: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #b1b4b6; // govuk mid-grey
+    border-top: none;
+    border-right: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 8px;
+  }
+
+  /* Keep the heading snug to that rule */
+  .dcf-search-hit > .govuk-heading-s {
+    margin-top: 0;
+  }
+
+  /* Make the summary list look plain */
+  .dcf-summary.dcf-summary--results {
+    margin-top: 0;
+    border: 0;
+    padding-left: 0;
+    background: transparent;
+  }
+
+  /* Remove borders between rows */
+  .dcf-summary.dcf-summary--results .govuk-summary-list__row {
+    border: 0;
+    font-size: smaller;
+  }
+
+  .govuk-summary-list__key{
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .govuk-summary-list__value{
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  /* Nuke any decorative left bar that might leak in */
+  .dcf-summary.dcf-summary--results,
+  .dcf-search-hit {
+    border-left: 0 !important;
+  }
+
+  /* Some projects add a pseudo-element bar; make sure it disappears */
+  .dcf-summary.dcf-summary--results::before,
+  .dcf-search-hit::before {
+    content: none !important;
+  }
+
+  .dcf-search-order {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .dcf-search-order__label {
+    margin-right: 4px;
+  }
+
+  .dcf-search-order__separator {
+    margin: 0 4px;
+  }
+
+  .dcf-search-order__link {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    text-decoration: underline;
+    color: #1d70b8;
+    cursor: pointer;
+  }
+
+  .dcf-search-order__link:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  .dcf-search-order__link[aria-pressed="true"] {
+    font-weight: 700;
+    text-decoration-thickness: 3px;
+  }
+
+
+}
+
+/* Counter line above search results */
+  .dcf-search-meta {
+    color: #000000;              /* secondary text tone (GOV.UK-esque) */
+    margin: 0 0 8px 0;           /* tiny gap before the first card */
+    line-height: 1.4;
+    font-size: 19px;
+    word-break: break-word;
+    margin: 0px 0px 0px 8px;
+  }
+
+  .dcf-search-status-row {
+    display: flex;
+    align-items: baseline;        // lines up the text nicely
+    justify-content: space-between;
+    gap: 16px;                    // space between left & right
+    flex-wrap: wrap;              // so it stacks on small screens
+  }
+
+  .dcf-search-status-row__meta {
+    margin: 0;                    // kill default <p> bottom margin
+  }
+
+  .dcf-search-status-row__order {
+    margin: 0;
+    margin-left: auto;            // pushes it to the right
+    white-space: nowrap;          // keeps "Sort by: ..." on one line if you want
+  }
+
+
+  /* Optional: tighten when the results column is narrow */
+  @media (max-width: 640px) {
+    .dcf-search-meta {
+      margin-bottom: 6px;
+    }
+  }
+
+  /* Optional: if you ever want the numbers to pop slightly */
+  /* #materials-search-counter strong { font-weight: 700; } */
+
+
+
+

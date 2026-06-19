@@ -1,0 +1,44 @@
+/* Make MoJ button-menu trigger look like a GOV.UK link */
+.dcf-button-menu--as-link .moj-button-menu__toggle-button,
+.dcf-button-menu--as-link .moj-button-menu__toggle-button.govuk-button {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  min-height: auto;
+  font-weight: normal;
+  text-decoration: underline;
+  color: #1d70b8; /* GOV.UK link blue */
+}
+
+/* Hover/active */
+.dcf-button-menu--as-link .moj-button-menu__toggle-button:hover {
+  color: #003078; /* GOV.UK link hover */
+}
+
+/* Focus state – use GOV.UK focus style */
+.dcf-button-menu--as-link .moj-button-menu__toggle-button:focus {
+  outline: 3px solid transparent;
+  color: #0b0c0c;
+  background-color: #ffdd00;
+  box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+  text-decoration: none;
+}
+
+/* Optional: remove the “button” spacing around the menu items container */
+.dcf-button-menu--as-link .moj-button-menu__wrapper {
+  margin: 0;
+}
+
+/* Disclosure table only: keep Actions menu within viewport at zoom */
+table.govuk-table[data-module="moj-multi-select"] {
+  .moj-button-menu {
+    position: relative; /* anchor for the dropdown */
+  }
+
+  .moj-button-menu__wrapper {
+    left: auto !important;
+    right: 0 !important;       /* align to the right edge of the button */
+    max-width: calc(100vw - 2rem);
+  }
+}

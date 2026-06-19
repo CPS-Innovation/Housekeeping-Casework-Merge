@@ -1,0 +1,322 @@
+/* =========================================
+   Case overview layout
+   ========================================= */
+
+.case-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Progress / stages */
+.case-header {
+  background: #f3f2f1;
+  padding: 1rem;
+  border: 1px solid #b1b4b6;
+  text-align: center;
+  min-height: 72px;
+}
+
+/* ===== Mobile first (stacked) ===== */
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Outer grey panels for placeholders */
+// .contacts-box,
+// .tasks-box,
+// .monitoring-box {
+//   background: #f3f2f1;
+//   border: 1px solid #b1b4b6;
+//   padding: 1rem;
+// }
+
+/* Small-screen mins are fine – they don’t affect the gap issue */
+.contacts-box {
+  min-height: 320px;
+}
+
+.tasks-box {
+  min-height: 180px;
+}
+
+.monitoring-box {
+  min-height: 220px;
+}
+
+/* When Contacts is its own tab (full width) */
+.contacts-box--tab {
+  min-height: auto;
+  margin-top: 1.5rem;
+}
+
+/* ===== Tablet and up (>= 40.0625em ~ 641px) ===== */
+@media (min-width: 40.0625em) {
+  .case-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto; /* rows shrink-wrap to content */
+    /* no min-height here */
+  }
+
+  .contacts-box {
+    grid-row: span 2;   /* stretch down to align with two rows on the right */
+    /* let the card’s content define height */
+  }
+
+  .tasks-box,
+  .monitoring-box {
+    /* no extra min-height on desktop */
+    min-height: 0;
+  }
+}
+
+/* ===== Desktop and up (>= 48.0625em ~ 769px) ===== */
+@media (min-width: 48.0625em) {
+  .case-grid {
+    gap: 1.75rem;       /* spacing only, no forced height */
+  }
+
+  .contacts-box,
+  .tasks-box,
+  .monitoring-box {
+    /* rely purely on content height */
+    min-height: 0;
+  }
+}
+
+/* ===== Widescreen (>= 64.0625em ~ 1025px) ===== */
+@media (min-width: 64.0625em) {
+  .case-grid {
+    gap: 2rem;
+  }
+}
+
+
+/* =========================================
+   Contacts summary-card row styling
+   ========================================= */
+
+.case-contacts-summary-list {
+  margin-bottom: 0;
+}
+
+.case-contact-row {
+  /* layout comes from govuk-summary-list__row */
+}
+
+.case-contact-name {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.case-contact-role {
+  display: block;
+}
+
+.case-contact-email,
+.case-contact-phone {
+  display: block;
+}
+
+@media (min-width: 40.0625em) {
+  .case-contacts-summary-list .govuk-summary-list__value {
+    text-align: right;
+  }
+}
+
+.case-contact-copy {
+  border: 0;
+  padding: 0 0 0 4px;
+  background: none;
+  cursor: pointer;
+}
+
+
+/* =========================================
+   Tasks summary-card table
+   ========================================= */
+
+.case-tasks-table {
+  margin-bottom: 0;
+}
+
+/* Slightly tighter spacing to match reference */
+.case-tasks-table .govuk-table__cell,
+.case-tasks-table .govuk-table__header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Task name column */
+.case-task-name {
+  width: 50%;
+}
+
+/* Due date column (space for warning icon) */
+.case-task-due {
+  white-space: nowrap;
+}
+
+/* Warning triangle icon next to due date */
+.case-task-warning-icon {
+  display: inline-block;
+  margin-left: 4px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid #d4351c; /* GOV.UK red */
+  vertical-align: middle;
+}
+
+/* Role column */
+.case-task-role {
+  white-space: nowrap;
+}
+
+/* Arrow cell on the right */
+.case-task-arrow {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.case-task-arrow-link {
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.case-task-arrow-link:hover,
+.case-task-arrow-link:focus {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   Monitoring codes summary-card lists
+   ========================================= */
+
+.case-monitoring-codes {
+  /* wrapper for both groups */
+}
+
+.case-monitoring-heading {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* Each group of codes */
+.case-monitoring-list {
+  list-style: none;
+  margin: 0 0 8px 0;
+  padding: 0;
+  border-top: 1px solid #b1b4b6;   /* line under heading */
+}
+
+/* Individual code row */
+.case-monitoring-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #b1b4b6;
+}
+
+/* Don’t draw extra line after the very last code in the card */
+.case-monitoring-list--last .case-monitoring-item:last-child {
+  border-bottom: 0;
+}
+
+/* =========================================
+   Case progress milestones (inside .case-header)
+   ========================================= */
+
+.case-progress {
+  max-width: 100%;
+}
+
+/* The horizontal track */
+.case-progress__list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Track line */
+.case-progress__list::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 2px;
+  background: #000000;
+}
+
+/* Each milestone */
+.case-progress__item {
+  flex: 1 1 0;
+  text-align: center;
+  position: relative;
+  font-size: 14px;
+}
+
+/* Label and meta (date / dash) */
+.case-progress__label {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.case-progress__meta {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+/* Dot at the bottom of each milestone */
+.case-progress__dot {
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #b1b4b6;
+  background: #f3f2f1;
+}
+
+/* Completed steps: solid dot */
+.case-progress__item--complete .case-progress__dot {
+  background: #b1b4b6;
+}
+
+/* Current step: double ring effect */
+.case-progress__item--current .case-progress__dot {
+  background: #ffffff;
+  border-color: #0b0c0c;
+}
+
+.case-progress__item--current .case-progress__dot::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: #0b0c0c;
+}
+
+/* Upcoming: leave as pale outline (default) */
+
+/* Small-screen tweaks */
+@media (max-width: 40.0625em) {
+  .case-progress__label {
+    font-size: 13px;
+  }
+
+  .case-progress__meta {
+    font-size: 11px;
+  }
+}
+

@@ -1,0 +1,20 @@
+.govuk-date-range {
+  display: flex;
+  align-items: flex-start;
+  gap: govuk-spacing(3);
+}
+
+.govuk-date-range__item {
+  position: relative;
+}
+
+.govuk-date-range__and {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem; /* matches .govuk-input default height */
+  margin-top: 1.5rem; /* pushes it down to input row */
+  padding: 0 govuk-spacing(3);
+  white-space: nowrap;
+}
