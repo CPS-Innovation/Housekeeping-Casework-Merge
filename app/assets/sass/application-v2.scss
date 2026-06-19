@@ -22,3 +22,6 @@ $govuk-assets-path: '/govuk-v5/assets/';
 
 // ── govuk-frontend v5 ────────────────────────────────────────
 @import "node_modules/govuk-frontend-v5/dist/govuk/index";
+
+// ── DCF Materials Accordion ──────────────────────────────────
+@import "dcf/materials-accordion";
