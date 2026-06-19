@@ -1,0 +1,44 @@
+[
+  {
+    "id": "01",
+    "item": "1",
+    "ItemId": "MAT-02007",
+    "title": "Exh SP/1",
+    "isProvided": false,
+    "description": "DA History for Ella Quagmire. This is a compilation of all the domestic abuse reports which the victim has been involved in. The reports have been taken from the police system iOPS. This document contains a total of 17 pages and is redacted as per redaction guidelines.",
+    "policeAssessment": "Passes disclosure test",
+    "policeRationale": "Reason material passes test here",
+    "isRebuttable": "No",
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be reviewed"
+  },
+  {
+    "id": "02",
+    "item": "2",
+    "ItemId": "MAT-02008",
+    "title": "Exh SP/2",
+    "isProvided": true,
+    "description": "DA History for Elton Berkley. This is a compilation of all the domestic abuse reports which the defendant has been involved in. The reports have been taken from the police system iOPS. This document contains a total of 4 pages and is redacted as per redaction guidelines.",
+    "policeAssessment": "Does not pass disclosure test",
+    "policeRationale": "Reason material fails test here",
+    "isRebuttable": "Yes",
+    "hasException": "DEESEE Frank",
+    "exceptionReason": "Exception reason here if applicable",
+    "cpsAssessment": "To be reviewed"
+  },
+  {
+    "id": "03",
+    "item": "3",
+    "ItemId": "MAT-02009",
+    "title": "Exh SP/3",
+    "isProvided": false,
+    "description": "PNB entry made by PC 9999 Parsons from GMP issues Pocket Notebook. This entry was made on 07/03/2025 at 1921 hours and details the house-to-house enquiries conducted. This also includes information of the victims first account and the arrest of the defendant. This document consists of a total of 2 pages.",
+    "policeAssessment": "Passes disclosure test",
+    "policeRationale": "Reason material passes test here",
+    "isRebuttable": "No",
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be reviewed"
+  }
+]

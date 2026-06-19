@@ -1,0 +1,53 @@
+[
+  {
+    "id": "01",
+    "item": "S1",
+    "ItemId": "MAT-02010",
+    "title": "Sens SP/1",
+    "isProvided": false,
+    "description": "DA History for Ella Quagmire. This compilation of domestic abuse reports includes the involvement of a police informant which it is not in the public interest to reveal.",
+    "policeAssessment": "Unused - Does not pass disclosure test",
+    "policeRationale": "Reason material does not pass test here",
+    "isRebuttable": "No",
+    "reasonForSensitivity": "Sensitive for this reason and this reason and this reason and this reason",
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be assessed",
+    "cpsRationale": null,
+    "cpsDisagreesWithPolice": false
+  },
+  {
+    "id": "02",
+    "item": "S2",
+    "ItemId": "MAT-02011",
+    "title": "Sens SP/2",
+    "isProvided": false,
+    "description": "Description here description here description here description here description here description here description here description here description",
+    "policeAssessment": "Unused - Does not pass disclosure test",
+    "policeRationale": "Reason material does not pass test here",
+    "isRebuttable": "Yes",
+    "reasonForSensitivity": "Sensitive for this reason and this reason",
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be assessed",
+    "cpsRationale": null,
+    "cpsDisagreesWithPolice": false
+  },
+  {
+    "id": "03",
+    "item": "S3",
+    "ItemId": "MAT-02012",
+    "title": "Sens SP/3",
+    "isProvided": false,
+    "description": "Description here description here description here description here description here description here description here description here description here description here",
+    "policeAssessment": "Unused - Does not pass disclosure test",
+    "policeRationale": "Reason material does not pass test here",
+    "isRebuttable": "Yes",
+    "reasonForSensitivity": "Sensitive for this reason and this reason",
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be assessed",
+    "cpsRationale": null,
+    "cpsDisagreesWithPolice": false
+  }
+]

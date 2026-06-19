@@ -1,0 +1,128 @@
+[
+  {
+    "chargeCode": "R01",
+    "label": "Robbery",
+    "category": "Offences against property",
+    "statute": {
+      "act": "Theft Act 1968",
+      "section": "s.8(1)"
+    },
+    "statementOfOffence": "Robbery, contrary to section 8(1) of the Theft Act 1968.",
+    "keywords": ["robbery", "steal", "theft", "force", "threats", "mugging"],
+    "precedents": [
+      { "name": "R v Hale", "year": 1979, "principle": "Robbery may be a continuing act; force used during escape can suffice." },
+      { "name": "R v Dawson and James", "year": 1976, "principle": "Even minimal force may be sufficient for robbery." },
+      { "name": "R v Robinson", "year": 1977, "principle": "Force must be used in order to steal." },
+      { "name": "R v Jogee", "year": 2016, "principle": "Clarifies approach to joint enterprise liability." }
+    ],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant robbed [victim] of [property], using [force or threats]."
+    }
+  },
+  {
+    "chargeCode": "DR01",
+    "label": "Possession of a controlled drug (Class A)",
+    "category": "Drug offences",
+    "statute": {
+      "act": "Misuse of Drugs Act 1971",
+      "section": "s.5(2)"
+    },
+    "statementOfOffence": "Possession of a controlled drug of Class A, contrary to section 5(2) of the Misuse of Drugs Act 1971.",
+    "keywords": ["possession", "class a", "cocaine", "heroin", "drugs"],
+    "precedents": [
+      { "name": "R v Warner", "year": 1969, "principle": "Knowledge of the existence of the substance is required." },
+      { "name": "R v Boyesen", "year": 1982, "principle": "Possession requires custody or control together with knowledge." },
+      { "name": "R v Lambert", "year": 2001, "principle": "Reverse burden issues regarding lack of knowledge." }
+    ],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant had in their possession [drug]."
+    }
+  },
+  {
+    "chargeCode": "DR02",
+    "label": "Possession of a controlled drug (Class B)",
+    "category": "Drug offences",
+    "statute": {
+      "act": "Misuse of Drugs Act 1971",
+      "section": "s.5(2)"
+    },
+    "statementOfOffence": "Possession of a controlled drug of Class B, contrary to section 5(2) of the Misuse of Drugs Act 1971.",
+    "keywords": ["possession", "class b", "cannabis", "drugs"],
+    "precedents": [
+      { "name": "R v Warner", "year": 1969, "principle": "Knowledge of the existence of the substance is required." },
+      { "name": "R v Boyesen", "year": 1982, "principle": "Possession requires custody or control together with knowledge." }
+    ],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant had in their possession [drug]."
+    }
+  },
+  {
+    "chargeCode": "A01",
+    "label": "Assault by beating (common assault)",
+    "category": "Offences against the person",
+    "statute": {
+      "act": "Criminal Justice Act 1988",
+      "section": "s.39"
+    },
+    "policeCharge": "ASSAULT BY BEATING, contrary to section 39 of the Criminal Justice Act 1988. On the 18th day of November 2025, at 1 High Street, Manchester, LUCAS STARK assaulted Victor Maximoff by beating them.",
+    "statementOfOffence": "Assault by beating, contrary to section 39 of the Criminal Justice Act 1988.",
+    "keywords": ["assault", "common assault", "battery", "beating", "violence"],
+    "precedents": [],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant assaulted [victim] by beating."
+    }
+  },
+  {
+    "chargeCode": "A02",
+    "label": "Assault occasioning actual bodily harm (ABH)",
+    "category": "Offences against the person",
+    "statute": {
+      "act": "Offences Against the Person Act 1861",
+      "section": "s.47"
+    },
+    "policeCharge": "ASSAULT OCCASIONING ACTUAL BODILY HARM, contrary to section 47 of the Offences Against the Person Act 1861. On the 18th day of November 2025, at 1 High Street, Manchester, VICTOR DANVERS assaulted Andrew Thomas, thereby occasioning them actual bodily harm.",
+    "statementOfOffence": "Assault occasioning actual bodily harm, contrary to section 47 of the Offences Against the Person Act 1861.",
+    "keywords": ["assault", "abh", "actual bodily harm", "injury", "violence"],
+    "precedents": [],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant assaulted [victim], thereby occasioning actual bodily harm."
+    }
+  },
+  {
+    "chargeCode": "F02",
+    "label": "Fraud by false representation",
+    "category": "Fraud offences",
+    "statute": {
+      "act": "Fraud Act 2006",
+      "section": "s.2"
+    },
+    "policeCharge": "FRAUD BY FALSE REPRESENTATION, contrary to section 2 of the Fraud Act 2006. On the 18th day of November 2025, at 1 High Street, Manchester, VICTOR DANVERS dishonestly made a false representation to Eddie Danvers, namely offering fake football finals tickets for money, intending to make a gain for himself or to cause loss to another.",
+    "statementOfOffence": "Fraud by false representation, contrary to section 2 of the Fraud Act 2006.",
+    "keywords": ["fraud", "false representation", "dishonest", "gain", "loss", "misrepresentation", "deception"],
+    "precedents": [
+      { "name": "R v Augunas", "year": 2013, "principle": "A representation may be false even if it is literally true but misleading." },
+      { "name": "R v Barnard", "year": 1837, "principle": "A false representation can be made by conduct." }
+    ],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the [defendant] dishonestly made a false representation, intending to make a gain for themselves or another, or to cause loss to another."
+    }
+  },
+  {
+    "chargeCode": "PO01",
+    "label": "Threatening behaviour",
+    "category": "Public order offences",
+    "statute": {
+      "act": "Public Order Act 1986",
+      "section": "s.4"
+    },
+    "policeCharge": "THREATENING BEHAVIOUR, contrary to section 4 of the Public Order Act 1986. On the 18th day of November 2025, at 1 High Street, Manchester, LUCAS STARK used threatening behaviour towards Eddie Danvers, thereby causing him to fear that unlawful violence would be used against him.",
+    "statementOfOffence": "Threatening behaviour, contrary to section 4 of the Public Order Act 1986.",
+    "keywords": ["threatening", "violence", "fear", "public order", "threats", "intimidation"],
+    "precedents": [
+      { "name": "R v Horseferry Road Magistrates' Court, ex p Siadatan", "year": 1991, "principle": "Threatening words alone may suffice if intent to cause fear is present." }
+    ],
+    "templates": {
+      "particularsStarter": "On [date] at [place], the defendant used threatening behaviour with intent to cause [victim] to fear immediate unlawful violence."
+    }
+  }
+]
