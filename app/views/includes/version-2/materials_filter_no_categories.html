@@ -1,0 +1,188 @@
+<!-- ///////////////////////////////// MATERIALS FILTER - CONTENT - START ///////////////////////////////// -->
+<div class="moj-filter" id="filter_Materials">
+    <div class="moj-filter__header">
+        <div class="moj-filter__header-title">
+            <h2 class="govuk-heading-m">Filters</h2>
+        </div>
+    </div>
+
+    <div class="" id="active_filter">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Selected filters <a
+                href=""
+                class="materials_filters_clear_All">Clear</a></h2>
+
+        <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2 materials_filters_Title_1">
+            New materials
+        </h3>
+        {% if version == '1.0' %}
+        <a class="selected_filter materials_filters_clear_New">New material
+            (unread)</a>
+        {% elif version >= '1.1' %}
+        <a class="selected_filter materials_filters_clear_New">Show unread</a>
+        {% endif %}
+
+
+        <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2 materials_filters_Title_2">
+            Status</h3>
+        <a class="selected_filter materials_filters_clear_Used">Used</a>
+        <a class="selected_filter materials_filters_clear_Unused">Unused</a>
+        <a class="selected_filter materials_filters_clear_None">None</a>
+
+        <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2 materials_filters_Title_3">
+            Category</h3>
+        <!-- This is being controlled by the Review filter -->
+
+        {% if version == '1.0' %}
+        <a class="selected_filter materials_filters_clear_Statement">Statement</a>
+        <a class="selected_filter materials_filters_clear_Exhibit">Exhibit</a>
+        <a class="selected_filter materials_filters_clear_Always_Unused">Always
+            unused</a>
+        <a class="selected_filter materials_filters_clear_MG_Form">MG Form</a>
+        <a class="selected_filter materials_filters_clear_Other">Other
+            material</a>
+
+        {% elif version == '1.1' %}
+        <a class="selected_filter materials_filters_clear_Statement">Statement</a>
+        <a class="selected_filter materials_filters_clear_Exhibit">Exhibit</a>
+        <a class="selected_filter materials_filters_clear_Always_Unused">Always
+            unused</a>
+        <a class="selected_filter materials_filters_clear_Review">Reviews</a>
+        <a class="selected_filter materials_filters_clear_Case_overview">Case
+            overview</a>
+        <a class="selected_filter materials_filters_clear_Forensics">Forensics</a>
+        <a class="selected_filter materials_filters_clear_Unused_material">Unused
+            material</a>
+        <a class="selected_filter materials_filters_clear_Defendant">Defendant</a>
+        <a class="selected_filter materials_filters_clear_Court_preparation">Court
+            preparation</a>
+
+
+        {% elif version >= '1.2' %}
+        <a class="selected_filter materials_filters_clear_Case_overview">Case
+            overview</a>
+        <a class="selected_filter materials_filters_clear_Statement">Statement</a>
+        <a class="selected_filter materials_filters_clear_Exhibit">Exhibit</a>
+        <a class="selected_filter materials_filters_clear_MG_Form">MG Form</a>
+        <a class="selected_filter materials_filters_clear_Defendant">Defendant
+            Pre Cons</a>
+        <a class="selected_filter materials_filters_clear_Unused_material">Unused
+            material</a>
+        <a class="selected_filter materials_filters_clear_Other">Other
+            material</a>
+
+        <!--    <a class="selected_filter materials_filters_clear_Always_Unused">Always unused</a>
+                <a class="selected_filter materials_filters_clear_Review">Reviews</a>
+                <a class="selected_filter materials_filters_clear_Forensics">Forensics</a>
+                <a class="selected_filter materials_filters_clear_Court_preparation">Court preparation</a>-->
+
+        {% endif %}
+
+    </div>
+
+    <div class="moj-filter__content">
+        <div class="moj-filter__options">
+
+            <div class="govuk-form-group search_container">
+                <label class="govuk-label govuk-label--s" for="searchURNModal">Filter
+                    by material name</label>
+                <div>
+                    <input class="govuk-input" id="searchURNModal"
+                           name="searchURNModal" type="text">
+                    <button id="search_materials" type="button"
+                            class="govuk-button" data-module="govuk-button"
+                            onclick="openModal(); searchTerm();">Search
+                    </button>
+                </div>
+            </div>
+
+            <div class="govuk-form-group">
+                <div class="cta_group">
+                    <button id="applyFiltersBtnTop" type="submit"
+                            class="govuk-button applyFiltersBtn"
+                            data-module="govuk-button">Apply
+                        filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- 1 - START -->
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        New materials
+                    </legend>
+                    <div class="govuk-checkboxes govuk-checkboxes--small"
+                         data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input"
+                                   id="filter_materials__New"
+                                   name="filter_materials__New" type="checkbox"
+                                   value="filter_materials__New">
+
+                            {% if version == '1.0' %}
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__New">Show only new
+                                material<br>(unread)</label>
+                            {% elif version >= '1.1' %}
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__New">Show
+                                unread</label>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- 1 - END -->
+
+            <!-- 2 - START -->
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        Status
+                    </legend>
+                    <div class="govuk-checkboxes govuk-checkboxes--small"
+                         data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input"
+                                   id="filter_materials__Status_1"
+                                   name="filter_materials__Status"
+                                   type="checkbox"
+                                   value="filter_materials__Status_1">
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__Status_1">Used</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input"
+                                   id="filter_materials__Status_2"
+                                   name="filter_materials__Status"
+                                   type="checkbox"
+                                   value="filter_materials__Status_2">
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__Status_2">Unused</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input"
+                                   id="filter_materials__Status_3"
+                                   name="filter_materials__Status"
+                                   type="checkbox"
+                                   value="filter_materials__Status_3">
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__Status_3">None</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- 2 - END -->
+
+            <div class="cta_group">
+                <button id="applyFiltersBtn" type="submit" class="govuk-button"
+                        data-module="govuk-button">Apply
+                    filters
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ///////////////////////////////// MATERIALS FILTER - CONTENT - END ///////////////////////////////// -->
