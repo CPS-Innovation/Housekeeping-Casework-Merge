@@ -26,145 +26,203 @@
         </div>
     </div>
 </div>
-<div id="materials_content" class="govuk-grid-column-full">
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-            <div class="info_wrapper">
-                <button id="show_filter_Materials" type="button"
-                        class="govuk-button govuk-button--secondary"
-                        data-module="govuk-button">Show filter
-                </button>
-                <button id="close_filter_Materials" type="button"
-                        class="govuk-button govuk-button--secondary"
-                        data-module="govuk-button">Hide filter
-                </button>
-                {% if data['discarding_material_COMPLETED'] == 'true' %}
-                <p>Showing <strong>19</strong> materials out of
-                    <strong>19</strong></p>
-                {% else %}
-                <p>Showing <strong>20</strong> materials out of
-                    <strong>20</strong></p>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="govuk-grid-column-one-half">
+<div class="govuk-grid-row">
+    <div id="materials_content" class="govuk-grid-column-full">
+<!--        <div class="govuk-grid-column-one-half">-->
+<!--            <div class="info_wrapper">-->
+<!--&lt;!&ndash;                <button id="show_filter_Materials" type="button"&ndash;&gt;-->
+<!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
+<!--&lt;!&ndash;                        data-module="govuk-button">Show filter&ndash;&gt;-->
+<!--&lt;!&ndash;                </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button id="close_filter_Materials" type="button"&ndash;&gt;-->
+<!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
+<!--&lt;!&ndash;                        data-module="govuk-button">Hide filter&ndash;&gt;-->
+<!--&lt;!&ndash;                </button>&ndash;&gt;-->
+<!--                {% if data['discarding_material_COMPLETED'] == 'true' %}-->
+<!--                <p>Showing <strong>19</strong> materials out of-->
+<!--                    <strong>19</strong></p>-->
+<!--                {% else %}-->
+<!--                <p>Showing <strong>20</strong> materials out of-->
+<!--                    <strong>20</strong></p>-->
+<!--                {% endif %}-->
+<!--            </div>-->
+<!--        </div>-->
             <div class="actions_holder">
-                <div class="moj-button-menu">
-                    <button type="button"
-                            class="govuk-button govuk-button--secondary"
-                            data-module="govuk-button"
-                            id="show_Materials_Actions">
-                        Actions on selection
-                        <svg width="11" height="5" viewBox="0 0 11 5"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.5 0L11 5L0 5L5.5 0Z"
-                                  fill="currentColor"></path>
-                        </svg>
-                    </button>
-                    <div class="hidden_buttons" id="materials_Actions">
-                        <!-- Rename should only be available for single selections, not multiple -->
+                <div class="dcf-viewer__toolbar govuk-!-margin-bottom-4 govuk-body">
+                    <a href="#" id="show_filter_Materials" class="govuk-link"
+                       data-module="govuk-button">Show
+                        filter</a>
+                    <a href="#" id="close_filter_Materials" class="govuk-link"
+                                     data-module="govuk-button">Hide
+                    filter</a>
+                    <span aria-hidden="true"
+                          class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
+                    <a href="#" class="govuk-link" data-action="close-viewer">Close
+                        all documents</a>
+                    <span aria-hidden="true"
+                          class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
+                    <a href="#" class="govuk-link" data-action="toggle-full"
+                       aria-pressed="false">
+                        View document full width
+                    </a>
+
+                    <span class="dcf-viewer__toolbar-right">
+                        <a href="#" class="govuk-link"
+                           data-action="back-to-search"
+                           hidden>Back to search results</a>
+                        <span aria-hidden="true"
+                              class="govuk-!-margin-horizontal-2"
+                              data-role="back-to-search-sep" hidden>&nbsp; | &nbsp;</span>
+                        <span class="dcf-viewer__navcluster"
+                              data-role="search-nav"></span>
+                    </span>
+                    <div class="moj-button-menu">
                         <button type="button"
-                                class="govuk-button govuk-button--disabled rename_Document_Multiple_Docs rename-Document"
+                                class="govuk-button govuk-button--secondary"
                                 data-module="govuk-button"
-                                onclick="return openRenameModal();">Rename
+                                id="show_Materials_Actions">
+                            Actions on selection
+                            <svg width="11" height="5" viewBox="0 0 11 5"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z"
+                                      fill="currentColor"></path>
+                            </svg>
                         </button>
-
-                        <button type="button" id="update-and-reclassify"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button" disabled>
-                            Reclassify
-                        </button>
-
-                        <!-- Update should only be available for Statements or Exhibits -->
-                        <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
-                        {% if version < '2.0' %}
-                        <button type="button" id="update-statement"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="return openUpdateStatement();"
-                                disabled>Update
-                        </button>
-
-                        {% elif version >= '2.0' %}
-                        <button type="button" id="update-statement"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="return openUpdateStatement();"
-                                disabled>Update statement
-                        </button>
-                        {% endif %}
-
-                        <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
-                        {% if version < '2.0' %}
-                        <button type="button" id="update-exhibit"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="return openUpdateExhibit();"
-                                disabled>Update
-                        </button>
-                        {% elif version >= '2.0' %}
-                        <button type="button" id="update-exhibit"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="return openUpdateExhibit();"
-                                disabled>Update exhibit
-                        </button>
-                        {% endif %}
-
-                        {% if version >= '1.1' %}
-                        <button type="button"
-                                class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
-                                data-module="govuk-button" disabled>Redact
-                        </button>
-                        {% endif %}
-
-                        <form method="post"
-                              action="/version-2/B-discard_material?version={{ version }}">
-                            <input id="material_selected"
-                                   name="material_selected" type="hidden"
-                                   value="">
-                            <input name="discard_origin" type="hidden"
-                                   value="materials">
-                            <button class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button" type="submit"
-                                    disabled>Discard
+                        <div class="hidden_buttons" id="materials_Actions">
+                            <!-- Rename should only be available for single selections, not multiple -->
+                            <button type="button"
+                                    class="govuk-button govuk-button--disabled rename_Document_Multiple_Docs rename-Document"
+                                    data-module="govuk-button"
+                                    onclick="return openRenameModal(); documentRename();">Rename
                             </button>
-                        </form>
 
-                        <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button" type="button"
-                                disabled>Mark as read
-                        </button>
+                            <button type="button" id="update-and-reclassify"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" disabled>
+                                Reclassify
+                            </button>
 
-                        <button type="button"
-                                class="govuk-button govuk-button--disabled unused_Materials_Multiple_Docs"
-                                data-module="govuk-button" disabled>Mark as
-                            unused
-                        </button>
+                            <!-- Update should only be available for Statements or Exhibits -->
+                            <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
+                            {% if version < '2.0' %}
+                            <button type="button" id="update-statement"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button"
+                                    onclick="return openUpdateStatement(); documentUpdateStatement();"
+                                    disabled>Update
+                            </button>
 
-                        {% if version >= '1.1' %}
-                        <button type="button"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document"
-                                data-module="govuk-button"
-                                onclick="return openDocumentInNewWindow();">
-                            View in new window
-                        </button>
-                        {% endif %}
+                            {% elif version >= '2.0' %}
+                            <button type="button" id="update-statement"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button"
+                                    onclick="return openUpdateStatement(); documentUpdateStatement();"
+                                    disabled>Update statement
+                            </button>
+                            {% endif %}
+
+                            <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
+                            {% if version < '2.0' %}
+                            <button type="button" id="update-exhibit"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button"
+                                    onclick="return openUpdateExhibit();"
+                                    disabled>Update
+                            </button>
+                            {% elif version >= '2.0' %}
+                            <button type="button" id="update-exhibit"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button"
+                                    onclick="return openUpdateExhibit();"
+                                    disabled>Update exhibit
+                            </button>
+                            {% endif %}
+
+                            {% if version >= '1.1' %}
+                            <button type="button"
+                                    class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
+                                    data-module="govuk-button" disabled>Redact
+                            </button>
+                            {% endif %}
+
+                            <form method="post"
+                                  action="/version-2/B-discard_material?version={{ version }}">
+                                <input id="material_selected"
+                                       name="material_selected" type="hidden"
+                                       value="">
+                                <input name="discard_origin" type="hidden"
+                                       value="materials">
+                                <button class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                        data-module="govuk-button" type="submit"
+                                        disabled>Discard
+                                </button>
+                            </form>
+
+                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" type="button"
+                                    disabled>Mark as read
+                            </button>
+
+                            <button type="button"
+                                    class="govuk-button govuk-button--disabled unused_Materials_Multiple_Docs"
+                                    data-module="govuk-button" disabled>Mark as
+                                unused
+                            </button>
+
+                            {% if version >= '1.1' %}
+                            <button type="button"
+                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document"
+                                    data-module="govuk-button"
+                                    onclick="return openDocumentInNewWindow();">
+                                View in new window
+                            </button>
+                            {% endif %}
+                        </div>
                     </div>
+                    <div class="moj-button-menu dropdown">
+                        <button type="button"
+                                onclick="myFunction(); toggleClass();"
+                                class="govuk-button dropbtn govuk-button--secondary"
+                                data-module="govuk-button"
+                                id="show_Document_Actions">
+                            Document actions
+                            <svg width="11" height="5" viewBox="0 0 11 5"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </button>
+                        <div class="hidden_buttons dropdown-content" id="myDropdown1">
+                            <button onclick="openModalOver(); documentTitle();" class="">Log an Under/Over redaction</button>
+                            <!-- <button onclick="window.open(#)" class="">View redaction log history</button>-->
+                            <!-- <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
+                            <button onclick="openRotatePagesModal(); documentTitle();" class="remove-rotate-pages-modal">Rotate document pages</button>
+
+                            <button onclick="location.href='B-discard_material';">Discard</button>
+                            <button onclick="#">Reclassify</button>
+
+                            <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark as read</button>
+                            <button onclick="return openRenameModal(); documentRename();" class="rename-Document">Rename</button>
+                        </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="govuk-grid-row">
-
-        <div class="govuk-grid-column-full" id="redact_column_1">
-            <div id="filter_Redactions">
+    <div class="govuk-grid-row unified-materials-casework-tabs">
+            <div class="govuk-grid-column-one-quarter" id="materials_column_1">
+                <div class="moj-filter-layout__filter">
+                    {% include "./materials_filter.html" %}
+                </div>
+            </div>
+            <div class="govuk-grid-column-one-quarter" id="redact_column_1">
+                <div id="filter_Redactions">
 
                 {% if version == '2.1' %}
 
-                {# ---- v2.1: Materials grouped by category using GOV.UK Accordion ---- #}
+                {# ---- v2.1: Materials grouped by category using GOV.UK
+                Accordion ---- #}
 
                 {% set _caseOverviewContent %}
                 {% set hasCaseOverview = false %}
@@ -177,55 +235,86 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'case overview' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_c{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_c{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'case overview' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_c{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_c{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasCaseOverview %}
-                <p class="govuk-body">There are no case overview materials available.</p>
+                <p class="govuk-body">There are no case overview materials
+                    available.</p>
                 {% endif %}
                 {% endset %}
 
@@ -240,52 +329,82 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'statements' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_s{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_s{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'statements' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_s{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_s{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasStatements %}
                 <p class="govuk-body">There are no statements available.</p>
@@ -303,52 +422,82 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'exhibits' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_e{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_e{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'exhibits' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_e{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_e{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasExhibits %}
                 <p class="govuk-body">There are no exhibits available.</p>
@@ -366,52 +515,82 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'mg forms' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_m{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_m{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'mg forms' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_m{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_m{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasMgForms %}
                 <p class="govuk-body">There are no MG forms available.</p>
@@ -429,55 +608,86 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'defendant pre cons' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_d{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_d{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'defendant pre cons' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_d{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_d{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasDefendantPreCons %}
-                <p class="govuk-body">There are no defendant pre cons available.</p>
+                <p class="govuk-body">There are no defendant pre cons
+                    available.</p>
                 {% endif %}
                 {% endset %}
 
@@ -492,55 +702,86 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'unused material' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_u{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_u{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'unused material' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_u{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_u{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasUnusedMaterial %}
-                <p class="govuk-body">There are no unused material available.</p>
+                <p class="govuk-body">There are no unused material
+                    available.</p>
                 {% endif %}
                 {% endset %}
 
@@ -555,90 +796,121 @@
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes govuk-checkboxes--small MT-15"
+                                 data-module="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" name="materials_document" type="checkbox" value="Select all">
+                                    <input class="govuk-checkboxes__input"
+                                           name="materials_document"
+                                           type="checkbox" value="Select all">
                                     <label class="govuk-label govuk-checkboxes__label"></label>
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="govuk-table__header">Material</th>
+                        <th scope="col" class="govuk-table__header">Material
+                        </th>
                         <th scope="col" class="govuk-table__header">Type</th>
                         <th scope="col" class="govuk-table__header">Status</th>
-                        <th scope="col" class="govuk-table__header">Reference</th>
+                        <th scope="col" class="govuk-table__header">Reference
+                        </th>
                         <th scope="col" class="govuk-table__header">Date</th>
                         <th scope="col" class="govuk-table__header">Notes</th>
                     </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                {% for item in data['cases'][0]['material'] %}
-                {% if item.category | lower == 'other materials' %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
-                    <td data-label="checkbox" class="govuk-table__cell">
-                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="materials_document_o{{ item.dataId }}" name="materials_document" type="checkbox" value="{{ item.dataDoc }}">
-                                <label class="govuk-label govuk-checkboxes__label" for="materials_document_o{{ item.dataId }}"><span class="visuallyhidden">{{ item.title }}</span></label>
+                    {% for item in data['cases'][0]['material'] %}
+                    {% if item.category | lower == 'other materials' %}
+                    <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All unread_document">
+                        <td data-label="checkbox" class="govuk-table__cell">
+                            <div class="govuk-checkboxes govuk-checkboxes--small"
+                                 data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input"
+                                           id="materials_document_o{{ item.dataId }}"
+                                           name="materials_document"
+                                           type="checkbox"
+                                           value="{{ item.dataDoc }}">
+                                    <label class="govuk-label govuk-checkboxes__label"
+                                           for="materials_document_o{{ item.dataId }}"><span
+                                            class="visuallyhidden">{{ item.title }}</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="title" class="govuk-table__cell title_column">
-                        {% if item.new == true %}<strong class="govuk-tag govuk-tag--blue">New</strong>{% endif %}
-                        <div class="openMe">
-                            <a class="govuk-button show_material show-case" data-id="{{ item.dataId }}" data-doc="{{ item.dataDoc }}" onclick="return pageActions();">{{ item.title }}</a>
-                        </div>
-                    </td>
-                    <td data-label="type" class="govuk-table__cell">{{ item.type }}</td>
-                    <td data-label="status" class="govuk-table__cell">
-                        <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{ item.status }}</strong>
-                    </td>
-                    <td data-label="reference" class="govuk-table__cell">{{ item.reference }}</td>
-                    <td data-label="date" class="govuk-table__cell">{{ item.date }}</td>
-                    <td data-label="notes" class="govuk-table__cell toggle-panel">
-                        <a href="#" class="govuk-link notes-link new-notes-link exhibit-notes" onClick="openNewNotesModal(); return false;"><span class="notes-text">Show notes</span></a>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
+                        </td>
+                        <td data-label="title"
+                            class="govuk-table__cell title_column">
+                            {% if item.new == true %}<strong
+                                class="govuk-tag govuk-tag--blue">New</strong>{%
+                            endif %}
+                            <div class="openMe">
+                                <a class="govuk-button show_material show-case"
+                                   data-id="{{ item.dataId }}"
+                                   data-doc="{{ item.dataDoc }}"
+                                   onclick="return pageActions();">{{ item.title
+                                    }}</a>
+                            </div>
+                        </td>
+                        <td data-label="type" class="govuk-table__cell">{{
+                            item.type }}
+                        </td>
+                        <td data-label="status" class="govuk-table__cell">
+                            <strong class="govuk-tag {% if item.status == 'Used' %}govuk-tag--blue{% elif item.status == 'Unused' %}govuk-tag--yellow{% else %}govuk-tag--grey{% endif %}">{{
+                                item.status }}</strong>
+                        </td>
+                        <td data-label="reference" class="govuk-table__cell">{{
+                            item.reference }}
+                        </td>
+                        <td data-label="date" class="govuk-table__cell">{{
+                            item.date }}
+                        </td>
+                        <td data-label="notes"
+                            class="govuk-table__cell toggle-panel">
+                            <a href="#"
+                               class="govuk-link notes-link new-notes-link exhibit-notes"
+                               onClick="openNewNotesModal(); return false;"><span
+                                    class="notes-text">Show notes</span></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
                 </table>
                 {% if not hasOtherMaterials %}
-                <p class="govuk-body">There are no other materials available.</p>
+                <p class="govuk-body">There are no other materials
+                    available.</p>
                 {% endif %}
                 {% endset %}
 
                 {{ govukAccordion({
-                    id: "materials-accordion",
-                    items: [
-                        {
-                            heading: { text: "Case overview (0)" },
-                            content: { html: _caseOverviewContent }
-                        },
-                        {
-                            heading: { text: "Statements (7)" },
-                            content: { html: _statementsContent }
-                        },
-                        {
-                            heading: { text: "Exhibits (9)" },
-                            content: { html: _exhibitsContent }
-                        },
-                        {
-                            heading: { text: "MG forms (0)" },
-                            content: { html: _mgFormsContent }
-                        },
-                        {
-                            heading: { text: "Defendant pre cons (0)" },
-                            content: { html: _defendantPreConsContent }
-                        },
-                        {
-                            heading: { text: "Unused material (5)" },
-                            content: { html: _unusedContent }
-                        },
-                        {
-                            heading: { text: "Other materials (0)" },
-                            content: { html: _otherMaterialsContent }
-                        }
-                    ]
+                id: "materials-accordion",
+                items: [
+                {
+                heading: { text: "Case overview (0)" },
+                content: { html: _caseOverviewContent }
+                },
+                {
+                heading: { text: "Statements (7)" },
+                content: { html: _statementsContent }
+                },
+                {
+                heading: { text: "Exhibits (9)" },
+                content: { html: _exhibitsContent }
+                },
+                {
+                heading: { text: "MG forms (0)" },
+                content: { html: _mgFormsContent }
+                },
+                {
+                heading: { text: "Defendant pre cons (0)" },
+                content: { html: _defendantPreConsContent }
+                },
+                {
+                heading: { text: "Unused material (5)" },
+                content: { html: _unusedContent }
+                },
+                {
+                heading: { text: "Other materials (0)" },
+                content: { html: _otherMaterialsContent }
+                }
+                ]
                 }) }}
 
                 {% else %}
@@ -647,15 +919,12 @@
                 {% include "./redaction_filter-from-v2.0.html" %}
 
                 {% endif %}
-
+                </div>
             </div>
-        </div>
-
-        <div id="redact_column_2" class="govuk-grid-column-three-quarters"
+           <div id="redact_column_2" class="govuk-grid-column-one-half"
              style="display: none;">
             {% include "../../version-2/partials/_redact-panel.njk" %}
         </div>
-
     </div>
 </div>
 
