@@ -235,7 +235,8 @@
          data-panel="materials-cards">
         {% set params = {
         caseMaterials: data.caseMaterials,
-        generateDocuments: data.caseMaterialsGenerateDocuments
+        generateDocuments: data.caseMaterialsGenerateDocuments,
+        embeddedInMaterialsCardsPanel: true
         } %}
         {% include "./dcf-materials-panel.njk" %}
     </div>
@@ -269,6 +270,9 @@
         function setPanelState(state) {
             currentMaterialsState = state;
             $workspace.attr('data-materials-state', state);
+
+            // Defensive: remove any grid column classes from workspace itself
+            $workspace.removeClass('govuk-grid-column-full govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters govuk-grid-column-one-half govuk-grid-column-one-quarter');
 
             // Helper to clean grid classes from document panel
             $documentPanel.removeClass('govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters govuk-grid-column-one-half');

@@ -417,7 +417,7 @@ $(document).ready(function () {
                             row.find('td:nth-child(3)').text(newType);
 
                             // Highlight the change
-                            row.css('background-color', '#f3f2f1');
+                            row.css('background-color', '#F3F2F1');
                             setTimeout(function () {
                                 row.css('background-color', '');
                             }, 5000);
@@ -502,7 +502,12 @@ $(document).ready(function () {
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
-        $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        } else {
+            $('#materials_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     } else {
         $('#show_filter_Materials').hide();
     }
@@ -579,7 +584,12 @@ $(document).ready(function () {
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
-        $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        } else {
+            $('#materials_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     });
 
     $("#show_filter_Materials").on("click", function (e) {
@@ -587,7 +597,10 @@ $(document).ready(function () {
         $('#close_filter_Materials').show();
         $('#materials_column_1, #materials_filter').show();
         $('#materials_column_2').removeClass('govuk-grid-column-full').addClass('govuk-grid-column-three-quarters');
-        $('#materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     });
 
     // COMMS

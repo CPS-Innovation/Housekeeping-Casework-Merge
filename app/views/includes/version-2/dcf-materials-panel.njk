@@ -324,84 +324,118 @@
     {% endif %}
 {% endset %}
 
+{% set embedded = params.embeddedInMaterialsCardsPanel %}
 {# ---------- Layout ---------- #}
-<div class="govuk-grid-row dcf-materials-layout">
-    <div class="govuk-grid-column-one-quarter">
-        <div class="dcf-materials-panel dcf-materials-accordion">
-            <div class="dcf-materials-header">
-                <form class="dcf-materials-search" action="/materials/search" method="get" role="search">
-                    <label class="govuk-label govuk-!-font-weight-bold" for="materials-search">Search documents</label>
-                    <div class="dcf-materials-search__row">
-                        <input class="govuk-input dcf-materials-search__input" id="materials-search" name="q"
-                               type="search">
-                        <button class="govuk-button dcf-materials-search__button" type="submit"
-                                data-module="govuk-button">Search
-                        </button>
-                    </div>
-                    <input type="hidden" name="caseId" value="{{ params.caseMaterials.caseId }}">
-                </form>
-            </div>
-
-            {{ govukAccordion({
-                id: "materials-accordion",
-                classes: "dcf-accordion",
-                items: [
-                    { heading: { text: "Statements (" ~ statementsCount ~ ")" },                   content: { html: renderSection('statement', true) } },
-                    { heading: { text: "Exhibits (" ~ exhibitsCount ~ ")" },                     content: { html: renderSection('exhibit') } },
-                    { heading: { text: "MG forms (" ~ mgFormsCount ~ ")" },                     content: { html: renderSection('mg forms') } },
-                    { heading: { text: "CPS generated documents (" ~ cpsDocsCount ~ ")" },      content: { html: cpsDocumentsHtml } },
-                    { heading: { text: "Other documents (" ~ otherCount ~ ")" },               content: { html: renderSection('other material') } },
-                    { heading: { text: "Unused (" ~ unusedCount ~ ")" },                        content: { html: unusedHtml } }
-                ]
-            }) }}
+{% if embedded %}
+    <div class="dcf-materials-panel dcf-materials-accordion">
+        <div class="dcf-materials-header">
+            <form class="dcf-materials-search" action="/materials/search" method="get" role="search">
+                <label class="govuk-label govuk-!-font-weight-bold" for="materials-search">Search documents</label>
+                <div class="dcf-materials-search__row">
+                    <input class="govuk-input dcf-materials-search__input" id="materials-search" name="q"
+                           type="search">
+                    <button class="govuk-button dcf-materials-search__button" type="submit"
+                            data-module="govuk-button">Search
+                    </button>
+                </div>
+                <input type="hidden" name="caseId" value="{{ params.caseMaterials.caseId }}">
+            </form>
         </div>
+
+        {{ govukAccordion({
+            id: "materials-accordion",
+            classes: "dcf-accordion",
+            items: [
+                { heading: { text: "Statements (" ~ statementsCount ~ ")" },                   content: { html: renderSection('statement', true) } },
+                { heading: { text: "Exhibits (" ~ exhibitsCount ~ ")" },                     content: { html: renderSection('exhibit') } },
+                { heading: { text: "MG forms (" ~ mgFormsCount ~ ")" },                     content: { html: renderSection('mg forms') } },
+                { heading: { text: "CPS generated documents (" ~ cpsDocsCount ~ ")" },      content: { html: cpsDocumentsHtml } },
+                { heading: { text: "Other documents (" ~ otherCount ~ ")" },               content: { html: renderSection('other material') } },
+                { heading: { text: "Unused (" ~ unusedCount ~ ")" },                        content: { html: unusedHtml } }
+            ]
+        }) }}
     </div>
+{% else %}
+    <div class="govuk-grid-row dcf-materials-layout">
+        <div class="govuk-grid-column-one-quarter">
+            <div class="dcf-materials-panel dcf-materials-accordion">
+                <div class="dcf-materials-header">
+                    <form class="dcf-materials-search" action="/materials/search" method="get" role="search">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="materials-search">Search
+                            documents</label>
+                        <div class="dcf-materials-search__row">
+                            <input class="govuk-input dcf-materials-search__input" id="materials-search" name="q"
+                                   type="search">
+                            <button class="govuk-button dcf-materials-search__button" type="submit"
+                                    data-module="govuk-button">Search
+                            </button>
+                        </div>
+                        <input type="hidden" name="caseId" value="{{ params.caseMaterials.caseId }}">
+                    </form>
+                </div>
 
-    <div class="govuk-grid-column-three-quarters">
+                {{ govukAccordion({
+                    id: "materials-accordion",
+                    classes: "dcf-accordion",
+                    items: [
+                        { heading: { text: "Statements (" ~ statementsCount ~ ")" },                   content: { html: renderSection('statement', true) } },
+                        { heading: { text: "Exhibits (" ~ exhibitsCount ~ ")" },                     content: { html: renderSection('exhibit') } },
+                        { heading: { text: "MG forms (" ~ mgFormsCount ~ ")" },                     content: { html: renderSection('mg forms') } },
+                        { heading: { text: "CPS generated documents (" ~ cpsDocsCount ~ ")" },      content: { html: cpsDocumentsHtml } },
+                        { heading: { text: "Other documents (" ~ otherCount ~ ")" },               content: { html: renderSection('other material') } },
+                        { heading: { text: "Unused (" ~ unusedCount ~ ")" },                        content: { html: unusedHtml } }
+                    ]
+                }) }}
+            </div>
+        </div>
 
-        {# --- SEARCH STATUS (shown only after a search submit) --- #}
-        <div id="search-status" class="govuk-!-margin-bottom-3" aria-live="polite" hidden>
-            <div data-zero>
-                <div class="dcf-search-meta govuk-!-margin-bottom-0">
-                    No results for "<span data-search-term></span>".
+        <div class="govuk-grid-column-three-quarters">
+
+            {# --- SEARCH STATUS (shown only after a search submit) --- #}
+            <div id="search-status" class="govuk-!-margin-bottom-3" aria-live="polite" hidden>
+                <div data-zero>
+                    <div class="dcf-search-meta govuk-!-margin-bottom-0">
+                        No results for "<span data-search-term></span>".
+                    </div>
+                </div>
+
+                <div data-some hidden>
+                    <div class="dcf-search-status-row">
+                        <p class="dcf-search-meta dcf-search-status-row__meta">
+                            <strong><span data-search-count>0</span></strong>
+                            results for "<span data-search-term></span>"
+                            <span data-role="back-to-documents-sep" hidden> | </span>
+                            <a href="#" class="govuk-link" data-action="back-to-documents" hidden>Back to document
+                                viewer</a>
+                        </p>
+
+                        <div class="dcf-search-order dcf-search-status-row__order"
+                             aria-label="Search result sort options">
+                            <span class="dcf-search-order__label"><b>Sort by: </b> </span>
+
+                            <a href="#"
+                               class="govuk-link dcf-search-order__link"
+                               data-sort-key="date"
+                               aria-pressed="true">
+                                Date added
+                            </a>
+
+                            <span aria-hidden="true" class="dcf-search-order__separator">&nbsp; | &nbsp;</span>
+
+                            <a href="#"
+                               class="govuk-link dcf-search-order__link"
+                               data-sort-key="results"
+                               aria-pressed="false">
+                                Results per document
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div data-some hidden>
-                <div class="dcf-search-status-row">
-                    <p class="dcf-search-meta dcf-search-status-row__meta">
-                        <strong><span data-search-count>0</span></strong>
-                        results for "<span data-search-term></span>"
-                        <span data-role="back-to-documents-sep" hidden> | </span>
-                        <a href="#" class="govuk-link" data-action="back-to-documents" hidden>Back to document
-                            viewer</a>
-                    </p>
-
-                    <div class="dcf-search-order dcf-search-status-row__order" aria-label="Search result sort options">
-                        <span class="dcf-search-order__label"><b>Sort by: </b> </span>
-
-                        <a href="#"
-                           class="govuk-link dcf-search-order__link"
-                           data-sort-key="date"
-                           aria-pressed="true">
-                            Date added
-                        </a>
-
-                        <span aria-hidden="true" class="dcf-search-order__separator">&nbsp; | &nbsp;</span>
-
-                        <a href="#"
-                           class="govuk-link dcf-search-order__link"
-                           data-sort-key="results"
-                           aria-pressed="false">
-                            Results per document
-                        </a>
-                    </div>
-                </div>
+            <div id="material-viewer" class="dcf-viewer" data-component="material-viewer" hidden aria-live="polite">
+                <p class="govuk-body govuk-!-margin-bottom-3">Select a material from the list to preview it here.</p>
             </div>
         </div>
-
-        <div id="material-viewer" class="dcf-viewer" data-component="material-viewer" hidden aria-live="polite">
-            <p class="govuk-body govuk-!-margin-bottom-3">Select a material from the list to preview it here.</p>
-        </div>
     </div>
-</div>
+{% endif %}
