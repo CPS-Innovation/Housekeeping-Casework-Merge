@@ -327,7 +327,7 @@
 {# ---------- Layout ---------- #}
 <div class="govuk-grid-row dcf-materials-layout">
     <div class="govuk-grid-column-one-quarter">
-        <div class="dcf-materials-panel">
+        <div class="dcf-materials-panel dcf-materials-accordion">
             <div class="dcf-materials-header">
                 <form class="dcf-materials-search" action="/materials/search" method="get" role="search">
                     <label class="govuk-label govuk-!-font-weight-bold" for="materials-search">Search documents</label>
@@ -400,7 +400,7 @@
             </div>
         </div>
 
-        <div id="material-viewer" class="dcf-viewer" hidden aria-live="polite">
+        <div id="material-viewer" class="dcf-viewer" data-component="material-viewer" hidden aria-live="polite">
             <p class="govuk-body govuk-!-margin-bottom-3">Select a material from the list to preview it here.</p>
         </div>
     </div>
