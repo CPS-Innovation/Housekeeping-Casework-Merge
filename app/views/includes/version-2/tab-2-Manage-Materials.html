@@ -220,7 +220,7 @@
      class="govuk-grid-row dcf-materials-workspace dcf-materials-workspace--v2-1">
     <div id="materials_column_1"
          class="govuk-grid-column-one-quarter dcf-materials-workspace__filter"
-         data-panel="materials-filter" style="display: none;">
+         data-panel="materials-filter">
         <div class="moj-filter-layout__filter">
             {% include "./materials_filter.html" %}
         </div>
@@ -251,82 +251,90 @@
 
 <script>
     $(document).ready(function () {
-        // Function to check for active documents and update layout
-        function updateRedactLayout() {
-            var $panel = $('#tab_content_2');
-            if (!$panel.is(':visible')) return;
+        // Version 2.1 Manage Materials Panel State Management
+        var $workspace = $('.dcf-materials-workspace--v2-1');
+        if (!$workspace.length) return;
 
-            var $redactColumn1 = $panel.find('#redact_column_1');
-            var $redactColumn2 = $panel.find('#redact_column_2');
-            var hasActiveDoc = $redactColumn1.find('tr.active_document').length > 0;
+        var $filterPanel = $workspace.find('[data-panel="materials-filter"]');
+        var $tablePanel = $workspace.find('[data-panel="materials-table"]');
+        var $cardsPanel = $workspace.find('[data-panel="materials-cards"]');
+        var $documentPanel = $workspace.find('[data-panel="materials-document"]');
+        var $showFilterBtn = $('#show_filter_Materials');
+        var $hideFilterBtn = $('#close_filter_Materials');
 
-            if (!hasActiveDoc) {
-                $redactColumn1.removeClass('govuk-grid-column-one-quarter').addClass('govuk-grid-column-full');
-                $redactColumn2.hide();
-            } else {
-                $redactColumn1.removeClass('govuk-grid-column-full').addClass('govuk-grid-column-one-quarter');
-                $redactColumn2.show();
+        function setPanelState(state) {
+            switch (state) {
+                case 'STATE_A': // Initial table-only view
+                    $filterPanel.hide();
+                    $cardsPanel.hide();
+                    $documentPanel.hide();
+                    $tablePanel.show()
+                        .removeClass('govuk-grid-column-three-quarters')
+                        .addClass('govuk-grid-column-full-from-desktop');
+                    $showFilterBtn.show();
+                    $hideFilterBtn.hide();
+                    break;
+
+                case 'STATE_B': // Table plus filter view
+                    $cardsPanel.hide();
+                    $documentPanel.hide();
+                    $filterPanel.show();
+                    $tablePanel.show()
+                        .removeClass('govuk-grid-column-full-from-desktop')
+                        .addClass('govuk-grid-column-three-quarters');
+                    $showFilterBtn.hide();
+                    $hideFilterBtn.show();
+                    break;
+
+                case 'STATE_C': // Document-review view
+                    $filterPanel.hide();
+                    $tablePanel.hide();
+                    $cardsPanel.show();
+                    $documentPanel.show();
+                    $showFilterBtn.hide();
+                    $hideFilterBtn.hide();
+                    break;
             }
         }
 
-        window.updateRedactLayout = updateRedactLayout;
+        // 1. Initial State: State A
+        setPanelState('STATE_A');
 
-        // Override pageActions for version 2
-        var originalPageActions = window.pageActions;
-        window.pageActions = function () {
-            var $panel = $('#tab_content_2');
-            if ($panel.is(':visible')) {
-                // Requirements 1-4
-                updateRedactLayout();
-
-                // Requirement 5 is handled by global handleMenuLinkClick
-            }
-
-            // Call original if it exists
-            if (typeof originalPageActions === 'function') {
-                return originalPageActions();
-            }
-            return true;
-        };
-
-        // Run on load
-        updateRedactLayout();
-
-        // Run when a tab is clicked
-        $('.tab-link').on('click', function () {
-            setTimeout(updateRedactLayout, 100);
-        });
-
-        // Run when a document is selected (which adds .active_document)
-        $(document).on('click', '#filter_Redactions table .openMe a, .show-case', function () {
-            var $link = $(this);
-            var dataId = $link.attr('data-id');
-            var dataDoc = $link.attr('data-doc');
-            var label = $link.text().trim();
-
-            console.log("Document clicked in version 2:", label, dataId, dataDoc);
-
-            // Ensure layout updates
-            setTimeout(updateRedactLayout, 100);
-
-            // The global handler in scripts.html already handles handleMenuLinkClick(label)
-            // But we can be explicit if needed.
-        });
-
-        // Ensure that document links in the sidebar are properly handled
-        $('.show_material').off('click').on('click', function (e) {
+        // 2. Filter Toggling
+        $showFilterBtn.off('click.version21Materials').on('click.version21Materials', function (e) {
             e.preventDefault();
-            var label = $(this).text();
-            // Call the global handleMenuLinkClick if it exists
-            if (typeof handleMenuLinkClick === 'function') {
-                handleMenuLinkClick(label);
-            } else {
-                // Fallback to manually finding the link in .openMe if global not available
-                console.log("Global handleMenuLinkClick not found, searching for link in .openMe");
-                $(".openMe a").filter(function () {
-                    return $(this).text() === label;
-                }).first().click();
-            }
+            setPanelState('STATE_B');
         });
+
+        $hideFilterBtn.off('click.version21Materials').on('click.version21Materials', function (e) {
+            e.preventDefault();
+            setPanelState('STATE_A');
+        });
+
+        // 3. Document Open Behaviour
+        // Use delegated event binding for .openMe links and others
+        $(document).off('click.version21Materials', '.openMe a, .show-case, .js-material-link');
+        $(document).on('click.version21Materials', '.openMe a, .show-case, .js-material-link', function (e) {
+            // We delay state change slightly to allow existing logic to load document
+            setTimeout(function () {
+                setPanelState('STATE_C');
+            }, 50);
+        });
+
+        // 4. Close Viewer Action
+        $(document).on('click', '[data-action="close-viewer"]', function (e) {
+            e.preventDefault();
+            setPanelState('STATE_A');
+        });
+
+        // Maintain global access for legacy reasons if needed
+        window.updateRedactLayout = function () {
+            var hasActiveDoc = $('.active_document').length > 0;
+            if (hasActiveDoc) {
+                setPanelState('STATE_C');
+            } else {
+                setPanelState('STATE_A');
+            }
+        };
     });
 </script>
