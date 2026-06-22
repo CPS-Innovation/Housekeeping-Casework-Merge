@@ -21,45 +21,45 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-<!--        <div class="govuk-grid-column-one-half">-->
-<!--            <div class="info_wrapper">-->
-<!--&lt;!&ndash;                <button id="show_filter_Materials" type="button"&ndash;&gt;-->
-<!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
-<!--&lt;!&ndash;                        data-module="govuk-button">Show filter&ndash;&gt;-->
-<!--&lt;!&ndash;                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;                <button id="close_filter_Materials" type="button"&ndash;&gt;-->
-<!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
-<!--&lt;!&ndash;                        data-module="govuk-button">Hide filter&ndash;&gt;-->
-<!--&lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                {% if data['discarding_material_COMPLETED'] == 'true' %}-->
-<!--                <p>Showing <strong>19</strong> materials out of-->
-<!--                    <strong>19</strong></p>-->
-<!--                {% else %}-->
-<!--                <p>Showing <strong>20</strong> materials out of-->
-<!--                    <strong>20</strong></p>-->
-<!--                {% endif %}-->
-<!--            </div>-->
-<!--        </div>-->
-            <div class="actions_holder">
-                <div class="dcf-viewer__toolbar govuk-!-margin-bottom-4 govuk-body">
-                    <a href="#" id="show_filter_Materials" class="govuk-link"
-                       data-module="govuk-button">Show
-                        filter</a>
-                    <a href="#" id="close_filter_Materials" class="govuk-link"
-                                     data-module="govuk-button">Hide
+        <!--        <div class="govuk-grid-column-one-half">-->
+        <!--            <div class="info_wrapper">-->
+        <!--&lt;!&ndash;                <button id="show_filter_Materials" type="button"&ndash;&gt;-->
+        <!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
+        <!--&lt;!&ndash;                        data-module="govuk-button">Show filter&ndash;&gt;-->
+        <!--&lt;!&ndash;                </button>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <button id="close_filter_Materials" type="button"&ndash;&gt;-->
+        <!--&lt;!&ndash;                        class="govuk-button govuk-button&#45;&#45;secondary"&ndash;&gt;-->
+        <!--&lt;!&ndash;                        data-module="govuk-button">Hide filter&ndash;&gt;-->
+        <!--&lt;!&ndash;                </button>&ndash;&gt;-->
+        <!--                {% if data['discarding_material_COMPLETED'] == 'true' %}-->
+        <!--                <p>Showing <strong>19</strong> materials out of-->
+        <!--                    <strong>19</strong></p>-->
+        <!--                {% else %}-->
+        <!--                <p>Showing <strong>20</strong> materials out of-->
+        <!--                    <strong>20</strong></p>-->
+        <!--                {% endif %}-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="actions_holder">
+            <div class="dcf-viewer__toolbar govuk-!-margin-bottom-4 govuk-body">
+                <a href="#" id="show_filter_Materials" class="govuk-link"
+                   data-module="govuk-button">Show
                     filter</a>
-                    <span aria-hidden="true"
-                          class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
-                    <a href="#" class="govuk-link" data-action="close-viewer">Close
-                        all documents</a>
-                    <span aria-hidden="true"
-                          class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
-                    <a href="#" class="govuk-link" data-action="toggle-full"
-                       aria-pressed="false">
-                        View document full width
-                    </a>
+                <a href="#" id="close_filter_Materials" class="govuk-link"
+                   data-module="govuk-button">Hide
+                    filter</a>
+                <span aria-hidden="true"
+                      class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
+                <a href="#" class="govuk-link" data-action="close-viewer">Close
+                    all documents</a>
+                <span aria-hidden="true"
+                      class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
+                <a href="#" class="govuk-link" data-action="toggle-full"
+                   aria-pressed="false">
+                    View document full width
+                </a>
 
-                    <span class="dcf-viewer__toolbar-right">
+                <span class="dcf-viewer__toolbar-right">
                         <a href="#" class="govuk-link"
                            data-action="back-to-search"
                            hidden>Back to search results</a>
@@ -69,173 +69,181 @@
                         <span class="dcf-viewer__navcluster"
                               data-role="search-nav"></span>
                     </span>
-                    <div class="moj-button-menu">
+                <div class="moj-button-menu">
+                    <button type="button"
+                            class="govuk-button govuk-button--secondary"
+                            data-module="govuk-button"
+                            id="show_Materials_Actions">
+                        Actions on selection
+                        <svg width="11" height="5" viewBox="0 0 11 5"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 0L11 5L0 5L5.5 0Z"
+                                  fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden_buttons" id="materials_Actions">
+                        <!-- Rename should only be available for single selections, not multiple -->
                         <button type="button"
-                                class="govuk-button govuk-button--secondary"
+                                class="govuk-button govuk-button--disabled rename_Document_Multiple_Docs rename-Document"
                                 data-module="govuk-button"
-                                id="show_Materials_Actions">
-                            Actions on selection
-                            <svg width="11" height="5" viewBox="0 0 11 5"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.5 0L11 5L0 5L5.5 0Z"
-                                      fill="currentColor"></path>
-                            </svg>
+                                onclick="return openRenameModal(); documentRename();">
+                            Rename
                         </button>
-                        <div class="hidden_buttons" id="materials_Actions">
-                            <!-- Rename should only be available for single selections, not multiple -->
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled rename_Document_Multiple_Docs rename-Document"
-                                    data-module="govuk-button"
-                                    onclick="return openRenameModal(); documentRename();">Rename
-                            </button>
 
-                            <button type="button" id="update-and-reclassify"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button" disabled>
-                                Reclassify
-                            </button>
+                        <button type="button" id="update-and-reclassify"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button" disabled>
+                            Reclassify
+                        </button>
 
-                            <!-- Update should only be available for Statements or Exhibits -->
-                            <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
-                            {% if version < '2.0' %}
-                            <button type="button" id="update-statement"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button"
-                                    onclick="return openUpdateStatement(); documentUpdateStatement();"
-                                    disabled>Update
-                            </button>
+                        <!-- Update should only be available for Statements or Exhibits -->
+                        <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
+                        {% if version < '2.0' %}
+                        <button type="button" id="update-statement"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button"
+                                onclick="return openUpdateStatement(); documentUpdateStatement();"
+                                disabled>Update
+                        </button>
 
-                            {% elif version >= '2.0' %}
-                            <button type="button" id="update-statement"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button"
-                                    onclick="return openUpdateStatement(); documentUpdateStatement();"
-                                    disabled>Update statement
-                            </button>
-                            {% endif %}
+                        {% elif version >= '2.0' %}
+                        <button type="button" id="update-statement"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button"
+                                onclick="return openUpdateStatement(); documentUpdateStatement();"
+                                disabled>Update statement
+                        </button>
+                        {% endif %}
 
-                            <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
-                            {% if version < '2.0' %}
-                            <button type="button" id="update-exhibit"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button"
-                                    onclick="return openUpdateExhibit();"
-                                    disabled>Update
-                            </button>
-                            {% elif version >= '2.0' %}
-                            <button type="button" id="update-exhibit"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button"
-                                    onclick="return openUpdateExhibit();"
-                                    disabled>Update exhibit
-                            </button>
-                            {% endif %}
+                        <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
+                        {% if version < '2.0' %}
+                        <button type="button" id="update-exhibit"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button"
+                                onclick="return openUpdateExhibit();"
+                                disabled>Update
+                        </button>
+                        {% elif version >= '2.0' %}
+                        <button type="button" id="update-exhibit"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button"
+                                onclick="return openUpdateExhibit();"
+                                disabled>Update exhibit
+                        </button>
+                        {% endif %}
 
-                            {% if version >= '1.1' %}
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
-                                    data-module="govuk-button" disabled>Redact
-                            </button>
-                            {% endif %}
+                        {% if version >= '1.1' %}
+                        <button type="button"
+                                class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
+                                data-module="govuk-button" disabled>Redact
+                        </button>
+                        {% endif %}
 
-                            <form method="post"
-                                  action="/version-2/B-discard_material?version={{ version }}">
-                                <input id="material_selected"
-                                       name="material_selected" type="hidden"
-                                       value="">
-                                <input name="discard_origin" type="hidden"
-                                       value="materials">
-                                <button class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                        data-module="govuk-button" type="submit"
-                                        disabled>Discard
-                                </button>
-                            </form>
-
-                            <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                    data-module="govuk-button" type="button"
-                                    disabled>Mark as read
+                        <form method="post"
+                              action="/version-2/B-discard_material?version={{ version }}">
+                            <input id="material_selected"
+                                   name="material_selected" type="hidden"
+                                   value="">
+                            <input name="discard_origin" type="hidden"
+                                   value="materials">
+                            <button class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                    data-module="govuk-button" type="submit"
+                                    disabled>Discard
                             </button>
+                        </form>
 
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled unused_Materials_Multiple_Docs"
-                                    data-module="govuk-button" disabled>Mark as
-                                unused
-                            </button>
+                        <button class="govuk-button mark_as_Read govuk-button--disabled reclassify_Document_Multiple_Docs"
+                                data-module="govuk-button" type="button"
+                                disabled>Mark as read
+                        </button>
 
-                            {% if version >= '1.1' %}
-                            <button type="button"
-                                    class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document"
-                                    data-module="govuk-button"
-                                    onclick="return openDocumentInNewWindow();">
-                                View in new window
-                            </button>
-                            {% endif %}
-                        </div>
+                        <button type="button"
+                                class="govuk-button govuk-button--disabled unused_Materials_Multiple_Docs"
+                                data-module="govuk-button" disabled>Mark as
+                            unused
+                        </button>
+
+                        {% if version >= '1.1' %}
+                        <button type="button"
+                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document"
+                                data-module="govuk-button"
+                                onclick="return openDocumentInNewWindow();">
+                            View in new window
+                        </button>
+                        {% endif %}
                     </div>
-                    <div class="moj-button-menu dropdown">
-                        <button type="button"
-                                onclick="myFunction(); toggleClass();"
-                                class="govuk-button dropbtn govuk-button--secondary"
-                                data-module="govuk-button"
-                                id="show_Document_Actions">
-                            Document actions
-                            <svg width="11" height="5" viewBox="0 0 11 5"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.5 0L11 5L0 5L5.5 0Z"
-                                      fill="currentColor"></path>
-                            </svg>
+                </div>
+                <div class="moj-button-menu dropdown">
+                    <button type="button"
+                            onclick="myFunction(); toggleClass();"
+                            class="govuk-button dropbtn govuk-button--secondary"
+                            data-module="govuk-button"
+                            id="show_Document_Actions">
+                        Document actions
+                        <svg width="11" height="5" viewBox="0 0 11 5"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 0L11 5L0 5L5.5 0Z"
+                                  fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden_buttons dropdown-content"
+                         id="myDropdown1">
+                        <button onclick="openModalOver(); documentTitle();"
+                                class="">Log an Under/Over redaction
                         </button>
-                        <div class="hidden_buttons dropdown-content" id="myDropdown1">
-                            <button onclick="openModalOver(); documentTitle();" class="">Log an Under/Over redaction</button>
-                            <!-- <button onclick="window.open(#)" class="">View redaction log history</button>-->
-                            <!-- <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
-                            <button onclick="openRotatePagesModal(); documentTitle();" class="remove-rotate-pages-modal">Rotate document pages</button>
+                        <!-- <button onclick="window.open(#)" class="">View redaction log history</button>-->
+                        <!-- <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
+                        <button onclick="openRotatePagesModal(); documentTitle();"
+                                class="remove-rotate-pages-modal">Rotate
+                            document pages
+                        </button>
 
-                            <button onclick="location.href='B-discard_material';">Discard</button>
-                            <button onclick="">Reclassify</button>
+                        <button onclick="location.href='B-discard_material';">
+                            Discard
+                        </button>
+                        <button onclick="">Reclassify</button>
 
-                            <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark as read</button>
-                            <button onclick="return openRenameModal(); documentRename();" class="rename-Document">Rename</button>
-                        </div>
+                        <button class="govuk-button mark_as_Read"
+                                data-module="govuk-button" type="button">Mark as
+                            read
+                        </button>
+                        <button onclick="return openRenameModal(); documentRename();"
+                                class="rename-Document">Rename
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
-    <!-- Full width table view -->
-<!--    <div class="govuk-grid-row">-->
-<!--        <div class="govuk-grid-column-one-quarter" id="materials_column_1">-->
-<!--            <div class="moj-filter-layout__filter">-->
-<!--                {% include "./materials_filter.html" %}-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="govuk-grid-column-full-from-desktop" id="filter_Redactions">-->
-<!--            {% include "./materials_table.njk" %}-->
-<!--        </div>-->
-<!--    </div>-->
-<div class="govuk-grid-row">
-    <div id="materials_content" class="govuk-grid-column-full dcf-materials-workspace dcf-materials-workspace--v2-1">
-    <div class="govuk-grid-row">
-            <div id="materials_column_1" class="govuk-grid-column-one-quarter dcf-materials-workspace__filter" data-panel="materials-filter" style="display: none;">
-                <div class="moj-filter-layout__filter">
-                    {% include "./materials_filter.html" %}
-                </div>
-            </div>
-            <div id="filter_Redactions" class="govuk-grid-column-full-from-desktop dcf-materials-workspace__table" data-panel="materials-table">
-                {% include "./materials_table.njk" %}
-            </div>
-            <div id="redact_column_1" class="govuk-grid-column-one-quarter dcf-materials-workspace__cards" data-panel="materials-cards">
-                {% set params = {
-                caseMaterials: data.caseMaterials,
-                generateDocuments: data.caseMaterialsGenerateDocuments
-                } %}
-                {% include "./dcf-materials-panel.njk" %}
-            </div>
-           <div id="redact_column_2" class="govuk-grid-column-one-half dcf-materials-workspace__document"
-             data-panel="materials-document"
-             style="display: none;">
-            {% include "../../version-2/partials/_redact-panel.njk" %}
+<div id="materials_content"
+     class="govuk-grid-row dcf-materials-workspace dcf-materials-workspace--v2-1">
+    <div id="materials_column_1"
+         class="govuk-grid-column-one-quarter dcf-materials-workspace__filter"
+         data-panel="materials-filter" style="display: none;">
+        <div class="moj-filter-layout__filter">
+            {% include "./materials_filter.html" %}
         </div>
+    </div>
+    <div id="filter_Redactions"
+         class="govuk-grid-column-full-from-desktop dcf-materials-workspace__table"
+         data-panel="materials-table">
+        {% include "./materials_table.njk" %}
+    </div>
+    <div id="redact_column_1"
+         class="govuk-grid-column-one-quarter dcf-materials-workspace__cards"
+         data-panel="materials-cards">
+        {% set params = {
+        caseMaterials: data.caseMaterials,
+        generateDocuments: data.caseMaterialsGenerateDocuments
+        } %}
+        {% include "./dcf-materials-panel.njk" %}
+    </div>
+    <div id="redact_column_2"
+         class="govuk-grid-column-one-half dcf-materials-workspace__document"
+         data-panel="materials-document"
+         style="display: none;">
+        {% include "../../version-2/partials/_redact-panel.njk" %}
     </div>
 </div>
 
