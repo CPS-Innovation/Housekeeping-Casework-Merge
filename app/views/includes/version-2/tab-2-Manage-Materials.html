@@ -49,12 +49,16 @@
                    data-module="govuk-button">Hide
                     filter</a>
                 <span aria-hidden="true"
-                      class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
-                <a href="#" class="govuk-link" data-action="close-viewer">Close
+                      class="govuk-!-margin-horizontal-2"
+                      data-toolbar-control="close-viewer-separator">&nbsp; | &nbsp;</span>
+                <a href="#" class="govuk-link" data-action="close-viewer"
+                   data-toolbar-control="close-viewer">Close
                     all documents</a>
                 <span aria-hidden="true"
-                      class="govuk-!-margin-horizontal-2">&nbsp; | &nbsp;</span>
+                      class="govuk-!-margin-horizontal-2"
+                      data-toolbar-control="toggle-full-separator">&nbsp; | &nbsp;</span>
                 <a href="#" class="govuk-link" data-action="toggle-full"
+                   data-toolbar-control="toggle-full"
                    aria-pressed="false">
                     View document full width
                 </a>
@@ -265,11 +269,27 @@
         var $toggleFullBtn = $('[data-action="toggle-full"]');
         var $closeViewerBtn = $('[data-action="close-viewer"]');
 
+        var $closeViewerSeparator = $('[data-toolbar-control="close-viewer-separator"]');
+        var $closeViewerControls = $('[data-toolbar-control="close-viewer"]');
+        var $toggleFullSeparator = $('[data-toolbar-control="toggle-full-separator"]');
+        var $toggleFullControls = $('[data-toolbar-control="toggle-full"]');
+
         let currentMaterialsState = 'table';
 
         function setPanelState(state) {
             currentMaterialsState = state;
             $workspace.attr('data-materials-state', state);
+
+            // Derive visibility flags
+            var isDocumentVisible = state === 'document-with-cards' || state === 'document-with-filter-and-cards' || state === 'document-only';
+            var isDocumentOnly = state === 'document-only';
+            var canToggleFullWidth = state === 'document-with-cards' || state === 'document-with-filter-and-cards' || state === 'document-only';
+
+            // Apply toolbar visibility explicitly
+            $closeViewerControls.toggle(isDocumentVisible);
+            $closeViewerSeparator.toggle(isDocumentVisible && !isDocumentOnly);
+            $toggleFullControls.toggle(canToggleFullWidth);
+            $toggleFullSeparator.toggle(canToggleFullWidth);
 
             // Defensive: remove any grid column classes from workspace itself
             $workspace.removeClass('govuk-grid-column-full govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters govuk-grid-column-one-half govuk-grid-column-one-quarter');
