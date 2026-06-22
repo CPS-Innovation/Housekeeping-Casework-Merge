@@ -261,79 +261,131 @@
         var $documentPanel = $workspace.find('[data-panel="materials-document"]');
         var $showFilterBtn = $('#show_filter_Materials');
         var $hideFilterBtn = $('#close_filter_Materials');
+        var $toggleFullBtn = $('[data-action="toggle-full"]');
+        var $closeViewerBtn = $('[data-action="close-viewer"]');
+
+        let currentMaterialsState = 'table';
 
         function setPanelState(state) {
+            currentMaterialsState = state;
+            $workspace.attr('data-materials-state', state);
+
+            // Helper to clean grid classes from document panel
+            $documentPanel.removeClass('govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters govuk-grid-column-one-half');
+            // Helper to clean grid classes from table panel
+            $tablePanel.removeClass('govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters');
+
             switch (state) {
-                case 'STATE_A': // Initial table-only view
+                case 'table': // State A
                     $filterPanel.hide();
                     $cardsPanel.hide();
                     $documentPanel.hide();
-                    $tablePanel.show()
-                        .removeClass('govuk-grid-column-three-quarters')
-                        .addClass('govuk-grid-column-full-from-desktop');
+                    $tablePanel.show().addClass('govuk-grid-column-full-from-desktop');
+
                     $showFilterBtn.show();
                     $hideFilterBtn.hide();
+                    $toggleFullBtn.attr('aria-pressed', 'false').text('View document full width');
                     break;
 
-                case 'STATE_B': // Table plus filter view
+                case 'table-with-filter': // State B
                     $cardsPanel.hide();
                     $documentPanel.hide();
-                    $filterPanel.show();
-                    $tablePanel.show()
-                        .removeClass('govuk-grid-column-full-from-desktop')
-                        .addClass('govuk-grid-column-three-quarters');
+                    $filterPanel.show().addClass('govuk-grid-column-one-quarter');
+                    $tablePanel.show().addClass('govuk-grid-column-three-quarters');
+
                     $showFilterBtn.hide();
                     $hideFilterBtn.show();
                     break;
 
-                case 'STATE_C': // Document-review view
+                case 'document-with-cards': // State C
                     $filterPanel.hide();
                     $tablePanel.hide();
-                    $cardsPanel.show();
-                    $documentPanel.show();
+                    $cardsPanel.show().addClass('govuk-grid-column-one-quarter');
+                    $documentPanel.show().addClass('govuk-grid-column-three-quarters');
+
+                    $showFilterBtn.show();
+                    $hideFilterBtn.hide();
+                    $toggleFullBtn.attr('aria-pressed', 'false').text('View document full width');
+                    break;
+
+                case 'document-with-filter-and-cards': // State D
+                    $tablePanel.hide();
+                    $filterPanel.show().addClass('govuk-grid-column-one-quarter');
+                    $cardsPanel.show().addClass('govuk-grid-column-one-quarter');
+                    $documentPanel.show().addClass('govuk-grid-column-one-half');
+
+                    $showFilterBtn.hide();
+                    $hideFilterBtn.show();
+                    $toggleFullBtn.attr('aria-pressed', 'false').text('View document full width');
+                    break;
+
+                case 'document-only': // State E
+                    $filterPanel.hide();
+                    $tablePanel.hide();
+                    $cardsPanel.hide();
+                    $documentPanel.show().addClass('govuk-grid-column-full-from-desktop');
+
                     $showFilterBtn.hide();
                     $hideFilterBtn.hide();
+                    $toggleFullBtn.attr('aria-pressed', 'true').text('Exit full width');
                     break;
             }
         }
 
         // 1. Initial State: State A
-        setPanelState('STATE_A');
+        setPanelState('table');
 
         // 2. Filter Toggling
-        $showFilterBtn.off('click.version21Materials').on('click.version21Materials', function (e) {
+        $(document).off('click.version21Materials', '#show_filter_Materials, #close_filter_Materials');
+        $(document).on('click.version21Materials', '#show_filter_Materials, #close_filter_Materials', function (e) {
             e.preventDefault();
-            setPanelState('STATE_B');
-        });
-
-        $hideFilterBtn.off('click.version21Materials').on('click.version21Materials', function (e) {
-            e.preventDefault();
-            setPanelState('STATE_A');
+            if (currentMaterialsState === 'table') {
+                setPanelState('table-with-filter');
+            } else if (currentMaterialsState === 'table-with-filter') {
+                setPanelState('table');
+            } else if (currentMaterialsState === 'document-with-cards') {
+                setPanelState('document-with-filter-and-cards');
+            } else if (currentMaterialsState === 'document-with-filter-and-cards') {
+                setPanelState('document-with-cards');
+            }
         });
 
         // 3. Document Open Behaviour
-        // Use delegated event binding for .openMe links and others
         $(document).off('click.version21Materials', '.openMe a, .show-case, .js-material-link');
         $(document).on('click.version21Materials', '.openMe a, .show-case, .js-material-link', function (e) {
-            // We delay state change slightly to allow existing logic to load document
+            // Preserve existing loading behaviour, just update layout
             setTimeout(function () {
-                setPanelState('STATE_C');
+                setPanelState('document-with-cards');
             }, 50);
         });
 
-        // 4. Close Viewer Action
-        $(document).on('click', '[data-action="close-viewer"]', function (e) {
+        // 4. Full-width Toggle
+        $(document).off('click.version21Materials', '[data-action="toggle-full"]');
+        $(document).on('click.version21Materials', '[data-action="toggle-full"]', function (e) {
             e.preventDefault();
-            setPanelState('STATE_A');
+            if (currentMaterialsState === 'document-with-cards' || currentMaterialsState === 'document-with-filter-and-cards') {
+                setPanelState('document-only');
+            } else if (currentMaterialsState === 'document-only') {
+                setPanelState('document-with-cards');
+            }
+        });
+
+        // 5. Close Viewer Action
+        $(document).off('click.version21Materials', '[data-action="close-viewer"]');
+        $(document).on('click.version21Materials', '[data-action="close-viewer"]', function (e) {
+            // Existing close behavior is triggered by data-action="close-viewer" elsewhere
+            setPanelState('table');
         });
 
         // Maintain global access for legacy reasons if needed
         window.updateRedactLayout = function () {
             var hasActiveDoc = $('.active_document').length > 0;
             if (hasActiveDoc) {
-                setPanelState('STATE_C');
+                if (currentMaterialsState.indexOf('document') === -1) {
+                    setPanelState('document-with-cards');
+                }
             } else {
-                setPanelState('STATE_A');
+                setPanelState('table');
             }
         };
     });
