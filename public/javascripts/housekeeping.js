@@ -502,6 +502,9 @@ $(document).ready(function () {
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. The name was retained to avoid a risky selector refactor.
+        // This class only exists in the version 2.2 tab-2 block and will never appear on 2.0 or 2.1.
         var $workspacev21 = $('.dcf-materials-workspace--v2-1');
         if (!$workspacev21.length) {
             $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
@@ -584,6 +587,8 @@ $(document).ready(function () {
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. Only present on version 2.2 pages.
         var $workspacev21 = $('.dcf-materials-workspace--v2-1');
         if (!$workspacev21.length) {
             $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
@@ -597,6 +602,8 @@ $(document).ready(function () {
         $('#close_filter_Materials').show();
         $('#materials_column_1, #materials_filter').show();
         $('#materials_column_2').removeClass('govuk-grid-column-full').addClass('govuk-grid-column-three-quarters');
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. Only present on version 2.2 pages.
         var $workspacev21 = $('.dcf-materials-workspace--v2-1');
         if (!$workspacev21.length) {
             $('#materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
