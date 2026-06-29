@@ -329,17 +329,7 @@
 {% if embedded %}
     <div class="dcf-materials-panel dcf-materials-accordion">
         <div class="dcf-materials-header">
-            <form class="dcf-materials-search" action="/materials/search" method="get" role="search">
-                <label class="govuk-label govuk-!-font-weight-bold" for="materials-search">Search documents</label>
-                <div class="dcf-materials-search__row">
-                    <input class="govuk-input dcf-materials-search__input" id="materials-search" name="q"
-                           type="search">
-                    <button class="govuk-button dcf-materials-search__button" type="submit"
-                            data-module="govuk-button">Search
-                    </button>
-                </div>
-                <input type="hidden" name="caseId" value="{{ params.caseMaterials.caseId }}">
-            </form>
+            <h2 class="govuk-heading-m">Categories</h2>
         </div>
 
         {{ govukAccordion({

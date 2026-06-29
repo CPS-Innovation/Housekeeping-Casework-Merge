@@ -273,6 +273,8 @@
         var $closeViewerControls = $('[data-toolbar-control="close-viewer"]');
         var $toggleFullSeparator = $('[data-toolbar-control="toggle-full-separator"]');
         var $toggleFullControls = $('[data-toolbar-control="toggle-full"]');
+        var $materialsActionsMenu = $('#show_Materials_Actions').closest('.moj-button-menu');
+        var $documentActionsMenu = $('#show_Document_Actions').closest('.moj-button-menu.dropdown');
 
         let currentMaterialsState = 'table';
 
@@ -290,6 +292,10 @@
             $closeViewerSeparator.toggle(isDocumentVisible && !isDocumentOnly);
             $toggleFullControls.toggle(canToggleFullWidth);
             $toggleFullSeparator.toggle(canToggleFullWidth);
+
+            $materialsActionsMenu.toggle(!isDocumentVisible);
+            $documentActionsMenu.toggle(isDocumentVisible);
+            $('#show_filter_Redactions, #close_filter_Redactions').hide();
 
             // Defensive: remove any grid column classes from workspace itself
             $workspace.removeClass('govuk-grid-column-full govuk-grid-column-full-from-desktop govuk-grid-column-three-quarters govuk-grid-column-one-half govuk-grid-column-one-quarter');
