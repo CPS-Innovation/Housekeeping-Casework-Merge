@@ -1,0 +1,157 @@
+// ---------------------------------------------
+// Indictment list wrapper
+// ---------------------------------------------
+
+.app-list {
+
+  .app-list__item {
+    border-bottom: 1px solid govuk-colour('mid-grey');
+		border-top: 0; // ensure wrapper isn't contributing
+    padding-top: govuk-spacing(4);
+    padding-bottom: govuk-spacing(4);
+    position: relative;
+  }
+
+  // ---------------------------------------------
+  // Summary list typography
+  // ---------------------------------------------
+
+  .govuk-summary-list {
+    margin-bottom: 0;
+    @include govuk-font(16);
+  }
+
+
+
+  // Improve spacing inside lists (defendants, victims etc.)
+  .govuk-summary-list__value ul.govuk-list > li {
+    margin-bottom: govuk-spacing(1);
+  }
+
+  .govuk-summary-list__value ul.govuk-list > li:last-child {
+    margin-bottom: 0;
+  }
+
+  // Actions alignment
+  .govuk-summary-list__actions {
+    vertical-align: middle;
+  }
+
+  .govuk-summary-list__actions a {
+    @include govuk-font(16);
+    line-height: 1.4;
+  }
+
+  // ---------------------------------------------
+  // Headings inside list items
+  // ---------------------------------------------
+
+  h2 {
+    margin-bottom: govuk-spacing(0);
+    @include govuk-font(19);
+  }
+
+  h2,
+  h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: govuk-spacing(2);
+
+    > div:first-child {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  // Tags
+  .govuk-tag {
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .app-list__tag {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .app-list__actions {
+    position: absolute;
+    right: govuk-spacing(1);
+    top: govuk-spacing(3);
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  // Details component inside list
+  .govuk-details {
+    margin-top: govuk-spacing(2);
+    @include govuk-font(16);
+  }
+}
+
+
+/* --------------------------------------------------
+   Indictment summary list: NO top border, dividers only
+   -------------------------------------------------- */
+
+.govuk-summary-list.app-summary-list--divided {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Kill any top borders on first row cells (some versions use these) */
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__row,
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__key,
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__value,
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__actions {
+  border-top: 0 !important;
+}
+
+/* Now apply ONLY bottom borders (your dividers) */
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__row {
+  border-bottom: 1px solid govuk-colour('mid-grey') !important;
+}
+
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__row:last-child {
+  border-bottom: 0 !important;
+}
+
+/* Spacing: apply to cells, not the row */
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__key,
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__value,
+.govuk-summary-list.app-summary-list--divided .govuk-summary-list__actions {
+  padding-top: govuk-spacing(3);
+  padding-bottom: govuk-spacing(3);
+  vertical-align: middle;
+}
+
+
+
+// ---------------------------------------------
+// Tables
+// ---------------------------------------------
+
+.govuk-table,
+.govuk-table th,
+.govuk-table td,
+.govuk-table p,
+.govuk-table span,
+.govuk-table strong,
+.govuk-table a,
+.govuk-table button {
+  @include govuk-font(16);
+}
+
+.govuk-table th {
+  font-weight: 700;
+}
+
+
+// ---------------------------------------------
+// Global tag safety
+// ---------------------------------------------
+
+.govuk-tag {
+  white-space: nowrap;
+  max-width: 100%;
+}

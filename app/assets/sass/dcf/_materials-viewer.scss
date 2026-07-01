@@ -1,0 +1,389 @@
+/* ======================================================================
+   materials-viewer.scss  (full file)
+   ====================================================================== */
+
+/* Highlight active card in the left list (non-focus) */
+.dcf-material-card--active {
+  border-color: #1d70b8; // GOV.UK blue thin border
+  outline: none;         // let focus styles control outline
+}
+
+/* ----------------------------------------------------------------------
+   Viewer toolbar (above meta)
+   ---------------------------------------------------------------------- */
+.dcf-viewer__toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start; // left group pinned left
+}
+
+/* Left group (Close documents, View full width) */
+.dcf-viewer__toolbar > a {
+  display: inline-block;
+}
+
+/* Right group (Back to search results, Previous, Next) */
+.dcf-viewer__toolbar-right {
+  margin-left: auto;          // pushes this cluster to the far right
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Optional: tiny spacing inside the right cluster */
+.dcf-viewer__toolbar-right > * + * {
+  margin-left: 4px;
+}
+
+.dcf-viewer__toolbar-right {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/* Keep the viewer visible while the left column scrolls */
+@media (min-width: 769px) {
+  #material-viewer {
+    position: sticky;
+    top: 16px; // leave room from top
+  }
+}
+
+
+/* ----------------------------------------------------------------------
+   FULL-WIDTH VIEWER MODE (within the materials grid row)
+   ---------------------------------------------------------------------- */
+.dcf-materials-layout.is-full {
+  // Hide the left 1/4 column
+  .govuk-grid-column-one-quarter {        // *** CHANGED (was one-third)
+    display: none;
+  }
+
+  // Let the right 3/4 column take the whole row
+  .govuk-grid-column-three-quarters {     // *** CHANGED (was two-thirds + flex)
+    float: none;          // cancel GOV.UK grid float
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ----------------------------------------------------------------------
+   CLIPPING + IFRAME LAYOUT FIXES
+   ---------------------------------------------------------------------- */
+
+/* Make sure the right edge can't be clipped by ancestor overflow */
+.dcf-materials-layout .govuk-grid-column-three-quarters,   // *** CHANGED (was two-thirds)
+#material-viewer,
+.dcf-viewer {
+  overflow: visible;
+}
+
+/* Single, definitive rule for the iframe */
+.dcf-viewer__frame {
+  display: block;             /* avoid inline whitespace quirks */
+  box-sizing: border-box;     /* width includes padding/border */
+  width: 100%;
+  max-width: 100%;            /* never exceed the column */
+  height: calc(100vh - 20px); /* adjust to taste */
+  border: 0;
+}
+
+/* Safety net if a PDF paints a smidge wider in some browsers */
+.dcf-viewer {
+  overflow-x: auto;
+}
+
+/* Meta/ops bars use negative margins—ensure they don't trigger h-scroll */
+.dcf-viewer__meta,
+.dcf-viewer__ops-bar {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------------
+   META PANEL (above the iframe)
+   ---------------------------------------------------------------------- */
+
+/* _materials-viewer.scss
+   Styles for the preview pane meta block shown above the iframe.
+   Keep separate from accordion/card styles.
+*/
+.dcf-viewer__meta {
+  border-width: 12px 12px 0 12px;
+  border-style: solid;
+  border-color: #3B64AC;      /* GOV.UK extended blue */
+  background: #fff;
+  color: #000;
+  padding: 12px 12px 0 12px;  /* bottom padding handled by meta bar */
+  margin-bottom: 0;
+
+  .govuk-summary-list {
+    border-top: 1px solid #b1b4b6;
+    margin-bottom: 10px;
+  }
+  .govuk-summary-list__row {
+    border-bottom: 1px solid #b1b4b6;
+  }
+
+  .govuk-summary-list__key,
+  .govuk-summary-list__value,
+  .govuk-summary-list__actions {
+    color: #0b0c0c;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .govuk-heading-s,
+  .govuk-heading-m {
+    color: #000;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+
+  .govuk-link {
+    color: #000;
+    text-decoration-thickness: 1px;
+  }
+  .govuk-link:hover { text-decoration-thickness: 2px; }
+  .govuk-link:focus {
+    outline: 3px solid transparent;
+    color: #0b0c0c;
+    background: #fd0;
+    box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+    text-decoration: none;
+  }
+}
+
+/* Full-bleed meta action bar */
+.dcf-viewer__meta-bar {
+  /* make it touch the blue border of .dcf-viewer__meta */
+  margin: -12px -12px 0;      /* top/left/right = -meta padding */
+  padding: 0px 0 10px 0;      /* vertical padding only */
+  background: #3B64AC;
+  color: #fff;
+  display: flex;              /* host flex just to contain the row */
+}
+
+
+/* Row that holds the two controls */
+.dcf-meta-actions {
+  display: flex;
+  align-items: center;        /* vertical centering */
+  gap: 12px;
+  width: 100%;                /* stretch across the bar */
+
+  .dcf-meta-secondary { order: 0; }           /* the “Reclassify” button */
+  .js-meta-toggle     { order: 1; margin-left: auto; }
+}
+
+/* Inverse link styling on the blue bar */
+.dcf-viewer__meta-bar .govuk-link {
+  color: #fff;
+  text-decoration-thickness: 1px;
+}
+.dcf-viewer__meta-bar .govuk-link:hover { text-decoration-thickness: 2px; }
+.dcf-viewer__meta-bar .govuk-link:focus {
+  outline: 3px solid transparent;
+  background: #fd0;
+  color: #0b0c0c;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none;
+}
+
+/* Remove default button bottom margin if any */
+.dcf-viewer__meta-bar .dcf-meta-secondary { margin: 0; }
+
+.dcf-meta-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.dcf-meta-sep { opacity: .85; }
+
+/* Caret before “Show/Hide details” */
+.dcf-caret {
+  display: inline-block;
+  margin-right: 6px;
+  transform: translateY(-0.5px); /* tiny optical nudge */
+  font-size: 0.9em;              /* match text size */
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------------------
+   OPS BAR (below meta, above iframe)
+   ---------------------------------------------------------------------- */
+
+.dcf-viewer__ops-bar {
+  background: #2a2a2e;
+  color: #fff;
+  margin: 0;
+  padding: 12px;
+  // border-top: #fff 2px solid;
+
+  display: flex;
+  align-items: center;
+}
+
+.dcf-ops-actions {
+  margin-left: auto;            // this moves the whole actions block to the right
+  display: flex;
+  justify-content: flex-end;    // keep your existing alignment for inner items
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* compact inverse icon button */
+.dcf-viewer__ops-bar .govuk-button { margin: 0 !important; width: auto; }
+.dcf-viewer__ops-bar .dcf-ops-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  min-height: auto;
+  line-height: 1;
+  margin: 0px 0px 0px 15px !important;
+}
+
+/* force icon/text colour on inverse button */
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn,
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn:link,
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn:visited {
+  color: #1d70b8 !important;
+  background: #fff;
+  border-color: #fff;
+}
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn:hover,
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn:active {
+  color: #1d70b8 !important;
+}
+.dcf-viewer__ops-bar .govuk-button.govuk-button--inverse.dcf-ops-iconbtn:focus {
+  color: #0b0c0c !important;
+}
+
+/* icon inherits colour */
+.dcf-viewer__ops-bar .dcf-ops-icon {
+  color: inherit;
+  display: inline-flex;
+  width: 1.25rem; height: 1.25rem;
+}
+.dcf-viewer__ops-bar .dcf-ops-icon svg {
+  width: 100%; height: 100%;
+  fill: currentColor; stroke: currentColor;
+}
+.dcf-ops-icon { display: inline-flex; align-items: center; line-height: 0; }
+.dcf-ops-icon img { display: block; width: 20px; height: 20px; }
+
+/* dropdown menu panel – shared by ops bar + meta inline actions */
+.dcf-viewer__ops-bar .moj-button-menu,
+.dcf-meta-inline-actions .moj-button-menu {
+  position: relative;
+}
+
+/* honour [hidden] in both places */
+.dcf-viewer__ops-bar .moj-button-menu__wrapper[hidden],
+.dcf-meta-inline-actions .moj-button-menu__wrapper[hidden] {
+  display: none !important;
+}
+
+/* base dropdown panel positioning */
+.dcf-viewer__ops-bar .moj-button-menu__wrapper,
+.dcf-meta-inline-actions .moj-button-menu__wrapper {
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+  background: #fff;
+  color: #0b0c0c;
+  border: 1px solid #b1b4b6;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  z-index: 20;
+}
+
+/* ops bar menu aligns to the right */
+.dcf-viewer__ops-bar .moj-button-menu__wrapper {
+  right: 0;
+}
+
+/* meta inline menu aligns to the left of the yellow button */
+.dcf-meta-inline-actions .moj-button-menu__wrapper {
+  left: 0;
+}
+
+/* shared list + item styles */
+.dcf-viewer__ops-bar .moj-button-menu__list,
+.dcf-meta-inline-actions .moj-button-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+
+.dcf-viewer__ops-bar .moj-button-menu__item,
+.dcf-meta-inline-actions .moj-button-menu__item {
+  margin: 0;
+}
+
+.dcf-viewer__ops-bar .moj-button-menu__link,
+.dcf-meta-inline-actions .moj-button-menu__link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #0b0c0c;
+}
+
+.dcf-viewer__ops-bar .moj-button-menu__link:hover,
+.dcf-meta-inline-actions .moj-button-menu__link:hover {
+  background: #f3f2f1;
+}
+
+
+/* ----------------------------------------------------------------------
+   META BODY + INLINE ACTIONS
+   ---------------------------------------------------------------------- */
+.dcf-viewer__meta-body[hidden] {
+  display: none !important;
+}
+
+/* Hide inline actions by default… */
+.dcf-meta-inline-actions {
+  display: none;              /* changed from display:block */
+  margin: 1rem 0 1rem;
+}
+
+/* …and only show them when the meta body is visible */
+.dcf-viewer__meta-body:not([hidden]) .dcf-meta-inline-actions {
+  display: block;
+}
+
+/* sits just under the blue meta bar, snug */
+.dcf-viewer__meta-body { padding-top: 0; }
+
+/* kill the default GOV.UK button margins so the strip doesn’t grow */
+.dcf-meta-inline-actions .govuk-button {
+  margin: 0;
+}
+
+/* the first section heading doesn’t need big top margin now */
+.dcf-viewer__meta-body > h3:first-of-type {
+  margin-top: 0.5rem !important;
+}
+
+/* ----------------------------------------------------------------------
+   META ACCORDION (GOV.UK Accordion inside the meta panel)
+   ---------------------------------------------------------------------- */
+
+.dcf-meta-accordion {
+  // Tighten font size to match the rest of the meta panel
+  .govuk-accordion__section-button,
+  .govuk-accordion__section-content,
+  .govuk-body, .govuk-hint, p {
+    font-size: 16px;
+  }
+
+  // Summary list inside accordion sits flush — no double top border
+  .govuk-summary-list {
+    border-top: none;
+    margin-top: 0;
+  }
+
+  // Remove the outer accordion border so it blends into the meta panel
+  border-bottom: none;
+}

@@ -1,0 +1,46 @@
+// ============================================================
+// application-v2-2.scss  —  Version 2.2 styles
+//
+// Extends application-v2.scss with DCF component styles.
+// This file is compiled to application-v2-2.css and loaded
+// ONLY on version 2.2 pages, in addition to application-v2.css.
+//
+// Do NOT import this on version 2.0 or 2.1 pages.
+// ============================================================
+
+// ── govuk-frontend v5 settings ───────────────────────────────
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+$govuk-assets-path: '/govuk-v5/assets/';
+
+// ── govuk-frontend v5 ────────────────────────────────────────
+@import "node_modules/govuk-frontend-v5/dist/govuk/index";
+
+// ── DCF styles (version 2.2 only) ────────────────────────────
+@import "dcf/action-bar";
+@import "dcf/brand";
+@import "dcf/button-menu";
+@import "dcf/dcf-moj-button-menu-fallback";
+@import "dcf/disclosure-action-link";
+@import "dcf/disclosure-list";
+@import "dcf/filter-layout";
+@import "dcf/filter-panel";
+@import "dcf/header";
+@import "dcf/hidden";
+@import "dcf/housekeeping";
+@import "dcf/identity-bar";
+@import "dcf/indictment-date-range";
+@import "dcf/indictment-list";
+@import "dcf/indictment-search-results";
+@import "dcf/list-filter";
+@import "dcf/list";
+@import "dcf/materials-accordion-card";
+@import "dcf/materials-accordion";
+@import "dcf/materials-search-results";
+@import "dcf/materials-viewer-tabs";
+@import "dcf/materials-viewer";
+@import "dcf/notes-modal";
+@import "dcf/overview-areas";
+@import "dcf/search-form";
+@import "dcf/task-list-selects";

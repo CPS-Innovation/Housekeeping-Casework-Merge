@@ -1,0 +1,344 @@
+{
+  "caseDocuments": [
+    {
+      "id": "charge_information",
+      "label": "Charge information",
+      "lastGenerated": null,
+      "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+    },
+    {
+      "id": "factual_summary",
+      "label": "Factual Summary",
+      "lastGenerated": null,
+      "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+    },
+    {
+      "id": "confidential_information",
+      "label": "Confidential Information",
+      "lastGenerated": null
+    },
+    {
+      "id": "action_plan",
+      "label": "Action Plan",
+      "lastGenerated": null
+    }
+  ],
+  "defendants": [
+    {
+      "id": "defendant_1",
+      "name": "Mr Elton Berkley",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null,
+          "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+        },
+        {
+          "id": "breach_of_bail_condition",
+          "label": "Breach of Bail Condition",
+          "lastGenerated": null,
+          "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+        },
+        {
+          "id": "remand_application",
+          "label": "Remand Application",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_2",
+      "name": "Mr Kevin Bully",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null,
+          "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_3",
+      "name": "Ms Diane Cartwright",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "remand_application",
+          "label": "Remand Application",
+          "lastGenerated": null
+        },
+        {
+          "id": "breach_of_bail_condition",
+          "label": "Breach of Bail Condition",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_4",
+      "name": "Mr Tariq Hussain",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_5",
+      "name": "Mrs Lorraine Fitch",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        },
+        {
+          "id": "remand_application",
+          "label": "Remand Application",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_6",
+      "name": "Mr Gary Nolan",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "breach_of_bail_condition",
+          "label": "Breach of Bail Condition",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_7",
+      "name": "Miss Priya Sharma",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_8",
+      "name": "Mr Raymond Doyle",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "remand_application",
+          "label": "Remand Application",
+          "lastGenerated": null
+        },
+        {
+          "id": "breach_of_bail_condition",
+          "label": "Breach of Bail Condition",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_9",
+      "name": "Mr Stefan Kowalski",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "defendant_10",
+      "name": "Mrs Yvonne Blackwell",
+      "documents": [
+        {
+          "id": "charge_information",
+          "label": "Charge Information",
+          "lastGenerated": null
+        },
+        {
+          "id": "remand_application",
+          "label": "Remand Application",
+          "lastGenerated": null
+        },
+        {
+          "id": "breach_of_bail_condition",
+          "label": "Breach of Bail Condition",
+          "lastGenerated": null
+        },
+        {
+          "id": "candidate_court_orders",
+          "label": "Candidate Court Orders",
+          "lastGenerated": null
+        }
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "witness_1",
+      "name": "Miss Carly Mitty",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null,
+          "previouslyGenerated": "2026-04-28T09:14:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "witness_2",
+      "name": "Mr Sam Parsons",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_3",
+      "name": "Mrs Angela Thornton",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_4",
+      "name": "Mr Derek Okafor",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_5",
+      "name": "Ms Harriet Vane",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_6",
+      "name": "Mr Paul Jennings",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_7",
+      "name": "Miss Fatima Al-Rashid",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_8",
+      "name": "Mr Colin Brennan",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_9",
+      "name": "Mrs Sunita Patel",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    },
+    {
+      "id": "witness_10",
+      "name": "Mr James Whitfield",
+      "documents": [
+        {
+          "id": "witness_special_measures",
+          "label": "Witness Special Measures",
+          "lastGenerated": null
+        }
+      ]
+    }
+  ]
+}

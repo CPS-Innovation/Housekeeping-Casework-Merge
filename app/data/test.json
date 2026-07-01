@@ -1,0 +1,399 @@
+[
+    {
+      "myFileUrl": "/public/files/PRE_CONS_D.pdf",
+      "ItemId": "MAT-01001",
+      "date": "07/01/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "PRE CONS D",
+        "Type": "Statement",
+        "Reference": "STMT-2025-09-14-CA48321-WIT-A",
+        "ProducedbyWitnessId": "WIT-0021",
+        "MaterialClassification": "Document",
+        "MaterialType": "Prepared Statement",
+        "SentExternally": "Email",
+        "RelatedParticipantId": "WIT-0021",
+        "Incident": "Theft and common assault at High Street Store",
+        "Location": "22 Larkspur Road, Leeds LS7 3QD",
+        "PeriodFrom": "2025-09-14T09:10:00Z",
+        "PeriodTo": "2025-09-14T09:25:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "",
+        "RelatedItemId": "",
+        "RelationshipType": ""
+      },
+      "DigitalRepresentation": {
+        "FileName": "PRE_CONS_D.pdf",
+        "Document": "",
+        "ExternalFileLocation": "#",
+        "ExternalFileURL": "#",
+        "DigitalSignature": "2f9c1c3c4a5b6789d012e34f56a78bc9de01fa23b45c6789d012efab34567890"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Evidence",
+        "RationaleForDisclosureDecision": "Statement is relied upon to establish sequence of events and identification.",
+        "Rebuttable": "No",
+        "SensitivityRationale": "Contains PII (address, phone). Minimal redactions for third-party data.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-15T11:05:00Z",
+          "InspectedBy": "DS Harper"
+        },
+        "Description": "Prepared statement given by Witness A shortly after incident. Signed and dated.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused",
+        "RationaleForDisclosureDecision": "Core prosecution evidence describing offence and suspect actions.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/stmt_BLAYNEE_2034_1_JUNE_mg11.pdf",
+      "ItemId": "MAT-01002",
+      "Type": "Statement",
+      "date": "18/10/2025",
+      "Status": "Reviewed",
+      "Material": {
+        "Title": "stmt BLAYNEE 2034 1 JUNE mg11.pdf",
+        "Reference": "STMT-2025-10-18-CA59742-WIT-B",
+        "ProducedbyWitnessId": "WIT-0034",
+        "MaterialClassification": "Document",
+        "MaterialType": "MG11 Statement",
+        "SentExternally": "Secure Upload",
+        "RelatedParticipantId": "WIT-0034",
+        "Incident": "Altercation at the car park outside Greenway Shopping Centre",
+        "Location": "Greenway Shopping Centre, Sheffield S11 8QF",
+        "PeriodFrom": "2025-10-17T19:45:00Z",
+        "PeriodTo": "2025-10-17T20:10:00Z"
+      },
+       "RelatedMaterials": {
+        "RelatesToItem": "CCTV footage",
+        "RelatedItemId": "MAT-00984",
+        "RelationshipType": "Supports"
+      },
+      "DigitalRepresentation": {
+        "FileName": "stmt_BLAYNEE_2034_1_JUNE_mg11.pdf",
+        "Document": "",
+        "ExternalFileLocation": "#",
+        "ExternalFileURL": "#",
+        "DigitalSignature": "fa5d9b23a7c84b19d2036a51e479d2bc9f01a47c56e7d98f3021bda9485f6712"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Evidence",
+        "RationaleForDisclosureDecision": "Statement corroborates CCTV footage and other witness accounts.",
+        "Rebuttable": "No",
+        "SensitivityRationale": "Contains minor PII and location data; redactions applied for public release.",
+        "Inspection": {
+          "DateOfInspection": "2025-10-18T09:30:00Z",
+          "InspectedBy": "DC Morgan"
+        },
+        "Description": "Formal statement given by Witness B describing events following a disturbance in the car park.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Used",
+        "RationaleForDisclosureDecision": "Core prosecution evidence describing offence and suspect actions.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/MG12.pdf",
+      "ItemId": "MAT-01002",
+      "Type": "Exhibit",
+      "date": "19/02/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "MCLOVE MG12",
+        "Reference": "EXH-2025-09-14-CA48321-CCTV-01",
+        "ProducedbyWitnessId": "WIT-0090",
+        "MaterialClassification": "Still Image",
+        "MaterialType": "Physical Object",
+        "SentExternally": "Hardcopy",
+        "RelatedParticipantId": "SUS-0003",
+        "Incident": "Theft and common assault at High Street Store",
+        "Location": "15 Rowan Close, Manchester M14 5PT",
+        "PeriodFrom": "2025-09-14T20:41:00Z",
+        "PeriodTo": "2025-09-14T20:41:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "",
+        "RelatedItemId": "",
+        "RelationshipType": ""
+      },
+      "DigitalRepresentation": {
+        "FileName": "CCTV_Still_Till_20-41-00.jpg",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/CCTV_Still_Till_20-41-00.jpg",
+        "DigitalSignature": "b1a2c3d4e5f60718293a4b5c6d7e8f9012ab34cd56ef7890ab12cd34ef56a7b8"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Evidence",
+        "RationaleForDisclosureDecision": "Image depicts suspect during commission of offence; relied upon for identification.",
+        "Rebuttable": "No",
+        "SensitivityRationale": "Faces of non-involved customers blurred prior to service.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-16T08:30:00Z",
+          "InspectedBy": "PC L Singh"
+        },
+        "Description": "Exhibit ref EXH/01 \u2014 CCTV still extracted from store system. Time-stamped and exhibited.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Evidence",
+        "RationaleForDisclosureDecision": "Visual identification evidence \u2014 probative and relevant.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/MG05MCLOVE.pdf",
+      "ItemId": "MAT-01003",
+      "Type": "MG Form",
+      "date": "28/03/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "MG05MCLOVE",
+        "Reference": "MG11-2025-09-15-CA48321-MGR",
+        "ProducedbyWitnessId": "WIT-0007",
+        "MaterialClassification": "Document",
+        "MaterialType": "Other",
+        "SentExternally": "Email",
+        "RelatedParticipantId": "WIT-0007",
+        "Incident": "Some incident",
+        "Location": "4 Kingfisher Way, Bristol BS3 2HD",
+        "PeriodFrom": "2025-09-15T13:00:00Z",
+        "PeriodTo": "2025-09-15T13:45:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "MAT-01002",
+        "RelatedItemId": "MAT-01002",
+        "RelationshipType": "Transcript Of"
+      },
+      "DigitalRepresentation": {
+        "FileName": "MG11_Store_Manager_Signed.pdf",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/MG11_Store_Manager_Signed.pdf",
+        "DigitalSignature": "f0d1c2b3a4958675e4d3c2b1a0f9e8d7c6b5a4d3c2b1a0f9876543210abcdef12"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Unused - Disclosure Not Yet Considered",
+        "RationaleForDisclosureDecision": "Awaiting officer review alongside CCTV bundle to confirm reliance.",
+        "Rebuttable": "Yes",
+        "SensitivityRationale": "Contains staff contact details; PII to be redacted if served.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-17T10:15:00Z",
+          "InspectedBy": "DI Morton"
+        },
+        "Description": "MG11 completed by Store Manager describing incident timeline and stock loss.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused - Disclosable by Inspection",
+        "RationaleForDisclosureDecision": "Likely relevant to sequence and corroboration; inspection permissible.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/MG11_Shelagh_MCLOVE_retraction.pdf",
+      "ItemId": "MAT-01003",
+      "Type": "MG Form",
+      "date": "28/03/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "MG11 Shelagh MCLOVE retraction",
+        "Reference": "MG11-2025-09-15-CA48321-MGR",
+        "ProducedbyWitnessId": "WIT-0007",
+        "MaterialClassification": "Document",
+        "MaterialType": "Other",
+        "SentExternally": "Email",
+        "RelatedParticipantId": "WIT-0007",
+        "Incident": "Theft and common assault at High Street Store",
+        "Location": "4 Kingfisher Way, Bristol BS3 2HD",
+        "PeriodFrom": "2025-09-15T13:00:00Z",
+        "PeriodTo": "2025-09-15T13:45:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "MAT-01002",
+        "RelatedItemId": "MAT-01002",
+        "RelationshipType": "Transcript Of"
+      },
+      "DigitalRepresentation": {
+        "FileName": "MG11_Store_Manager_Signed.pdf",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/MG11_Store_Manager_Signed.pdf",
+        "DigitalSignature": "f0d1c2b3a4958675e4d3c2b1a0f9e8d7c6b5a4d3c2b1a0f9876543210abcdef12"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Unused - Disclosure Not Yet Considered",
+        "RationaleForDisclosureDecision": "Awaiting officer review alongside CCTV bundle to confirm reliance.",
+        "Rebuttable": "Yes",
+        "SensitivityRationale": "Contains staff contact details; PII to be redacted if served.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-17T10:15:00Z",
+          "InspectedBy": "DI Morton"
+        },
+        "Description": "MG11 completed by Store Manager describing incident timeline and stock loss.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused - Disclosable by Inspection",
+        "RationaleForDisclosureDecision": "Likely relevant to sequence and corroboration; inspection permissible.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/BWV_Arrest_Clip_2112-2124.mp4",
+      "ItemId": "MAT-01004",
+      "Type": "Other Material",
+      "date": "15/05/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "Body-worn video of arrest",
+        "Reference": "BWV-2025-09-14-CA48321-ARREST-01",
+        "ProducedbyWitnessId": "WIT-0085",
+        "MaterialClassification": "Video",
+        "MaterialType": "Other",
+        "SentExternally": "none",
+        "RelatedParticipantId": "SUS-0003",
+        "Incident": "Arrest following store incident",
+        "Location": "38 Elmhurst Street, Birmingham B12 9XN",
+        "PeriodFrom": "2025-09-14T21:12:00Z",
+        "PeriodTo": "2025-09-14T21:24:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "",
+        "RelatedItemId": "",
+        "RelationshipType": "Clipped Version"
+      },
+      "DigitalRepresentation": {
+        "FileName": "BWV_Arrest_Clip_2112-2124.mp4",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/BWV_Arrest_Clip_2112-2124.mp4",
+        "DigitalSignature": "ab34cd56ef7890ab12cd34ef56a7b8c91d2e3f405162738495a6b7c8d9e0f1a2"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Unused - Passes Disclosure Test",
+        "RationaleForDisclosureDecision": "Clipped sequence duplicates CCTV perspective; still may assist the defence.",
+        "Rebuttable": "Yes",
+        "SensitivityRationale": "Audio captures bystanders; faces blurred and audio bleeped for personal data.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-16T15:20:00Z",
+          "InspectedBy": "PS Turner"
+        },
+        "Description": "BWV clip showing arrest outside store; overlaps with store CCTV timeline.",
+        "Exceptions": [
+          {
+            "SuspectId": "SUS-0004",
+            "Description": "Brief mention of co-accused removed where irrelevant."
+          }
+        ]
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused - Disclosable",
+        "RationaleForDisclosureDecision": "Potentially assists defence on proportionality of force; disclosable.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/Stock_Recon_2025-09-16.xlsx",
+      "ItemId": "MAT-01005",
+      "Type": "Unused Non-Sensitive",
+      "date": "30/06/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "Stock reconciliation spreadsheet",
+        "Reference": "DOC-2025-09-16-CA48321-STOCK-REC",
+        "ProducedbyWitnessId": "WIT-0007",
+        "MaterialClassification": "Document",
+        "MaterialType": "Other",
+        "SentExternally": "Email",
+        "RelatedParticipantId": "VIC-0012",
+        "Incident": "Post-incident inventory checks",
+        "Location": "12 Hawthorn Avenue, Sheffield S7 2PL",
+        "PeriodFrom": "2025-09-16T08:00:00Z",
+        "PeriodTo": "2025-09-16T10:30:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "",
+        "RelatedItemId": "",
+        "RelationshipType": ""
+      },
+      "DigitalRepresentation": {
+        "FileName": "Stock_Recon_2025-09-16.xlsx",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/Stock_Recon_2025-09-16.xlsx",
+        "DigitalSignature": "10b2c3d4e5f60718293a4b5c6d7e8f9012ab34cd56ef7890ab12cd34ef56a7b9"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Unused - Passes Disclosure Test",
+        "RationaleForDisclosureDecision": "Not relied upon but may assist defence by clarifying disputed stock value.",
+        "Rebuttable": "Yes",
+        "SensitivityRationale": "Commercial but not personal data; minimal sensitivity.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-18T09:40:00Z",
+          "InspectedBy": "DC Reed"
+        },
+        "Description": "Store-prepared reconciliation of stock around incident period.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused - Disclosable",
+        "RationaleForDisclosureDecision": "Could assist defence on loss calculation; therefore disclosable.",
+        "SensitivityDispute": "None."
+      }
+    },
+    {
+      "myFileUrl": "/public/files/ThirdParty_Medical_Note.pdf",
+      "ItemId": "MAT-01006",
+      "Type": "Unused Sensitive",
+      "date": "20/08/2025",
+      "Status": "New",
+      "Material": {
+        "Title": "Third-party medical note (uninvolved customer)",
+        "Reference": "DOC-2025-09-17-CA48321-MED-THIRD-PARTY",
+        "ProducedbyWitnessId": "WIT-0112",
+        "MaterialClassification": "Document",
+        "MaterialType": "Other",
+        "SentExternally": "none",
+        "RelatedParticipantId": "VIC-0012",
+        "Incident": "Customer distress reported post-incident",
+        "Location": "5 Beechfield Road, Norwich NR1 4DP",
+        "PeriodFrom": "2025-09-17T14:00:00Z",
+        "PeriodTo": "2025-09-17T14:10:00Z"
+      },
+      "RelatedMaterials": {
+        "RelatesToItem": "",
+        "RelatedItemId": "",
+        "RelationshipType": ""
+      },
+      "DigitalRepresentation": {
+        "FileName": "ThirdParty_Medical_Note.pdf",
+        "Document": "",
+        "ExternalFileLocation": "/app/assets/files/",
+        "ExternalFileURL": "/public/files/ThirdParty_Medical_Note.pdf",
+        "DigitalSignature": "9f8e7d6c5b4a32100123ab45cd67ef8901ab23cd45ef6789ab12cd34ef56a7c0"
+      },
+      "PoliceMaterial": {
+        "DisclosureStatus": "Unused - Does Not Pass - Disclosure Test",
+        "RationaleForDisclosureDecision": "Private medical information of unrelated third party; not relevant to issues in the case.",
+        "Rebuttable": "No",
+        "SensitivityRationale": "Highly sensitive personal medical data of a non-party.",
+        "Inspection": {
+          "DateOfInspection": "2025-09-19T11:22:00Z",
+          "InspectedBy": "DI Morton"
+        },
+        "Description": "Brief note supplied by third party via store; no bearing on facts in issue.",
+        "Exceptions": []
+      },
+      "CPSMaterial": {
+        "DisclosureStatus": "Unused - Clearly Not Disclosable",
+        "RationaleForDisclosureDecision": "Irrelevant to any prosecution/defence issue and engages strong privacy rights.",
+        "SensitivityDispute": "None."
+      }
+    }
+  ]

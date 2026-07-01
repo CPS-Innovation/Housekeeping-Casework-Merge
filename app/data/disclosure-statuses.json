@@ -1,0 +1,15 @@
+{
+  "police": [
+    "Passes disclosure test",
+    "Does not pass disclosure test",
+    "Evidence"
+  ],
+  "cps": [
+    "To be assessed",
+    "Disclosable",
+    "Disclosable by inspection",
+    "Not disclosable",
+    "Clearly not disclosable",
+    "Evidence"
+  ]
+}

@@ -1,0 +1,264 @@
+/* ======================================================================
+   materials-accordion-card.scss  (full file)
+   ====================================================================== */
+
+/* Palette */
+$dcf-card-bg:      #eaf2fc;
+$dcf-card-border:  #c8d8f1;
+$dcf-card-stripe:  #3B64AC;
+$dcf-title-blue:   #1d70b8;
+$dcf-muted:        #505a5f;
+
+.dcf-material-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li + li { margin-top: 8px; }
+}
+
+.dcf-material-card {
+  // remove rounding
+  border-radius: 0;
+  position: relative;
+
+  // DEFAULT: white card, subtle border
+  background: #ffffff;
+  border: 1px solid $dcf-card-border;
+
+  padding: 12px 16px;
+  display: block;       // single column layout
+  font-size: 16px;
+  line-height: 1.45;
+  max-width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6px;
+    background: $dcf-card-stripe;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:hover {
+    background: mix(#ffffff, $dcf-card-bg, 85%);
+    border-color: darken($dcf-card-border, 5%);
+  }
+}
+
+// Visually selected material card – matches the active tab background
+.dcf-material-card--active {
+  background: $dcf-card-bg;
+  border-color: $dcf-card-border;
+}
+
+// Keep hover from fighting with the active colour
+.dcf-material-card--active:hover {
+  background: $dcf-card-bg;
+}
+
+/* Main content column (badge, title, meta rows) */
+.dcf-material-card__main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;   // children (including meta row) can stretch full width
+  row-gap: 5px;           // space between badge, title, and date/note row
+  // if you want a bit more, try 6px or 8px instead of 4px
+}
+
+/* -------------------------------------------------------
+   GOV.UK-style focus for material cards
+   ------------------------------------------------------- */
+
+.dcf-material-card {
+  // Let us control the focus outline ourselves
+  outline: none;
+}
+
+/* Badge container: holds one or more status chips */
+.dcf-material-card__badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 6px;  // was 6px, keep or bump slightly if you like
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.dcf-status-tag { margin-right: .5rem; vertical-align: text-bottom; }
+
+/* Base styles for status tags (works with both .dcf-tag and legacy .dcf-status-tag) */
+.dcf-tag,
+.dcf-status-tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 0;
+}
+
+/* "New" – strong blue */
+.dcf-tag--new,
+.dcf-status-tag--new {
+  background: $dcf-title-blue; // #1d70b8
+  color: #ffffff;
+}
+
+/* "Read" – done / completed */
+.dcf-tag--read,
+.dcf-status-tag--read {
+  background: #28a197; // GOV.UK green-ish
+  color: #ffffff;
+}
+
+/* "Unread" – neutral / lower emphasis */
+.dcf-tag--unread,
+.dcf-status-tag--unread {
+  background: #ffdd00;
+  color: #0b0c0c;
+}
+
+/* Keep old margin behaviour if anything still uses .dcf-status-tag directly */
+.dcf-status-tag {
+  margin-right: .5rem;
+  vertical-align: text-bottom;
+}
+
+.dcf-material-card__title {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: normal;
+  color: $dcf-title-blue;
+
+  a {
+    color: $dcf-title-blue;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover { text-decoration-thickness: 2px; }
+  }
+}
+
+.dcf-material-card__meta {
+  margin: 0;
+  font-size: 14px;
+  color: $dcf-muted;
+}
+
+/* Date left, Add a note (icon + text) right */
+.dcf-material-card__meta.dcf-material-card__meta--with-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 2px;     // small breathing space above the date row
+}
+
+/* Note link (icon + text) */
+.dcf-note-link {
+  display: inline-flex;
+  align-items: center;
+  /* remove position: relative here */
+}
+
+
+.dcf-note-link__icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 4px;
+  position: relative;        // NEW: make icon the positioning context
+}
+
+.dcf-note-link__icon img {
+  display: block;
+  color: #1d70b8;
+}
+
+/* Unread dot overlayed on the icon */
+.dcf-material-card__comment {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.dcf-material-card__comment.is-unread::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #1d70b8;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+/* ---- Card & list tightening (append to end of _materials-accordion-card.scss) ---- */
+
+/* Gap between cards */
+.dcf-materials-panel .dcf-material-list > li {
+  margin: 12px 0;
+}
+
+/* Card body padding kept compact */
+.dcf-materials-panel .dcf-material-card {
+  margin: 0;                       /* li controls spacing between cards */
+  padding: 10px 10px 10px 20px;    /* trim inner padding */
+  border-radius: 0px;
+}
+
+/* Badge and text spacing inside card */
+.dcf-materials-panel .dcf-material-card__badge {
+  display: inline-block;
+  margin: 0 0 4px 0;
+}
+
+
+
+.dcf-materials-panel .dcf-material-card__meta {
+  margin: 0;           /* kill paragraph margin */
+}
+
+@media (max-width: 360px) {
+  .dcf-material-card {
+    padding: 10px 12px;
+  }
+}
+
+/* Keyboard focus on the card itself */
+.dcf-material-card:focus,
+.dcf-material-card:focus-visible,
+.dcf-material-card--active:focus,
+.dcf-material-card--active:focus-visible {
+  outline: 3px solid #fd0;      // GOV.UK yellow
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px #0b0c0c; // black halo, like GDS components
+}
+
+/* Keyboard focus within the card (e.g., on links) */
+
+.dcf-material-card:focus-within {
+  outline: 3px solid #fd0;
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px #0b0c0c;
+}
+
+/* Card Item Number pill style */
+.dcf-material-card__item-number {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-right: 6px;
+  border: 1px solid #b1b4b6;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: #505a5f;
+}

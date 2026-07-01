@@ -1,0 +1,277 @@
+[
+  {
+    "id": 1,
+    "caseReferenceNumber": "53W497316/6",
+    "numberOfDefendants": 2,
+    "ptphHearingDate": "12 August 2026",
+    "policeCharges": [
+      {
+        "policeChargeId": "PC1",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 12 January 2026 at High Street, Croydon, the defendant robbed a mobile phone from John Smith, using threats of immediate force.",
+        "suggestedVictimIds": ["V1"],
+        "suggestedWitnessIds": ["W1", "W2"]
+      },
+      {
+        "policeChargeId": "PC2",
+        "chargeCode": "DR02",
+        "label": "Possession of a controlled drug (Class B)",
+        "policeParticulars": "On 12 January 2026 at High Street, Croydon, the defendant was found in possession of cannabis resin.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W1", "W2"]
+      }
+    ],
+    "witnesses": [
+      {
+        "witnessId": "W1",
+        "witnessName": "Georgie Patten",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W2",
+        "witnessName": "PC Elsa Majors",
+        "type": "police"
+      }
+    ],
+    "victims": [
+      {
+        "victimId": "V1",
+        "victimName": "John Smith"
+      }
+    ],
+    "numberOfCounts": "Not started"
+  },
+  {
+    "id": 2,
+    "caseReferenceNumber": "53W497842/2",
+    "numberOfDefendants": 3,
+    "ptphHearingDate": "4 August 2026",
+    "policeCharges": [
+      {
+        "policeChargeId": "PC1",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 3 February 2026 at a convenience store in Leeds, the defendant robbed cash from the till while threatening staff with violence.",
+        "suggestedVictimIds": ["V2"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC2",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 3 February 2026 at a convenience store in Leeds, the defendant acted jointly with others in robbing cash using threats of force.",
+        "suggestedVictimIds": ["V2"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC3",
+        "chargeCode": "DR01",
+        "label": "Possession of a controlled drug (Class A)",
+        "policeParticulars": "On 3 February 2026 at Albion Street, Leeds, the defendant was found in possession of cocaine.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W3"]
+      }
+    ],
+    "witnesses": [
+      {
+        "witnessId": "W1",
+        "witnessName": "Hannah Clarke",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W2",
+        "witnessName": "Imran Farooq",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W3",
+        "witnessName": "PC Daniel Ingram",
+        "type": "police"
+      }
+    ],
+    "victims": [
+      {
+        "victimId": "V1",
+        "victimName": "Hannah Clarke"
+      },
+      {
+        "victimId": "V2",
+        "victimName": "Leeds Local Convenience Store Ltd"
+      }
+    ],
+    "numberOfCounts": "Not started"
+  },
+  {
+    "id": 3,
+    "caseReferenceNumber": "53W498104/9",
+    "numberOfDefendants": 4,
+    "ptphHearingDate": "23 June 2026",
+    "policeCharges": [
+      {
+        "policeChargeId": "PC1",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 18 December 2025 at a bus stop in Birmingham, the defendant robbed a wallet from Sarah Jones using force.",
+        "suggestedVictimIds": ["V1"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC2",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 18 December 2025 at a bus stop in Birmingham, the defendant assisted in the robbery by acting as lookout.",
+        "suggestedVictimIds": ["V1"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC3",
+        "chargeCode": "DR02",
+        "label": "Possession of a controlled drug (Class B)",
+        "policeParticulars": "On 18 December 2025 at Corporation Street, Birmingham, the defendant was found in possession of cannabis.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W3"]
+      },
+      {
+        "policeChargeId": "PC4",
+        "chargeCode": "DR02",
+        "label": "Possession of a controlled drug (Class B)",
+        "policeParticulars": "On 18 December 2025 at Corporation Street, Birmingham, the defendant was found in possession of cannabis.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W3"]
+      }
+    ],
+    "witnesses": [
+      {
+        "witnessId": "W1",
+        "witnessName": "Sarah Jones",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W2",
+        "witnessName": "Anthony Webb",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W3",
+        "witnessName": "PC Leanne Forbes",
+        "type": "police"
+      }
+    ],
+    "victims": [
+      {
+        "victimId": "V1",
+        "victimName": "Sarah Jones"
+      }
+    ],
+    "numberOfCounts": "Not started"
+  },
+  {
+    "id": 4,
+    "caseReferenceNumber": "53W498511/1",
+    "numberOfDefendants": 2,
+    "ptphHearingDate": "28 July 2026",
+    "policeCharges": [
+      {
+        "policeChargeId": "PC1",
+        "chargeCode": "DR01",
+        "label": "Possession of a controlled drug (Class A)",
+        "policeParticulars": "On 22 January 2026 at Piccadilly Gardens, Manchester, the defendant was found in possession of heroin.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W3"]
+      },
+      {
+        "policeChargeId": "PC2",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 22 January 2026 at Piccadilly Gardens, Manchester, the defendant robbed a handbag from Laura Green using force.",
+        "suggestedVictimIds": ["V1"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      }
+    ],
+    "witnesses": [
+      {
+        "witnessId": "W1",
+        "witnessName": "Laura Green",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W2",
+        "witnessName": "Sophie Randall",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W3",
+        "witnessName": "PC Mark Duffy",
+        "type": "police"
+      }
+    ],
+    "victims": [
+      {
+        "victimId": "V1",
+        "victimName": "Laura Green"
+      }
+    ],
+    "numberOfCounts": "Not started"
+  },
+  {
+    "id": 5,
+    "caseReferenceNumber": "53W498773/4",
+    "numberOfDefendants": 3,
+    "ptphHearingDate": "10 September 2026",
+    "policeCharges": [
+      {
+        "policeChargeId": "PC1",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 5 March 2026 at a petrol station in Bristol, the defendant robbed cash while threatening staff.",
+        "suggestedVictimIds": ["V2"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC2",
+        "chargeCode": "R01",
+        "label": "Robbery",
+        "policeParticulars": "On 5 March 2026 at a petrol station in Bristol, the defendant acted jointly in the robbery.",
+        "suggestedVictimIds": ["V2"],
+        "suggestedWitnessIds": ["W1", "W2", "W3"]
+      },
+      {
+        "policeChargeId": "PC3",
+        "chargeCode": "DR02",
+        "label": "Possession of a controlled drug (Class B)",
+        "policeParticulars": "On 5 March 2026 at Temple Meads, Bristol, the defendant was found in possession of cannabis.",
+        "suggestedVictimIds": [],
+        "suggestedWitnessIds": ["W3"]
+      }
+    ],
+    "witnesses": [
+      {
+        "witnessId": "W1",
+        "witnessName": "Zoe Palmer",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W2",
+        "witnessName": "Maya Singh",
+        "type": "civilian"
+      },
+      {
+        "witnessId": "W3",
+        "witnessName": "PC Aaron Wilkes",
+        "type": "police"
+      }
+    ],
+    "victims": [
+      {
+        "victimId": "V1",
+        "victimName": "Zoe Palmer"
+      },
+      {
+        "victimId": "V2",
+        "victimName": "Bristol Fuel Services Ltd"
+      }
+    ],
+    "numberOfCounts": "Not started"
+  }
+]

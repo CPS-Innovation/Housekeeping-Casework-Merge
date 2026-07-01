@@ -1,0 +1,36 @@
+[
+  {
+    "id": "01",
+    "item": "Exh SP/1",
+    "ItemId": "MAT-02013",
+    "title": "Exh SP/1",
+    "isProvided": false,
+    "description": "DA History for Ella Quagmire. This is a compilation of all the domestic abuse reports which the victim has been involved in. The reports have been taken from the police system iOPS. This document contains a total of 17 pages and is redacted as per redaction guidelines.",
+    "policeAssessment": "No longer relevant",
+    "policeRationale": "Reason material is no longer relevant here",
+    "isRebuttable": null,
+    "reasonForSensitivity": null,
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be reviewed",
+    "cpsRationale": null,
+    "cpsDisagreesWithPolice": false
+  },
+  {
+    "id": "02",
+    "item": "Sens SP/4",
+    "ItemId": "MAT-02014",
+    "title": "Sens SP/4",
+    "isProvided": true,
+    "description": "DA History for Elton Berkley. This is a compilation of all the domestic abuse reports which the defendant has been involved in. The reports have been taken from the police system iOPS. This document contains a total of 4 pages and is redacted as per redaction guidelines.",
+    "policeAssessment": "No longer relevant",
+    "policeRationale": "Reason material is no longer relevant here",
+    "isRebuttable": null,
+    "reasonForSensitivity": null,
+    "hasException": null,
+    "exceptionReason": null,
+    "cpsAssessment": "To be reviewed",
+    "cpsRationale": null,
+    "cpsDisagreesWithPolice": false
+  }
+]

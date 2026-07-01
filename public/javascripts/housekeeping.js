@@ -417,7 +417,7 @@ $(document).ready(function () {
                             row.find('td:nth-child(3)').text(newType);
 
                             // Highlight the change
-                            row.css('background-color', '#f3f2f1');
+                            row.css('background-color', '#F3F2F1');
                             setTimeout(function () {
                                 row.css('background-color', '');
                             }, 5000);
@@ -502,7 +502,15 @@ $(document).ready(function () {
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
-        $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. The name was retained to avoid a risky selector refactor.
+        // This class only exists in the version 2.2 tab-2 block and will never appear on 2.0 or 2.1.
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        } else {
+            $('#materials_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     } else {
         $('#show_filter_Materials').hide();
     }
@@ -576,18 +584,34 @@ $(document).ready(function () {
 
     // MATERIALS
     $("#close_filter_Materials").on("click", function (e) {
+        // v2.2 manages its own panels via the inline click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
-        $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. Only present on version 2.2 pages.
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_column_2, #materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        } else {
+            $('#materials_column_2').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     });
 
     $("#show_filter_Materials").on("click", function (e) {
+        // v2.2 manages its own panels via the inline click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $(this).hide();
         $('#close_filter_Materials').show();
         $('#materials_column_1, #materials_filter').show();
         $('#materials_column_2').removeClass('govuk-grid-column-full').addClass('govuk-grid-column-three-quarters');
-        $('#materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        // NOTE: .dcf-materials-workspace--v2-1 is the legacy class name for the version 2.2
+        // DCF workspace. Only present on version 2.2 pages.
+        var $workspacev21 = $('.dcf-materials-workspace--v2-1');
+        if (!$workspacev21.length) {
+            $('#materials_content').removeClass('govuk-grid-column-three-quarters').addClass('govuk-grid-column-full');
+        }
     });
 
     // COMMS
@@ -1414,6 +1438,8 @@ $(document).ready(function () {
     });
 
     $('#filter_Redactions table .openMe a').click(function () {
+        // v2.2 handles document open via its own click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $('ul#tab-list').show();
         var redactedDocuments = parseInt($('.redacted_documents').text());
         $('.redacted_documents').text(redactedDocuments + 1);

@@ -1,0 +1,86 @@
+/* ------------------------------
+   DCF action menu (details/summary)
+   Makes <details> menus look like MoJ Button Menu
+   ------------------------------ */
+
+.dcf-action-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide native marker */
+.dcf-action-menu > summary::-webkit-details-marker { display: none; }
+.dcf-action-menu > summary::marker { content: ""; }
+
+/* Make summary behave like a button (you already apply govuk-button) */
+.dcf-action-menu__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Optional: keep the caret aligned */
+.dcf-action-menu__icon {
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+/* The dropdown panel */
+.dcf-action-menu__list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #b1b4b6;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+
+  z-index: 1000;
+}
+
+/* Align right when you need it (add class to details) */
+.dcf-action-menu--right .dcf-action-menu__list {
+  left: auto;
+  right: 0;
+}
+
+.dcf-action-menu__item {
+  margin: 0;
+  padding: 0;
+}
+
+.dcf-action-menu__item + .dcf-action-menu__item {
+  border-top: 1px solid #b1b4b6;
+}
+
+/* Menu links */
+.dcf-action-menu__link {
+  display: block;
+  padding: 10px 12px;
+  text-decoration: none;
+}
+
+/* Hover/focus states similar to MoJ menu */
+.dcf-action-menu__link:hover {
+  text-decoration: underline;
+  background: #f3f2f1;
+}
+
+.dcf-action-menu__link:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background: #ffdd00;
+  color: #0b0c0c;
+}
+
+/* If the menu sits on dark viewer chrome, keep dropdown readable */
+.dcf-viewer__ops-bar .dcf-action-menu__list {
+  color: #0b0c0c;
+}

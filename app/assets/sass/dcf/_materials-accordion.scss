@@ -1,0 +1,197 @@
+/* ======================================================================
+   materials-accordion.scss  (full file)
+   ====================================================================== */
+
+/* Outer panel that draws the single border around BOTH header + accordion */
+.dcf-materials-panel {
+  box-sizing: border-box;
+  border: 1px solid #b1b4b6;
+  background: #f3f2f1;
+  padding: 12px; /* inside padding for breathing room */
+}
+
+/* Header spacing now that it sits inside the bordered panel */
+.dcf-materials-header {
+  margin: 0 0 12px 0; /* space between header and accordion */
+  padding: 0; /* remove the grey background */
+  border: 0; /* no inner border; outer panel provides it */
+}
+
+.dcf-materials-header__title {
+  margin: 0 0 8px 0;
+}
+
+/* Search form — input and button on one row, no wrap */
+.dcf-materials-search__row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.dcf-materials-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.dcf-materials-search__button {
+  flex: 0 0 auto;
+  font-size: 16px;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* Keep the whole accordion at 16px and remove outer margin so it fits panel tightly */
+.dcf-accordion {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.4;
+
+  .govuk-accordion__section-button,
+  .govuk-accordion__section-summary,
+  .govuk-accordion__section-toggle-text,
+  .govuk-accordion__section-content,
+  .govuk-accordion__controls,
+  .govuk-body, .govuk-hint, .govuk-list, .govuk-link, p, li {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .govuk-accordion__section-toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+  }
+
+  .govuk-accordion__controls {
+    margin-bottom: 4px;
+  }
+
+  /* ✅ Lay out heading text and chevron on one line */
+  .govuk-accordion__section-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+  /* ✅ Let the heading take the available space */
+  .govuk-accordion__section-heading-text {
+    flex: 1 1 auto;
+  }
+
+  /* ✅ Keep the toggle (with the chevron) snug to the right */
+  .govuk-accordion__section-toggle {
+    flex: 0 0 auto;
+    margin-left: 8px;
+  }
+}
+
+
+.govuk-accordion__section-heading-text-focus {
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+/* hide the top "Show all sections" control just for your accordion */
+// .dcf-accordion .govuk-accordion__controls {
+//   display: none;
+// }
+
+/* Optional: add a little inner padding so headings don't touch panel edge */
+.dcf-materials-panel .govuk-accordion__section-button {
+  padding-left: 0;
+  padding-bottom: 0; /* default is fine; uncomment if you add custom spacing */
+}
+
+
+/* ---- Spacing tighten (append to end of _materials-accordion.scss) ---- */
+
+.dcf-materials-panel {
+  /* tiny spacing scale used only in this panel */
+  --space-xxs: 4px;
+  --space-xs: 6px;
+  --space-s: 0px;
+  --space-m: 12px;
+
+  /* Headings inside the panel (e.g. “Exhibits”, “MG forms”) */
+  .govuk-heading-s,
+  .govuk-heading-m {
+    margin: var(--space-s) 0 var(--space-xs);
+  }
+
+  /* Optional horizontal rule or custom divider in the panel */
+  hr, .dcf-divider {
+    margin: var(--space-m) 0;
+  }
+}
+
+/* Accordion section padding is generous by default – trim it in our panel */
+.dcf-accordion .govuk-accordion__section-content {
+  padding-top: var(--space-s, 4px);
+  padding-bottom: var(--space-s, 4px);
+}
+
+.govuk-accordion__section-content {
+  background: #fff;
+}
+
+/* Bring the Show/Hide row (section headers) a little tighter */
+.dcf-accordion .govuk-accordion__section-header {
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+
+/* Tighten “Show all sections / Hide all sections” control gap */
+.dcf-accordion .govuk-accordion__controls {
+  margin-bottom: 3px;
+}
+
+
+.govuk-frontend-supported .govuk-accordion__section--expanded .govuk-accordion__section-button {
+  padding-bottom: 0px;
+
+}
+
+
+/* --- White content only when expanded; no stray stripes when collapsed --- */
+
+/* expanded -> show white slab behind the cards, edge-to-edge inside the grey panel */
+.dcf-materials-panel .dcf-accordion
+.govuk-accordion__section--expanded > .govuk-accordion__section-content {
+  background: #fff;
+  margin-left: -12px; /* match .dcf-materials-panel padding */
+  margin-right: -12px;
+  padding: 8px 12px; /* bring the padding back inside */
+  border-top: 1px solid #b1b4b6; /* subtle divider under the header */
+}
+
+/* collapsed -> no background, no margins, no border = no visible stripe */
+.dcf-materials-panel .dcf-accordion
+.govuk-accordion__section:not(.govuk-accordion__section--expanded)
+> .govuk-accordion__section-content {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* keep headers on the grey panel */
+.dcf-materials-panel .dcf-accordion .govuk-accordion__section {
+  background: transparent;
+}
+
+@media (min-width: 40.0625em) {
+  .govuk-form-group {
+    margin-bottom: 10px;
+  }
+}

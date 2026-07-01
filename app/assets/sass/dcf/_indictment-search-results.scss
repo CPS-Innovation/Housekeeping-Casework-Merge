@@ -1,0 +1,19 @@
+// app/assets/sass/components/_indictment-search-results.scss
+
+.app-precedent-result {
+  align-items: flex-start;
+}
+
+.app-precedent-summary {
+  margin: 0 0 0 40px;
+}
+
+.app-precedent-summary .govuk-summary-list__key {
+  width: 10em;
+}
+
+.app-precedent-summary .govuk-summary-list__key,
+.app-precedent-summary .govuk-summary-list__value {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
