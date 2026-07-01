@@ -584,6 +584,8 @@ $(document).ready(function () {
 
     // MATERIALS
     $("#close_filter_Materials").on("click", function (e) {
+        // v2.2 manages its own panels via the inline click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $('#show_filter_Materials').show();
         $('#close_filter_Materials').hide();
         $('#materials_column_1, #materials_filter').hide();
@@ -598,6 +600,8 @@ $(document).ready(function () {
     });
 
     $("#show_filter_Materials").on("click", function (e) {
+        // v2.2 manages its own panels via the inline click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $(this).hide();
         $('#close_filter_Materials').show();
         $('#materials_column_1, #materials_filter').show();
@@ -1434,6 +1438,8 @@ $(document).ready(function () {
     });
 
     $('#filter_Redactions table .openMe a').click(function () {
+        // v2.2 handles document open via its own click.version21Materials handler
+        if ($('.dcf-materials-workspace--v2-1').length) return;
         $('ul#tab-list').show();
         var redactedDocuments = parseInt($('.redacted_documents').text());
         $('.redacted_documents').text(redactedDocuments + 1);
