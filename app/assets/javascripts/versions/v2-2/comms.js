@@ -31,3 +31,39 @@
         return false;
     };
 }());
+
+// v2.2 Comms Actions-on-selection button
+// Same late-load issue as manage-materials.js — housekeeping.js $(document).ready()
+// has already fired by the time comms.js loads, so re-bind here with delegated events.
+$(document).on('click', '#show_Comms_Actions', function () {
+    var $btn = $(this);
+    var $menu = $('#comms_Actions');
+    var isOpen = $menu.is(':visible');
+
+    // Close all open action menus first
+    $('.hidden_buttons').hide();
+    $('#show_Materials_Actions, #show_Comms_Actions').removeClass('active');
+
+    if (!isOpen) {
+        $menu.show();
+        $btn.addClass('active');
+
+        // Enable/disable single-item-only actions based on selection count
+        var commsCount = $('input[name=comms_document]:checked').length;
+        if (commsCount === 1) {
+            $('#comms_Actions .rename-Document').show();
+        } else {
+            $('#comms_Actions .rename-Document').hide();
+        }
+    }
+});
+
+// Close Comms actions menu when clicking outside it
+$(document).on('mouseup', function (e) {
+    var $container = $('#comms_Actions');
+    if (!$container.is(e.target) && $container.has(e.target).length === 0 &&
+        !$('#show_Comms_Actions').is(e.target)) {
+        $container.hide();
+        $('#show_Comms_Actions').removeClass('active');
+    }
+});
