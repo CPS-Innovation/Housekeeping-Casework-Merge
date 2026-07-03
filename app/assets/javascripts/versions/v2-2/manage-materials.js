@@ -164,43 +164,59 @@ $(document).ready(function () {
 });
 
 // v2.2 Actions-on-selection button
-// housekeeping.js binds this inside $(document).ready(), but it is loaded as a late
-// <script> tag inside a tab panel — by that point ready() has already fired, so the
-// binding never attaches. Re-bind here immediately after the DOM element exists.
-$(document).on('click', '#show_Materials_Actions', function () {
-    var $btn = $(this);
-    var $menu = $('#materials_Actions');
-    var isOpen = $menu.is(':visible');
+// Use a DOM-ready block so we can call .off('click') to remove any direct handler
+// that housekeeping.js may have registered, then bind a namespaced v2.2 handler.
+$(function () {
+    $('#show_Materials_Actions')
+        .off('click')
+        .off('click.v22Actions')
+        .on('click.v22Actions', function () {
+            var $btn = $(this);
+            var $menu = $('#materials_Actions');
+            var isOpen = $menu.is(':visible');
 
-    // Close all open action menus first
-    $('.hidden_buttons').hide();
-    $('#show_Materials_Actions, #show_Comms_Actions').removeClass('active');
+            // Close all open action menus first
+            $('.hidden_buttons').hide();
+            $('#show_Materials_Actions, #show_Comms_Actions').removeClass('active');
 
-    if (!isOpen) {
-        $menu.show();
-        $btn.addClass('active');
+            if (!isOpen) {
+                $menu.show();
+                $btn.addClass('active');
 
-        // Enable/disable single-item-only actions based on selection count
-        var materialsCount = $('input[name=materials_document]:checked').length;
-        if (materialsCount === 1) {
-            $('#materials_Actions .rename-Document').attr('active', 'active').removeClass('govuk-button--disabled').show();
-        } else {
-            $('#materials_Actions .rename-Document').hide();
+                // Enable/disable single-item-only actions based on selection count
+                var materialsCount = $('input[name=materials_document]:checked').length;
+                if (materialsCount === 1) {
+                    $('#materials_Actions .rename-Document').attr('active', 'active').removeClass('govuk-button--disabled').show();
+                } else {
+                    $('#materials_Actions .rename-Document').hide();
+                }
+            }
+        });
+
+    // Close Materials actions menu when clicking outside it
+    $(document).off('mouseup.v22MaterialsActions').on('mouseup.v22MaterialsActions', function (e) {
+        var $container = $('#materials_Actions');
+        if (!$container.is(e.target) && $container.has(e.target).length === 0 &&
+            !$('#show_Materials_Actions').is(e.target)) {
+            $container.hide();
+            $('#show_Materials_Actions').removeClass('active');
         }
-    }
-});
-
-// Close Materials actions menu when clicking outside it
-$(document).on('mouseup', function (e) {
-    var $container = $('#materials_Actions');
-    if (!$container.is(e.target) && $container.has(e.target).length === 0 &&
-        !$('#show_Materials_Actions').is(e.target)) {
-        $container.hide();
-        $('#show_Materials_Actions').removeClass('active');
-    }
+    });
 });
 
 // v2.2 overrides for legacy housekeeping.js functions
+
+// viewDefendants in housekeeping.js checks pathname.indexOf('/version-2/'), which is
+// false for /version-2-2/, causing it to open the wrong tab. This override forces
+// Manage Materials (tab 2) and triggers the defendants document link directly.
+window.viewDefendants = function () {
+    showTabByNumber(2, false);
+    var $targetLink = $('.show-case[data-id="18"][data-doc="defendants.pdf"]').first();
+    if ($targetLink.length > 0) {
+        $targetLink.trigger('click');
+    }
+    return false;
+};
 
 // documentUpdateStatement is called by the existing inline onclick handler on the Update Statement button
 // but is not defined anywhere in the codebase. This no-op prevents a ReferenceError while preserving
