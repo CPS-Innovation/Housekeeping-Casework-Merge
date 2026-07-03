@@ -226,7 +226,7 @@
          class="govuk-grid-column-one-quarter dcf-materials-workspace__filter"
          data-panel="materials-filter">
         <div class="moj-filter-layout__filter">
-            {% include "includes/version-2/materials_filter.html" %}
+            {% include "versions/v2/v2-2/includes/materials-filter.njk" %}
         </div>
     </div>
     <div id="filter_Redactions"
@@ -881,13 +881,13 @@
         generateDocuments: data.caseMaterialsGenerateDocuments,
         embeddedInMaterialsCardsPanel: true
         } %}
-        {% include "includes/version-2/dcf-materials-panel.njk" %}
+        {% include "versions/v2/v2-2/includes/dcf-materials-panel.njk" %}
     </div>
     <div id="redact_column_2"
          class="govuk-grid-column-one-half dcf-materials-workspace__document"
          data-panel="materials-document"
          style="display: none;">
-        {% include "version-2/partials/_redact-panel.njk" %}
+        {% include "versions/v2/v2-2/partials/redact-panel.njk" %}
     </div>
 </div>
 
