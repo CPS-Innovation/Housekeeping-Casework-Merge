@@ -22,7 +22,7 @@
 <div class="govuk-grid-row" id="materials_filter">
     <div class="govuk-grid-column-full-from-desktop">
         <div class="moj-filter-layout__filter govuk-!-static-margin-bottom-5">
-            {% include "includes/version-2/materials_filter-horizontal.html" %}
+            {% include "versions/v2/v2-1/includes/materials-filter-horizontal.njk" %}
         </div>
     </div>
 </div>
@@ -162,7 +162,7 @@
         <div class="govuk-grid-column-full" id="redact_column_1">
             <div id="filter_Redactions">
 
-                {% include "includes/version-2/redaction_filter-from-v2.0.html" %}
+                {% include "versions/v2/v2-1/includes/redaction-filter.njk" %}
 
 
             </div>
@@ -170,7 +170,7 @@
 
         <div id="redact_column_2" class="govuk-grid-column-three-quarters"
              style="display: none;">
-            {% include "version-2/partials/_redact-panel.njk" %}
+            {% include "versions/v2/v2-1/partials/redact-panel.njk" %}
         </div>
 
     </div>
