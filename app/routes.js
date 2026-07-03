@@ -169,13 +169,13 @@ router.get('/version-2-0/A-index/case-search', (req, res) => {
 router.get('/version-2-1/A-index', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
-    res.render('version-2/A-index.njk', { version: '2.1', caseUrnSearch });
+    res.render('versions/v2/v2-1/A-index.njk', { version: '2.1', caseUrnSearch });
 });
 
 router.get('/version-2-1/A-index/case-search', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
-    res.render('version-2/A-index.njk', { version: '2.1', caseUrnSearch });
+    res.render('versions/v2/v2-1/A-index.njk', { version: '2.1', caseUrnSearch });
 });
 
 router.get('/version-2-2/A-index', (req, res) => {
