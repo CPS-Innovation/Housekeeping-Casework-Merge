@@ -164,7 +164,7 @@
                 <div class="panel" id="tab_content_1"
                      {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
                     {% set tab_id = '1' %}
-                    {% include "includes/version-2/tab-1-PCD-request.html" %}
+                    {% include "versions/v2/v2-2/includes/pcd-request.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 2 - Manage materials -->
@@ -184,7 +184,7 @@
                 <!-- TAB CONTENT - 4 - Reviews -->
                 <div class="panel" id="tab_content_4" style="display: none;">
                     {% set tab_id = '4' %}
-                    {% include "includes/version-2/tab-4-PCD-review.html" %}
+                    {% include "versions/v2/v2-2/includes/pcd-review.njk" %}
                 </div>
 
             </div>
