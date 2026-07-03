@@ -101,47 +101,24 @@
                         </button>
 
                         <!-- Update should only be available for Statements or Exhibits -->
-                        <!-- Requested that for version 1.0 we don't include the word 'statement' on the label -->
-                        {% if version < '2.0' %}
-                        <button type="button" id="update-statement"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="openUpdateStatement(); documentUpdateStatement();"
-                                disabled>Update
-                        </button>
-
-                        {% elif version >= '2.0' %}
                         <button type="button" id="update-statement"
                                 class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                 data-module="govuk-button"
                                 onclick="openUpdateStatement(); documentUpdateStatement();"
                                 disabled>Update statement
                         </button>
-                        {% endif %}
 
-                        <!-- Requested that for version 1.0 we don't include the word 'exhibit' on the label -->
-                        {% if version < '2.0' %}
-                        <button type="button" id="update-exhibit"
-                                class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
-                                data-module="govuk-button"
-                                onclick="openUpdateExhibit();"
-                                disabled>Update
-                        </button>
-                        {% elif version >= '2.0' %}
                         <button type="button" id="update-exhibit"
                                 class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs"
                                 data-module="govuk-button"
                                 onclick="openUpdateExhibit();"
                                 disabled>Update exhibit
                         </button>
-                        {% endif %}
 
-                        {% if version >= '1.1' %}
                         <button type="button"
                                 class="govuk-button govuk-button--disabled redact_Document_Multiple_Docs"
                                 data-module="govuk-button" disabled>Redact
                         </button>
-                        {% endif %}
 
                         <form method="post"
                               action="/version-2/B-discard_material?version={{ version }}">
@@ -167,14 +144,12 @@
                             unused
                         </button>
 
-                        {% if version >= '1.1' %}
                         <button type="button"
                                 class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document"
                                 data-module="govuk-button"
                                 onclick="return openDocumentInNewWindow();">
                             View in new window
                         </button>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="moj-button-menu dropdown">
