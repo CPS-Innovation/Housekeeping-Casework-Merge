@@ -165,6 +165,24 @@ $(document).ready(function () {
 
 // v2.2 overrides for legacy housekeeping.js functions
 
+// documentUpdateStatement is called by the existing inline onclick handler on the Update Statement button
+// but is not defined anywhere in the codebase. This no-op prevents a ReferenceError while preserving
+// the navigation behaviour provided by the openUpdateStatement override above.
+window.documentUpdateStatement = function () {};
+
+// openModalOver in housekeeping.js checks pathname.indexOf('/version-2/'), which is false for
+// /version-2-2/, causing it to call showTabByNumber(3) (Comms) instead of showTabByNumber(2)
+// (Manage Materials). This override forces the correct tab for the v2.2 route.
+window.openModalOver = function () {
+    var redactionModalOver = '#redactionModalOver';
+    $(redactionModalOver).removeClass('rj-dont-display');
+    showTabByNumber(2, false);
+    var activeDoc = $('#filter_Redactions table tr.active_document a.show-case').text();
+    if (activeDoc) {
+        sessionStorage.setItem('last_active_doc', activeDoc);
+    }
+};
+
 window.openUpdateStatement = function () {
     window.location.href = '/version-2/update-statement';
 };
