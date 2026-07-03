@@ -164,7 +164,7 @@
                 <div class="panel" id="tab_content_1"
                      {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
                     {% set tab_id = '1' %}
-                    {% include "../../../includes/version-2/tab-1-PCD-request.html" %}
+                    {% include "versions/v2/v2-1/includes/pcd-request.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 2 - Manage materials (v1.2 tab 3: Review and redact) -->
@@ -178,13 +178,13 @@
                 <div class="panel" id="tab_content_3"
                      {% if data['activeTab'] != 'comms' %}style="display: none;"{% endif %}>
                     {% set tab_id = '3' %}
-                    {% include "../../../includes/version-2/tab-3-Comms.html" %}
+                    {% include "versions/v2/v2-1/includes/comms.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 4 - Reviews (v1.2 tab 5) -->
                 <div class="panel" id="tab_content_4" style="display: none;">
                     {% set tab_id = '4' %}
-                    {% include "../../../includes/version-2/tab-4-PCD-review.html" %}
+                    {% include "versions/v2/v2-1/includes/pcd-review.njk" %}
                 </div>
 
             </div>
