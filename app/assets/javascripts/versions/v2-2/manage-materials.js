@@ -162,3 +162,79 @@ $(document).ready(function () {
         }
     };
 });
+
+// v2.2 overrides for legacy housekeeping.js functions
+
+window.openUpdateStatement = function () {
+    window.location.href = '/version-2/update-statement';
+};
+
+window.openUpdateExhibit = function () {
+    window.location.href = '/version-2/update-exhibit';
+};
+
+window.openDocumentInNewWindow = function () {
+    // Force v2 branch — /version-2-2/ does not match /version-2/ in housekeeping.js
+    var activeReviewTab = '#tab_content_2';
+    var isReviewTabVisible = $(activeReviewTab).is(':visible');
+    var activeTabPanel = $('.govuk-tabs__panel:not(.govuk-tabs__panel--hidden)');
+
+    if (isReviewTabVisible && activeTabPanel.length > 0) {
+        var pdfViewer = activeTabPanel.find('#pdf-root');
+        var documentURL = pdfViewer.attr('data-pdf-url');
+
+        if (documentURL) {
+            documentURL = documentURL.replace('/public/files/', '').replace('/files/', '');
+            var windowName = 'Document_' + Date.now();
+            window.open('/public/files/' + documentURL, windowName,
+                'width=800,height=800,top=0,left=0,scrollbars=yes,location=no,toolbar=no,menubar=no,status=no');
+            return false;
+        }
+    }
+
+    var selectedDocs = $("input[name=materials_document]:checked, input[name=comms_document]:checked");
+
+    if (selectedDocs.length === 0) {
+        var activeRow = $('.active_document').closest('tr');
+        if (activeRow.length > 0) {
+            var titleCell = activeRow.find('.openMe');
+            var docURL = titleCell.find('a, button').attr('data-doc');
+
+            if (docURL) {
+                var winName = 'Document_' + Date.now();
+                window.open('/public/files/' + docURL, winName,
+                    'width=800,height=800,top=0,left=0,scrollbars=yes,location=no,toolbar=no,menubar=no,status=no');
+                return false;
+            }
+        }
+    }
+
+    selectedDocs.each(function (index) {
+        var row = $(this).closest('tr');
+        var cell = row.find('td.title_column, td.subject-cell');
+        var docURL = cell.find('.openMe a, .openMe button').attr('data-doc');
+
+        if (!docURL) {
+            var nextRow = row.next('tr.hidden_row');
+            var embedSrc = nextRow.find('embed').attr('src');
+            if (embedSrc) {
+                docURL = embedSrc.replace('/public/files/', '').replace('/files/', '');
+            }
+        }
+
+        if (!docURL) {
+            var btn = cell.find('button.show_comms, button.show_material');
+            docURL = btn.attr('data-doc');
+        }
+
+        if (docURL) {
+            var offsetX = 50 * index;
+            var offsetY = 50 * index;
+            var winName = 'Document_' + Date.now() + '_' + index;
+            window.open('/public/files/' + docURL, winName,
+                'width=800,height=800,top=' + offsetY + ',left=' + offsetX + ',scrollbars=yes,location=no,toolbar=no,menubar=no,status=no');
+        }
+    });
+
+    return false;
+};
