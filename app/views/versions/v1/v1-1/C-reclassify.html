@@ -1,0 +1,208 @@
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% block header %}
+{% include "versions/v1/v1-1/includes/banner.html" %}
+{% include "versions/v1/v1-1/includes/modals/rename.html" %}
+{% include "versions/v1/v1-1/includes/modals/feedback.html" %}
+{% include "versions/v1/v1-1/includes/modals/report-a-problem.html" %}
+{% include "versions/v1/v1-1/includes/modals/search.html" %}
+{% include "versions/v1/v1-1/includes/modals/notes-new.html" %}
+{% include "versions/v1/v1-1/includes/modals/notes.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <form action="A-index.html" method="get" novalidate>
+        <h1 id="main-description"
+            class="govuk-heading-l">What type of
+            document is this?</h1>
+            <div class="govuk-form-group ">
+                <label
+                    class="govuk-label"
+                    for="reclassify-document-type"><span
+                    class="Reclassify_labelMargin__U6+Mg">Select the document type for <strong
+                    class="Reclassify_highlight__ln8Zk" id="reclassify-item-name">MG11 JOHN Doe, 11/08/2025 #1</strong></span>
+                </label>
+                <div id="reclassify-multiple-items" style="display:none; margin-bottom: 15px;">
+                    <ul class="govuk-list govuk-list--bullet" id="reclassify-items-list"></ul>
+                </div>
+                <select
+                    class="govuk-select "
+                    id="reclassify-document-type"
+                    data-testid="reclassify-document-type">
+                <option value="" disabled="">Choose
+                    document type
+                </option>
+                <option value="1201">ABE</option>
+                <option value="-7">Asset Recovery
+                </option>
+                <option value="-6">Asset Recovery
+                    3rd Party
+                </option>
+                <option value="-5">Complaint
+                </option>
+                <option value="-1">Correspondence
+                </option>
+                <option value="-4">Counsel Case
+                    Acknowledgement
+                </option>
+                <option value="1064">DCF</option>
+                <option value="1055">DREP</option>
+                <option value="-2">Defence
+                    Statement
+                </option>
+                <option value="1066">MG00</option>
+                <option value="1001">MG1</option>
+                <option value="1033">MG2</option>
+                <option value="1034">MG3</option>
+                <option value="1035">MG3A</option>
+                <option value="1002">MG4</option>
+                <option value="1003">MG4A</option>
+                <option value="1004">MG4B</option>
+                <option value="1005">MG4C</option>
+                <option value="1060">MG4D</option>
+                <option value="1061">MG4E</option>
+                <option value="1037">MG4(Post)
+                </option>
+                <option value="1036">MG4F</option>
+                <option value="1006">MG5</option>
+                <option value="1038">MG5(SP)
+                </option>
+                <option value="1007">MG6</option>
+                <option value="1039">MG6A</option>
+                <option value="1008">MG6B</option>
+                <option value="1009">MG6C</option>
+                <option value="1010">MG6D</option>
+                <option value="1011">MG6E</option>
+                <option value="1012">MG7</option>
+                <option value="1013">MG8</option>
+                <option value="1014">MG9</option>
+                <option value="1015">MG10</option>
+                <option value="1031" disabled="">
+                    MG11
+                </option>
+                <option value="1059">MG11(R)
+                </option>
+                <option value="1019">MG12</option>
+                <option value="1040">MG13</option>
+                <option value="1041">MG14</option>
+                <option value="1042">MG15(SDN)
+                </option>
+                <option value="1020">MG15(ROTI)
+                </option>
+                <option value="1044">MG15(ROVI)
+                </option>
+                <option value="1062">MG15(CNOI)
+                </option>
+                <option value="1063">MG16</option>
+                <option value="1045">MG16(DBCI)
+                </option>
+                <option value="1046">MG16(DOI)
+                </option>
+                <option value="1047">MG17</option>
+                <option value="1024">MG18</option>
+                <option value="1025">MG19</option>
+                <option value="1026">MG20</option>
+                <option value="1048">MG21</option>
+                <option value="1049">MG21A</option>
+                <option value="1203">MG22 SFR
+                </option>
+                <option value="1050">MGDD</option>
+                <option value="1027">MG/FSSA
+                </option>
+                <option value="1028">MG/FSSB
+                </option>
+                <option value="1029">Other
+                    Communication
+                </option>
+                <option value="1030">Other Exhibit
+                </option>
+                <option value="1200">Other
+                    Material
+                </option>
+                <option value="1056">PCN1</option>
+                <option value="1057">PCN2</option>
+                <option value="1058">PCN3</option>
+                <option value="1051">PE1</option>
+                <option value="1052">PE2</option>
+                <option value="1053">PE3</option>
+                <option value="1054">PE4</option>
+                <option value="1202">SDC</option>
+                <option value="-3">Service of ABE
+                </option>
+            </select>
+            </div>
+        <div class="Reclassify_btnWrapper__ePU1y">
+            <button type="submit" data-module="govuk-button"
+                    id="save-reclassify" class="govuk-button reclassify_Document_Multiple_Docs"
+                    data-module="govuk-button">Accept and save</button>
+            <p class="govuk-body">
+                <a href="A-index.html" class="govuk-link govuk-link--no-visited-state">Cancel</a>
+            </p>
+        </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const items = JSON.parse(sessionStorage.getItem('reclassify_items') || '[]');
+    const itemNameElem = document.getElementById('reclassify-item-name');
+    const multipleItemsDiv = document.getElementById('reclassify-multiple-items');
+    const itemsList = document.getElementById('reclassify-items-list');
+    const labelSpan = document.querySelector('.Reclassify_labelMargin__U6+Mg');
+
+    if (items.length > 1) {
+        itemNameElem.style.display = 'none';
+        if (labelSpan) {
+            labelSpan.innerHTML = 'Select the document type for:';
+        }
+        multipleItemsDiv.style.display = 'block';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'govuk-body-s govuk-!-margin-bottom-1';
+            li.style.fontWeight = 'bold';
+            li.textContent = item;
+            itemsList.appendChild(li);
+        });
+    } else if (items.length === 1) {
+        itemNameElem.textContent = items[0];
+    }
+
+    // Get version from URL
+    const versionPrefix = '/version-1-1/';
+
+    // Update Cancel link
+    const cancelLink = document.querySelector('a[href="A-index.html"]');
+    if (cancelLink) {
+        const sourceTab = sessionStorage.getItem('reclassify_source_tab') || '2';
+        cancelLink.href = versionPrefix + 'A-index?tab=' + sourceTab;
+    }
+
+    const saveBtn = document.getElementById('save-reclassify');
+    const select = document.getElementById('reclassify-document-type');
+
+    saveBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const selectedOption = select.options[select.selectedIndex];
+        if (!selectedOption || selectedOption.disabled || !selectedOption.value) {
+            alert('Please select a document type');
+            return;
+        }
+
+        const selectedTypeText = selectedOption.text;
+        sessionStorage.setItem('reclassify_success', 'true');
+        sessionStorage.setItem('reclassify_type', selectedTypeText);
+        
+        const sourceTab = sessionStorage.getItem('reclassify_source_tab') || '2';
+        
+        // Use already determined versionPrefix
+        window.location.href = versionPrefix + 'A-index?tab=' + sourceTab;
+    });
+});
+</script>
+{% endblock %}

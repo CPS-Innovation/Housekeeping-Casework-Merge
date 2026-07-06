@@ -194,6 +194,79 @@ router.get('/version-2-2/C-reclassify', (req, res) => {
     res.render('versions/v2/v2-2/C-reclassify.njk', { version: '2.2' });
 });
 
+// Explicit isolated route for v1.1
+router.get('/version-1-1/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+});
+
+router.get('/version-1-1/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+});
+
+router.get('/version-1-1/find-a-case', (req, res) => {
+    res.render('versions/v1/v1-1/find-a-case', { version: '1.1' });
+});
+
+router.get('/version-1-1/A-index/find-a-case', (req, res) => {
+    res.redirect('/version-1-1/find-a-case');
+});
+
+router.post('/version-1-1/B-discard_material', (req, res) => {
+    res.render('versions/v1/v1-1/B-discard_material', { version: '1.1' });
+});
+
+router.post('/version-1-1/A-index', (req, res) => {
+    const data = req.session.data;
+
+    if (data['update_exhibit_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else if (data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
+
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+
+    res.redirect('/version-1-1/A-index');
+});
+
+router.get('/version-1-1/cancel-discard', (req, res) => {
+    const data = req.session.data;
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect('/version-1-1/A-index');
+});
+
+router.get('/version-1-1/C-reclassify', (req, res) => {
+    res.render('versions/v1/v1-1/C-reclassify', { version: '1.1' });
+});
+
+router.get('/version-1-1/update-statement', (req, res) => {
+    res.render('versions/v1/v1-1/update-statement', { version: '1.1' });
+});
+
+router.get('/version-1-1/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-1/update-exhibit', { version: '1.1' });
+});
+
+router.get('/version-1-1/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-1/check-update-answers', { version: '1.1' });
+});
+
 // Explicit isolated route for v1.2
 router.get('/version-1-2/A-index', (req, res) => {
     const data = req.session.data || {}
