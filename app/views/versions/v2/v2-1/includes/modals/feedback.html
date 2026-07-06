@@ -1,0 +1,84 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openFeedbackModal">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    Casework App feedback                    
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <p></p>
+                                    <!-- <p>Your feedback will help us improve your Casework app experience</p> -->
+                                </div>
+
+                                <div class="govuk-grid-column-full">
+
+                                    <!-- ////// FORM ITEM 1 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">How would you rate your overall satisfaction with the Casework application?</h1>
+                                            </legend>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Satisfaction-Very" name="feedbackSurvey-Satisfaction" type="radio" value="Very satisfied">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Satisfaction-Very">Very satisfied</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Satisfaction-Satisfied" name="feedbackSurvey-Satisfaction" type="radio" value="Satisfied">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Satisfaction-Satisfied">Satisfied</label>
+                                                </div>                                        
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Satisfaction-Neutral" name="feedbackSurvey-Satisfaction" type="radio" value="Neutral">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Satisfaction-Neutral">Neutral</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Satisfaction-Dissatisfied" name="feedbackSurvey-Satisfaction" type="radio" value="Dissatisfied">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Satisfaction-Dissatisfied">Dissatisfied</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Satisfaction-Very-dissatisfied" name="feedbackSurvey-Satisfaction" type="radio" value="Very dissatisfied">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Satisfaction-Very-dissatisfied">Very dissatisfied</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- ////// FORM ITEM 1 - END ////// -->
+                                </div>
+
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="feedbackGood-button" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button" type="button" onClick="closeFeedbackModal()">Continue</button>
+                                    <button id="feedbackBad-button" class="govuk-button" data-module="govuk-button" type="button" onClick="openFeedbackSurveyModal(), closeFeedbackModal()">Continue</button>
+                                    <!-- <button class="non-button" data-module="govuk-button" type="button" onClick="closeFeedbackModal()">No thanks</button> -->
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
