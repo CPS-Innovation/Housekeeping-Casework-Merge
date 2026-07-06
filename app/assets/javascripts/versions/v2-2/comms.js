@@ -32,43 +32,72 @@
     };
 }());
 
-// v2.2 Comms Actions-on-selection button
-// Use a DOM-ready block so we can call .off('click') to remove any direct handler
-// that housekeeping.js may have registered, then bind a namespaced v2.2 handler.
-$(function () {
-    $('#show_Comms_Actions')
-        .off('click')
-        .off('click.v22Actions')
-        .on('click.v22Actions', function () {
-            var $btn = $(this);
-            var $menu = $('#comms_Actions');
-            var isOpen = $menu.is(':visible');
+// v2.2 Comms Actions-on-selection button — deterministic, hidden/display as source of truth.
+// Uses the same pattern as initV22ActionMenus() in manage-materials.js.
+// housekeeping.js binds an un-namespaced $(document).mouseup that hides #comms_Actions
+// on every mouseup outside the container — including when the user clicks the toggle button.
+// Fix: native capture-phase mouseup shield stops the legacy handler from interfering.
+function initV22CommsActionMenu() {
+    var $commsBtn = $('#show_Comms_Actions');
+    var $commsMenu = $('#comms_Actions');
 
-            // Close all open action menus first
-            $('.hidden_buttons').hide();
-            $('#show_Materials_Actions, #show_Comms_Actions').removeClass('active');
+    if (!$commsBtn.length || !$commsMenu.length) { return; }
 
-            if (!isOpen) {
-                $menu.show();
-                $btn.addClass('active');
+    // ---- helpers ----
+    function isMenuOpen($menu) {
+        return !$menu.prop('hidden');
+    }
 
-                // Enable/disable single-item-only actions based on selection count
-                var commsCount = $('input[name=comms_document]:checked').length;
-                if (commsCount === 1) {
-                    $('#comms_Actions .rename-Document').show();
-                } else {
-                    $('#comms_Actions .rename-Document').hide();
-                }
+    function openMenu($btn, $menu) {
+        $menu.prop('hidden', false).css('display', 'block');
+        $btn.attr('aria-expanded', 'true').addClass('open');
+    }
+
+    function closeMenu($btn, $menu) {
+        $menu.prop('hidden', true).css('display', 'none');
+        $btn.attr('aria-expanded', 'false').removeClass('open');
+    }
+
+    // ---- initialise closed ----
+    closeMenu($commsBtn, $commsMenu);
+
+    // ---- capture-phase mouseup shield ----
+    // Stops housekeeping.js's bubble-phase $(document).mouseup from hiding
+    // #comms_Actions before our click handler runs.
+    [$commsBtn[0], $commsMenu[0]].filter(Boolean).forEach(function (el) {
+        el.addEventListener('mouseup', function (e) {
+            e.stopPropagation();
+        }, true); // capture phase
+    });
+
+    // ---- toggle ----
+    $commsBtn.off('.v22CommsActionMenu').on('click.v22CommsActionMenu', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        if (isMenuOpen($commsMenu)) {
+            closeMenu($commsBtn, $commsMenu);
+        } else {
+            openMenu($commsBtn, $commsMenu);
+            // Enable/disable single-selection-only Rename
+            var count = $('input[name=comms_document]:checked').length;
+            if (count === 1) {
+                $commsMenu.find('.rename-Document').show();
+            } else {
+                $commsMenu.find('.rename-Document').hide();
             }
-        });
-
-    // Close Comms actions menu when clicking outside it
-    $(document).off('mouseup.v22CommsActions').on('mouseup.v22CommsActions', function (e) {
-        var $container = $('#comms_Actions');
-        if (!$container.is(e.target) && $container.has(e.target).length === 0 &&
-            !$('#show_Comms_Actions').is(e.target)) {
-            $container.hide();
-            $('#show_Comms_Actions').removeClass('active');
         }
     });
+
+    // ---- outside-click to close (pointerdown fires before click on items) ----
+    $(document).off('.v22CommsActionMenuOutside').on('pointerdown.v22CommsActionMenuOutside', function (e) {
+        var $t = $(e.target);
+        if (!$t.closest($commsBtn).length && !$t.closest($commsMenu).length) {
+            if (isMenuOpen($commsMenu)) { closeMenu($commsBtn, $commsMenu); }
+        }
+    });
+}
+
+$(function () {
+    initV22CommsActionMenu();
 });
