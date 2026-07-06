@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', function() {
         itemNameElem.textContent = items[0];
     }
 
-    // Get version from URL
+    // Get version from URL — match /version-2-2/ style paths (digits and hyphens)
     const path = window.location.pathname;
-    const versionMatch = path.match(/\/version-\d+\//);
+    const versionMatch = path.match(/\/version-[\d-]+\//);
     const versionPrefix = versionMatch ? versionMatch[0] : "";
 
     // Update Cancel link

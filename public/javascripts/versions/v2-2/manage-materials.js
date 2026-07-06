@@ -108,6 +108,14 @@ $(document).ready(function () {
     // 1. Initial State: State A
     setPanelState('table');
 
+    // Reclassify return: if returning from /version-2-2/C-reclassify, activate Manage Materials tab
+    if (sessionStorage.getItem('reclassify_success') === 'true') {
+        sessionStorage.removeItem('reclassify_success');
+        if (typeof showTabByNumber === 'function') {
+            showTabByNumber(2, false);
+        }
+    }
+
     // 2. Filter Toggling
     $(document).off('click.version21Materials', '#show_filter_Materials, #close_filter_Materials');
     $(document).on('click.version21Materials', '#show_filter_Materials, #close_filter_Materials', function (e) {
