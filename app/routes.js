@@ -255,6 +255,18 @@ router.get('/version-1-2/C-reclassify', (req, res) => {
     res.render('versions/v1/v1-2/C-reclassify', { version: '1.2' });
 });
 
+router.get('/version-1-2/update-statement', (req, res) => {
+    res.render('versions/v1/v1-2/update-statement', { version: '1.2' });
+});
+
+router.get('/version-1-2/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-2/update-exhibit', { version: '1.2' });
+});
+
+router.get('/version-1-2/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-2/check-update-answers', { version: '1.2' });
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 
