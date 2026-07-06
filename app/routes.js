@@ -190,6 +190,10 @@ router.get('/version-2-2/A-index/case-search', (req, res) => {
     res.render('versions/v2/v2-2/A-index.njk', { version: '2.2', caseUrnSearch });
 });
 
+router.get('/version-2-2/C-reclassify', (req, res) => {
+    res.render('version-2/C-reclassify.njk', { version: '2.2' });
+});
+
 // User Research and design versions
 router.use('/version-0', require('./views/version-0/_routes'))
 
