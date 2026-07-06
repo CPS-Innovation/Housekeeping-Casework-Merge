@@ -1,0 +1,208 @@
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% block header %}
+{% include "../includes/version-1/banner.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+        <form id="update-statement-form" action="#" method="post" novalidate>
+
+            <span class="govuk-caption-l">Update</span>
+            <h1 class="govuk-heading-l">Statement</h1>
+
+            <div class="govuk-form-group ">
+                <label class="govuk-label govuk-!-font-weight-bold" for="statement-witness">
+                    Who is the witness?
+                </label>
+                <select class="govuk-select govuk-!-width-full" id="statement-witness" name="statement-witness">
+                    <option value="witness-0">Please select</option>
+                    <option value="witness-1" selected>Burns Montgomery Charles</option>
+                    <option value="witness-2">Witness 2</option>
+                    <option value="witness-3">Witness 3</option>
+                </select>
+            </div>
+
+            <div class="govuk-form-group">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--s" for="statement-number">
+                        What is the statement number?
+                    </label>
+                </h1>
+                <div id="account-number-hint" class="govuk-hint">
+                    1 to 3 already in use
+                </div>
+                <input class="govuk-input govuk-input--width-10" id="statement-number" name="statementNumber" type="text" spellcheck="false" aria-describedby="statement-number-hint" inputmode="numeric">
+            </div>
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="does-statement-have-date-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h1 class="govuk-fieldset__heading">
+                            Does the statement have a date?
+                        </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="does-statement-have-date" name="does-statement-have-date" type="radio" value="yes" data-aria-controls="conditional-does-statement-have-date">
+                            <label class="govuk-label govuk-radios__label" for="does-statement-have-date">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-does-statement-have-date">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset" role="group" aria-describedby="statement-date-hint">
+                                    <legend class="govuk-fieldset__legend">
+                                        Enter statement date
+                                    </legend>
+                                    <div id="statement-date-hint" class="govuk-hint">
+                                        For example, 27 3 2025
+                                    </div>
+                                    <div class="govuk-date-input" id="statement-date">
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label" for="statement-date-day">
+                                                    Day
+                                                </label>
+                                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="statement-date-day" name="statement-date-day" type="text" inputmode="numeric">
+                                            </div>
+                                        </div>
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label" for="statement-date-month">
+                                                    Month
+                                                </label>
+                                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="statement-date-month" name="statement-date-month" type="text" inputmode="numeric">
+                                            </div>
+                                        </div>
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label" for="statement-date-year">
+                                                    Year
+                                                </label>
+                                                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="statement-date-year" name="statement-date-year" type="text" inputmode="numeric">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="does-statement-have-date-2" name="does-statement-have-date" type="radio" value="no" data-aria-controls="conditional-does-statement-have-date-2">
+                            <label class="govuk-label govuk-radios__label" for="does-statement-have-date-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+                        What is the material status?
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus" name="materialStatus" type="radio" value="Used">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus">
+                                Used
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="materialStatus-2" name="materialStatus" type="radio" value="Unused">
+                            <label class="govuk-label govuk-radios__label" for="materialStatus-2">
+                                Unused
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="govuk-button-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button" id="check-updated-statement">
+                    Continue
+                </button>
+                <a class="govuk-link" href="A-index.html#tab_content_3">Cancel</a>
+            </div>
+        </form>
+
+
+        <!-- Check your answers page -->
+        <div class="govuk-width-container" id="check-statement-answers">
+            <main class="govuk-main-wrapper " id="main-content" role="main">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full-from-desktop">
+                        <h1 class="govuk-heading-l">Check your answers</h1>
+
+                        <div class="govuk-summary-card">
+                            <div class="govuk-summary-card__title-wrapper">
+                                <h2 class="govuk-summary-card__title">
+                                    stmt BLAYNEE 2034 1 JUNE mg11
+                                </h2>
+                                <ul class="govuk-summary-card__actions">
+                                    <li class="govuk-summary-card__action">
+                                        <a class="govuk-link" href="update-statement.html">Change<span class="govuk-visually-hidden"> statement details</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="govuk-summary-card__content">
+                                <dl class="govuk-summary-list">
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            Who is the witness?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            Burns Montgomery Charles
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            What is the statement number?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            4
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            Does the statement have a date?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            10 September 2025
+                                        </dd>
+                                    </div>
+                                    <div class="govuk-summary-list__row">
+                                        <dt class="govuk-summary-list__key">
+                                            What is the material status?
+                                        </dt>
+                                        <dd class="govuk-summary-list__value">
+                                            Used
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                        <form action="A-index" method="post" novalidate>
+                            <div class="govuk-button-group">
+                                <input type="hidden" name="update_statement_COMPLETED" value="true" style="display: none;">
+                                <button id="submit-updated-statement" type="submit" class="govuk-button" data-module="govuk-button">
+                                    Submit and update statement
+                                </button>
+                                <a class="govuk-link" href="A-index.html#tab_content_3">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <div><embed style="width: 40vw; height:75vh;" src="/public/files/stmt_BLAYNEE_2034_1_JUNE_mg11.pdf"></div>
+    </div>
+</div>
+{% endblock %}
