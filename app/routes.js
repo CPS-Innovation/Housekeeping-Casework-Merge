@@ -191,7 +191,7 @@ router.get('/version-2-2/A-index/case-search', (req, res) => {
 });
 
 router.get('/version-2-2/C-reclassify', (req, res) => {
-    res.render('version-2/C-reclassify.njk', { version: '2.2' });
+    res.render('versions/v2/v2-2/C-reclassify.njk', { version: '2.2' });
 });
 
 // User Research and design versions
