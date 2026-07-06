@@ -171,45 +171,101 @@ $(document).ready(function () {
     };
 });
 
-// v2.2 Actions-on-selection button
-// Use a DOM-ready block so we can call .off('click') to remove any direct handler
-// that housekeeping.js may have registered, then bind a namespaced v2.2 handler.
-$(function () {
-    $('#show_Materials_Actions')
-        .off('click')
-        .off('click.v22Actions')
-        .on('click.v22Actions', function () {
-            var $btn = $(this);
-            var $menu = $('#materials_Actions');
-            var isOpen = $menu.is(':visible');
+// v2.2 action menu controller — deterministic, hidden/display as single source of truth.
+// Replaces all previous mousedown/click state-tracking attempts.
+function initV22ActionMenus() {
+    var $materialsBtn = $('#show_Materials_Actions');
+    var $materialsMenu = $('#materials_Actions');
+    var $docBtn = $('#show_Document_Actions');
+    var $docMenu = $('#myDropdown1');
 
-            // Close all open action menus first
-            $('.hidden_buttons').hide();
-            $('#show_Materials_Actions, #show_Comms_Actions').removeClass('active');
+    // ---- helpers ----
+    function isMenuOpen($menu) {
+        return !$menu.prop('hidden');
+    }
 
-            if (!isOpen) {
-                $menu.show();
-                $btn.addClass('active');
+    function openMenu($btn, $menu) {
+        $menu.prop('hidden', false).css('display', 'block');
+        $btn.attr('aria-expanded', 'true').addClass('open');
+    }
 
-                // Enable/disable single-item-only actions based on selection count
-                var materialsCount = $('input[name=materials_document]:checked').length;
-                if (materialsCount === 1) {
-                    $('#materials_Actions .rename-Document').attr('active', 'active').removeClass('govuk-button--disabled').show();
-                } else {
-                    $('#materials_Actions .rename-Document').hide();
-                }
+    function closeMenu($btn, $menu) {
+        $menu.prop('hidden', true).css('display', 'none');
+        $btn.attr('aria-expanded', 'false').removeClass('open');
+    }
+
+    // ---- initialise both menus closed ----
+    closeMenu($materialsBtn, $materialsMenu);
+    closeMenu($docBtn, $docMenu);
+
+    // ---- native capture-phase shield ----
+    // housekeeping.js binds an un-namespaced $(document).mouseup that hides
+    // #materials_Actions on every mouseup outside the container — including
+    // when the user clicks the toggle button. Because mouseup fires before
+    // click, the legacy handler hides the menu before our click handler runs.
+    // We stop mouseup from reaching the document when it originates on our
+    // buttons or menus, using a capture-phase listener (fires before jQuery
+    // bubble-phase handlers).
+    var shieldTargets = [
+        $materialsBtn[0], $materialsMenu[0],
+        $docBtn[0], $docMenu[0]
+    ].filter(Boolean);
+
+    shieldTargets.forEach(function (el) {
+        el.addEventListener('mouseup', function (e) {
+            e.stopPropagation();
+        }, true); // capture phase
+    });
+
+    // ---- Actions on selection toggle ----
+    $materialsBtn.off('.v22ActionMenus').on('click.v22ActionMenus', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        if (isMenuOpen($materialsMenu)) {
+            closeMenu($materialsBtn, $materialsMenu);
+        } else {
+            // Close doc actions if open
+            closeMenu($docBtn, $docMenu);
+            openMenu($materialsBtn, $materialsMenu);
+            // Enable/disable single-selection-only actions
+            var count = $('input[name=materials_document]:checked').length;
+            if (count === 1) {
+                $materialsMenu.find('.rename-Document').attr('active', 'active').removeClass('govuk-button--disabled').show();
+            } else {
+                $materialsMenu.find('.rename-Document').hide();
             }
-        });
-
-    // Close Materials actions menu when clicking outside it
-    $(document).off('mouseup.v22MaterialsActions').on('mouseup.v22MaterialsActions', function (e) {
-        var $container = $('#materials_Actions');
-        if (!$container.is(e.target) && $container.has(e.target).length === 0 &&
-            !$('#show_Materials_Actions').is(e.target)) {
-            $container.hide();
-            $('#show_Materials_Actions').removeClass('active');
         }
     });
+
+    // ---- Document actions toggle ----
+    $docBtn.off('.v22ActionMenus').on('click.v22ActionMenus', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        if (isMenuOpen($docMenu)) {
+            closeMenu($docBtn, $docMenu);
+        } else {
+            // Close materials actions if open
+            closeMenu($materialsBtn, $materialsMenu);
+            openMenu($docBtn, $docMenu);
+        }
+    });
+
+    // ---- outside-click to close (pointerdown fires before click on items) ----
+    $(document).off('.v22ActionMenusOutside').on('pointerdown.v22ActionMenusOutside', function (e) {
+        var $t = $(e.target);
+        if (!$t.closest($materialsBtn).length && !$t.closest($materialsMenu).length) {
+            if (isMenuOpen($materialsMenu)) closeMenu($materialsBtn, $materialsMenu);
+        }
+        if (!$t.closest($docBtn).length && !$t.closest($docMenu).length) {
+            if (isMenuOpen($docMenu)) closeMenu($docBtn, $docMenu);
+        }
+    });
+}
+
+$(function () {
+    initV22ActionMenus();
 });
 
 // v2.2 overrides for legacy housekeeping.js functions
