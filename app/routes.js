@@ -105,10 +105,11 @@ router.post('/version-1/A-index', function (req, res) {
     const data = req.session.data;
     const version = req.query.version || data.version || '1.2'; // Use query version as priority
     
-    // Set completion flag
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Determine success state for this action.
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner. The GET handler clears
+    // all flags after res.render (one-shot pattern).
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
@@ -199,12 +200,20 @@ router.get('/version-1-0/A-index', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-0/A-index', { version: '1.0', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-0/A-index/case-search', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-0/A-index', { version: '1.0', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-0/find-a-case', (req, res) => {
@@ -222,9 +231,9 @@ router.post('/version-1-0/B-discard_material', (req, res) => {
 router.post('/version-1-0/A-index', (req, res) => {
     const data = req.session.data;
 
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
@@ -272,12 +281,20 @@ router.get('/version-1-1/A-index', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-1/A-index/case-search', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-1/find-a-case', (req, res) => {
@@ -295,9 +312,9 @@ router.post('/version-1-1/B-discard_material', (req, res) => {
 router.post('/version-1-1/A-index', (req, res) => {
     const data = req.session.data;
 
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
@@ -345,12 +362,20 @@ router.get('/version-1-2/A-index', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-2/A-index', { version: '1.2', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-2/A-index/case-search', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-2/A-index', { version: '1.2', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-2/find-a-case', (req, res) => {
@@ -368,9 +393,9 @@ router.post('/version-1-2/B-discard_material', (req, res) => {
 router.post('/version-1-2/A-index', (req, res) => {
     const data = req.session.data;
 
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
@@ -418,12 +443,20 @@ router.get('/version-1-3/A-index', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-3/A-index', { version: '1.3', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-3/A-index/case-search', (req, res) => {
     const data = req.session.data || {}
     const caseUrnSearch = data.caseUrnSearch
     res.render('versions/v1/v1-3/A-index', { version: '1.3', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
 });
 
 router.get('/version-1-3/find-a-case', (req, res) => {
@@ -441,9 +474,9 @@ router.post('/version-1-3/B-discard_material', (req, res) => {
 router.post('/version-1-3/A-index', (req, res) => {
     const data = req.session.data;
 
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
