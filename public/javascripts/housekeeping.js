@@ -1839,6 +1839,18 @@ function openDocumentInNewWindow() {
     return false;
 }
 
+// Helper: resolve the current v2 route prefix from the pathname.
+// Explicit v2 routes (/version-2-0/ … /version-2-2/) are matched first;
+// legacy /version-2/ falls through; returns '' if not a v2 path.
+function getV2RoutePrefix() {
+    var path = window.location.pathname;
+    if (path.indexOf('/version-2-0/') !== -1) { return '/version-2-0/'; }
+    if (path.indexOf('/version-2-1/') !== -1) { return '/version-2-1/'; }
+    if (path.indexOf('/version-2-2/') !== -1) { return '/version-2-2/'; }
+    if (path.indexOf('/version-2/') !== -1) { return '/version-2/'; }
+    return '';
+}
+
 // Helper: resolve the current v1 route prefix from the pathname.
 // Explicit v1 routes (/version-1-0/ … /version-1-3/) are matched first;
 // legacy /version-1/ paths fall through to the default.
@@ -1957,12 +1969,16 @@ function checkUpdatedExhibit() {
 
 function openMaterialTab() {
     // Only trigger navigation; tab selection will be handled on page load using the hash
-    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
-    if (isVersion2) {
-        window.location.href = "/version-2/A-index.html#tab_content_2";
+    var v2Prefix = getV2RoutePrefix();
+    if (v2Prefix) {
+        if (v2Prefix === '/version-2/') {
+            window.location.href = '/version-2/A-index.html#tab_content_2';
+        } else {
+            window.location.href = v2Prefix + 'A-index#tab_content_2';
+        }
     } else {
         var prefix = getV1RoutePrefix();
-        window.location.href = prefix + "A-index#tab_content_3";
+        window.location.href = prefix + 'A-index#tab_content_3';
     }
 }
 
