@@ -1002,8 +1002,35 @@
             }
         }
 
-        // 1. Initial State: State A
-        setPanelState('table');
+        // 1. Initial State
+        // For version 2.2 only: show filter and expand accordion by default.
+        // All other versions (2.0, 2.1) continue to use State A (table, filter hidden).
+        var _urlParams = new URLSearchParams(window.location.search);
+        var _version = _urlParams.get('version');
+        if (_version === '2.2') {
+            // Set initial state immediately so currentMaterialsState is correct.
+            setPanelState('table');
+
+            // Defer the version 2.2 overrides until after all $(document).ready handlers
+            // (including the housekeeping.js FILTER block) have run. housekeeping.js hides
+            // #materials_column_1 for all version-2 pages; we must re-apply our state after it.
+            setTimeout(function () {
+                // Re-apply filter-visible state. This overrides the housekeeping.js reset.
+                setPanelState('table-with-filter');
+
+                // Expand the GOV.UK accordion by clicking its own "show all" button.
+                // This lets the component update its own ARIA attributes, button text and
+                // section states — avoiding a visual-only expanded state.
+                var $showAllBtn = $('#materials-accordion .govuk-accordion__show-all');
+                // The button text is "Show all sections" when all sections are collapsed.
+                // Only click it if it is currently in the "show all" state.
+                if ($showAllBtn.length && $showAllBtn.find('.govuk-accordion__show-all-text').text().trim() !== 'Hide all sections') {
+                    $showAllBtn.trigger('click');
+                }
+            }, 50);
+        } else {
+            setPanelState('table');
+        }
 
         // 2. Filter Toggling
         $(document).off('click.version21Materials', '#show_filter_Materials, #close_filter_Materials');
