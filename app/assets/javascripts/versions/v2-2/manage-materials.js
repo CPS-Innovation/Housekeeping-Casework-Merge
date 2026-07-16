@@ -17,7 +17,6 @@ $(document).ready(function () {
     var $toggleFullSeparator = $('[data-toolbar-control="toggle-full-separator"]');
     var $toggleFullControls = $('[data-toolbar-control="toggle-full"]');
     var $materialsActionsMenu = $('#show_Materials_Actions').closest('.moj-button-menu');
-    var $documentActionsMenu = $('#show_Document_Actions').closest('.moj-button-menu.dropdown');
 
     let currentMaterialsState = 'table';
 
@@ -37,7 +36,6 @@ $(document).ready(function () {
         $toggleFullSeparator.toggle(canToggleFullWidth);
 
         $materialsActionsMenu.toggle(!isDocumentVisible);
-        $documentActionsMenu.toggle(isDocumentVisible);
         $('#show_filter_Redactions, #close_filter_Redactions').hide();
 
         // Defensive: remove any grid column classes from workspace itself
@@ -204,8 +202,6 @@ $(document).ready(function () {
 function initV22ActionMenus() {
     var $materialsBtn = $('#show_Materials_Actions');
     var $materialsMenu = $('#materials_Actions');
-    var $docBtn = $('#show_Document_Actions');
-    var $docMenu = $('#myDropdown1');
 
     // ---- helpers ----
     function isMenuOpen($menu) {
@@ -222,9 +218,8 @@ function initV22ActionMenus() {
         $btn.attr('aria-expanded', 'false').removeClass('open');
     }
 
-    // ---- initialise both menus closed ----
+    // ---- initialise menu closed ----
     closeMenu($materialsBtn, $materialsMenu);
-    closeMenu($docBtn, $docMenu);
 
     // ---- native capture-phase shield ----
     // housekeeping.js binds an un-namespaced $(document).mouseup that hides
@@ -235,8 +230,7 @@ function initV22ActionMenus() {
     // buttons or menus, using a capture-phase listener (fires before jQuery
     // bubble-phase handlers).
     var shieldTargets = [
-        $materialsBtn[0], $materialsMenu[0],
-        $docBtn[0], $docMenu[0]
+        $materialsBtn[0], $materialsMenu[0]
     ].filter(Boolean);
 
     shieldTargets.forEach(function (el) {
@@ -253,8 +247,6 @@ function initV22ActionMenus() {
         if (isMenuOpen($materialsMenu)) {
             closeMenu($materialsBtn, $materialsMenu);
         } else {
-            // Close doc actions if open
-            closeMenu($docBtn, $docMenu);
             openMenu($materialsBtn, $materialsMenu);
             // Enable/disable single-selection-only actions
             var count = $('input[name=materials_document]:checked').length;
@@ -266,28 +258,11 @@ function initV22ActionMenus() {
         }
     });
 
-    // ---- Document actions toggle ----
-    $docBtn.off('.v22ActionMenus').on('click.v22ActionMenus', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        if (isMenuOpen($docMenu)) {
-            closeMenu($docBtn, $docMenu);
-        } else {
-            // Close materials actions if open
-            closeMenu($materialsBtn, $materialsMenu);
-            openMenu($docBtn, $docMenu);
-        }
-    });
-
     // ---- outside-click to close (pointerdown fires before click on items) ----
     $(document).off('.v22ActionMenusOutside').on('pointerdown.v22ActionMenusOutside', function (e) {
         var $t = $(e.target);
         if (!$t.closest($materialsBtn).length && !$t.closest($materialsMenu).length) {
             if (isMenuOpen($materialsMenu)) closeMenu($materialsBtn, $materialsMenu);
-        }
-        if (!$t.closest($docBtn).length && !$t.closest($docMenu).length) {
-            if (isMenuOpen($docMenu)) closeMenu($docBtn, $docMenu);
         }
     });
 }
