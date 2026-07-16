@@ -1216,10 +1216,15 @@ $(document).ready(function () {
             sessionStorage.setItem('reclassify_items', JSON.stringify(selectedItems));
             sessionStorage.setItem('reclassify_source_tab', sourceTab);
 
-            // Get version from URL
+            // Get version prefix from URL — explicit versioned routes are matched first,
+            // then legacy /version-2/ and /version-1/ paths fall through.
             var path = window.location.pathname;
-            var versionMatch = path.match(/\/version-\d+\//);
-            var versionPrefix = versionMatch ? versionMatch[0] : "";
+            var versionPrefix;
+            if (path.indexOf('/version-2-0/') !== -1) { versionPrefix = '/version-2-0/'; }
+            else if (path.indexOf('/version-2-1/') !== -1) { versionPrefix = '/version-2-1/'; }
+            else if (path.indexOf('/version-2-2/') !== -1) { versionPrefix = '/version-2-2/'; }
+            else if (path.indexOf('/version-2/') !== -1) { versionPrefix = '/version-2/'; }
+            else { versionPrefix = getV1RoutePrefix(); }
 
             window.location.href = versionPrefix + "C-reclassify";
         }
@@ -1834,10 +1839,35 @@ function openDocumentInNewWindow() {
     return false;
 }
 
+// Helper: resolve the current v2 route prefix from the pathname.
+// Explicit v2 routes (/version-2-0/ … /version-2-2/) are matched first;
+// legacy /version-2/ falls through; returns '' if not a v2 path.
+function getV2RoutePrefix() {
+    var path = window.location.pathname;
+    if (path.indexOf('/version-2-0/') !== -1) { return '/version-2-0/'; }
+    if (path.indexOf('/version-2-1/') !== -1) { return '/version-2-1/'; }
+    if (path.indexOf('/version-2-2/') !== -1) { return '/version-2-2/'; }
+    if (path.indexOf('/version-2/') !== -1) { return '/version-2/'; }
+    return '';
+}
+
+// Helper: resolve the current v1 route prefix from the pathname.
+// Explicit v1 routes (/version-1-0/ … /version-1-3/) are matched first;
+// legacy /version-1/ paths fall through to the default.
+function getV1RoutePrefix() {
+    var path = window.location.pathname;
+    if (path.indexOf('/version-1-0/') !== -1) { return '/version-1-0/'; }
+    if (path.indexOf('/version-1-1/') !== -1) { return '/version-1-1/'; }
+    if (path.indexOf('/version-1-2/') !== -1) { return '/version-1-2/'; }
+    if (path.indexOf('/version-1-3/') !== -1) { return '/version-1-3/'; }
+    return '/version-1/';
+}
+
 // Update statement
 // When clicking the action button to update a statement, go to a new page
 function openUpdateStatement() {
-    window.location.href = "/version-1/update-statement.html";
+    var prefix = getV1RoutePrefix();
+    window.location.href = prefix + "update-statement";
 }
 
 // Display the statement update form
@@ -1881,7 +1911,8 @@ function checkUpdatedStatement() {
 // Update Exhibit
 // When clicking the action button to update an exhibit, go to a new page
 function openUpdateExhibit() {
-    window.location.href = "/version-1/update-exhibit.html";
+    var prefix = getV1RoutePrefix();
+    window.location.href = prefix + "update-exhibit";
 }
 
 // Display the exhibit update form
@@ -1938,8 +1969,17 @@ function checkUpdatedExhibit() {
 
 function openMaterialTab() {
     // Only trigger navigation; tab selection will be handled on page load using the hash
-    var isVersion2 = window.location.pathname.indexOf('/version-2/') !== -1;
-    window.location.href = isVersion2 ? "/version-2/A-index.html#tab_content_2" : "/version-1/A-index.html#tab_content_3";
+    var v2Prefix = getV2RoutePrefix();
+    if (v2Prefix) {
+        if (v2Prefix === '/version-2/') {
+            window.location.href = '/version-2/A-index.html#tab_content_2';
+        } else {
+            window.location.href = v2Prefix + 'A-index#tab_content_2';
+        }
+    } else {
+        var prefix = getV1RoutePrefix();
+        window.location.href = prefix + 'A-index#tab_content_3';
+    }
 }
 
 $(document).ready(function () {

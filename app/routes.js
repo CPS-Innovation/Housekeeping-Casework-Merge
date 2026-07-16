@@ -105,10 +105,11 @@ router.post('/version-1/A-index', function (req, res) {
     const data = req.session.data;
     const version = req.query.version || data.version || '1.2'; // Use query version as priority
     
-    // Set completion flag
-    if (data['update_exhibit_COMPLETED'] === 'true') {
-        data['discarding_material_COMPLETED'] = 'false';
-    } else if (data['update_statement_COMPLETED'] === 'true') {
+    // Determine success state for this action.
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner. The GET handler clears
+    // all flags after res.render (one-shot pattern).
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
         data['discarding_material_COMPLETED'] = 'false';
     } else {
         data['discarding_material_COMPLETED'] = 'true';
@@ -149,6 +150,373 @@ router.get('/version-2/A-index', (req, res) => {
     // Pass ?version=2.1 to enable the accordion variant on the Manage Materials tab.
     const version = req.query.version || '1.2';
     res.render('version-2/A-index.njk', { version });
+});
+
+// Explicit versioned routes for v2.0, v2.1 and v2.2
+// These render the same template as /version-2/A-index but pass an explicit version value.
+
+router.get('/version-2-0/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-0/A-index.njk', { version: '2.0', caseUrnSearch });
+});
+
+router.get('/version-2-0/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-0/A-index.njk', { version: '2.0', caseUrnSearch });
+});
+
+router.get('/version-2-1/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-1/A-index.njk', { version: '2.1', caseUrnSearch });
+});
+
+router.get('/version-2-1/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-1/A-index.njk', { version: '2.1', caseUrnSearch });
+});
+
+router.get('/version-2-2/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-2/A-index.njk', { version: '2.2', caseUrnSearch });
+});
+
+router.get('/version-2-2/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v2/v2-2/A-index.njk', { version: '2.2', caseUrnSearch });
+});
+
+router.get('/version-2-2/C-reclassify', (req, res) => {
+    res.render('versions/v2/v2-2/C-reclassify.njk', { version: '2.2' });
+});
+
+// Explicit isolated route for v1.0
+router.get('/version-1-0/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-0/A-index', { version: '1.0', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-0/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-0/A-index', { version: '1.0', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-0/find-a-case', (req, res) => {
+    res.render('versions/v1/v1-0/find-a-case', { version: '1.0' });
+});
+
+router.get('/version-1-0/A-index/find-a-case', (req, res) => {
+    res.redirect('/version-1-0/find-a-case');
+});
+
+router.post('/version-1-0/B-discard_material', (req, res) => {
+    res.render('versions/v1/v1-0/B-discard_material', { version: '1.0' });
+});
+
+router.post('/version-1-0/A-index', (req, res) => {
+    const data = req.session.data;
+
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
+
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+
+    res.redirect('/version-1-0/A-index');
+});
+
+router.get('/version-1-0/cancel-discard', (req, res) => {
+    const data = req.session.data;
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect('/version-1-0/A-index');
+});
+
+router.get('/version-1-0/C-reclassify', (req, res) => {
+    res.render('versions/v1/v1-0/C-reclassify', { version: '1.0' });
+});
+
+router.get('/version-1-0/update-statement', (req, res) => {
+    res.render('versions/v1/v1-0/update-statement', { version: '1.0' });
+});
+
+router.get('/version-1-0/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-0/update-exhibit', { version: '1.0' });
+});
+
+router.get('/version-1-0/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-0/check-update-answers', { version: '1.0' });
+});
+
+// Explicit isolated route for v1.1
+router.get('/version-1-1/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-1/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-1/A-index', { version: '1.1', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-1/find-a-case', (req, res) => {
+    res.render('versions/v1/v1-1/find-a-case', { version: '1.1' });
+});
+
+router.get('/version-1-1/A-index/find-a-case', (req, res) => {
+    res.redirect('/version-1-1/find-a-case');
+});
+
+router.post('/version-1-1/B-discard_material', (req, res) => {
+    res.render('versions/v1/v1-1/B-discard_material', { version: '1.1' });
+});
+
+router.post('/version-1-1/A-index', (req, res) => {
+    const data = req.session.data;
+
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
+
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+
+    res.redirect('/version-1-1/A-index');
+});
+
+router.get('/version-1-1/cancel-discard', (req, res) => {
+    const data = req.session.data;
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect('/version-1-1/A-index');
+});
+
+router.get('/version-1-1/C-reclassify', (req, res) => {
+    res.render('versions/v1/v1-1/C-reclassify', { version: '1.1' });
+});
+
+router.get('/version-1-1/update-statement', (req, res) => {
+    res.render('versions/v1/v1-1/update-statement', { version: '1.1' });
+});
+
+router.get('/version-1-1/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-1/update-exhibit', { version: '1.1' });
+});
+
+router.get('/version-1-1/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-1/check-update-answers', { version: '1.1' });
+});
+
+// Explicit isolated route for v1.2
+router.get('/version-1-2/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-2/A-index', { version: '1.2', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-2/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-2/A-index', { version: '1.2', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-2/find-a-case', (req, res) => {
+    res.render('versions/v1/v1-2/find-a-case', { version: '1.2' });
+});
+
+router.get('/version-1-2/A-index/find-a-case', (req, res) => {
+    res.redirect('/version-1-2/find-a-case');
+});
+
+router.post('/version-1-2/B-discard_material', (req, res) => {
+    res.render('versions/v1/v1-2/B-discard_material', { version: '1.2' });
+});
+
+router.post('/version-1-2/A-index', (req, res) => {
+    const data = req.session.data;
+
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
+
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+
+    res.redirect('/version-1-2/A-index');
+});
+
+router.get('/version-1-2/cancel-discard', (req, res) => {
+    const data = req.session.data;
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect('/version-1-2/A-index');
+});
+
+router.get('/version-1-2/C-reclassify', (req, res) => {
+    res.render('versions/v1/v1-2/C-reclassify', { version: '1.2' });
+});
+
+router.get('/version-1-2/update-statement', (req, res) => {
+    res.render('versions/v1/v1-2/update-statement', { version: '1.2' });
+});
+
+router.get('/version-1-2/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-2/update-exhibit', { version: '1.2' });
+});
+
+router.get('/version-1-2/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-2/check-update-answers', { version: '1.2' });
+});
+
+// Explicit isolated route for v1.3
+router.get('/version-1-3/A-index', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-3/A-index', { version: '1.3', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-3/A-index/case-search', (req, res) => {
+    const data = req.session.data || {}
+    const caseUrnSearch = data.caseUrnSearch
+    res.render('versions/v1/v1-3/A-index', { version: '1.3', caseUrnSearch });
+    // Clear success flags after render so they don't persist on reload
+    data['discarding_material_COMPLETED'] = 'false';
+    data['update_exhibit_COMPLETED'] = 'false';
+    data['update_statement_COMPLETED'] = 'false';
+});
+
+router.get('/version-1-3/find-a-case', (req, res) => {
+    res.render('versions/v1/v1-3/find-a-case', { version: '1.3' });
+});
+
+router.get('/version-1-3/A-index/find-a-case', (req, res) => {
+    res.redirect('/version-1-3/find-a-case');
+});
+
+router.post('/version-1-3/B-discard_material', (req, res) => {
+    res.render('versions/v1/v1-3/B-discard_material', { version: '1.3' });
+});
+
+router.post('/version-1-3/A-index', (req, res) => {
+    const data = req.session.data;
+
+    // Do NOT clear update flags here — they must survive the redirect so the
+    // GET handler can render the update success banner.
+    if (data['update_exhibit_COMPLETED'] === 'true' || data['update_statement_COMPLETED'] === 'true') {
+        data['discarding_material_COMPLETED'] = 'false';
+    } else {
+        data['discarding_material_COMPLETED'] = 'true';
+    }
+
+    if (data['discard_origin'] === 'communications' || data['discard_origin'] === 'comms') {
+        data['activeTab'] = 'comms';
+    } else {
+        data['activeTab'] = 'materials';
+    }
+
+    res.redirect('/version-1-3/A-index');
+});
+
+router.get('/version-1-3/cancel-discard', (req, res) => {
+    const data = req.session.data;
+
+    if (data) {
+        data['discarding_material_COMPLETED'] = 'false';
+        data['material_selected'] = [];
+        data['discard_origin'] = '';
+    }
+
+    res.redirect('/version-1-3/A-index');
+});
+
+router.get('/version-1-3/C-reclassify', (req, res) => {
+    res.render('versions/v1/v1-3/C-reclassify', { version: '1.3' });
+});
+
+router.get('/version-1-3/update-statement', (req, res) => {
+    res.render('versions/v1/v1-3/update-statement', { version: '1.3' });
+});
+
+router.get('/version-1-3/update-exhibit', (req, res) => {
+    res.render('versions/v1/v1-3/update-exhibit', { version: '1.3' });
+});
+
+router.get('/version-1-3/check-update-answers', (req, res) => {
+    res.render('versions/v1/v1-3/check-update-answers', { version: '1.3' });
 });
 
 // User Research and design versions

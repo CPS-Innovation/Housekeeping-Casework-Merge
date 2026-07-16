@@ -1,0 +1,193 @@
+{% extends "layoutCPS-v2.html" %}
+{% block header %}
+    {% include "versions/v2/v2-2/includes/banner.html" %}
+    {% include "versions/v2/v2-2/includes/modals/rename.html" %}
+    {% include "versions/v2/v2-2/includes/modals/feedback.html" %}
+    {% include "versions/v2/v2-2/includes/modals/report-a-problem.html" %}
+    {% include "versions/v2/v2-2/includes/modals/search.html" %}
+    {% include "versions/v2/v2-2/includes/modals/notes-new.html" %}
+    {% include "versions/v2/v2-2/includes/modals/notes.html" %}
+    {% include "versions/v2/v2-2/includes/modals/update-statement.html" %}
+    {% include "versions/v2/v2-2/includes/modals/update-exhibit.html" %}
+    {% include "versions/v2/v2-2/includes/modals/redaction-over.html" %}
+    {% include "versions/v2/v2-2/includes/modals/case-action-plan.html" %}
+    {% include "versions/v2/v2-2/includes/modals/case-action-plan-2.html" %}
+    {% include "versions/v2/v2-2/includes/modals/case-action-plan-builder.html" %}
+    {% include "versions/v2/v2-2/includes/modals/confirmation.html" %}
+    {% include "versions/v2/v2-2/includes/modals/confirmation-Rotate.html" %}
+    {% include "versions/v2/v2-2/includes/modals/warning-Rotate.html" %}
+{% endblock %}
+
+{% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined and caseUrnSearch else '16XL9132025' %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+    <script src="/public/javascripts/sorttable.js"></script>
+
+    <!-- /////////////////// SUCCESS BANNER- START /////////////////// -->
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full-from-desktop">
+            <a href="/version-2/find-a-case" class="govuk-back-link">Find a case</a>
+
+            <!-- AUTO RECLASSIFY -->
+            <div class="govuk-notification-banner govuk-!-margin-bottom-4" role="alert"
+                 aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+                 id="auto_reclassify" style="display:none;">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title">Important</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">No materials were identified for
+                        reclassification</h3>
+                </div>
+            </div>
+
+            <!-- RENAMED -->
+            <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+                 role="alert"
+                 aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+                 id="rename_COMPLETE" style="display: none;">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title">Success</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">Material successfully renamed</h3>
+                </div>
+            </div>
+
+            <!-- RECLASSIFY -->
+            <div id="notification-area" class="govuk-grid-row"></div>
+
+            <!-- DISCARD -->
+            {% if data['discarding_material_COMPLETED'] == 'true' %}
+                <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+                     role="alert"
+                     aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+                     id="discard_successful">
+                    <div class="govuk-notification-banner__header">
+                        <h2 class="govuk-notification-banner__title">Success</h2>
+                    </div>
+                    <div class="govuk-notification-banner__content">
+                        <h3 class="govuk-notification-banner__heading">
+                            {% if data['material_selected'] and data['material_selected'] | is_array %}
+                                {% for item in data['material_selected'] %}
+                                    {{ item }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {{ data['material_selected'] }}
+                            {% endif %}
+                            has been discarded
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Update exhibit / statement -->
+                {% elif data['update_exhibit_COMPLETED'] == 'true' or data['update_statement_COMPLETED'] == 'true' %}
+                <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+                     role="alert"
+                     aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+                     id="update_successful">
+                    <div class="govuk-notification-banner__header">
+                        <h2 class="govuk-notification-banner__title">Success</h2>
+                    </div>
+                    <div class="govuk-notification-banner__content">
+                        <h3 class="govuk-notification-banner__heading">
+                            {% if data['update_exhibit_COMPLETED'] == 'true' %}
+                                Exhibit successfully updated
+                            {% else %}
+                                Statement successfully updated
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+
+            {% else %}
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- /////////////////// SUCCESS BANNER- END /////////////////// -->
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+            <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer +1</h1>
+            <span class="govuk-caption-m govuk-!-margin-bottom-0">{{ caseUrnSearch }}</span>
+            <div class="openMe">
+                <p class="govuk-body-s">
+                    <a class="govuk-link govuk-link--no-visited-state" onclick="return viewDefendants();" data-id="18"
+                       data-doc="defendants.pdf" data-page="1" style="color: #1d70b8; cursor: pointer;">View 2
+                        defendants and charges</a>
+                </p>
+            </div>
+        </div>
+        <div class="govuk-grid-column-two-thirds">
+            <div class="taskOverViewContent">
+                <!-- <a href="">Guidance</a> -->
+                <!-- <a href="">Further housekeeping</a> -->
+                <button type="button"
+                        class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">
+                    Update automatically
+                </button>
+                <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Case review</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <div class="govuk-tabs">
+                <h2 class="govuk-tabs__title">Contents</h2>
+
+                <ul class="" id="new-tabs">
+                    <!-- Tab 1: PCD request -->
+                    <li class="tab-1-content_link {% if not data['activeTab'] or data['activeTab'] == 'pcd' %}govuk-tabs__list-item--selected{% endif %}">
+                        <a class="tab-link tab-1-content">PCD request</a>
+                    </li>
+                    <!-- Tab 2: Manage materials -->
+                    <li class="tab-2-content_link {% if data['activeTab'] == 'manage' %}govuk-tabs__list-item--selected{% endif %}">
+                        <a class="tab-link tab-2-content">Manage materials</a>
+                    </li>
+                    <!-- Tab 3: Communications -->
+                    <li class="tab-3-content_link {% if data['activeTab'] == 'comms' %}govuk-tabs__list-item--selected{% endif %}">
+                        <a class="tab-link tab-3-content">Communications</a>
+                    </li>
+                    <!-- Tab 4: Reviews -->
+                    <li class="tab-4-content_link">
+                        <a class="tab-link tab-4-content">Reviews</a>
+                    </li>
+                </ul>
+
+                <!-- TAB CONTENT - 1 - PCD request -->
+                <div class="panel" id="tab_content_1"
+                     {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
+                    {% set tab_id = '1' %}
+                    {% include "versions/v2/v2-2/includes/pcd-request.njk" %}
+                </div>
+
+                <!-- TAB CONTENT - 2 - Manage materials -->
+                <div class="panel" id="tab_content_2"
+                     {% if data['activeTab'] != 'manage' %}style="display: none;"{% endif %}>
+                    {% set tab_id = '2' %}
+                    {% include "versions/v2/v2-2/includes/manage-materials.njk" %}
+                </div>
+
+                <!-- TAB CONTENT - 3 - Communications -->
+                <div class="panel" id="tab_content_3"
+                     {% if data['activeTab'] != 'comms' %}style="display: none;"{% endif %}>
+                    {% set tab_id = '3' %}
+                    {% include "versions/v2/v2-2/includes/comms.njk" %}
+                </div>
+
+                <!-- TAB CONTENT - 4 - Reviews -->
+                <div class="panel" id="tab_content_4" style="display: none;">
+                    {% set tab_id = '4' %}
+                    {% include "versions/v2/v2-2/includes/pcd-review.njk" %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

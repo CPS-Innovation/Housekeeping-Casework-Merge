@@ -1,0 +1,118 @@
+{% extends "layoutCPS-NEW-CASEFILE.html" %}
+{% block header %}
+{% include "versions/v1/v1-0/includes/banner.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <span class="govuk-caption-l">Edit</span>
+        <h1 class="govuk-heading-l">Statement</h1>
+
+<form action="/update-statement-submit" method="post" novalidate>
+
+        {% from "govuk/components/select/macro.njk" import govukSelect %}
+
+        {{ govukSelect({
+        id: "statement-witness",
+        name: "statement-witness",
+        label: {
+        text: "Who is the witness?"
+        },
+        items: [
+        {
+        value: "witness-1",
+        text: "Witness 1"
+        },
+        {
+        value: "witness-2",
+        text: "Burns Montgomery Charles",
+        selected: true
+        },
+        {
+        value: "witness-3",
+        text: "Witness 3"
+        }
+        ]
+        }) }}
+
+
+
+        {% set statementDateHtml %}
+        {{ govukDateInput({
+        id: "statement-date",
+        namePrefix: "statement-date",
+        fieldset: {
+        legend: {
+        text: "Enter statement date"
+        }
+        },
+        hint: {
+        text: "For example, 27 3 2025"
+        }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+        name: "does-statement-have-date",
+        fieldset: {
+        legend: {
+        text: "Does the statement have a date?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--s"
+        }
+        },
+        items: [
+        {
+        value: "yes",
+        text: "Yes",
+        conditional: {
+        html: statementDateHtml
+        }
+        },
+        {
+        value: "no",
+        text: "No"
+        }
+        ]
+        }) }}
+
+
+        {{ govukRadios({
+        name: "material-status",
+        fieldset: {
+        legend: {
+        text: "What is the material status?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+        }
+        },
+        items: [
+        {
+        value: "used",
+        text: "Used"
+        },
+        {
+        value: "unused",
+        text: "Unused"
+        }
+        ]
+        }) }}
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Continue"
+            }) }}
+
+            <a class="govuk-link" href="#">Cancel</a>
+        </div>
+</form>
+
+
+    </div>
+</div>
+{% endblock %}

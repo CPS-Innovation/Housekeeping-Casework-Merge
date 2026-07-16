@@ -1,0 +1,52 @@
+<!-- ///////////////////////////////// TAB 3 - CONTENT - START ///////////////////////////////// -->
+<!-- <div class="review_materials_actions">
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="review_materials">View materials</label>
+        <select class="govuk-select" id="review_materials" name="review_materials">
+            <option value="Show all documents" selected>Show all materials</option>
+            <option value="" disabled>----------------------------------------</option>
+            <option value="Statements">Statements</option>
+            <option value="Exhibits" disabled>Exhibits</option>
+            <option value="MG Forms">MG Forms</option>
+            <option value="Other materials">Other materials</option>
+            <option value="Always Unused" disabled>Always Unused</option>
+        </select>
+        <button type="button" class="govuk-button activate_All_Documents" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_Statements" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_MG_Forms" data-module="govuk-button" id="">Go</button>
+        <button type="button" class="govuk-button activate_Other" data-module="govuk-button" id="">Go</button>
+    </div>
+</div>
+ -->
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-quarter" id="redact_column_1">
+        <div class="moj-filter-layout__filter">
+            {% include "versions/v1/v1-2/includes/redaction_filter-from-v1.2.html" %}
+
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-three-quarters" id="redact_column_2">
+        <div class="info_wrapper">
+            <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
+                data-module="govuk-button" style="">Show categories</button>
+            <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
+
+            <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
+                <li class="arrow left"><a href="#">tab left</a></li>
+                <li class="arrow right"><a href="#">tab right</a></li>
+                <li class="arrow down"><a href="#">tab down</a></li>
+            </ul>
+        </div>
+
+        <div id="docCopy" class="docCopy">
+            <h2 class="govuk-heading-m">Select your materials to review</h2>
+            <p>Search or choose a file to start reviewing materials</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ///////////////////////////////// TAB 3 - CONTENT - END ///////////////////////////////// -->

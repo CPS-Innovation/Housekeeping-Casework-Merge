@@ -1,0 +1,322 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="caseActionModal2">
+
+    <div class="das-cookie-banner" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeCaseActionModal2()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="case-action-plan-modal2">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    {% if data['searchURN'] %}
+                                        {{ data['searchURN'] }}/1 <span>- Action(s)</span>
+                                    {% else %}
+                                        45AA209820/1 <span>- Action(s)</span>
+                                    {% endif %}                        
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full" id="CAP-details-wrapper">
+
+                                    <p>Please add the action.</p>
+
+                                    <!-- /////////////////////// FORM ITEM - 1 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Key" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Key">Key Witness Details</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Key" name="caseActionPlan-Desc-Key" rows="5" aria-describedby="caseActionPlan-Desc-Key-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Key-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 1 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 2 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-AllKey" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-All">All Key Witness Statements</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-All" name="caseActionPlan-Desc-All" rows="5" aria-describedby="caseActionPlan-Desc-All-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-All-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 2 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 3 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-NonKey" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Non">Non-key Witness Statements</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Non" name="caseActionPlan-Desc-Non" rows="5" aria-describedby="caseActionPlan-Desc-Non-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Non-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 3 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 4 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Additional" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Add">Additional (Non-Key) Witness Statements</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Add" name="caseActionPlan-Desc-Add" rows="5" aria-describedby="caseActionPlan-Desc-Add-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Add-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 4 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 5 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Witness" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Witness">Witness Availability</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Witness" name="caseActionPlan-Desc-Witness" rows="5" aria-describedby="caseActionPlan-Desc-Witness-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Witness-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 5 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 6 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Victim" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Victim">Victim Personal Statement</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Victim" name="caseActionPlan-Desc-Victim" rows="5" aria-describedby="caseActionPlan-Desc-Victim-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Victim-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 6 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 7 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Special" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Special">Special Measures Material</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Special" name="caseActionPlan-Desc-Special" rows="5" aria-describedby="caseActionPlan-Desc-Special-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Special-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 7 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 8 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Convictions" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Convictions">Previous Convictions for all Prosecution Witnesses</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Convictions" name="caseActionPlan-Desc-Convictions" rows="5" aria-describedby="caseActionPlan-Desc-Convictions-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Convictions-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 8 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 9 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-ROTI" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-ROTI">ROTI</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-ROTI" name="caseActionPlan-Desc-ROTI" rows="5" aria-describedby="caseActionPlan-Desc-ROTI-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-ROTI-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 9 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 10 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-KeyExibits" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Exhibits">Key Exhibits</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Exhibits" name="caseActionPlan-Desc-Exhibits" rows="5" aria-describedby="caseActionPlan-Desc-Exhibits-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Exhibits-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 10 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 11 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Evidence" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Evidence">Identification Evidence</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Evidence" name="caseActionPlan-Desc-Evidence" rows="5" aria-describedby="caseActionPlan-Desc-Evidence-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Evidence-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 11 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 12 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-CCTV" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-CCTV">CCTV Material</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-CCTV" name="caseActionPlan-Desc-CCTV" rows="5" aria-describedby="caseActionPlan-Desc-CCTV-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-CCTV-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 12 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 13 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Visually" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Recorded">Visually Recorded Evidence</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Recorded" name="caseActionPlan-Desc-Recorded" rows="5" aria-describedby="caseActionPlan-Desc-Recorded-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Recorded-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 13 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 14 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Drugs" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Drugs">Initial Drugs Assessment</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Drugs" name="caseActionPlan-Desc-Drugs" rows="5" aria-describedby="caseActionPlan-Desc-Drugs-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Drugs-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 14 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 15 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Forensic" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Forensic">Forensic Evidence</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Forensic" name="caseActionPlan-Desc-Forensic" rows="5" aria-describedby="caseActionPlan-Desc-Forensic-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Forensic-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 15 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 16 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Medical" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Medical">Medical Evidence</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Medical" name="caseActionPlan-Desc-Medical" rows="5" aria-describedby="caseActionPlan-Desc-Medical-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Medical-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 16 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 17 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Unused" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Unused">Unused/Sensitive Material</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Unused" name="caseActionPlan-Desc-Unused" rows="5" aria-describedby="caseActionPlan-Desc-Unused-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Unused-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 17 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 18 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Bad" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Bad">Bad Character/Dangerous Offender info</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Bad" name="caseActionPlan-Desc-Bad" rows="5" aria-describedby="caseActionPlan-Desc-Bad-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Bad-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 18 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 19 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Orders" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Orders">Orders on Conviction</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Orders" name="caseActionPlan-Desc-Orders" rows="5" aria-describedby="caseActionPlan-Desc-Orders-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Orders-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 19 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 20 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-POCA" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-POCA">POCA Review</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-POCA" name="caseActionPlan-Desc-POCA" rows="5" aria-describedby="caseActionPlan-Desc-POCA-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-POCA-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 20 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 21 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Compensation" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Compensation">Compensation Details</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Compensation" name="caseActionPlan-Desc-Compensation" rows="5" aria-describedby="caseActionPlan-Desc-Compensation-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Compensation-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 21 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 22 - START /////////////////////// -->
+                                    <div class="govuk-character-count Details-Other" data-module="govuk-character-count" data-maxlength="2000">
+                                        <div class="govuk-form-group">
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label govuk-label--s" for="caseActionPlan-Desc-Other">Other (specify)</label>
+                                            </h1>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="caseActionPlan-Desc-Other" name="caseActionPlan-Desc-Other" rows="5" aria-describedby="caseActionPlan-Desc-Other-info"></textarea>
+                                        </div>
+                                        <div id="caseActionPlan-Desc-Other-info" class="govuk-hint govuk-character-count__message">You can enter up to 2000 characters</div>
+                                    </div>                                    
+                                    <!-- /////////////////////// FORM ITEM - 22 - END /////////////////////// -->
+
+                                    <hr class="dotted">
+
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="CAP-descriptions" class="govuk-button" data-module="govuk-button" type="button" onClick="openCaseActionBuilderModal(), closeCaseActionModal2()">Save and continue</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionModal2()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
