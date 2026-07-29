@@ -106,7 +106,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG3' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_1 material_Review material_None material_New material_All">
+                <tr class="govuk-table__row document_row_1 material_MG_Form material_None material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -124,13 +124,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG3</td>
-                    <td class="govuk-table__cell">Review</td>
+                    <td class="govuk-table__cell">MG forms</td>
                     <td class="govuk-table__cell">02/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">None</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions show-case"
-                            data-module="govuk-button" onclick="return openMaterial();" data-id="1"
-                            data-doc="MCLOVEMG3.pdf">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="1" data-doc="MCLOVEMG3.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="1">
@@ -145,7 +144,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'Case overview and officer comments' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_2 material_Case_overview material_None material_New material_All">
+                <tr class="govuk-table__row document_row_2 material_Other material_None material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -164,12 +163,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">PDF</td>
-                    <td class="govuk-table__cell">Case overview</td>
+                    <td class="govuk-table__cell">Other material</td>
                     <td class="govuk-table__cell">02/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">None</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="2">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="2" data-doc="CM01.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="2">
@@ -184,7 +183,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MG05 MCLOVE' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_3 material_Case_overview material_New material_All">
+                <tr class="govuk-table__row document_row_3 material_MG_Form material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -202,12 +201,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG05</td>
-                    <td class="govuk-table__cell">Case overview</td>
+                    <td class="govuk-table__cell">MG forms</td>
                     <td class="govuk-table__cell">02/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="3">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="3" data-doc="MG05MCLOVE.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="3">
@@ -222,7 +221,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 3 June' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_4 material_MG_Form material_Always_Unused material_New material_All">
+                <tr class="govuk-table__row document_row_4 material_Always_Unused material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -244,8 +243,8 @@
                     <td class="govuk-table__cell">03/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="4">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="4" data-doc="MG06_3June.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="4">
@@ -260,7 +259,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MG06 10 June' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_5 material_MG_Form material_Always_Unused material_New material_All">
+                <tr class="govuk-table__row document_row_5 material_Always_Unused material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -283,8 +282,8 @@
                     <td class="govuk-table__cell">10/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="5">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="5" data-doc="MG06_10june.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="5">
@@ -322,8 +321,8 @@
                     <td class="govuk-table__cell">01/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="6">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="6" data-doc="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="6">
@@ -362,8 +361,8 @@
                     <td class="govuk-table__cell">01/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="7">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="7" data-doc="stmt_Lucy_Doyle_MG11.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="7">
@@ -401,8 +400,8 @@
                     <td class="govuk-table__cell">01/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="8">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="8" data-doc="stmt_Shelagh_McLove_MG11_hand.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="8">
@@ -441,8 +440,8 @@
                     <td class="govuk-table__cell">06/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="9">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="9" data-doc="Shelagh_McLove_VPS_mg11.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="9">
@@ -480,8 +479,8 @@
                     <td class="govuk-table__cell">06/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="10">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="10" data-doc="MG11_Shelagh_MCLOVE_retraction.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="10">
@@ -497,7 +496,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG12' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_11 material_MG_Form material_Exhibit material_New material_All">
+                <tr class="govuk-table__row document_row_11 material_Exhibit material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -520,8 +519,8 @@
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue"
                             data-doc="MG12.pdf">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="11">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="11" data-doc="MG12.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="11">
@@ -536,7 +535,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MCLOVE MG00' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_12 material_MG_Form material_Exhibit material_New material_All">
+                <tr class="govuk-table__row document_row_12 material_MG_Form material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -554,12 +553,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG00</td>
-                    <td class="govuk-table__cell">Exhibits</td>
+                    <td class="govuk-table__cell">MG forms</td>
                     <td class="govuk-table__cell">12/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="12">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="12" data-doc="MG00.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="12">
@@ -601,8 +600,8 @@
                     <td class="govuk-table__cell">01/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Unused</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="13">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="13" data-doc="UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="13">
@@ -642,8 +641,8 @@
                     <td class="govuk-table__cell">05/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Unused</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="14">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="14" data-doc="SDC_items_to_be_Disclosed_MCLOVE.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="14">
@@ -659,7 +658,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_5_JUNE' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_15 material_MG_Form material_Exhibit material_New material_All">
+                <tr class="govuk-table__row document_row_15 material_Exhibit material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -682,8 +681,8 @@
                     <td class="govuk-table__cell">06/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Unused</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="15">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="15" data-doc="MG20_5_JUNE.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="15">
@@ -698,7 +697,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'MG20_10_JUNE' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_16 material_MG_Form material_Unused material_New material_All">
+                <tr class="govuk-table__row document_row_16 material_Exhibit material_Unused material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -721,8 +720,8 @@
                     <td class="govuk-table__cell">11/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Unused</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="16">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="16" data-doc="MG20_10_JUNE.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="16">
@@ -737,7 +736,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'PRE CONS D' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_17 material_MG_Form material_Defendant material_New material_All">
+                <tr class="govuk-table__row document_row_17 material_Defendant material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -755,12 +754,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG20</td>
-                    <td class="govuk-table__cell">Defendant</td>
+                    <td class="govuk-table__cell">Defendant pre-cons</td>
                     <td class="govuk-table__cell">02/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Used</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="17">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="17" data-doc="PRE_CONS_D.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="17">
@@ -775,7 +774,7 @@
                 {% if data['discarding_material_COMPLETED'] == 'true' and 'Asset Rec 1' in material_selected_array %}
 
                 {% else %}
-                <tr class="govuk-table__row document_row_18 material_MG_Form material_Exhibit material_New material_All">
+                <tr class="govuk-table__row document_row_18 material_Other material_New material_All">
                     <td class="govuk-table__cell">
                         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                             <div class="govuk-checkboxes__item">
@@ -793,12 +792,12 @@
                         </div>
                     </td>
                     <td class="govuk-table__cell">MG20</td>
-                    <td class="govuk-table__cell">Exhibits</td>
+                    <td class="govuk-table__cell">Other material</td>
                     <td class="govuk-table__cell">03/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">None</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="18">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="18" data-doc="defendants.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="18">
@@ -835,8 +834,8 @@
                     <td class="govuk-table__cell">03/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">None</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="19">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="19" data-doc="MG11_1.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="19">
@@ -873,8 +872,8 @@
                     <td class="govuk-table__cell">03/06/2020</td>
                     <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">None</strong></td>
                     <td class="govuk-table__cell toggle-panel">
-                        <button type="button" class="govuk-button show_material_actions" data-module="govuk-button"
-                            onclick="return openMaterial();" data-id="20">Preview</button>
+                        <button type="button" class="govuk-button show_material_actions show-case read" data-module="govuk-button"
+                            onclick="return openMaterial();" data-id="20" data-doc="MG12.pdf">Preview</button>
                     </td>
                 </tr>
                 <tr class="govuk-table__row hidden_row" data-row_id="20">
