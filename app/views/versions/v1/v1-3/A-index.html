@@ -18,6 +18,10 @@
 {% include "versions/v1/v1-3/includes/modals/warning-Rotate.html" %}
 {% endblock %}
 
+{% block pageScripts %}
+<script src="/public/javascripts/versions/v1-3/materials-categories.js"></script>
+{% endblock %}
+
 {% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined and caseUrnSearch else '16XL9132025' %}
 
 {% block beforeContent %}

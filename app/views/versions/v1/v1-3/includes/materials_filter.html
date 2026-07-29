@@ -23,13 +23,12 @@
         <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2 materials_filters_Title_3">Category</h3>
         <!-- This is being controlled by the Review filter -->
 
-        <a class="selected_filter materials_filters_clear_Case_overview">Case overview</a>
-        <a class="selected_filter materials_filters_clear_Statement">Statement</a>
-        <a class="selected_filter materials_filters_clear_Exhibit">Exhibit</a>
-        <a class="selected_filter materials_filters_clear_MG_Form">MG Form</a>
-        <a class="selected_filter materials_filters_clear_Defendant">Defendant Pre Cons</a>
-        <a class="selected_filter materials_filters_clear_Unused_material">Unused material</a>
+        <a class="selected_filter materials_filters_clear_Statement">Statements</a>
+        <a class="selected_filter materials_filters_clear_Exhibit">Exhibits</a>
+        <a class="selected_filter materials_filters_clear_MG_Form">MG forms</a>
         <a class="selected_filter materials_filters_clear_Other">Other material</a>
+        <a class="selected_filter materials_filters_clear_Defendant">Defendant pre-cons</a>
+        <a class="selected_filter materials_filters_clear_Unused_material">Unused material</a>
 
     </div>
 
@@ -93,47 +92,39 @@
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Category</legend>
                     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
 
-                        <!-- Requested changes to revise the options and display order -->
-
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="filter_materials__Category_1"
+                                   name="filter_materials__Category" type="checkbox" value="Statements">
+                            <label class="govuk-label govuk-checkboxes__label"
+                                   for="filter_materials__Category_1">Statements</label>
+                        </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="filter_materials__Category_2"
-                                   name="filter_materials__Category" type="checkbox" value="Case overview">
+                                   name="filter_materials__Category" type="checkbox" value="Exhibits">
                             <label class="govuk-label govuk-checkboxes__label"
-                                   for="filter_materials__Category_2">Case overview</label>
+                                   for="filter_materials__Category_2">Exhibits</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="filter_materials__Category_3"
-                                   name="filter_materials__Category" type="checkbox" value="Statement">
+                                   name="filter_materials__Category" type="checkbox" value="MG forms">
                             <label class="govuk-label govuk-checkboxes__label"
-                                   for="filter_materials__Category_3">Statements</label>
+                                   for="filter_materials__Category_3">MG forms</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="filter_materials__Category_4"
-                                   name="filter_materials__Category" type="checkbox" value="Exhibit">
+                                   name="filter_materials__Category" type="checkbox" value="Other material">
                             <label class="govuk-label govuk-checkboxes__label"
-                                   for="filter_materials__Category_4">Exhibits</label>
+                                   for="filter_materials__Category_4">Other material</label>
                         </div>
                         <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="filter_materials__Category_11"
-                                   name="filter_materials__Category" type="checkbox" value="MG form">
-                            <label class="govuk-label govuk-checkboxes__label"
-                                   for="filter_materials__Category_11">MG forms</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="filter_materials__Category_7"
-                                   name="filter_materials__Category" type="checkbox" value="Defendant">
-                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_7">Defendant Pre Cons</label>
+                            <input class="govuk-checkboxes__input" id="filter_materials__Category_5"
+                                   name="filter_materials__Category" type="checkbox" value="Defendant pre-cons">
+                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_5">Defendant pre-cons</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="filter_materials__Category_6"
                                    name="filter_materials__Category" type="checkbox" value="Unused material">
                             <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_6">Unused material</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="filter_materials__Category_5"
-                                   name="filter_materials__Category" type="checkbox" value="Other material">
-                            <label class="govuk-label govuk-checkboxes__label"
-                                   for="filter_materials__Category_5">Other materials</label>
                         </div>
 
                     </div>

@@ -106,63 +106,37 @@
                                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Category</legend>
                                                     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_1"
-                                                                   name="filter_materials__Category" type="checkbox" value="Reviews">
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_1"
+                                                                   name="searchDocumentCategory" type="checkbox" value="statements">
                                                             <label class="govuk-label govuk-checkboxes__label"
-                                                                   for="filter_materials__Category_1">Reviews</label>
+                                                                   for="search_materials__Category_1">Statements</label>
                                                         </div>
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_2"
-                                                                   name="filter_materials__Category" type="checkbox" value="Case overview">
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_2"
+                                                                   name="searchDocumentCategory" type="checkbox" value="exhibits">
                                                             <label class="govuk-label govuk-checkboxes__label"
-                                                                   for="filter_materials__Category_2">Case overview</label>
+                                                                   for="search_materials__Category_2">Exhibits</label>
                                                         </div>
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_3"
-                                                                   name="filter_materials__Category" type="checkbox" value="Statements">
-                                                            <label class="govuk-label govuk-checkboxes__label"
-                                                                   for="filter_materials__Category_3">Statements</label>
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_3"
+                                                                   name="searchDocumentCategory" type="checkbox" value="mg-forms">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="search_materials__Category_3">MG forms</label>
                                                         </div>
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_4"
-                                                                   name="filter_materials__Category" type="checkbox" value="Exhibits">
-                                                            <label class="govuk-label govuk-checkboxes__label"
-                                                                   for="filter_materials__Category_4">Exhibits</label>
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_4"
+                                                                   name="searchDocumentCategory" type="checkbox" value="other-material">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="search_materials__Category_4">Other material</label>
                                                         </div>
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_5"
-                                                                   name="filter_materials__Category" type="checkbox" value="Forensics">
-                                                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_5">Forensics</label>
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_5"
+                                                                   name="searchDocumentCategory" type="checkbox" value="defendant-pre-cons">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="search_materials__Category_5">Defendant pre-cons</label>
                                                         </div>
                                                         <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_6"
-                                                                   name="filter_materials__Category" type="checkbox" value="Unused material">
-                                                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_6">Unused material</label>
+                                                            <input class="govuk-checkboxes__input" id="search_materials__Category_6"
+                                                                   name="searchDocumentCategory" type="checkbox" value="unused-material">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="search_materials__Category_6">Unused material</label>
                                                         </div>
-                                                        <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_7"
-                                                                   name="filter_materials__Category" type="checkbox" value="Defendant">
-                                                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_7">Defendant</label>
-                                                        </div>
-                                                        <div class="govuk-checkboxes__item">
-                                                            <input class="govuk-checkboxes__input" id="filter_materials__Category_8"
-                                                                   name="filter_materials__Category" type="checkbox" value="Court preparation">
-                                                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_8">Court preparation</label>
-                                                        </div>
-
-                                                        <!-- Hid Communications and Uncategorised for the time being on request for the next round of testing to see if they're required -->
-                                                        <!--                        <div class="govuk-checkboxes__item">-->
-                                                        <!--                            <input class="govuk-checkboxes__input" id="filter_materials__Category_9"-->
-                                                        <!--                            name="filter_materials__Category" type="checkbox" value="Communications">-->
-                                                        <!--                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_9">Communications</label>-->
-                                                        <!--                        </div> -->
-
-                                                        <!--                        <div class="govuk-checkboxes__item">-->
-                                                        <!--                            <input class="govuk-checkboxes__input" id="filter_materials__Category_10"-->
-                                                        <!--                                   name="filter_materials__Category" type="checkbox" value="Uncategorised">-->
-                                                        <!--                            <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Category_10">Uncategorised</label>-->
-                                                        <!--                        </div> -->
-
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -213,7 +187,7 @@
 
                                 <!-- RESULT 1 - START -->
                                 <div id="resultsOne" class="search-item openMe" data-items="3"
-                                    data-group="mg3 case-overview">
+                                    data-group="mg3 mg-forms">
                                     <h2 class="govuk-heading-m results-header mb5"><a data-id="1"
                                             data-doc="MCLOVEMG3.pdf">MCLOVE MG3</a></h2>
                                     <span class="support-text">
@@ -237,7 +211,7 @@
                                 <!-- RESULT 1 - END -->
 
                                 <!-- RESULT 2 - START -->
-                                <div id="resultsTwo" class="search-item" data-items="1" data-group="mg00 case-overview">
+                                <div id="resultsTwo" class="search-item" data-items="1" data-group="mg00 mg-forms">
                                     <h2 class="govuk-heading-m results-header mb5"><a data-id="12"
                                             data-doc="MG00.pdf">MCLOVE MG00</a></h2>
                                     <span class="support-text">
@@ -257,7 +231,7 @@
 
                                 <!-- RESULT 3 - START -->
                                 <div id="resultsThree" class="search-item" data-items="2"
-                                    data-group="pre-cons defendant">
+                                    data-group="pre-cons defendant-pre-cons">
                                     <h2 class="govuk-heading-m results-header mb5"><a data-id="17"
                                             data-doc="PRE_CONS_D.pdf">PRE CONS D</a><a href="">PRE CONS D</a></h2>
                                     <span class="support-text">
@@ -401,7 +375,7 @@
 
                                 <!-- RESULT 8 - START -->
                                 <div id="resultsEight" class="search-item" data-items="3"
-                                    data-group="storm-log unused-materials">
+                                    data-group="storm-log unused-material">
                                     <h2 class="govuk-heading-m results-header mb5"><a data-id="13"
                                             data-doc="UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf">UNUSED
                                             1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE</a></h2>
