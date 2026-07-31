@@ -118,7 +118,13 @@ $(document).ready(function () {
 
   var $fullWidthToggle = $('[data-toolbar-control="toggle-full"]')
 
+  function hasOpenDocumentTab () {
+    return $('#tab-list').is(':visible') && $('#tab-list li.govuk-tabs__list-item').length > 0
+  }
+
   function hasDisplayedDocumentPanel () {
+    if (!hasOpenDocumentTab()) return false
+
     return $('#redact_column_2 .document-panel').filter(function () {
       return !$(this).hasClass('govuk-tabs__panel--hidden') && $(this).is(':visible')
     }).length > 0
@@ -156,6 +162,12 @@ $(document).ready(function () {
     window.setTimeout(updateFullWidthToggle, 0)
   }
 
+  function updateFullWidthToggleAfterDocumentClose (e) {
+    if (!e.target.closest || !e.target.closest('#tab-list .closeButtonOnCPS')) return
+
+    updateFullWidthToggleAfterDocumentChange()
+  }
+
   updateFullWidthToggle()
 
   $fullWidthToggle.off('click.v13FullWidth').on('click.v13FullWidth', function (e) {
@@ -166,6 +178,12 @@ $(document).ready(function () {
   $(document)
     .off('click.v13FullWidthDocumentState')
     .on('click.v13FullWidthDocumentState', '.openMe a, #tab-list .govuk-tabs__tab, #tab-list .closeButtonOnCPS, .redact_Document, .redact_Document_Multiple_Docs', updateFullWidthToggleAfterDocumentChange)
+
+  if (window.v13FullWidthDocumentCloseHandler) {
+    document.removeEventListener('click', window.v13FullWidthDocumentCloseHandler, true)
+  }
+  window.v13FullWidthDocumentCloseHandler = updateFullWidthToggleAfterDocumentClose
+  document.addEventListener('click', window.v13FullWidthDocumentCloseHandler, true)
 
   $('#applyFiltersBtn').off('click').on('click', function (e) {
     e.preventDefault()
