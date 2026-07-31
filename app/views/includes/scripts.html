@@ -267,21 +267,23 @@
                                 <a id="btnSearchURNTwo" class="govuk-body-s inPageSearchMargins">Back to search results </a>
                                 <p class="govuk-body-s inPageSearchMargins">${count} matchs for "assault" in ${label} </p>
                             </div>
-                            <div class="dropdown">
-                                <button onclick="myFunction(), toggleClass()" class="dropbtn">Document actions</button>
-                                <div id="myDropdown1" class="dropdown-content">
-                                    <button onclick="openModalOver(), documentTitle()" class="">Log an Under/Over redaction</button>
+                            {% if version != '1.3' %}
+                                <div class="dropdown">
+                                    <button onclick="myFunction(), toggleClass()" class="dropbtn">Document actions</button>
+                                    <div id="myDropdown1" class="dropdown-content">
+                                        <button onclick="openModalOver(), documentTitle()" class="">Log an Under/Over redaction</button>
 <!--                                    <button onclick="window.open(#)" class="">View redaction log history</button>-->
 <!--                                    <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>-->
-                                    <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
+                                        <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
 
-                                    <button onclick="location.href='B-discard_material';">Discard</button>
-                                    <button onclick="#">Reclassify</button>
+                                        <button onclick="location.href='B-discard_material';">Discard</button>
+                                        <button onclick="#">Reclassify</button>
 
-                                    <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark as read</button>
-                                    <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
+                                        <button class="govuk-button mark_as_Read" data-module="govuk-button" type="button">Mark as read</button>
+                                        <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endif %}
 
                             <!-- start Select Tool -->
                             <button onclick="marqueeOn()" class="marquee" id="marquee"><span>Redact area tool</span></button>
@@ -303,39 +305,41 @@
                                 <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span><div class="time_details"></div>
                                 <button class="notes-link govuk-button" data-module="govuk-button" type="button" onClick=""></button>
                             </p>
-                            <div class="dropdown">
-                                <button onclick="myFunction(), toggleClass()" class="dropbtn">Document actions</button>
-                                <div id="" class="dropdown-content myDropdown2">
-                                    <button onclick="openModalOver(), documentTitle()" class="">Log an Under/Over redaction</button>
-                                    {% if version >= '2.0' %}
-                                        <!-- Taken out for Version 1.x -->
-                                        <button onclick="window.open(#)" class="">View redaction log history</button>
-                                        <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>
-                                    {% endif %}
-                                    <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
-                                    <!-- Added to toggle on/off delete page -->
-                                    <button onclick="#" class="">Hide delete page options</button>
+                            {% if version != '1.3' %}
+                                <div class="dropdown">
+                                    <button onclick="myFunction(), toggleClass()" class="dropbtn">Document actions</button>
+                                    <div id="" class="dropdown-content myDropdown2">
+                                        <button onclick="openModalOver(), documentTitle()" class="">Log an Under/Over redaction</button>
+                                        {% if version >= '2.0' %}
+                                            <!-- Taken out for Version 1.x -->
+                                            <button onclick="window.open(#)" class="">View redaction log history</button>
+                                            <button onclick="suggestedRedactions()" class="suggested-redactions" id="suggestedRedactions">Turn <strong>ON</strong> Potential redactions</button>
+                                        {% endif %}
+                                        <button onclick="openRotatePagesModal(), documentTitle()" class="remove-rotate-pages-modal">Rotate document pages</button>
+                                        <!-- Added to toggle on/off delete page -->
+                                        <button onclick="#" class="">Hide delete page options</button>
 
-                                    <button type="button" class="open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
+                                        <button type="button" class="open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
 
 <!--                                    <button type="button" class="govuk-button govuk-button&#45;&#45;disabled reclassify_Document_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>-->
 
 
-                                    {% if version >= '2.0' %}
-                                        <!-- Taken out for Version 1.x -->
-                                        <button onclick="location.href='/version-2/B-discard_material';">Discard</button>
-                                        <button onclick="#">Reclassify</button>
-                                    {% endif %}
+                                        {% if version >= '2.0' %}
+                                            <!-- Taken out for Version 1.x -->
+                                            <button onclick="location.href='/version-2/B-discard_material';">Discard</button>
+                                            <button onclick="#">Reclassify</button>
+                                        {% endif %}
 
-                                    {% if version >= '2.0' %}
-                                        <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
-                                        <button onclick="return mark_as_Read();" class>Mark as read</button>
+                                        {% if version >= '2.0' %}
+                                            <!-- Hid Mark as read for the review actions as currently out of scope for v1.0 -->
+                                            <button onclick="return mark_as_Read();" class>Mark as read</button>
 
-                                        <!-- Requested to be taken out for version 1.x -->
-                                        <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
-                                    {% endif %}
+                                            <!-- Requested to be taken out for version 1.x -->
+                                            <button onclick="return openRenameModal(), documentRename();" class="rename-Document">Rename</button>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            </div>
+                            {% endif %}
 
                             <!-- start Select Tool -->
                             <button onclick="marqueeOn()" class="marquee" id="marquee"><span>Redact area tool</span></button>

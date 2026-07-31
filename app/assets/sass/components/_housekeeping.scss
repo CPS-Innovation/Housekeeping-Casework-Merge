@@ -804,6 +804,33 @@ table.sortable {
         }
       }
     }
+
+    .document-actions-menu {
+      min-width: 250px;
+      position: absolute;
+      right: 0;
+      top: 32px;
+      background: white;
+      z-index: 10;
+
+      button {
+        width: 100%;
+        color: $govuk-text-colour;
+        background: govuk-colour("light-grey");
+        margin: 0;
+        border: none;
+        text-align: left;
+        border-bottom: 1px solid $govuk-border-colour;
+        float: right;
+        box-shadow: none;
+        z-index: 100;
+
+        &:hover, &:active, &:focus {
+          background: #767676;
+          color: white;
+        }
+      }
+    }
   }
 }
 

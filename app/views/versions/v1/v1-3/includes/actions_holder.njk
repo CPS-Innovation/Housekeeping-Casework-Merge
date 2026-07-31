@@ -17,29 +17,39 @@
 
 
         {#        <span class="dcf-viewer__toolbar-right"> #}
-        {#                        <a href="#" class="govuk-link" data-action="back-to-search" hidden="">Back to search results</a> #}
-        {#                        <span aria-hidden="true" class="govuk-!-margin-horizontal-2" data-role="back-to-search-sep" #}
-        {#                              hidden="">&nbsp; | &nbsp;</span> #}
-        {#                        <span class="dcf-viewer__navcluster" data-role="search-nav"></span> #}
-        {#                    </span> #}
-        {#        <div class="moj-button-menu"> #}
-        {#            <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button" #}
-        {#                    id="show_Materials_Actions" data-govuk-button-init="" aria-expanded="false"> #}
-        {#                Document actions #}
-        {#                <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg"> #}
-        {#                    <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path> #}
-        {#                </svg> #}
-        {#            </button> #}
-        {#            <div class="hidden_buttons" id="materials_Actions" hidden="" style="display: none;"> #}
+        {#                                <a href="#" class="govuk-link" data-action="back-to-search" hidden="">Back to search results</a> #}
+        {#                                <span aria-hidden="true" class="govuk-!-margin-horizontal-2" #}
+        {#                                      data-role="back-to-search-sep" #}
+        {#                                      hidden="">&nbsp; | &nbsp;</span> #}
+        {#                                <span class="dcf-viewer__navcluster" data-role="search-nav"></span> #}
+        {#                            </span> #}
 
-        {#                #}{# View in new window button #}
-        {#                <button type="button" #}
-        {#                        class="govuk-button govuk-button--disabled reclassify_Document_Multiple_Docs open-Document" #}
-        {#                        data-module="govuk-button" onclick="return openDocumentInNewWindow();" #}
-        {#                        data-govuk-button-init=""> #}
-        {#                    View in new window #}
-        {#                </button> #}
-        {#            </div> #}
-        {#        </div> #}
+        <div class="moj-button-menu" data-document-actions-menu hidden>
+            <button type="button"
+                    class="govuk-button govuk-button--secondary"
+                    data-module="govuk-button"
+                    id="show_Document_Actions"
+                    aria-controls="document_Actions"
+                    aria-expanded="false">
+                Document actions
+                <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <div class="document-actions-menu" id="document_Actions" hidden>
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="openModalOver(), documentTitle()">
+                    Log an Under/Over redaction
+                </button>
+                <button type="button" class="govuk-button remove-rotate-pages-modal" data-module="govuk-button" onclick="openRotatePagesModal(), documentTitle()">
+                    Rotate document pages
+                </button>
+                <button type="button" class="govuk-button" data-module="govuk-button" data-action="toggle-delete-page-options">
+                    Hide delete page options
+                </button>
+                <button type="button" class="govuk-button open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">
+                    View in new window
+                </button>
+            </div>
+        </div>
     </div>
 </div>
