@@ -158,17 +158,89 @@ $(document).ready(function () {
     updateFullWidthToggle()
   }
 
-  function updateFullWidthToggleAfterDocumentChange () {
-    window.setTimeout(updateFullWidthToggle, 0)
+  function updateViewerToolbarAfterDocumentChange () {
+    window.setTimeout(function () {
+      updateFullWidthToggle()
+      updateDocumentActionsVisibility()
+    }, 0)
   }
 
   function updateFullWidthToggleAfterDocumentClose (e) {
     if (!e.target.closest || !e.target.closest('#tab-list .closeButtonOnCPS')) return
 
-    updateFullWidthToggleAfterDocumentChange()
+    updateViewerToolbarAfterDocumentChange()
+  }
+
+  function watchDocumentViewerState () {
+    if (!window.MutationObserver) return
+
+    if (window.v13DocumentViewerStateObserver) {
+      window.v13DocumentViewerStateObserver.disconnect()
+    }
+
+    window.v13DocumentViewerStateObserver = new window.MutationObserver(updateViewerToolbarAfterDocumentChange)
+
+    $('#tab-list, #redact_column_2').each(function () {
+      window.v13DocumentViewerStateObserver.observe(this, {
+        childList: true,
+        subtree: true
+      })
+    })
+  }
+
+  var documentActionsWrapper = document.querySelector('[data-document-actions-menu]')
+  var documentActionsTrigger = document.getElementById('show_Document_Actions')
+  var documentActionsMenu = document.getElementById('document_Actions')
+
+  function setDocumentActionsOpen (isOpen, returnFocus) {
+    if (!documentActionsWrapper || !documentActionsTrigger || !documentActionsMenu) return
+
+    if (documentActionsWrapper.hidden) isOpen = false
+
+    documentActionsTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+    documentActionsTrigger.classList.toggle('active', isOpen)
+    documentActionsMenu.hidden = !isOpen
+    documentActionsMenu.removeAttribute('style')
+
+    if (!isOpen && returnFocus && !documentActionsWrapper.hidden) {
+      documentActionsTrigger.focus()
+    }
+  }
+
+  function updateDocumentActionsVisibility () {
+    var hasDocument = hasDisplayedDocumentPanel()
+
+    if (documentActionsWrapper) {
+      documentActionsWrapper.hidden = !hasDocument
+      documentActionsWrapper.removeAttribute('style')
+    }
+
+    if (!hasDocument) {
+      setDocumentActionsOpen(false)
+    }
+  }
+
+  function updateDeletePageOptionsLabel () {
+    var hasVisibleDeleteOptions = $('.page-counter.new').filter(function () {
+      return $(this).is(':visible')
+    }).length > 0
+
+    $('[data-action="toggle-delete-page-options"]').text(hasVisibleDeleteOptions ? 'Hide delete page options' : 'Show delete page options')
+  }
+
+  function toggleDeletePageOptions () {
+    var $deletePageOptions = $('.page-counter.new')
+    var hasVisibleDeleteOptions = $deletePageOptions.filter(function () {
+      return $(this).is(':visible')
+    }).length > 0
+
+    $deletePageOptions.toggle(!hasVisibleDeleteOptions)
+    updateDeletePageOptionsLabel()
   }
 
   updateFullWidthToggle()
+  updateDocumentActionsVisibility()
+  updateDeletePageOptionsLabel()
 
   $fullWidthToggle.off('click.v13FullWidth').on('click.v13FullWidth', function (e) {
     e.preventDefault()
@@ -177,13 +249,75 @@ $(document).ready(function () {
 
   $(document)
     .off('click.v13FullWidthDocumentState')
-    .on('click.v13FullWidthDocumentState', '.openMe a, #tab-list .govuk-tabs__tab, #tab-list .closeButtonOnCPS, .redact_Document, .redact_Document_Multiple_Docs', updateFullWidthToggleAfterDocumentChange)
+    .on('click.v13FullWidthDocumentState', '.openMe a, #tab-list .govuk-tabs__tab, #tab-list .closeButtonOnCPS, .redact_Document, .redact_Document_Multiple_Docs', updateViewerToolbarAfterDocumentChange)
 
   if (window.v13FullWidthDocumentCloseHandler) {
     document.removeEventListener('click', window.v13FullWidthDocumentCloseHandler, true)
   }
   window.v13FullWidthDocumentCloseHandler = updateFullWidthToggleAfterDocumentClose
   document.addEventListener('click', window.v13FullWidthDocumentCloseHandler, true)
+  watchDocumentViewerState()
+
+  if (window.v13DocumentActionsTriggerHandler && documentActionsTrigger) {
+    documentActionsTrigger.removeEventListener('click', window.v13DocumentActionsTriggerHandler)
+  }
+
+  window.v13DocumentActionsTriggerHandler = function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    setDocumentActionsOpen(documentActionsTrigger.getAttribute('aria-expanded') !== 'true')
+  }
+
+  if (documentActionsTrigger) {
+    documentActionsTrigger.addEventListener('click', window.v13DocumentActionsTriggerHandler)
+  }
+
+  if (window.v13DocumentActionsOutsideClickHandler) {
+    document.removeEventListener('click', window.v13DocumentActionsOutsideClickHandler)
+  }
+
+  window.v13DocumentActionsOutsideClickHandler = function (e) {
+    if (!documentActionsWrapper || documentActionsWrapper.hidden) return
+    if (documentActionsWrapper.contains(e.target)) return
+
+    setDocumentActionsOpen(false)
+  }
+
+  document.addEventListener('click', window.v13DocumentActionsOutsideClickHandler)
+
+  if (window.v13DocumentActionsKeydownHandler) {
+    document.removeEventListener('keydown', window.v13DocumentActionsKeydownHandler)
+  }
+
+  window.v13DocumentActionsKeydownHandler = function (e) {
+    if (e.key !== 'Escape') return
+    if (!documentActionsWrapper || !documentActionsMenu || documentActionsWrapper.hidden || documentActionsMenu.hidden) return
+
+    setDocumentActionsOpen(false, true)
+  }
+
+  document.addEventListener('keydown', window.v13DocumentActionsKeydownHandler)
+
+  $('#show_Materials_Actions, #show_Comms_Actions').off('click.v13DocumentActions').on('click.v13DocumentActions', function () {
+    setDocumentActionsOpen(false)
+  })
+
+  $('[data-action="toggle-delete-page-options"]').off('click.v13DeletePageOptions').on('click.v13DeletePageOptions', function (e) {
+    e.preventDefault()
+    toggleDeletePageOptions()
+    setDocumentActionsOpen(false)
+  })
+
+  $('#document_Actions button').not('[data-action="toggle-delete-page-options"]').off('click.v13DocumentActions').on('click.v13DocumentActions', function () {
+    setDocumentActionsOpen(false)
+  })
+
+  $(document)
+    .off('click.v13DeletePageOptionsState')
+    .on('click.v13DeletePageOptionsState', '.openMe a, #tab-list .govuk-tabs__tab, .redact_Document, .redact_Document_Multiple_Docs', function () {
+      window.setTimeout(updateDeletePageOptionsLabel, 300)
+    })
 
   $('#applyFiltersBtn').off('click').on('click', function (e) {
     e.preventDefault()
