@@ -23,16 +23,22 @@
 
     <div class="govuk-grid-column-one-quarter" id="redact_column_1">
         <div class="moj-filter-layout__filter">
-            {% include "versions/v1/v1-3/includes/redaction_filter-from-v1.2.html" %}
-
+            {% include
+            "versions/v1/v1-3/includes/redaction_filter-from-v1.2.html" %}
         </div>
     </div>
 
     <div class="govuk-grid-column-three-quarters" id="redact_column_2">
+        {% include "versions/v1/v1-3/includes/actions_holder.njk" %}
         <div class="info_wrapper">
-            <button id="show_filter_Redactions" type="button" class="govuk-button govuk-button--secondary"
-                data-module="govuk-button" style="">Show categories</button>
-            <button id="close_filter_Redactions" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide categories</button>
+            <!--            <button id="show_filter_Redactions" type="button"-->
+            <!--                    class="govuk-button govuk-button&#45;&#45;secondary"-->
+            <!--                    data-module="govuk-button" style="">Show categories-->
+            <!--            </button>-->
+            <!--            <button id="close_filter_Redactions" type="button"-->
+            <!--                    class="govuk-button govuk-button&#45;&#45;secondary"-->
+            <!--                    data-module="govuk-button">Hide categories-->
+            <!--            </button>-->
 
             <ul class="govuk-tabs__list navbar sticky-tabs" id="tab-list">
                 <li class="arrow left"><a href="#">tab left</a></li>

@@ -36,26 +36,32 @@
         <a href="/version-1/find-a-case" class="govuk-back-link">Find a case</a>
 
         <!-- AUTO RECLASSIFY -->
-        <div class="govuk-notification-banner govuk-!-margin-bottom-4" role="alert"
-            aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-            id="auto_reclassify" style="display:none;">
+        <div class="govuk-notification-banner govuk-!-margin-bottom-4"
+             role="alert"
+             aria-labelledby="govuk-notification-banner-title"
+             data-module="govuk-notification-banner"
+             id="auto_reclassify" style="display:none;">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Important</h2>
             </div>
             <div class="govuk-notification-banner__content">
-                <h3 class="govuk-notification-banner__heading">No materials were identified for reclassification</h3>
+                <h3 class="govuk-notification-banner__heading">No materials were
+                    identified for reclassification</h3>
             </div>
         </div>
 
         <!-- RENAMED -->
-        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
-             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+             role="alert"
+             aria-labelledby="govuk-notification-banner-title"
+             data-module="govuk-notification-banner"
              id="rename_COMPLETE" style="display: none;">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Success</h2>
             </div>
             <div class="govuk-notification-banner__content">
-                <h3 class="govuk-notification-banner__heading">Material successfully renamed</h3>
+                <h3 class="govuk-notification-banner__heading">Material
+                    successfully renamed</h3>
             </div>
         </div>
 
@@ -64,20 +70,23 @@
 
         <!-- DISCARD -->
         {% if data['discarding_material_COMPLETED'] == 'true' %}
-        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
-            aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-            id="discard_successful">
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+             role="alert"
+             aria-labelledby="govuk-notification-banner-title"
+             data-module="govuk-notification-banner"
+             id="discard_successful">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Success</h2>
             </div>
             <div class="govuk-notification-banner__content">
                 <h3 class="govuk-notification-banner__heading">
-                    {% if data['material_selected'] and data['material_selected'] | is_array %}
-                        {% for item in data['material_selected'] %}
-                            {{ item }}{% if not loop.last %}, {% endif %}
-                        {% endfor %}
+                    {% if data['material_selected'] and
+                    data['material_selected'] | is_array %}
+                    {% for item in data['material_selected'] %}
+                    {{ item }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
                     {% else %}
-                        {{ data['material_selected'] }}
+                    {{ data['material_selected'] }}
                     {% endif %}
                     has been discarded
                 </h3>
@@ -85,9 +94,12 @@
         </div>
 
         <!-- Update exhibit / statement -->
-        {% elif data['update_exhibit_COMPLETED'] == 'true' or data['update_statement_COMPLETED'] == 'true' %}
-        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4" role="alert"
-             aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+        {% elif data['update_exhibit_COMPLETED'] == 'true' or
+        data['update_statement_COMPLETED'] == 'true' %}
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-4"
+             role="alert"
+             aria-labelledby="govuk-notification-banner-title"
+             data-module="govuk-notification-banner"
              id="update_successful">
             <div class="govuk-notification-banner__header">
                 <h2 class="govuk-notification-banner__title">Success</h2>
@@ -95,9 +107,9 @@
             <div class="govuk-notification-banner__content">
                 <h3 class="govuk-notification-banner__heading">
                     {% if data['update_exhibit_COMPLETED'] == 'true' %}
-                        Exhibit successfully updated
+                    Exhibit successfully updated
                     {% else %}
-                        Statement successfully updated
+                    Statement successfully updated
                     {% endif %}
                 </h3>
             </div>
@@ -113,12 +125,17 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-third">
-        <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer +1</h1>
+        <h1 class="govuk-heading-m govuk-!-margin-bottom-0">SIMPSON, Homer
+            +1</h1>
         <span class="govuk-caption-m govuk-!-margin-bottom-0">{{caseUrnSearch}}</span>
         <div class="openMe">
-        <p class="govuk-body-s">
-            <a class="govuk-link govuk-link--no-visited-state" onclick="return viewDefendants();" data-id="18" data-doc="defendants.pdf" data-page="1" style="color: #1d70b8; cursor: pointer;">View 2 defendants and charges</a>
-        </p>
+            <p class="govuk-body-s">
+                <a class="govuk-link govuk-link--no-visited-state"
+                   onclick="return viewDefendants();" data-id="18"
+                   data-doc="defendants.pdf" data-page="1"
+                   style="color: #1D70B8; cursor: pointer;">View 2 defendants
+                    and charges</a>
+            </p>
         </div>
     </div>
     <div class="govuk-grid-column-two-thirds">
@@ -126,10 +143,12 @@
             <!-- <a href="">Guidance</a> -->
             <!-- <a href="">Further housekeeping</a> -->
             <button type="button"
-                class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">
+                    class="govuk-button govuk-button--secondary auto_reclassify_Documents govuk-!-margin-bottom-2">
                 Update automatically
             </button>
-            <button type="submit" class="govuk-button govuk-!-margin-bottom-2">Case review</button>
+            <button type="submit" class="govuk-button govuk-!-margin-bottom-2">
+                Case review
+            </button>
         </div>
     </div>
 </div>
@@ -141,70 +160,98 @@
 
             <ul class="" id="new-tabs">
                 {% if data['activeTab'] == 'materials' %}
-                <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link govuk-tabs__list-item--selected"><a
-                        class="tab-link tab-2-content">Materials (20)</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
+                <li class="tab-1-content_link"><a
+                        class="tab-link tab-1-content">PCD request</a></li>
+                <li class="tab-2-content_link govuk-tabs__list-item--selected">
+                    <a
+                            class="tab-link tab-2-content">Materials (20)</a>
+                </li>
+                <li class="tab-3-content_link"><a
+                        class="tab-link tab-3-content">Review and redact</a>
+                </li>
+                <li class="tab-4-content_link"><a
+                        class="tab-link tab-4-content">Communications</a></li>
                 {% elif data['activeTab'] == 'comms' %}
-                <li class="tab-1-content_link"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials (20)</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-4-content">Communications</a></li>
+                <li class="tab-1-content_link"><a
+                        class="tab-link tab-1-content">PCD request</a></li>
+                <li class="tab-2-content_link"><a
+                        class="tab-link tab-2-content">Materials (20)</a></li>
+                <li class="tab-3-content_link"><a
+                        class="tab-link tab-3-content">Review and redact</a>
+                </li>
+                <li class="tab-4-content_link govuk-tabs__list-item--selected">
+                    <a class="tab-link tab-4-content">Communications</a></li>
                 {% else %}
-                <li class="tab-1-content_link govuk-tabs__list-item--selected"><a class="tab-link tab-1-content">PCD request</a></li>
-                <li class="tab-2-content_link"><a class="tab-link tab-2-content">Materials</a></li>
-                <li class="tab-3-content_link"><a class="tab-link tab-3-content">Review and redact</a></li>
-                <li class="tab-4-content_link"><a class="tab-link tab-4-content">Communications</a></li>
+                <li class="tab-1-content_link govuk-tabs__list-item--selected">
+                    <a class="tab-link tab-1-content">PCD request</a></li>
+                <li class="tab-2-content_link"><a
+                        class="tab-link tab-2-content">Materials</a></li>
+                <li class="tab-3-content_link"><a
+                        class="tab-link tab-3-content">Review and redact</a>
+                </li>
+                <li class="tab-4-content_link"><a
+                        class="tab-link tab-4-content">Communications</a></li>
                 {% endif %}
-                <li class="tab-5-content_link"><a class="tab-link tab-5-content">Reviews</a></li>
+                <li class="tab-5-content_link"><a
+                        class="tab-link tab-5-content">Reviews</a></li>
             </ul>
 
             <!-- TAB CONTENT - 1 - START -->
-            {% if data['activeTab'] == 'materials' or data['activeTab'] == 'comms' %}
+            {% if data['activeTab'] == 'materials' or data['activeTab'] ==
+            'comms' %}
             <div class="panel" id="tab_content_1" style="display: none;">
-            {% else %}
-            <div class="panel" id="tab_content_1">
-            {% endif %}
-                {% include "versions/v1/v1-3/includes/tab-1-PCD-request.html" %}
-            </div>
-            <!-- TAB CONTENT - 1 - END -->
+                {% else %}
+                <div class="panel" id="tab_content_1">
+                    {% endif %}
+                    {% include
+                    "versions/v1/v1-3/includes/tab-1-PCD-request.html" %}
+                </div>
+                <!-- TAB CONTENT - 1 - END -->
 
-            <!-- TAB CONTENT - 2 - START -->
-            {% if data['activeTab'] == 'materials' %}
-            <div class="panel" id="tab_content_2">
-            {% else %}
-            <div class="panel" id="tab_content_2" style="display: none;">
-            {% endif %}
-                {% include "versions/v1/v1-3/includes/tab-2-Materials.html" %}
-            </div>
-            <!-- TAB CONTENT - 2 - END -->
+                <!-- TAB CONTENT - 2 - START -->
+                {% if data['activeTab'] == 'materials' %}
+                <div class="panel" id="tab_content_2">
+                    {% else %}
+                    <div class="panel" id="tab_content_2"
+                         style="display: none;">
+                        {% endif %}
+                        {% include
+                        "versions/v1/v1-3/includes/tab-2-Materials.html" %}
+                    </div>
+                    <!-- TAB CONTENT - 2 - END -->
 
-            <!-- TAB CONTENT - 3 - START -->
-            <div class="panel" id="tab_content_3" style="display: none;">
-                {% include "versions/v1/v1-3/includes/tab-3-Review-Materials.html" %}
-            </div>
-            <!-- TAB CONTENT - 3 - END -->
+                    <!-- TAB CONTENT - 3 - START -->
+                    <div class="panel" id="tab_content_3"
+                         style="display: none;">
+                        {% include
+                        "versions/v1/v1-3/includes/tab-3-Review-Materials.html"
+                        %}
+                    </div>
+                    <!-- TAB CONTENT - 3 - END -->
 
-            <!-- TAB CONTENT - 4 - START -->
-            {% if data['activeTab'] == 'comms' %}
-            <div class="panel" id="tab_content_4">
-            {% else %}
-            <div class="panel" id="tab_content_4" style="display: none;">
-            {% endif %}
-                {% include "versions/v1/v1-3/includes/tab-4-Comms.html" %}
-            </div>
-            <!-- TAB CONTENT - 4 - END -->
+                    <!-- TAB CONTENT - 4 - START -->
+                    {% if data['activeTab'] == 'comms' %}
+                    <div class="panel" id="tab_content_4">
+                        {% else %}
+                        <div class="panel" id="tab_content_4"
+                             style="display: none;">
+                            {% endif %}
+                            {% include
+                            "versions/v1/v1-3/includes/tab-4-Comms.html" %}
+                        </div>
+                        <!-- TAB CONTENT - 4 - END -->
 
-            <!-- TAB CONTENT - 5 - START -->
-            <div class="panel" id="tab_content_5" style="display: none;">
-                {% include "versions/v1/v1-3/includes/tab-5-PCD-review.html" %}
+                        <!-- TAB CONTENT - 5 - START -->
+                        <div class="panel" id="tab_content_5"
+                             style="display: none;">
+                            {% include
+                            "versions/v1/v1-3/includes/tab-5-PCD-review.html" %}
+                        </div>
+                        <!-- TAB CONTENT - 5 - END -->
+                    </div>
+                </div>
             </div>
-            <!-- TAB CONTENT - 5 - END -->
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 {% endblock %}
