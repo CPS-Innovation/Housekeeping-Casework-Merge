@@ -20,7 +20,7 @@
     "browser-sync": "^2.11.1",
     "client-sessions": "^0.8.0",
     "cookie-parser": "^1.4.6",
-    "cross-spawn": "^7.0.2",
+    "cross-spawn": "^7.0.6",
     "del": "^6.0.0",
     "dotenv": "^10.0.0",
     "drag-on-drop": "^3.6.1",
@@ -52,7 +52,7 @@
   "devDependencies": {
     "glob": "^7.1.4",
     "jest": "^27.3.1",
-    "standard": "^14.3.3",
+    "standard": "^17.1.2",
     "supertest": "^6.1.6"
   },
   "jest": {
