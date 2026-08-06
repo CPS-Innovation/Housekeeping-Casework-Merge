@@ -33,7 +33,7 @@
     "govuk-frontend": "^4.0.1",
     "govuk-frontend-v5": "npm:govuk-frontend@^5.14.0",
     "gray-matter": "^4.0.3",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-sass": "^5.0.0",
     "home-office-kit": "^1.0.5",
@@ -51,8 +51,8 @@
   },
   "devDependencies": {
     "glob": "^7.1.4",
-    "jest": "^27.3.1",
-    "standard": "^14.3.3",
+    "jest": "^30.4.2",
+    "standard": "^17.1.2",
     "supertest": "^6.1.6"
   },
   "jest": {
