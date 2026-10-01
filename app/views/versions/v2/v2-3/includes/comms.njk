@@ -1,0 +1,575 @@
+<!-- ///////////////////////////////// TAB 4 - CONTENT - START ///////////////////////////////// -->
+{% if data['material_selected'] and not (data['material_selected'] | is_array) %}
+    {% set material_selected_array = [data['material_selected']] %}
+{% else %}
+    {% set material_selected_array = data['material_selected'] or [] %}
+{% endif %}
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-quarter" id="comms_column_1">
+        <div class="moj-filter-layout__filter">
+            {% include "versions/v2/v2-2/includes/comms-filter.njk" %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-three-quarters" id="comms_column_2">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                <div class="info_wrapper">
+                    <button id="show_filter_Comms" type="button" class="govuk-button  govuk-button--secondary"
+                        data-module="govuk-button">Show filter</button>
+                    <button id="close_filter_Comms" type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">Hide filter</button>
+                    <p>Showing <strong class="showing-comms-count" data-comm-shown>3</strong> communications out of
+                        <strong class="total-comms-count" data-comm-total>3</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="govuk-grid-column-one-half">
+                <div class="actions_holder">
+                    <div class="moj-button-menu">
+                        <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                            id="show_Comms_Actions">
+                            Actions on selection <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                        <div class="hidden_buttons" id="comms_Actions">
+                            <!-- Rename should only be available for single selections, not multiple -->
+                            <button type="button" class="govuk-button govuk-button--disabled rename_Comms_Multiple_Docs rename-Document" data-module="govuk-button" onclick="return openRenameModal();">Rename</button>
+                            <button type="button" id="update-and-reclassify" class="govuk-button govuk-button--disabled reclassify_Comms_Multiple_Docs" data-module="govuk-button" disabled>Reclassify</button>
+                            <!-- Removed for the time being until it's agreed whether it's required or not -->
+                            <!-- {# if version >= '1.1' #}-->
+<!--                            <button type="button"-->
+<!--                                    class="govuk-button govuk-button&#45;&#45;disabled redact_Comms_Multiple_Docs"-->
+<!--                                    data-module="govuk-button" disabled>Redact</button>-->
+<!--                            {# endif #}-->
+                            <form method="post" action="/version-2/B-discard_material?version={{ version }}">
+                                <input id="comms_material_selected" name="material_selected" type="hidden" value="">
+                                <input name="discard_origin" type="hidden" value="communications">
+                                <button class="govuk-button govuk-button--disabled discard_Comms_Multiple_Docs" data-module="govuk-button" type="submit" disabled>Discard</button>
+                            </form>
+                            <button class="govuk-button mark_as_Read read_Comms_Multiple_Docs govuk-button--disabled" data-module="govuk-button" type="button" disabled>Mark as read</button>
+                            <button type="button" class="govuk-button govuk-button--disabled unused_Comms_Multiple_Docs" data-module="govuk-button" disabled>Mark as unused</button>
+                            <button type="button" class="govuk-button govuk-button--disabled viewInNewWindow_Comms_Multiple_Docs open-Document" data-module="govuk-button" onclick="return openDocumentInNewWindow();">View in new window</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="govuk-table sortable" id="comms_table">
+
+            <!-- THEAD - START -->
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_documents_ALL" name="comms_document"
+                                    type="checkbox" value="Select all">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_documents_ALL"></label>
+                            </div>
+                        </div>
+                    </th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">Subject</button></th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">In/out</button></th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">Comms with</button></th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">Comms type</button></th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">Type</button></th>
+                    <th scope="col" class="govuk-table__header"><button class="govuk-button"
+                            data-module="govuk-button">Date</button></th>
+                    <th scope="col" class="govuk-table__header" style="width: 8%;"></th>
+                </tr>
+            </thead>
+            <!-- THEAD - END -->
+
+            <!-- BODY - START -->
+            <tbody class="govuk-table__body">
+
+                <!-- ||||||||||||||| ROW 1 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police update' in material_selected_array %}
+                {% else %}
+                <tr class="govuk-table__row document_row_1">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_1" name="comms_document"
+                                    type="checkbox" value="Police update">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_1"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <strong class="govuk-tag govuk-tag--blue">New</strong>
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="1" data-doc="MG6C_UM_Item2.pdf">Police update</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Police</td>
+                    <td class="govuk-table__cell">Bundle</td>
+                    <td class="govuk-table__cell">Other communication</td>
+                    <td class="govuk-table__cell">21/03/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                            onclick="return openComms();" data-id="1">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="1">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/MG6C_UM_Item2.pdf"></div>
+                    </td>
+                </tr>
+                {% endif %}
+                <!-- ||||||||||||||| ROW 1 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 2 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official statement on trial' in material_selected_array %}
+                {% else %}
+                <tr class="govuk-table__row document_row_2">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_2" name="comms_document"
+                                    type="checkbox" value="Official statement on trial">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_2"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <strong class="govuk-tag govuk-tag--blue">New</strong>
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="2" data-doc="SDC_ITEM_12.pdf">Official statement on trial</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">Counsel</td>
+                    <td class="govuk-table__cell">Document</td>
+                    <td class="govuk-table__cell">Asset recovery</td>
+                    <td class="govuk-table__cell">21/03/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                            onclick="return openComms();" data-id="2">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="2">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/SDC_ITEM_12.pdf"></div>
+                    </td>
+                </tr>
+                {% endif %}
+                <!-- ||||||||||||||| ROW 2 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 3 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Legal matter' in material_selected_array %}
+                {% else %}
+                <tr class="govuk-table__row document_row_3">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_3" name="comms_document"
+                                    type="checkbox" value="Legal matter">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_3"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <strong class="govuk-tag govuk-tag--blue">New</strong>
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="3" data-doc="Crown_Court_Fee_Log260302_143255-475_[viewed].pdf">Legal matter</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">Counsel</td>
+                    <td class="govuk-table__cell">Comms Type</td>
+                    <td class="govuk-table__cell">Counsel case acknowledgement</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                            onclick="return openComms();" data-id="3">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="3">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/Crown_Court_Fee_Log260302_143255-475_[viewed].pdf"></div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                <!-- ||||||||||||||| ROW 4 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Official court notice' in material_selected_array %}
+                {% else %}
+                <tr class="govuk-table__row document_row_4">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_4" name="comms_document"
+                                    type="checkbox" value="Official court notice">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_4"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="4" data-doc="MG6C_UM_Item2.pdf">Official court notice</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Police</td>
+                    <td class="govuk-table__cell">Bundle</td>
+                    <td class="govuk-table__cell">Other communication</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                            onclick="return openComms();" data-id="4">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="4">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/Pilot_test_HRS260212_100725-898_[viewed].pdf"></div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                <!-- ||||||||||||||| ROW 5 - START ||||||||||||||| -->
+                {% if data['discarding_material_COMPLETED'] == 'true' and 'Police follow up' in material_selected_array %}
+                {% else %}
+                <tr class="govuk-table__row document_row_5">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_5"
+                                    name="comms_document" type="checkbox" value="Police follow up">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_5"><span
+                                        class="visuallyhidden">Police follow up</span></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell title_column">
+                        <strong class="govuk-tag govuk-tag--blue">New</strong>
+                        <div class="openMe">
+                            <a class="govuk-button show_comms" data-id="5" data-doc="PoliceFollowUp.pdf">Police follow up</a>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Police</td>
+                    <td class="govuk-table__cell">Bundle</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                            onclick="return openComms();" data-id="5">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="5">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/MG6C_Item_24.pdf"></div>
+                    </td>
+                </tr>
+                {% endif %}
+                <!-- ||||||||||||||| ROW 5 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 6 - START ||||||||||||||| -->
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_6" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_6"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="6" data-doc="MG6C.pdf">Maggie Simpson - Court Case update</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">Defence</td>
+                    <td class="govuk-table__cell">Email</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                                onclick="return openComms();" data-id="6">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="6">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/MG6C.pdf"></div>
+                    </td>
+                </tr>
+ <!-- ||||||||||||||| ROW 6 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 7 - START ||||||||||||||| -->
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_7" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_7"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="7" data-doc="MG6C.pdf">Meeting with WCU</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">WCU</td>
+                    <td class="govuk-table__cell">Meeting</td>
+                    <td class="govuk-table__cell">Other communications</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                                onclick="return openComms();" data-id="7">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="7">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/UM_ITEM_6_Defence_letter_from_solicitor.pdf"></div>
+                    </td>
+                </tr>
+ <!-- ||||||||||||||| ROW 7 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 8 - START ||||||||||||||| -->
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_8" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_8"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="8" data-doc="UM_Item_10.pdf">New developments on 0723 Case</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Court</td>
+                    <td class="govuk-table__cell">Item</td>
+                    <td class="govuk-table__cell">Physical media</td>
+                    <td class="govuk-table__cell">01/02/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                                onclick="return openComms();" data-id="8">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="8">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/UM_Item_10.pdf"></div>
+                    </td>
+                </tr>
+                <!-- ||||||||||||||| ROW 8 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 9 - START ||||||||||||||| -->
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_9" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_9"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="9" data-doc="E-Mail_to_Defence.pdf">E-Mail to Defence.pdf</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">Court</td>
+                    <td class="govuk-table__cell">Email</td>
+                    <td class="govuk-table__cell">Other communication</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                                onclick="return openComms();" data-id="9">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="9">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/E-Mail_to_Defence.pdf"></div>
+                    </td>
+                </tr>
+  <!-- ||||||||||||||| ROW 9 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 10 - START ||||||||||||||| -->
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_10" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_10"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <div class="openMe">
+                            <button type="button" class="govuk-button show_comms" data-module="govuk-button"
+                                onclick="return openComms();" data-id="10" data-doc="SDC_ITEM_12.pdf">Legal proceedings update</button>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Counsel</td>
+                    <td class="govuk-table__cell">Telephone call</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">21/03/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button"
+                                onclick="return openComms();" data-id="10">Preview</button>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row hidden_row" data-row_id="10">
+                    <td colspan="8">
+                        <div class="document_holder" id=""><embed src="/public/files/SDC_ITEM_12.pdf"></div>
+                    </td>
+                </tr>
+                <!-- ||||||||||||||| ROW 10 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 11 - START ||||||||||||||| -->
+                <!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_11" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_11"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <button type="button" class="govuk-button show_comms" data-module="govuk-button" onclick="return openComms();">Case under review</button>
+                    </td>
+                    <td class="govuk-table__cell">Outgoing</td>
+                    <td class="govuk-table__cell ">Police</td>
+                    <td class="govuk-table__cell">Email</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button" onclick="return openComms();">Preview</span>
+                    </td>
+                </tr>
+ --> <!-- ||||||||||||||| ROW 11 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 12 - START ||||||||||||||| -->
+                <!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_12" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_12"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <button type="button" class="govuk-button show_comms" data-module="govuk-button" onclick="return openComms();">Court Summons</button>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">DCS</td>
+                    <td class="govuk-table__cell">Email</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">13/01/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button" onclick="return openComms();">Preview</span>
+                    </td>
+                </tr>
+ --> <!-- ||||||||||||||| ROW 12 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 13 - START ||||||||||||||| -->
+                <!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_13" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_13"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <button type="button" class="govuk-button show_comms" data-module="govuk-button" onclick="return openComms();">Justice department update</button>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">DCS</td>
+                    <td class="govuk-table__cell">Comms Type</td>
+                    <td class="govuk-table__cell">Other communication</td>
+                    <td class="govuk-table__cell">21/03/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button" onclick="return openComms();">Preview</span>
+                    </td>
+                </tr>
+ --> <!-- ||||||||||||||| ROW 13 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 14 - START ||||||||||||||| -->
+                <!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_14" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_14"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <button type="button" class="govuk-button show_comms" data-module="govuk-button" onclick="return openComms();">Update 6123754</button>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">WCU</td>
+                    <td class="govuk-table__cell">Meeting</td>
+                    <td class="govuk-table__cell">Other communication</td>
+                    <td class="govuk-table__cell">01/02/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button" onclick="return openComms();">Preview</span>
+                    </td>
+                </tr>
+ --> <!-- ||||||||||||||| ROW 14 - END ||||||||||||||| -->
+
+                <!-- ||||||||||||||| ROW 15 - START ||||||||||||||| -->
+                <!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="comms_document_15" name="comms_document" type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="comms_document_15"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell subject-cell">
+                        <button type="button" class="govuk-button show_comms" data-module="govuk-button" onclick="return openComms();">Important legal update</button>
+                    </td>
+                    <td class="govuk-table__cell">Incoming</td>
+                    <td class="govuk-table__cell ">Counsel</td>
+                    <td class="govuk-table__cell">Email</td>
+                    <td class="govuk-table__cell">Correspondence</td>
+                    <td class="govuk-table__cell">01/02/2025</td>
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_comms_actions" data-module="govuk-button" onclick="return openComms();">Preview</span>
+                    </td>
+                </tr>
+ --> <!-- ||||||||||||||| ROW 15 - END ||||||||||||||| -->
+
+            </tbody>
+        </table>
+
+        <p id="no-results-message" class="govuk-body" style="display: none;">No results found</p>
+
+    </div>
+</div>
+<script src="/public/javascripts/versions/v2-2/comms.js"></script>
+<!-- ///////////////////////////////// TAB 4 - CONTENT - END ///////////////////////////////// -->

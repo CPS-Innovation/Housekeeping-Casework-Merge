@@ -1,0 +1,70 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="problemModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeModalProblem()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="report-a-problem">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    Report a technical problem with: "<span id="document-title-3">Document title</span>"                       
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+                            <div class="govuk-grid-column-full">
+                                <div class="govuk-warning-text">
+                                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                    <strong class="govuk-warning-text__text">
+                                        <span class="govuk-warning-text__assistive">Warning</span>
+                                        This is sent to CPS IT support, it is not sent back to the Investigative Agency.
+                                        <!-- This is not sent back to the Investigative Authority, it is sent to CPS IT support for review. -->
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="400">
+                                        <div class="govuk-form-group">
+                                            <p></p>
+                                            <h1 class="govuk-label-wrapper">
+                                                <label class="govuk-label" for="reportProblem-text">Describe the problem</label>
+                                            </h1>
+                                            <div id="reportProblem-text-hint" class="govuk-hint">Don't include personal or sensitive information about the case.</div>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="reportProblem-text" name="reportProblem-text" rows="8" aria-describedby="reportProblem-text-info reportProblem-text-hint"></textarea>
+                                        </div>
+                                        <div id="reportProblem-text-info" class="govuk-hint govuk-character-count__message">You can enter up to 400 characters</div>
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="reportProblem-button" class="govuk-button" data-module="govuk-button" type="button" onClick="closeModalProblem()">Save and return</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onClick="closeModalProblem()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
