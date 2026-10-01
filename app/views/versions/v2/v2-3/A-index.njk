@@ -1,21 +1,21 @@
 {% extends "layoutCPS-v2.html" %}
 {% block header %}
-    {% include "versions/v2/v2-2/includes/banner.html" %}
-    {% include "versions/v2/v2-2/includes/modals/rename.html" %}
-    {% include "versions/v2/v2-2/includes/modals/feedback.html" %}
-    {% include "versions/v2/v2-2/includes/modals/report-a-problem.html" %}
-    {% include "versions/v2/v2-2/includes/modals/search.html" %}
-    {% include "versions/v2/v2-2/includes/modals/notes-new.html" %}
-    {% include "versions/v2/v2-2/includes/modals/notes.html" %}
-    {% include "versions/v2/v2-2/includes/modals/update-statement.html" %}
-    {% include "versions/v2/v2-2/includes/modals/update-exhibit.html" %}
-    {% include "versions/v2/v2-2/includes/modals/redaction-over.html" %}
-    {% include "versions/v2/v2-2/includes/modals/case-action-plan.html" %}
-    {% include "versions/v2/v2-2/includes/modals/case-action-plan-2.html" %}
-    {% include "versions/v2/v2-2/includes/modals/case-action-plan-builder.html" %}
-    {% include "versions/v2/v2-2/includes/modals/confirmation.html" %}
-    {% include "versions/v2/v2-2/includes/modals/confirmation-Rotate.html" %}
-    {% include "versions/v2/v2-2/includes/modals/warning-Rotate.html" %}
+    {% include "versions/v2/v2-3/includes/banner.html" %}
+    {% include "versions/v2/v2-3/includes/modals/rename.html" %}
+    {% include "versions/v2/v2-3/includes/modals/feedback.html" %}
+    {% include "versions/v2/v2-3/includes/modals/report-a-problem.html" %}
+    {% include "versions/v2/v2-3/includes/modals/search.html" %}
+    {% include "versions/v2/v2-3/includes/modals/notes-new.html" %}
+    {% include "versions/v2/v2-3/includes/modals/notes.html" %}
+    {% include "versions/v2/v2-3/includes/modals/update-statement.html" %}
+    {% include "versions/v2/v2-3/includes/modals/update-exhibit.html" %}
+    {% include "versions/v2/v2-3/includes/modals/redaction-over.html" %}
+    {% include "versions/v2/v2-3/includes/modals/case-action-plan.html" %}
+    {% include "versions/v2/v2-3/includes/modals/case-action-plan-2.html" %}
+    {% include "versions/v2/v2-3/includes/modals/case-action-plan-builder.html" %}
+    {% include "versions/v2/v2-3/includes/modals/confirmation.html" %}
+    {% include "versions/v2/v2-3/includes/modals/confirmation-Rotate.html" %}
+    {% include "versions/v2/v2-3/includes/modals/warning-Rotate.html" %}
 {% endblock %}
 
 {% set caseUrnSearch = caseUrnSearch if caseUrnSearch is defined and caseUrnSearch else '16XL9132025' %}
@@ -164,27 +164,27 @@
                 <div class="panel" id="tab_content_1"
                      {% if data['activeTab'] and data['activeTab'] != 'pcd' %}style="display: none;"{% endif %}>
                     {% set tab_id = '1' %}
-                    {% include "versions/v2/v2-2/includes/pcd-request.njk" %}
+                    {% include "versions/v2/v2-3/includes/pcd-request.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 2 - Manage materials -->
                 <div class="panel" id="tab_content_2"
                      {% if data['activeTab'] != 'manage' %}style="display: none;"{% endif %}>
                     {% set tab_id = '2' %}
-                    {% include "versions/v2/v2-2/includes/manage-materials.njk" %}
+                    {% include "versions/v2/v2-3/includes/manage-materials.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 3 - Communications -->
                 <div class="panel" id="tab_content_3"
                      {% if data['activeTab'] != 'comms' %}style="display: none;"{% endif %}>
                     {% set tab_id = '3' %}
-                    {% include "versions/v2/v2-2/includes/comms.njk" %}
+                    {% include "versions/v2/v2-3/includes/comms.njk" %}
                 </div>
 
                 <!-- TAB CONTENT - 4 - Reviews -->
                 <div class="panel" id="tab_content_4" style="display: none;">
                     {% set tab_id = '4' %}
-                    {% include "versions/v2/v2-2/includes/pcd-review.njk" %}
+                    {% include "versions/v2/v2-3/includes/pcd-review.njk" %}
                 </div>
 
             </div>
