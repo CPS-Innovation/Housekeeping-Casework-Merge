@@ -67,11 +67,22 @@
     >
         <div class="dcf-material-card__main">
 
+      {% if _status and (_status | lower) != 'none' %}
       <span
               class="dcf-material-card__badge"
               data-raw-status="{{ _status }}"
-              {% if (_status | lower) != 'new' %}hidden{% endif %}
-      >New</span>
+      >
+          {% if (_status | lower) == 'new' %}
+              <strong class="govuk-tag govuk-tag--blue">New</strong>
+          {% elif (_status | lower) == 'used' %}
+              <strong class="govuk-tag govuk-tag--blue">{{ _status }}</strong>
+          {% elif (_status | lower) == 'unused' %}
+              <strong class="govuk-tag govuk-tag--yellow">{{ _status }}</strong>
+          {% else %}
+              <strong class="govuk-tag govuk-tag--grey">{{ _status }}</strong>
+          {% endif %}
+      </span>
+      {% endif %}
 
             <h3 class="dcf-material-card__title">
 
@@ -84,13 +95,17 @@
 
                 {% if m.myFileUrl %}
 
-                    <a href="#"
-                       class="govuk-link js-material-link"
-                       rel="noreferrer"
-                       role="button"
-                       data-file-url="{{ m.myFileUrl }}"
-                       data-title="{{ linkText }}"
-                    >{{ linkText }}</a>
+                    <span class="openMe">
+                        <a href="#"
+                           class="govuk-link js-material-link show-case show_material"
+                           rel="noreferrer"
+                           role="button"
+                           data-file-url="{{ m.myFileUrl }}"
+                           data-doc="{{ filenameFromUrl(m.myFileUrl) | trim }}"
+                           data-id="{{ m.ItemId }}"
+                           data-title="{{ linkText }}"
+                        >{{ linkText }}</a>
+                    </span>
 
                     {% set __meta__ = {
                         ItemId: m.ItemId,
@@ -152,7 +167,7 @@
             Date: {{ m.date }}
           </span>
 
-                    <a href="#" class="govuk-link dcf-note-link" data-action="open-notes">
+                    <a href="#" class="govuk-link dcf-note-link notes-link new-notes-link exhibit-notes" data-action="open-notes" onClick="openNewNotesModal(); return false;">
             <span class="dcf-note-link__icon" aria-hidden="true">
               <img
                       src="/public/files/speech-bubble-svgrepo-com.svg"
