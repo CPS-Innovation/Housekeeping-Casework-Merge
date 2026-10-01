@@ -104,10 +104,9 @@ $(document).ready(function () {
     }
 
     // 1. Initial State
-    // For version 2.2 only: show filter and expand accordion by default on page load.
-    // This file is only loaded by the refactored /version-2-2/ route, so no version
-    // guard is needed — but we use a pathname check for safety.
-    if (window.location.pathname.indexOf('/version-2-2/') !== -1) {
+    // For version 2.2 and 2.3: show filter and expand accordion by default on page load.
+    // This file is loaded by the refactored /version-2-2/ and /version-2-3/ routes.
+    if (window.location.pathname.indexOf('/version-2-2/') !== -1 || window.location.pathname.indexOf('/version-2-3/') !== -1) {
         // Set initial state immediately so currentMaterialsState is correct before
         // any deferred handlers run.
         setPanelState('table');
