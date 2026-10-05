@@ -1223,6 +1223,7 @@ $(document).ready(function () {
             if (path.indexOf('/version-2-0/') !== -1) { versionPrefix = '/version-2-0/'; }
             else if (path.indexOf('/version-2-1/') !== -1) { versionPrefix = '/version-2-1/'; }
             else if (path.indexOf('/version-2-2/') !== -1) { versionPrefix = '/version-2-2/'; }
+            else if (path.indexOf('/version-2-3/') !== -1) { versionPrefix = '/version-2-3/'; }
             else if (path.indexOf('/version-2/') !== -1) { versionPrefix = '/version-2/'; }
             else { versionPrefix = getV1RoutePrefix(); }
 
@@ -1840,13 +1841,14 @@ function openDocumentInNewWindow() {
 }
 
 // Helper: resolve the current v2 route prefix from the pathname.
-// Explicit v2 routes (/version-2-0/ … /version-2-2/) are matched first;
+// Explicit v2 routes (/version-2-0/ … /version-2-3/) are matched first;
 // legacy /version-2/ falls through; returns '' if not a v2 path.
 function getV2RoutePrefix() {
     var path = window.location.pathname;
     if (path.indexOf('/version-2-0/') !== -1) { return '/version-2-0/'; }
     if (path.indexOf('/version-2-1/') !== -1) { return '/version-2-1/'; }
     if (path.indexOf('/version-2-2/') !== -1) { return '/version-2-2/'; }
+    if (path.indexOf('/version-2-3/') !== -1) { return '/version-2-3/'; }
     if (path.indexOf('/version-2/') !== -1) { return '/version-2/'; }
     return '';
 }

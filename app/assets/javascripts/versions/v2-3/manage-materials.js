@@ -1,7 +1,10 @@
 $(document).ready(function () {
-    // Version 2.2 Manage Materials Panel State Management
+    // Version 2.3 Manage Materials Workspace State & Interaction Management
     var $workspace = $('.dcf-materials-workspace--v2-1');
     if (!$workspace.length) return;
+
+    // Only run on version 2.3 routes
+    if (window.location.pathname.indexOf('/version-2-3/') === -1) return;
 
     var $filterPanel = $workspace.find('[data-panel="materials-filter"]');
     var $tablePanel = $workspace.find('[data-panel="materials-table"]');
@@ -18,7 +21,8 @@ $(document).ready(function () {
     var $toggleFullControls = $('[data-toolbar-control="toggle-full"]');
     var $materialsActionsMenu = $('#show_Materials_Actions').closest('.moj-button-menu');
 
-    let currentMaterialsState = 'table';
+    var currentMaterialsState = 'table';
+    var filterWasOpenBeforeFullWidth = false;
 
     function setPanelState(state) {
         currentMaterialsState = state;
@@ -27,7 +31,7 @@ $(document).ready(function () {
         // Derive visibility flags
         var isDocumentVisible = state === 'document-with-cards' || state === 'document-with-filter-and-cards' || state === 'document-only';
         var isDocumentOnly = state === 'document-only';
-        var canToggleFullWidth = state === 'document-with-cards' || state === 'document-with-filter-and-cards' || state === 'document-only';
+        var canToggleFullWidth = isDocumentVisible;
 
         // Apply toolbar visibility explicitly
         $closeViewerControls.toggle(isDocumentVisible);
@@ -103,38 +107,61 @@ $(document).ready(function () {
         }
     }
 
-    // 1. Initial State
-    // For version 2.2 only: show filter and expand accordion by default on page load.
-    // This file is only loaded by the refactored /version-2-2/ route, so no version
-    // guard is needed — but we use a pathname check for safety.
-    if (window.location.pathname.indexOf('/version-2-2/') !== -1) {
-        // Set initial state immediately so currentMaterialsState is correct before
-        // any deferred handlers run.
-        setPanelState('table');
+    // Synchronize active card and table row state
+    function syncActiveMaterial(label) {
+        if (!label) return;
+        label = $.trim(label);
 
-        // Defer the v2.2 overrides until after all $(document).ready handlers
-        // (including the housekeeping.js FILTER block) have run. housekeeping.js
-        // hides #materials_column_1 for all version-2 pages on its own ready block;
-        // we must re-apply our desired state after it.
-        setTimeout(function () {
-            // Re-apply filter-visible state. This overrides the housekeeping.js reset.
-            setPanelState('table-with-filter');
+        // 1. Sync DCF material cards
+        $('.dcf-material-card').each(function () {
+            var $card = $(this);
+            var cardTitle = $.trim($card.find('.dcf-material-card__title a, .dcf-material-card__title').text());
+            var cardTitleAttr = $.trim($card.find('.js-material-link').attr('data-title'));
+            var isMatch = (cardTitle === label || cardTitleAttr === label);
+            $card.toggleClass('dcf-material-card--active', isMatch);
+            $card.find('.js-material-link').attr('aria-current', isMatch ? 'true' : 'false');
+        });
 
-            // Expand the GOV.UK accordion by clicking its own "show all" button.
-            // This lets the component update its own ARIA attributes, button text and
-            // section states — avoiding a visual-only expanded state that would leave
-            // controls out of sync.
-            var $showAllBtn = $('#materials-accordion .govuk-accordion__show-all');
-            // Only click if the accordion is currently in the collapsed ("Show all") state.
-            if ($showAllBtn.length && $showAllBtn.find('.govuk-accordion__show-all-text').text().trim() !== 'Hide all sections') {
-                $showAllBtn.trigger('click');
+        // 2. Sync table rows
+        $('#filter_Redactions table tbody tr').each(function () {
+            var $row = $(this);
+            var rowTitle = $.trim($row.find('.openMe a, .show-case').text());
+            var isMatch = (rowTitle === label);
+            $row.toggleClass('active_document', isMatch);
+            $row.find('td.title_column').toggleClass('documentSelected', isMatch);
+            if (isMatch) {
+                $row.removeClass('unread_document');
             }
-        }, 50);
-    } else {
-        setPanelState('table');
+        });
     }
 
-    // Reclassify return: if returning from /version-2-2/C-reclassify, activate Manage Materials tab
+    // Core handler when any document is opened
+    function handleDocumentOpened(label) {
+        if (!label) return;
+        label = $.trim(label);
+
+        syncActiveMaterial(label);
+
+        // Transition layout state to document view
+        if (currentMaterialsState === 'table' || currentMaterialsState === 'table-with-filter') {
+            setPanelState('document-with-cards');
+        }
+        // If already in document-with-cards, document-with-filter-and-cards, or document-only,
+        // preserve the user's current filter and full-width state.
+    }
+
+    // 1. Initial State
+    setPanelState('table-with-filter');
+
+    // Expand the GOV.UK accordion if collapsed on initial load
+    setTimeout(function () {
+        var $showAllBtn = $('#materials-accordion .govuk-accordion__show-all');
+        if ($showAllBtn.length && $showAllBtn.find('.govuk-accordion__show-all-text').text().trim() !== 'Hide all sections') {
+            $showAllBtn.trigger('click');
+        }
+    }, 50);
+
+    // Reclassify return: if returning from /version-2-3/C-reclassify, activate Manage Materials tab
     if (sessionStorage.getItem('reclassify_success') === 'true') {
         sessionStorage.removeItem('reclassify_success');
         if (typeof showTabByNumber === 'function') {
@@ -143,8 +170,8 @@ $(document).ready(function () {
     }
 
     // 2. Filter Toggling
-    $(document).off('click.version21Materials', '#show_filter_Materials, #close_filter_Materials');
-    $(document).on('click.version21Materials', '#show_filter_Materials, #close_filter_Materials', function (e) {
+    $(document).off('click.v23MaterialsFilter', '#show_filter_Materials, #close_filter_Materials');
+    $(document).on('click.v23MaterialsFilter', '#show_filter_Materials, #close_filter_Materials', function (e) {
         e.preventDefault();
         if (currentMaterialsState === 'table') {
             setPanelState('table-with-filter');
@@ -157,34 +184,91 @@ $(document).ready(function () {
         }
     });
 
-    // 3. Document Open Behaviour
-    $(document).off('click.version21Materials', '.openMe a, .show-case, .js-material-link');
-    $(document).on('click.version21Materials', '.openMe a, .show-case, .js-material-link', function (e) {
-        // Preserve existing loading behaviour, just update layout
+    // 3. Document Open Interaction Adapter
+    // Listens to document selections from table rows, DCF cards, and search modals
+    $(document).off('click.v23MaterialsDocOpen', '.openMe a, .show-case, .js-material-link, #searchModal .mb5 a');
+    $(document).on('click.v23MaterialsDocOpen', '.openMe a, .show-case, .js-material-link, #searchModal .mb5 a', function () {
+        var $el = $(this);
+        var label = $el.attr('data-title') || $el.text();
+        label = $.trim(label);
+
+        // If the element is not inside .openMe or #searchModal (e.g. standalone custom link), invoke handleMenuLinkClick
+        if (!$el.closest('.openMe').length && !$el.closest('#searchModal').length) {
+            if (typeof window.handleMenuLinkClick === 'function') {
+                window.handleMenuLinkClick(label);
+            }
+        }
+
+        handleDocumentOpened(label);
+    });
+
+    // 4. Switching Tabs in Document Viewer
+    $(document).off('click.v23MaterialsTabClick', '#tab-list .govuk-tabs__tab');
+    $(document).on('click.v23MaterialsTabClick', '#tab-list .govuk-tabs__tab', function () {
+        var label = $(this).text().trim();
         setTimeout(function () {
-            setPanelState('document-with-cards');
+            syncActiveMaterial(label);
+        }, 10);
+    });
+
+    // 5. Tab Close Behaviour
+    $(document).off('click.v23MaterialsTabClose', '#tab-list .closeButtonOnCPS');
+    $(document).on('click.v23MaterialsTabClose', '#tab-list .closeButtonOnCPS', function () {
+        setTimeout(function () {
+            var $remainingTabs = $('#tab-list li.govuk-tabs__list-item').not('.arrow');
+            if ($remainingTabs.length === 0) {
+                $('.dcf-material-card').removeClass('dcf-material-card--active').find('.js-material-link').removeAttr('aria-current');
+                $('#filter_Redactions table tbody tr').removeClass('active_document').find('td.title_column').removeClass('documentSelected');
+                if (currentMaterialsState === 'document-with-filter-and-cards') {
+                    setPanelState('table-with-filter');
+                } else {
+                    setPanelState('table');
+                }
+            } else {
+                var activeTabLabel = $('#tab-list li.govuk-tabs__list-item--selected .govuk-tabs__tab, #tab-list li#selectedTab .govuk-tabs__tab').first().text().trim();
+                if (activeTabLabel) {
+                    syncActiveMaterial(activeTabLabel);
+                }
+            }
         }, 50);
     });
 
-    // 4. Full-width Toggle
-    $(document).off('click.version21Materials', '[data-action="toggle-full"]');
-    $(document).on('click.version21Materials', '[data-action="toggle-full"]', function (e) {
+    // 6. Full-width Toggle
+    $(document).off('click.v23MaterialsToggleFull', '[data-action="toggle-full"]');
+    $(document).on('click.v23MaterialsToggleFull', '[data-action="toggle-full"]', function (e) {
         e.preventDefault();
         if (currentMaterialsState === 'document-with-cards' || currentMaterialsState === 'document-with-filter-and-cards') {
+            filterWasOpenBeforeFullWidth = (currentMaterialsState === 'document-with-filter-and-cards');
             setPanelState('document-only');
         } else if (currentMaterialsState === 'document-only') {
-            setPanelState('document-with-cards');
+            if (filterWasOpenBeforeFullWidth) {
+                setPanelState('document-with-filter-and-cards');
+            } else {
+                setPanelState('document-with-cards');
+            }
         }
     });
 
-    // 5. Close Viewer Action
-    $(document).off('click.version21Materials', '[data-action="close-viewer"]');
-    $(document).on('click.version21Materials', '[data-action="close-viewer"]', function (e) {
-        // Existing close behavior is triggered by data-action="close-viewer" elsewhere
-        setPanelState('table');
+    // 7. Close Viewer Action (Close all documents)
+    $(document).off('click.v23MaterialsCloseViewer', '[data-action="close-viewer"]');
+    $(document).on('click.v23MaterialsCloseViewer', '[data-action="close-viewer"]', function (e) {
+        e.preventDefault();
+        $('#tab-list li.govuk-tabs__list-item').not('.arrow').remove();
+        $('#redact_column_2 .document-panel').remove();
+        $('#tab-list').hide();
+        $('#docCopy').show();
+
+        $('.dcf-material-card').removeClass('dcf-material-card--active').find('.js-material-link').removeAttr('aria-current');
+        $('#filter_Redactions table tbody tr').removeClass('active_document').find('td.title_column').removeClass('documentSelected');
+
+        if (currentMaterialsState === 'document-with-filter-and-cards') {
+            setPanelState('table-with-filter');
+        } else {
+            setPanelState('table');
+        }
     });
 
-    // Maintain global access for legacy reasons if needed
+    // Maintain global access for legacy callers
     window.updateRedactLayout = function () {
         var hasActiveDoc = $('.active_document').length > 0;
         if (hasActiveDoc) {
@@ -197,13 +281,11 @@ $(document).ready(function () {
     };
 });
 
-// v2.2 action menu controller — deterministic, hidden/display as single source of truth.
-// Replaces all previous mousedown/click state-tracking attempts.
-function initV22ActionMenus() {
+// v2.3 action menu controller
+function initV23ActionMenus() {
     var $materialsBtn = $('#show_Materials_Actions');
     var $materialsMenu = $('#materials_Actions');
 
-    // ---- helpers ----
     function isMenuOpen($menu) {
         return !$menu.prop('hidden');
     }
@@ -218,17 +300,8 @@ function initV22ActionMenus() {
         $btn.attr('aria-expanded', 'false').removeClass('open');
     }
 
-    // ---- initialise menu closed ----
     closeMenu($materialsBtn, $materialsMenu);
 
-    // ---- native capture-phase shield ----
-    // housekeeping.js binds an un-namespaced $(document).mouseup that hides
-    // #materials_Actions on every mouseup outside the container — including
-    // when the user clicks the toggle button. Because mouseup fires before
-    // click, the legacy handler hides the menu before our click handler runs.
-    // We stop mouseup from reaching the document when it originates on our
-    // buttons or menus, using a capture-phase listener (fires before jQuery
-    // bubble-phase handlers).
     var shieldTargets = [
         $materialsBtn[0], $materialsMenu[0]
     ].filter(Boolean);
@@ -236,11 +309,10 @@ function initV22ActionMenus() {
     shieldTargets.forEach(function (el) {
         el.addEventListener('mouseup', function (e) {
             e.stopPropagation();
-        }, true); // capture phase
+        }, true);
     });
 
-    // ---- Actions on selection toggle ----
-    $materialsBtn.off('.v22ActionMenus').on('click.v22ActionMenus', function (e) {
+    $materialsBtn.off('.v23ActionMenus').on('click.v23ActionMenus', function (e) {
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
@@ -248,7 +320,6 @@ function initV22ActionMenus() {
             closeMenu($materialsBtn, $materialsMenu);
         } else {
             openMenu($materialsBtn, $materialsMenu);
-            // Enable/disable single-selection-only actions
             var count = $('input[name=materials_document]:checked').length;
             if (count === 1) {
                 $materialsMenu.find('.rename-Document').attr('active', 'active').removeClass('govuk-button--disabled').show();
@@ -258,8 +329,7 @@ function initV22ActionMenus() {
         }
     });
 
-    // ---- outside-click to close (pointerdown fires before click on items) ----
-    $(document).off('.v22ActionMenusOutside').on('pointerdown.v22ActionMenusOutside', function (e) {
+    $(document).off('.v23ActionMenusOutside').on('pointerdown.v23ActionMenusOutside', function (e) {
         var $t = $(e.target);
         if (!$t.closest($materialsBtn).length && !$t.closest($materialsMenu).length) {
             if (isMenuOpen($materialsMenu)) closeMenu($materialsBtn, $materialsMenu);
@@ -268,16 +338,16 @@ function initV22ActionMenus() {
 }
 
 $(function () {
-    initV22ActionMenus();
+    if (window.location.pathname.indexOf('/version-2-3/') !== -1) {
+        initV23ActionMenus();
+    }
 });
 
-// v2.2 overrides for legacy housekeeping.js functions
-
-// viewDefendants in housekeeping.js checks pathname.indexOf('/version-2/'), which is
-// false for /version-2-2/, causing it to open the wrong tab. This override forces
-// Manage Materials (tab 2) and triggers the defendants document link directly.
+// v2.3 overrides for legacy housekeeping.js functions
 window.viewDefendants = function () {
-    showTabByNumber(2, false);
+    if (typeof showTabByNumber === 'function') {
+        showTabByNumber(2, false);
+    }
     var $targetLink = $('.show-case[data-id="18"][data-doc="defendants.pdf"]').first();
     if ($targetLink.length > 0) {
         $targetLink.trigger('click');
@@ -285,18 +355,14 @@ window.viewDefendants = function () {
     return false;
 };
 
-// documentUpdateStatement is called by the existing inline onclick handler on the Update Statement button
-// but is not defined anywhere in the codebase. This no-op prevents a ReferenceError while preserving
-// the navigation behaviour provided by the openUpdateStatement override above.
 window.documentUpdateStatement = function () {};
 
-// openModalOver in housekeeping.js checks pathname.indexOf('/version-2/'), which is false for
-// /version-2-2/, causing it to call showTabByNumber(3) (Comms) instead of showTabByNumber(2)
-// (Manage Materials). This override forces the correct tab for the v2.2 route.
 window.openModalOver = function () {
     var redactionModalOver = '#redactionModalOver';
     $(redactionModalOver).removeClass('rj-dont-display');
-    showTabByNumber(2, false);
+    if (typeof showTabByNumber === 'function') {
+        showTabByNumber(2, false);
+    }
     var activeDoc = $('#filter_Redactions table tr.active_document a.show-case').text();
     if (activeDoc) {
         sessionStorage.setItem('last_active_doc', activeDoc);
@@ -312,7 +378,6 @@ window.openUpdateExhibit = function () {
 };
 
 window.openDocumentInNewWindow = function () {
-    // Force v2 branch — /version-2-2/ does not match /version-2/ in housekeeping.js
     var activeReviewTab = '#tab_content_2';
     var isReviewTabVisible = $(activeReviewTab).is(':visible');
     var activeTabPanel = $('.govuk-tabs__panel:not(.govuk-tabs__panel--hidden)');

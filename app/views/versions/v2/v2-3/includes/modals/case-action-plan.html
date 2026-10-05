@@ -1,0 +1,227 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="caseActionModal">
+
+    <div class="das-cookie-banner" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeCaseActionModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="case-action-plan-modal">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    {% if data['searchURN'] %}
+                                        {{ data['searchURN'] }}/1 <span>- Action(s)</span>
+                                    {% else %}
+                                        45AA209820/1 <span>- Action(s)</span>
+                                    {% endif %}                        
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+
+                                    <div class="govuk-error-summary" data-module="govuk-error-summary" id="CAP-error-status">
+                                        <div role="alert">
+                                            <h2 class="govuk-error-summary__title">There is a problem</h2>
+                                            <div class="govuk-error-summary__body">
+                                                <ul class="govuk-list govuk-error-summary__list">
+                                                    <li id="CAP-date-error"><a href="#CAP-date">Enter the date your action required to be complete</a></li>
+                                                    <li id="CAP-info-error"><a href="#CAP-info">Select specific information to add to the Case Action Plan</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /////////////////////// FORM ITEM - 1 - START /////////////////////// -->
+                                    <div class="govuk-form-group" id="CAP-date">
+                                        <fieldset class="govuk-fieldset" role="group" aria-describedby="caseActionPlan-Date-hint">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">Required by Date</h1>
+                                            </legend>
+                                            <div id="caseActionPlan-Date-hint" class="govuk-hint">For example, 27 3 2007</div>
+                                            <p id="caseActionPlan-Date-error" class="govuk-error-message">
+                                                <span class="govuk-visually-hidden">Error:</span> The date your action required to be complete
+                                            </p>                                            
+                                            <div class="govuk-date-input" id="caseActionPlan-Date">
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label" for="caseActionPlan-Date-Day">Day</label>
+                                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="caseActionPlan-Date-Day" name="pcaseActionPlan-Date-Day" type="text" inputmode="numeric" maxlength="2">
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label" for="caseActionPlan-Date-Month">Month</label>
+                                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="caseActionPlan-Date-Month" name="caseActionPlan-Date-Month" type="text" inputmode="numeric" maxlength="2">
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label" for="caseActionPlan-Date-Year">Year</label>
+                                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="caseActionPlan-Date-Year" name="caseActionPlan-Date-Year" type="text" inputmode="numeric" maxlength="4">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- /////////////////////// FORM ITEM - 1 - END /////////////////////// -->
+
+                                    <!-- /////////////////////// FORM ITEM - 2 - START /////////////////////// -->
+                                    <div class="govuk-form-group" id="CAP-info">
+                                        <fieldset class="govuk-fieldset" aria-describedby="caseActionPlan-Specific-hint">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">Add specific information</h1>
+                                            </legend>
+                                            <div id="caseActionPlan-Specific-hint" class="govuk-hint">
+                                                Select at least one category such as Key Witness Details, Special Measures Material or CCTV Material.
+                                            </div>
+                                            <p id="caseActionPlan-Specific-error" class="govuk-error-message">
+                                                <span class="govuk-visually-hidden">Error:</span> Select specific information to add to the Case Action Plan
+                                            </p>                                            
+                                            <div class="govuk-form-group case-action-plan-checkboxes">
+                                                <fieldset class="govuk-fieldset">
+                                                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Key" name="caseActionPlan-SpecificDetails" type="checkbox" value="Key Witness Details">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Key">Key Witness Details</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-AllKey" name="caseActionPlan-SpecificDetails" type="checkbox" value="All Key Witness Statements">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-AllKey">All Key Witness Statements</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-NonKey" name="caseActionPlan-SpecificDetails" type="checkbox" value="Non-key Witness Statements">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-NonKey">Non-key Witness Statements</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-NonKeyAdd" name="caseActionPlan-SpecificDetails" type="checkbox" value="Additional (Non-Key) Witness Statements">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-NonKeyAdd">Additional (Non-Key) Witness Statements</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Witness" name="caseActionPlan-SpecificDetails" type="checkbox" value="Witness Availability">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Witness">Witness Availability</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Victim" name="caseActionPlan-SpecificDetails" type="checkbox" value="Victim Personal Statement">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Victim">Victim Personal Statement</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Special" name="caseActionPlan-SpecificDetails" type="checkbox" value="Special Measures Material">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Special">Special Measures Material</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Convictions" name="caseActionPlan-SpecificDetails" type="checkbox" value="Previous Convictions for all Prosecution Witnesses">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Convictions">Previous Convictions for all Prosecution Witnesses</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-ROTI" name="caseActionPlan-SpecificDetails" type="checkbox" value="ROTI">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-ROTI">ROTI</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Key-Exhibits" name="caseActionPlan-SpecificDetails" type="checkbox" value="Key Exhibits">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Key-Exhibits">Key Exhibits</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Evidence" name="caseActionPlan-SpecificDetails" type="checkbox" value="Identification Evidence">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Evidence">Identification Evidence</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-CCTV" name="caseActionPlan-SpecificDetails" type="checkbox" value="CCTV Material">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-CCTV">CCTV Material</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Visually" name="caseActionPlan-SpecificDetails" type="checkbox" value="Visually Recorded Evidence">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Visually">Visually Recorded Evidence</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Drugs" name="caseActionPlan-SpecificDetails" type="checkbox" value="Initial Drugs Assessment">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Drugs">Initial Drugs Assessment</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Forensic" name="caseActionPlan-SpecificDetails" type="checkbox" value="Forensic Evidence">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Forensic">Forensic Evidence</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Medical" name="caseActionPlan-SpecificDetails" type="checkbox" value="Medical Evidence">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Medical">Medical Evidence</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Sensitive" name="caseActionPlan-SpecificDetails" type="checkbox" value="Unused/Sensitive Material">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Sensitive">Unused/Sensitive Material</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Character" name="caseActionPlan-SpecificDetails" type="checkbox" value="Bad Character/Dangerous Offender info">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Character">Bad Character/Dangerous Offender info</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Orders" name="caseActionPlan-SpecificDetails" type="checkbox" value="Orders on Conviction">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Orders">Orders on Conviction</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-POCA" name="caseActionPlan-SpecificDetails" type="checkbox" value="POCA Review">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-POCA">POCA Review</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Compensation" name="caseActionPlan-SpecificDetails" type="checkbox" value="Compensation Details">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Compensation">Compensation Details</label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="caseActionPlan-SpecificDetails-Other" name="caseActionPlan-SpecificDetails" type="checkbox" value="Other (specify)">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-SpecificDetails-Other">Other (specify)</label>
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- /////////////////////// FORM ITEM - 2 - END /////////////////////// -->
+
+                                    <hr class="dotted">
+
+                                    <!-- /////////////////////// FORM ITEM - 3 - START /////////////////////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset" aria-describedby="caseActionPlan-FollowUp">
+                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="caseActionPlan-FollowUp" name="caseActionPlan-FollowUp" type="checkbox" value="Yes" checked>
+                                                    <label class="govuk-label govuk-checkboxes__label" for="caseActionPlan-FollowUp">Create a follow up task?</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- /////////////////////// FORM ITEM - 3 - END /////////////////////// -->
+
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="error-case-action-plan" class="govuk-button" data-module="govuk-button" type="button" onClick="">Save and continue</button>
+                                    <button id="case-action-plan-button" class="govuk-button" data-module="govuk-button" type="button" onClick="openCaseActionModal2(), closeCaseActionModal()">Save and continue</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onClick="closeCaseActionModal()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

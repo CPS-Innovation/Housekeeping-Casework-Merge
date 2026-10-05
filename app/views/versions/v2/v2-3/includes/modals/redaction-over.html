@@ -1,0 +1,577 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="redactionModalOver">
+
+    <div class="das-cookie-banner" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeModalOver()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="redaction-over">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    Log an Under/Over redaction - <span id="document-title-2">Document title</span>         
+                                    <div class="tooltip">
+                                        <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleTooltip1()">Redaction Log guidance</button>
+                                        <div class="tooltiptext-1">
+                                             <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleTooltip1()">×</button>
+                                            <p>Redaction Log Guidance</p>
+                                            <ul class="govuk-list govuk-list--bullet">
+                                                <li>This popup allows the capture of details which will be recorded into the Redaction Log automatically</li>
+                                                <li>Once added, if an entry needs editing or deleting, this should be done in the Redaction log application</li>
+                                                <li>Contact with the Investigative Agency or the CPS is not automatic - you should contact any such bodies yourself to make the correction</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </h1>
+
+                                <!-- ///// FILTER ONE - START ///// -->
+                                <div class="form">
+                                    <label class="govuk-label" for="redactionOver-Area">CPS Area or Central Casework Division:</label>
+                                    <select class="govuk-select" id="redactionOver-Area" name="redactionOver-Area">
+                                        <option disabled>-- Please select --</option>
+                                        <option value="CPS Direct" selected>CPS Direct</option>
+                                        <option value="Cymru - Wales">Cymru - Wales</option>
+                                        <option value="East Midlands">East Midlands</option>
+                                        <option value="East of England">East of England</option>
+                                        <option value="London North">London North</option>
+                                        <option value="London South">London South</option>
+                                        <option value="Mersey Cheshire">Mersey Cheshire</option>
+                                        <option value="North East">North East</option>
+                                        <option value="North West">North West</option>
+                                        <option value="Proceeds of Crime">Proceeds of Crime</option>
+                                        <option value="Serious Economic Organised Crime and Iinternational Directorate">Serious Economic Organised Crime and Iinternational Directorate</option>
+                                        <option value="South East">South East</option>
+                                        <option value="South West">South West</option>
+                                        <option value="Special Crime and Counter Terrorism">Special Crime and Counter Terrorism</option>
+                                        <option value="Thames and Chiltern">Thames and Chiltern</option>
+                                        <option value="Wessex">Wessex</option>
+                                        <option value="West Midlands">West Midlands</option>
+                                        <option value="Yorkshire Humberside">Yorkshire Humberside</option>
+                                   </select>
+                                </div>
+                                <!-- ///// FILTER ONE - END ///// -->
+
+                                <!-- ///// FILTER TWO - START ///// -->
+                                <div class="form">
+                                    <label class="govuk-label" for="redactionOver-BusinessUnit">CPS Business unit:</label>
+                                    <select class="govuk-select" id="redactionOver-BusinessUnit" name="redactionOver-BusinessUnit">
+                                        <option disabled>-- Please select --</option>
+                                        <option value="Magistrates Court" selected>Magistrates Court</option>
+                                        <option value="Crown Court">Crown Court</option>
+                                        <option value="RASSO">RASSO</option>
+                                        <option value="CCU">CCU</option>
+                                    </select>
+                                </div>
+                                <!-- ///// FILTER TWO - END ///// -->
+
+                                <!-- ///// FILTER THREE - START ///// -->
+                                <div class="form">
+                                    <label class="govuk-label" for="redactionOver-InvestigativeAgency">Investigative Agency:</label>
+                                    <select class="govuk-select" id="redactionOver-InvestigativeAgency" name="redactionOver-InvestigativeAgency">
+                                        <option disabled>-- Please select --</option>
+                                        <option value="Surrey Police" selected>Surrey Police</option>
+                                        <option value="DWP">DWP</option>
+                                        <option value="NHS">NHS</option>
+                                        <option value="Counter Fraud Authority">Counter Fraud Authority</option>
+                                        <option value="Department for Health and Social Care">Department for Health and Social Care</option>
+                                        <option value="Medicines Healthcare Regulatory Agency (MHRA)">Medicines Healthcare Regulatory Agency (MHRA)</option>
+                                        <option value="Welsh Revenue Authority">Welsh Revenue Authority</option>
+                                        <option value="Child Maintenance Group">Child Maintenance Group</option>
+                                        <option value="DEFRA-linked agencies including:">DEFRA-linked agencies including:</option>
+                                        <option value="The Veteinary Medicines Directorate">The Veteinary Medicines Directorate</option>
+                                        <option value="Animal Health and Veterinary Laboratories Agency">Animal Health and Veterinary Laboratories Agency</option>
+                                        <option value="Forestry Commission Wales">Forestry Commission Wales</option>
+                                        <option value="Rural Payments Agency">Rural Payments Agency</option>
+                                        <option value="Horticultural Marketing Inspectorate">Horticultural Marketing Inspectorate</option>
+                                        <option value="Marine Management Organisation">Marine Management Organisation</option>
+                                        <option value="Gangmasters and Labour Abuse Authority">Gangmasters and Labour Abuse Authority</option>
+                                        <option value="British Cattle Movement Service">British Cattle Movement Service</option>
+                                        <option value="Food Standards Agency">Food Standards Agency</option>
+                                        <option value="NATIS">NATIS</option>
+                                        <option value="MOD">MOD</option>
+                                        <option value="NCA">NCA</option>
+                                        <option value="Local Authority">Local Authority</option>
+                                        <option value="Independent Office for Police Conduct (IOPC)">Independent Office for Police Conduct (IOPC)</option>
+                                        <option value="Health and Safety Executive (HSE)">Health and Safety Executive (HSE)</option>
+                                        <option value="Home Office Immigration">Home Office Immigration</option>
+                                        <option value="HMRC">HMRC</option>
+                                        <option value="ROCU">ROCU</option>
+                                        <option value="SO15">SO15</option>
+                                        <option value="Police Scotland">Police Scotland</option>
+                                        <option value="Counter Terrorism Police">Counter Terrorism Police</option>
+                                        <option value="Avon and Somerset Constabulary">Avon and Somerset Constabulary</option>
+                                        <option value="Bedfordshire Police">Bedfordshire Police</option>
+                                        <option value="Cambridgeshrire Constabulary">Cambridgeshrire Constabulary</option>
+                                        <option value="Cheshire Constabulary">Cheshire Constabulary</option>
+                                        <option value="City of London Police">City of London Police</option>
+                                        <option value="Cleveland Police">Cleveland Police</option>
+                                        <option value="Cumbria Constabulary">Cumbria Constabulary</option>
+                                        <option value="Derbyshire Constabulary">Derbyshire Constabulary</option>
+                                        <option value="Devon & Cornwall Police">Devon & Cornwall Police</option>
+                                        <option value="Dorset Police">Dorset Police</option>
+                                        <option value="Durham Constabulary">Durham Constabulary</option>
+                                        <option value="Essex Police">Essex Police</option>
+                                        <option value="Gloucestershire Constabulary">Gloucestershire Constabulary</option>
+                                        <option value="Greater Manchester Police">Greater Manchester Police</option>
+                                        <option value="Hampshire Constabulary">Hampshire Constabulary</option>
+                                        <option value="Hertfordshire Constabulary">Hertfordshire Constabulary</option>
+                                        <option value="Humberside Police">Humberside Police</option>
+                                        <option value="Kent Police">Kent Police</option>
+                                        <option value="Lancashire Constabulary">Lancashire Constabulary</option>
+                                        <option value="Leicestershire Police">Leicestershire Police</option>
+                                        <option value="Lincolnshire Police">Lincolnshire Police</option>
+                                        <option value="Merseyside Police">Merseyside Police</option>
+                                        <option value="Metropolitan Police Service">Metropolitan Police Service</option>
+                                        <option value="Norfolk Constabulary">Norfolk Constabulary</option>
+                                        <option value="North Yorkshire Police">North Yorkshire Police</option>
+                                        <option value="Northamptonshire Police">Northamptonshire Police</option>
+                                        <option value="Northumbria Police">Northumbria Police</option>
+                                        <option value="Nottinghamshire Police">Nottinghamshire Police</option>
+                                        <option value="South Yorkshire Police">South Yorkshire Police</option>
+                                        <option value="Staffordshire Police">Staffordshire Police</option>
+                                        <option value="Suffolk Constabulary">Suffolk Constabulary</option>
+                                        <option value="Surrey Police">Surrey Police</option>
+                                        <option value="Thames Valley Police">Thames Valley Police</option>
+                                        <option value="Warwickshire Police">Warwickshire Police</option>
+                                        <option value="West Mercia Police">West Mercia Police</option>
+                                        <option value="West Midlands Police">West Midlands Police</option>
+                                        <option value="West Yorkshire Police">West Yorkshire Police</option>
+                                        <option value="Wilstshire Police">Wilstshire Police</option>
+                                        <option value="Dyfed-Powys Police">Dyfed-Powys Police</option>
+                                        <option value="Gwent Police">Gwent Police</option>
+                                        <option value="North Wales Police">North Wales Police</option>
+                                        <option value="South Wales Police">South Wales Police</option>
+                                        <option value="British Transport Police">British Transport Police</option>
+                                        <option value="Civil Nuclear Constabulary">Civil Nuclear Constabulary</option>
+                                        <option value="Ministry of Defence Police">Ministry of Defence Police</option>
+                                        <option value="National Police Air Service">National Police Air Service</option>
+                                        <option value="SEROCU">SEROCU</option>
+                                        <option value="ERSOU">ERSOU</option>
+                                    </select>
+                                </div>
+                                <!-- ///// FILTER THREE - END ///// -->
+
+                                <!-- ///// FILTER FOUR - START ///// -->
+                                <div class="form govuk-form-group--error" id="over-charge-error">
+                                    <label class="govuk-label" for="redactionOver-ChargeStatus">Charge status:</label>
+                                    <p id="over-charge-issued-error" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span> Select a Charge status
+                                    </p>
+                                    <select class="govuk-select" id="redactionOver-ChargeStatus" name="redactionOver-ChargeStatus">
+                                        <option disabled selected>-- Please select --</option>
+                                        <option value="Pre-charge">Pre-charge</option>
+                                        <option value="Post-charge">Post-charge</option>
+                                    </select>
+                                </div>
+                                <!-- ///// FILTER FOUR - END ///// -->
+
+                                <!-- ///// FILTER FIVE - START ///// -->
+                                <div class="form">
+                                    <label class="govuk-label" for="redactionOver-DocType">Document type:</label>
+                                    <select class="govuk-select" id="redactionOver-DocType" name="redactionOver-DocType">
+                                        <option disabled>-- Please select --</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Exhibits">Exhibits</option>
+                                        <option value="Unused">Unused</option>
+                                        <option value="MME">MME</option>
+                                        <option value="MG 1">MG 1</option>
+                                        <option value="MG 10">MG 10</option>
+                                        <option value="MG 11" selected>MG 11</option>
+                                        <option value="MG 12">MG 12</option>
+                                        <option value="MG 14">MG 14</option>
+                                        <option value="MG 1">MG 16</option>
+                                        <option value="MG 18">MG 18</option>
+                                        <option value="MG 2">MG 2</option>
+                                        <option value="MG 20">MG 20</option>
+                                        <option value="MG 21">MG 21</option>
+                                        <option value="MG 21A">MG 21A</option>
+                                        <option value="MG 3">MG 3</option>
+                                        <option value="MG 4">MG 4</option>
+                                        <option value="MG 4A">MG 4A</option>
+                                        <option value="MG 4B">MG 4B</option>
+                                        <option value="MG 4C">MG 4C</option>
+                                        <option value="MG 4D">MG 4D</option>
+                                        <option value="MG 4E">MG 4E</option>
+                                        <option value="MG 4F">MG 4F</option>
+                                        <option value="MG 5">MG 5</option>
+                                        <option value="MG 6">MG 6</option>
+                                        <option value="MG 6A">MG 6A</option>
+                                        <option value="MG 6B">MG 6B</option>
+                                        <option value="MG 6C">MG 6C</option>
+                                        <option value="MG 6D">MG 6D</option>
+                                        <option value="MG 6E">MG 6E</option>
+                                        <option value="MG 7">MG 7</option>
+                                        <option value="MG 8">MG 8</option>
+                                        <option value="MG 9">MG 9</option>
+                                        <option value="MG 19">MG 19</option>
+                                    </select>
+
+                                </div>
+                                <!-- ///// FILTER FIVE - END ///// -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <!-- /////// ERROR MESSAGE SECTION - START /////// -->
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-one-half">
+
+                                    <div id="over-redaction-error-summary" class="govuk-error-summary" data-module="govuk-error-summary">
+                                        <div role="alert">
+                                            <h2 class="govuk-error-summary__title">There is a problem</h2>
+                                            <div class="govuk-error-summary__body">
+                                                <ul class="govuk-list govuk-error-summary__list">
+                                                    <li id="over-charge-error-list"><a href="#">Select a charge status</a></li>
+                                                    <li id="type-error-list"><a href="#">Select a redaction type</a></li>
+                                                    <li id="redactions-type-error-list"><a href="#">Select a type of redaction</a></li>
+                                                    <li id="over-redactions-type-error-list"><a href="#">Select a type of redaction</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /////// ERROR MESSAGE SECTION - END /////// -->
+
+<!--                             <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <h2 class="govuk-heading-m">
+                                        <span class="icon document"></span>
+                                        <strong><span class="icon-new document"></span>Redaction details for: ""</strong>
+                                    </h2>
+                                </div>
+                            </div>
+ -->
+                            <!-- /////////////////////// ROW - 1 - START /////////////////////// -->
+                            <div class="govuk-grid-row">
+
+<!--                                 <div class="govuk-grid-column-full">
+                                    <div class="govuk-warning-text">
+                                        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                        <strong class="govuk-warning-text__text">
+                                            <span class="govuk-warning-text__assistive">Warning</span>
+                                            This is not an automatic return - you must send the document(s) yourself
+                                        </strong>
+                                    </div>
+                                </div>
+ -->
+                                <div class="govuk-grid-column-full">
+
+                                    <div id="over-type-issued-error" class="govuk-form-group outer-wrapper govuk-!-margin-top-6">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend">Confirm the redaction type</legend>
+                                            <p id="type-issued-error" class="govuk-error-message">
+                                                <span class="govuk-visually-hidden">Error:</span> Select a redaction type
+                                            </p>
+                                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="redationType-Under" name="redationType" type="checkbox" value="Under-redaction" data-aria-controls="conditional-redationType-Under">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="redationType-Under">Under-redaction</label>
+                                                    <div id="redationType-Under-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        Recording in Redaction Log, please contact the Investigative Agency for correction
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-redationType-Under">
+                                                    <div class="govuk-form-group redaction-type-wrapper">
+                                                        <fieldset class="govuk-fieldset" id="over-redacgtions-type-issued-error">
+                                                            <legend class="govuk-fieldset__legend">Types of redactions</legend>
+                                                            <p id="redation-type-issued-error" class="govuk-error-message">
+                                                                <span class="govuk-visually-hidden">Error:</span> Select a under-redation type
+                                                            </p>
+                                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-DOB" name="redactionUnder-redaction-type" type="checkbox" value="Date of Birth">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-DOB">Date of Birth</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Address" name="redactionUnder-redaction-type" type="checkbox" value="Address">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Address">Address</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Named" name="redactionUnder-redaction-type" type="checkbox" value="Named individual">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Named">Named individual</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Occupation" name="redactionUnder-redaction-type" type="checkbox" value="Occupation">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Occupation">Occupation</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Phone" name="redactionUnder-redaction-type" type="checkbox" value="Phone number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Phone">Phone number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Vehicle" name="redactionUnder-redaction-type" type="checkbox" value="Vehicle registration">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Vehicle">Vehicle registration</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Email" name="redactionUnder-redaction-type" type="checkbox" value="Email address">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Email">Email address</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Location" name="redactionUnder-redaction-type" type="checkbox" value="Location">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Location">Location</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Bank" name="redactionUnder-redaction-type" type="checkbox" value="Bank details">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Bank">Bank details</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Previous" name="redactionUnder-redaction-type" type="checkbox" value="Previous convictions">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Previous">Previous convictions</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Relationship" name="redactionUnder-redaction-type" type="checkbox" value="Relationship to others">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Relationship">Relationship to others</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-NHS" name="redactionUnder-redaction-type" type="checkbox" value="NHS number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-NHS">NHS number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-NI" name="redactionUnder-redaction-type" type="checkbox" value="NI number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-NI">NI number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Title" name="redactionUnder-redaction-type" type="checkbox" value="Title">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Title">Title</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Other" name="redactionUnder-redaction-type" type="checkbox" value="Other">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Other">Other (specify)</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item full-width">
+                                                                    <input class="govuk-checkboxes__input" id="redactionUnder-redaction-type-Dont" name="redactionUnder-redaction-type" type="checkbox" value="I don't know">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionUnder-redaction-type-Dont">I don't know</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="redationType-Over" name="redationType" type="checkbox" value="Over-redaction" data-aria-controls="conditional-redationType-Over">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="redationType-Over">Over-redaction</label>
+                                                </div>
+                                                <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-redationType-Over">
+
+                                                    <div class="govuk-form-group  redaction-type-wrapper">
+                                                        <fieldset class="govuk-fieldset">
+                                                            <legend class="govuk-fieldset__legend visuallyhidden">Who did the redaction?</legend>
+                                                            <div class="govuk-radios" data-module="govuk-radios">
+                                                                <div class="govuk-radios__item">
+                                                                    <input class="govuk-radios__input" id="redactionOverWho-Investigative-Agency" name="redactionOverWho" type="radio" value="Investigative Agency" checked>
+                                                                    <label class="govuk-label govuk-radios__label" for="redactionOverWho-Investigative-Agency">
+                                                                        Investigative Agency
+                                                                    </label>
+                                                                    <div id="rredactionOverWho-Investigative-Agency-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                                        Recording in Redaction Log, please contact the Investigative Agency for correction
+                                                                    </div>
+                                                                </div>
+                                                                <div class="govuk-radios__item">
+                                                                    <input class="govuk-radios__input" id="redactionOverWho-CPS" name="redactionOverWho" type="radio" value="CPS">
+                                                                    <label class="govuk-label govuk-radios__label" for="redactionOverWho-CPS">CPS</label>
+                                                                    <div id="rredactionOverWho-Investigative-Agency-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                                        Recording in Redaction Log, please contact the CPS colleague for correction
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+
+                                                    <div class="govuk-form-group redaction-type-wrapper">
+                                                        <fieldset class="govuk-fieldset">
+                                                            <legend class="govuk-fieldset__legend">Types of redactions</legend>
+                                                            <p id="over-redation-type-issued-error" class="govuk-error-message">
+                                                                <span class="govuk-visually-hidden">Error:</span> Select a over-redation type
+                                                            </p>
+                                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-DOB" name="redactionOver-redaction-type" type="checkbox" value="Date of Birth">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-DOB">Date of Birth</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Address" name="redactionOver-redaction-type" type="checkbox" value="Address">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Address">Address</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Named" name="redactionOver-redaction-type" type="checkbox" value="Named individual">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Named">Named individual</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Occupation" name="redactionOver-redaction-type" type="checkbox" value="Occupation">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Occupation">Occupation</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Phone" name="redactionOver-redaction-type" type="checkbox" value="Phone number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Phone">Phone number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Vehicle" name="redactionOver-redaction-type" type="checkbox" value="Vehicle registration">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Vehicle">Vehicle registration</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Email" name="redactionOver-redaction-type" type="checkbox" value="Email address">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Email">Email address</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Location" name="redactionOver-redaction-type" type="checkbox" value="Location">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Location">Location</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Bank" name="redactionOver-redaction-type" type="checkbox" value="Bank details">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Bank">Bank details</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Previous" name="redactionOver-redaction-type" type="checkbox" value="Previous convictions">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Previous">Previous convictions</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Relationship" name="redactionOver-redaction-type" type="checkbox" value="Relationship to others">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Relationship">Relationship to others</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-NHS" name="redactionOver-redaction-type" type="checkbox" value="NHS number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-NHS">NHS number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-NI" name="redactionOver-redaction-type" type="checkbox" value="NI number">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-NI">NI number</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Title" name="redactionOver-redaction-type" type="checkbox" value="Title">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Title">Title</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Other" name="redactionOver-redaction-type" type="checkbox" value="Other">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Other">Other (specify)</label>
+                                                                </div>
+
+                                                                <div class="govuk-checkboxes__item full-width">
+                                                                    <input class="govuk-checkboxes__input" id="redactionOver-redaction-type-Dont" name="redactionOver-redaction-type" type="checkbox" value="I don't know">
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="redactionOver-redaction-type-Dont">I don't know</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /////////////////////// ROW - 1 - END /////////////////////// -->
+
+                            <!-- /////////////////////// ROW - 2 - START /////////////////////// -->
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-one-half">
+                                    <div class="govuk-character-count" data-module="govuk-character-count-1" data-maxlength="400">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label" for="redactionOver-notes__1">
+                                                Supporting notes <div class="govuk-hint">(optional)</div>
+                                                <div class="tooltip label">
+                                                    <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleTooltip2()">Supporting notes guidance</button>
+                                                    <div class="tooltiptext-2">
+                                                        <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleTooltip2()">×</button>
+                                                        <p>Supporting notes guidance</p>
+                                                        <ul class="govuk-list govuk-list--bullet">
+                                                            <li>Detail the redaction issue identified, e.g. Statement of XX (Initials) DOB redacted</li>
+                                                            <li>Avoid recording full names</li>
+                                                            <li>Do not record sensitive personal data</li>
+                                                            <li>Supporting notes optional - 400 characters maximum</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="redactionOver-notes__1" name="redactionOver-notes__1" rows="4" aria-describedby="redactionOver-notes-info__1" onkeyup="countChar6(this)"></textarea>
+                                        </div>
+                                        <div id="redactionOver-notes-info__1" class="govuk-hint govuk-character-count__message">You can enter up to <span id="charNum6">400</span> characters</div>
+                                    </div>
+                               
+                                </div>
+                            </div>
+                            <!-- /////////////////////// ROW - 2 - END /////////////////////// -->
+
+                            <!-- /////////////////////// ROW - 3 - START /////////////////////// -->
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <div class="govuk-inset-text">
+                                        <div class="govuk-form-group">
+                                            <fieldset class="govuk-fieldset" aria-describedby="redactionLog-return-hint">
+                                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="redactionLog-return" name="redactionLog-return" type="checkbox" checked value="Yes">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="redactionLog-return">Create a draft action plan?</label>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /////////////////////// ROW - 3 - END /////////////////////// -->
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="error-over-redactions" class="govuk-button" data-module="govuk-button" type="button" onClick="errorStatus()">Save and close</button>
+                                    <button id="submit-over-redactions" class="govuk-button" data-module="govuk-button" type="button" onClick="openCaseActionModal(), closeModalOver()">Save and close</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onClick="closeModalOver()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>
