@@ -268,6 +268,26 @@ $(document).ready(function () {
         }
     });
 
+    // 8. Search within materials interaction
+    $(document).off('click.v23SearchMaterials', '#redact_column_1 #search_materials');
+    $(document).on('click.v23SearchMaterials', '#redact_column_1 #search_materials', function () {
+        var resultValue = $('#redact_column_1 #searchURNModal').val();
+        if (resultValue !== undefined) {
+            $('.searchModalResults').text(resultValue);
+            $('#searchURNModal-result').val(resultValue).text(resultValue);
+            $('#searchErrorPanel').hide();
+            $('#searchModal .das-cookie-banner').removeClass('small');
+        }
+    });
+
+    $(document).off('keydown.v23SearchMaterialsKey', '#redact_column_1 #searchURNModal');
+    $(document).on('keydown.v23SearchMaterialsKey', '#redact_column_1 #searchURNModal', function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            $('#redact_column_1 #search_materials').trigger('click');
+        }
+    });
+
     // Maintain global access for legacy callers
     window.updateRedactLayout = function () {
         var hasActiveDoc = $('.active_document').length > 0;

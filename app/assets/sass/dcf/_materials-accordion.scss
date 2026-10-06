@@ -21,6 +21,29 @@
   margin: 0 0 8px 0;
 }
 
+.dcf-materials-panel {
+  .search_container {
+    margin-bottom: 12px;
+
+    div {
+      position: relative;
+
+      button#search_materials {
+        position: absolute;
+        background: url("../images/search-white.svg") no-repeat #1d70b8 50% 50%;
+        background-size: 0.95em;
+        text-indent: -1000em;
+        margin: 0;
+        right: 0;
+        top: 0;
+        width: 2em;
+        border-top: 2px solid black;
+        border-right: 2px solid black;
+      }
+    }
+  }
+}
+
 /* Search form — input and button on one row, no wrap */
 .dcf-materials-search__row {
   display: flex;

@@ -67,11 +67,11 @@
     >
         <div class="dcf-material-card__main">
 
-      {% if _status and (_status | lower) != 'none' %}
-      <span
-              class="dcf-material-card__badge"
-              data-raw-status="{{ _status }}"
-      >
+            {% if _status and (_status | lower) != 'none' %}
+                <span
+                        class="dcf-material-card__badge"
+                        data-raw-status="{{ _status }}"
+                >
           {% if (_status | lower) == 'new' %}
               <strong class="govuk-tag govuk-tag--blue">New</strong>
           {% elif (_status | lower) == 'used' %}
@@ -82,7 +82,7 @@
               <strong class="govuk-tag govuk-tag--grey">{{ _status }}</strong>
           {% endif %}
       </span>
-      {% endif %}
+            {% endif %}
 
             <h3 class="dcf-material-card__title">
 
@@ -167,7 +167,8 @@
             Date: {{ m.date }}
           </span>
 
-                    <a href="#" class="govuk-link dcf-note-link notes-link new-notes-link exhibit-notes" data-action="open-notes" onClick="openNewNotesModal(); return false;">
+                    <a href="#" class="govuk-link dcf-note-link notes-link new-notes-link exhibit-notes"
+                       data-action="open-notes" onClick="openNewNotesModal(); return false;">
             <span class="dcf-note-link__icon" aria-hidden="true">
               <img
                       src="/public/files/speech-bubble-svgrepo-com.svg"
@@ -345,6 +346,20 @@
     <div class="dcf-materials-panel dcf-materials-accordion">
         <div class="dcf-materials-header">
             <h2 class="govuk-heading-m">Categories</h2>
+        </div>
+
+        <div class="govuk-form-group search_container">
+            <label class="govuk-label govuk-label--s" for="searchURNModal">Search within materials</label>
+            <div>
+                <input class="govuk-input" id="searchURNModal" name="searchURNModal" type="text">
+                <button id="search_materials"
+                        type="button"
+                        class="govuk-button"
+                        data-module="govuk-button"
+                        onclick="openModal(); searchTerm();">
+                    Search
+                </button>
+            </div>
         </div>
 
         {{ govukAccordion({
